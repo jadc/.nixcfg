@@ -1,15 +1,8 @@
 { config, pkgs, ... }:
 
 {
-    imports = [
-
-    ];
-
     home.username = "jad";
     home.homeDirectory = "/home/jad";
-
-    # Do not need to update
-    home.stateVersion = "24.05";
 
     # Nix packages to install in user environment
     home.packages = [
@@ -63,4 +56,8 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    # Do not need to update
+    home.stateVersion = "24.05";
+
 }
