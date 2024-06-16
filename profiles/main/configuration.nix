@@ -24,9 +24,9 @@
     i18n.defaultLocale = "en_CA.UTF-8";
 
     # Keymap in X11
-    services.xserver = {
+    services.xserver.xkb = {
         layout = "us";
-        xkbVariant = "";
+        variant = "";
     };
 
     # Create user
@@ -41,8 +41,8 @@
     services.getty.autologinUser = "jad";
 
     # Set default shell to zsh for all users
-    environment.shell = with pkgs; [ zsh ];
-    users.defaultShell = pkgs.zsh;
+    environment.shells = with pkgs; [ zsh ];
+    users.defaultUserShell = pkgs.zsh;
     programs.zsh.enable = true;
 
     # List packages installed in system profile. To search, run:
@@ -72,8 +72,9 @@
     # Or disable the firewall altogether.
     # networking.firewall.enable = false;
 
+    # Enable flakes
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
     # Do not need to update
     system.stateVersion = "24.05";
-
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
