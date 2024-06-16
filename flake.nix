@@ -1,6 +1,6 @@
 {
 
-    description = "NixOS";
+    description = "jad's nixos";
 
     inputs = {
         nixpkgs = {
@@ -30,7 +30,7 @@
         nixosConfigurations = {
             jadc = nixpkgs.lib.nixosSystem {
                 specialArgs = { inherit system; };
-                modules = [ ./nixos/configuration.nix ];
+                modules = [ ./profiles/main/configuration.nix ];
             };
         };
 
@@ -38,7 +38,7 @@
         homeConfigurations = {
             jad = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                modules = [ ./home.nix ];
+                modules = [ ./profiles/main/home.nix ];
             };
         };
 
