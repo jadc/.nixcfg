@@ -1,0 +1,7 @@
+{
+    description = "Flake";
+
+    inputs = {};
+
+    outputs = {};
+}
