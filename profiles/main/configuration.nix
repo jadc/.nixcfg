@@ -9,14 +9,14 @@
             ./../../system/nix-gc.nix
             ./../../system/networkmanager.nix
             ./../../system/users.nix
-            ./../../system/zsh.nix
         ];
 
     config = {
         # Hostname
         networking.hostName = "jadc";
 
-        # environment.systemPackages = with pkgs; [];
+        # Rebuild won't work without git
+        environment.systemPackages = with pkgs; [ git ];
 
         # Enable flakes
         nix.settings.experimental-features = [ "nix-command" "flakes" ];

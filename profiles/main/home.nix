@@ -3,6 +3,7 @@
 {
     imports = 
         [
+            ./../../user/shells.nix
             ./../../user/git.nix
         ];
     config = {
