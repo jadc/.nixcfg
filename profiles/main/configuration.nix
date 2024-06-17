@@ -76,6 +76,13 @@
         # Enable flakes
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+        # Clean >= 30 day old generations every week
+        nix.gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 30d";
+        };
+
         # Do not need to update
         system.stateVersion = "24.05";
     };
