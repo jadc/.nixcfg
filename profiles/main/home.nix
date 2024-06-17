@@ -3,6 +3,7 @@
 {
     imports = 
         [
+            ./../../user/env.nix
             ./../../user/shells.nix
             ./../../user/git.nix
         ];
@@ -14,10 +15,6 @@
 
             # File management (e.g. dotfiles)
             #file = {};
-
-            sessionVariables = {
-                # EDITOR = "emacs";
-            };
         };
 
         # Let Home Manager install and manage itself.
