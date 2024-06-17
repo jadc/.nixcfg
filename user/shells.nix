@@ -31,4 +31,11 @@ in
         enableCompletion = true;
         inherit shellAliases;
     };
+
+    # Backup shell
+    programs.bash = {
+        enable = true;
+        enableCompletion = true;
+        inherit shellAliases;
+    };
 }
