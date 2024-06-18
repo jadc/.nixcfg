@@ -46,6 +46,8 @@ in
             setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
             setopt CSH_NULL_GLOB            # Delete pattern from argument list instead of reporting
 
+            bindkey -v                      # Use vi keybindings
+
             fetch
         '';
     };
