@@ -31,25 +31,23 @@ in
         enableCompletion = true;
         syntaxHighlighting.enable = true;
 
-        # Fetch
-        envExtra = '''';
+        history = {
+            expireDuplicatesFirst = true;   # Expire duplicate entries first when trimming history.
+            extended = true;                # Write the history file in the ":start:elapsed;command" format.
+            ignoreAllDups = true;           # Delete old recorded entry if new entry is a duplicate.
+            ignoreDups = true;              # Don't record an entry that was just recorded again.
+            share = true;                   # Share history between all sessions.
+        };
 
-        /*
-        setOptions = [
-            "BANG_HIST"                 # Treat the '!' character specially during expansion.
-            "EXTENDED_HISTORY"          # Write the history file in the ":start:elapsed;command" format.
-            "INC_APPEND_HISTORY"        # Write to the history file immediately, not when the shell exits.
-            "SHARE_HISTORY"             # Share history between all sessions.
-            "HIST_EXPIRE_DUPS_FIRST"    # Expire duplicate entries first when trimming history.
-            "HIST_IGNORE_DUPS"          # Don't record an entry that was just recorded again.
-            "HIST_IGNORE_ALL_DUPS"      # Delete old recorded entry if new entry is a duplicate.
-            "HIST_FIND_NO_DUPS"         # Do not display a line previously found.
-            "HIST_IGNORE_SPACE"         # Don't record an entry starting with a space.
-            "HIST_SAVE_NO_DUPS"         # Don't write duplicate entries in the history file.
-            "HIST_REDUCE_BLANKS"        # Remove superfluous blanks before recording entry.
-            "CSH_NULL_GLOB"             # Delete pattern from argument list instead of reporting
-        ];
-        */
+        # Appended to end of ~/.zshrc
+        initExtra = ''
+            setopt BANG_HIST                # Treat the '!' character specially during expansion.
+            setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
+            setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
+            setopt CSH_NULL_GLOB            # Delete pattern from argument list instead of reporting
+
+            fetch
+        '';
     };
 
     # Backup shell
