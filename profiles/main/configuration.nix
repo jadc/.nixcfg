@@ -9,6 +9,7 @@
             ./../../system/nix-gc.nix
             ./../../system/networkmanager.nix
             ./../../system/users.nix
+            ./../../system/paths-to-link.nix
         ];
 
     config = {
