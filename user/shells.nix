@@ -48,6 +48,10 @@ in
 
             bindkey -v                      # Use vi keybindings
 
+            # Prompt
+            export PS1='%F{black}%1~%f %(!.%F{red}.%F{blue})$%f '
+
+            # Neofetch knockoff
             fetch
         '';
     };
