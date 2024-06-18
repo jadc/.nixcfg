@@ -5,7 +5,6 @@
 ```sh
 cd $HOME
 git clone https://github.com/jad-c/.nixcfg.git
-cd .nixcfg
-sudo nixos-rebuild switch --flake .
-home-manager switch --flake .
+sudo nixos-rebuild switch --flake .nixcfg
+home-manager switch --flake .nixcfg
 ```
