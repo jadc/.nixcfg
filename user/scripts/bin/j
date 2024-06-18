@@ -1,0 +1,16 @@
+#!/bin/sh
+DIR="/home/jad/docs/notes/Flashcards/PHYSL 210B"
+
+SEARCH=$(find "$DIR" -type f -exec awk '{print FILENAME ";" FNR ";" $0}' {} +)
+
+SELECTED=$(echo "$SEARCH" | fzf --delimiter ';' --with-nth 3..)
+FILE=$(echo "$SELECTED" | cut -d ';' -f 1)
+LINE=$(echo "$SELECTED" | cut -d ';' -f 2)
+
+if [ -n "$FILE" ] && [ -n "$LINE" ]; then
+    sed -n "1,$((LINE-1))p" "$FILE"
+    echo "--------------------------------"
+    sed -n "$LINE,/^$/p" "$FILE"
+else
+    echo "No selection made."
+fi

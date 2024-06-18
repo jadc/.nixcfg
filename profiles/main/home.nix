@@ -5,6 +5,7 @@
         [
             ./../../user/env.nix
             ./../../user/shells.nix
+            ./../../user/scripts/enable.nix
             ./../../user/git.nix
         ];
     config = {
