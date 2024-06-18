@@ -10,6 +10,7 @@
             ./../../system/networkmanager.nix
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
+            #./../../system/sound.nix
         ];
 
     config = {
