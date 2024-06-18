@@ -3,6 +3,7 @@
 {
     imports =
         [
+            # System configuration
             ./hardware-configuration.nix
             ./../../system/grub.nix
             ./../../system/locale.nix
@@ -10,7 +11,9 @@
             ./../../system/networkmanager.nix
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
-            #./../../system/sound.nix
+
+            # User configuration (that can't be done with home-manager)
+            ./../../system/xorg.nix
         ];
 
     config = {
