@@ -1,0 +1,4 @@
+#!/bin/sh
+# requires https://github.com/mneri/pnglatex
+TMPFILE=$(pnglatex -f "$@" -d 280 -P 20 -o /tmp/pnglatexexport)
+xclip -selection clipboard -t image/png -i "$TMPFILE"
