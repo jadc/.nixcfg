@@ -7,6 +7,8 @@
             ./../../user/shells.nix
             ./../../user/scripts/enable.nix
             ./../../user/git.nix
+
+            ./../../user/bspwm.nix
         ];
     config = {
         home = {
@@ -16,6 +18,12 @@
 
             # File management (e.g. dotfiles)
             #file = {};
+        };
+
+        # Custom user configuration
+        monitors = {
+            primary = "HDMI-0";
+            secondary = "DP-0";
         };
 
         # Let Home Manager install and manage itself.
