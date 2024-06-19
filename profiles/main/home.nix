@@ -8,6 +8,7 @@
             ./../../user/scripts/enable.nix
             ./../../user/git.nix
 
+            ./../../user/kitty.nix
             ./../../user/bspwm.nix
         ];
     config = {
