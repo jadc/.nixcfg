@@ -12,8 +12,8 @@
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
 
-            # User configuration (that can't be done with home-manager)
-            ./../../system/xorg.nix
+            # Requires superuser
+            ./../../system/xserver.nix
         ];
 
     config = {

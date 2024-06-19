@@ -16,6 +16,11 @@
             # Bind caps lock to escape
             options = "caps:escape";
         };
+
+        # Skip login manager
+        displayManager = {
+            startx.enable = true;
+        };
     };
 
     services.libinput = {
