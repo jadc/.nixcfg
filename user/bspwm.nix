@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
     options = {
@@ -49,7 +49,22 @@
         services.sxhkd = {
             enable = true;
 
-            keybindings = {};
+            keybindings = {
+                # Close and kill
+                "super + {_,shift + }w" = "bspc node -{c,k}";
+
+                # Set the window state
+                "super + {t,shift + t,s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+
+                # Move focus
+                "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
+
+                # Focus or send to desktop
+                "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
+
+                # Move a floating window
+                "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
+            };
         };
     };
 }

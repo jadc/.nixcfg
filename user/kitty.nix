@@ -75,4 +75,9 @@
             mark3_background #f274bc
         '';
     };
+
+    # Create keybinding to open kitty
+    services.sxhkd.keybindings = {
+        "super + Return" = "${pkgs.kitty}/bin/kitty";
+    };
 }
