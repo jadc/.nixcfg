@@ -10,6 +10,7 @@
 
             ./../../user/kitty.nix
             ./../../user/bspwm.nix
+            ./../../user/maim.nix
         ];
     config = {
         home = {
