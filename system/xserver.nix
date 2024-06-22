@@ -33,7 +33,7 @@
             # TODO: find a way to not hardcode this
             settings = {
                 Autologin = {
-                    User = (import ./constants.nix).username;
+                    User = "jad";
                     Session = "bspwm.desktop";
                 };
             };
