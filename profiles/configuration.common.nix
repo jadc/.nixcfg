@@ -1,4 +1,4 @@
-# The following home.nix is shared amongst all profiles
+# The following configuration.nix is shared amongst all profiles
 # You shouldn't need to modify this file.
 
 { common, pkgs, ... }:
