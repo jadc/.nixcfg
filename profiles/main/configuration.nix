@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
-
 {
     imports =
         [
             # System configuration
             ./hardware-configuration.nix
+            ./../configuration.common.nix
+
             ./../../system/grub.nix
             ./../../system/locale.nix
             ./../../system/nix-gc.nix
@@ -15,18 +15,4 @@
             # Requires superuser
             ./../../system/xserver.nix
         ];
-
-    config = {
-        # Hostname
-        networking.hostName = "jadc";
-
-        # Rebuild won't work without git
-        environment.systemPackages = with pkgs; [ git ];
-
-        # Enable flakes
-        nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-        # Do not need to update
-        system.stateVersion = "24.05";
-    };
 }
