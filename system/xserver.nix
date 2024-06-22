@@ -8,7 +8,6 @@
 
     services.xserver = {
         enable = true;
-        layout = "us";
         xkb = {
             layout = "us";
             variant = "";
@@ -17,9 +16,27 @@
             options = "caps:escape";
         };
 
-        # Skip login manager
-        displayManager = {
-            startx.enable = true;
+        # Disable default terminal
+        excludePackages = [ pkgs.xterm ];
+
+        # Enable desired window manager
+        # (configure in home-manager)
+        # TODO: find a way to not hardcode this
+        windowManager.bspwm.enable = true;
+    };
+
+    services.displayManager = {
+        sddm = {
+            enable = true;
+
+            # Automatically login
+            # TODO: find a way to not hardcode this
+            settings = {
+                Autologin = {
+                    User = (import ./constants.nix).username;
+                    Session = "bspwm.desktop";
+                };
+            };
         };
     };
 

@@ -14,8 +14,8 @@
         ];
     config = {
         home = {
-            username = "jad";
-            homeDirectory = "/home/jad";
+            username = (import ./consts.nix).username;
+            homeDirectory = "/home/${(username}";
             stateVersion = "24.05";  # Do not need to update
 
             # File management (e.g. dotfiles)
