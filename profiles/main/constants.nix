@@ -1,0 +1,4 @@
+{
+    hostname = "jadc";
+    username = "jad";
+}
