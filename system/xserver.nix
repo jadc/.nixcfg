@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ common, pkgs, ... }:
 
 {
     imports = [
@@ -33,7 +33,7 @@
             # TODO: find a way to not hardcode this
             settings = {
                 Autologin = {
-                    User = "jad";
+                    User = common.username;
                     Session = "bspwm.desktop";
                 };
             };
