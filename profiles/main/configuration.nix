@@ -18,7 +18,7 @@
 
     config = {
         # Hostname
-        networking.hostName = (import ./constants.nix).hostname;
+        networking.hostName = "jadc";
 
         # Rebuild won't work without git
         environment.systemPackages = with pkgs; [ git ];

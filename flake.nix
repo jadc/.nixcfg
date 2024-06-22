@@ -15,30 +15,30 @@
 
     outputs = { self, nixpkgs, home-manager, ... }: 
         let
-            system = "x86_64-linux";
+            profile = ( import ./profile.nix ).profile;
+            common = ( import ./profiles/${profile}/common.nix );
 
+            system = common.arch;
             pkgs = import nixpkgs {
                 inherit system;
-
-                config = {
-                    allowUnfree = true;
-                };
+                config.allowUnfree = true;
             };
         in {
 
         # System configuration
         nixosConfigurations = {
-            jadc = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit system; };
-                modules = [ ./profiles/main/configuration.nix ];
+            ${common.hostname} = nixpkgs.lib.nixosSystem {
+                modules = [ ./profiles/${profile}/configuration.nix ];
+                specialArgs = { inherit system; inherit common; };
             };
         };
 
         # User(s) configuration
         homeConfigurations = {
-            jad = home-manager.lib.homeManagerConfiguration {
+            ${common.username} = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                modules = [ ./profiles/main/home.nix ];
+                modules = [ ./profiles/${profile}/home.nix ];
+                extraSpecialArgs = { inherit common; };
             };
         };
 
