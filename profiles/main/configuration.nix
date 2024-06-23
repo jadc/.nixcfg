@@ -14,7 +14,6 @@
             #./../../system/boot/systemd-boot.nix
 
             # System configuration
-            ./../../system/locale.nix
             ./../../system/nix-gc.nix
             ./../../system/networkmanager.nix
             ./../../system/users.nix
