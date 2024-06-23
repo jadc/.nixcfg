@@ -17,7 +17,7 @@
             ./../../user/gui.nix
             ./../../user/kitty.nix
             ./../../user/maim.nix
-            ./../../user/launcher.nix
+            ./../../user/launcher/rofi.nix
         ];
     config = {
         # Custom user configuration
