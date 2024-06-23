@@ -5,4 +5,9 @@
 
     rootDevice = "/dev/vda";
     bootMountPoint = "/boot";
+
+    region = {
+        timeZone = "America/Edmonton";
+        locale = "en_CA.UTF-8";
+    };
 }
