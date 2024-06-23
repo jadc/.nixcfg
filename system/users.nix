@@ -1,17 +1,20 @@
-{ pkgs, ... }:
+{ common, pkgs, ... }:
 
+let 
+    user = common.username;
+in
 {
     # Create user
     users.users = {
-        jad = {
+        ${user} = {
             isNormalUser = true;
-            description = "jad";
+            description = "${user}";
             extraGroups = [ "wheel" ];
         };
     };
 
     # Enable automatic login for the user.
-    services.getty.autologinUser = "jad";
+    services.getty.autologinUser = "${user}";
 
     # Set default shell to zsh for all users
     programs.zsh.enable = true;
