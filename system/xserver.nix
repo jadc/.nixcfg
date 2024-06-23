@@ -23,23 +23,16 @@
         # (configure in home-manager)
         # TODO: find a way to not hardcode this
         windowManager.bspwm.enable = true;
+        displayManager.lightdm.enable = true;
     };
 
-    services.displayManager = {
-        sddm = {
-            enable = true;
-
-            # Automatically login
-            # TODO: find a way to not hardcode this
-            settings = {
-                Autologin = {
-                    User = common.username;
-                    Session = "bspwm.desktop";
-                };
-            };
-        };
+    # Auto-login
+    services.displayManager.autoLogin = {
+        enable = true;
+        user = "${common.username}";
     };
 
+    # Disable mouse acceleration
     services.libinput = {
         enable = true;
         mouse.accelProfile = "flat";
