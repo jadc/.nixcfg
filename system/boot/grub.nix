@@ -1,7 +1,9 @@
+{ common, ... }:
+
 {
     boot.loader.grub = {
         enable = true;
-        device = "/dev/vda";
+        device = common.rootDevice;
         useOSProber = true;
     };
 }
