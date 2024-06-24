@@ -5,19 +5,21 @@
         [
             ./../home.common.nix
 
-            # CLI
-            ./../../user/env.nix
-            ./../../user/shells.nix
+            # Setup
+            ./../../user/cli/env.nix
+            ./../../user/cli/shells.nix
             ./../../user/scripts/enable.nix
-            ./../../user/git.nix
+            ./../../user/display/compositor.nix
+            ./../../user/display/gui.nix
+
+            # CLI
+            ./../../user/cli/git.nix
 
             # GUI
-            ./../../user/compositor.nix
-            ./../../user/bspwm.nix
-            ./../../user/gui.nix
-            ./../../user/kitty.nix
-            ./../../user/maim.nix
-            ./../../user/launcher/rofi.nix
+            ./../../user/display/bspwm.nix
+            ./../../user/app/kitty.nix
+            ./../../user/app/maim.nix
+            ./../../user/app/launcher/rofi.nix
         ];
     config = {
         # Custom user configuration
