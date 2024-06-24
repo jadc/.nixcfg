@@ -14,6 +14,7 @@
 
             # CLI
             ./../../user/cli/git.nix
+            ./../../user/cli/nixvim.nix
 
             # GUI
             ./../../user/display/bspwm.nix
