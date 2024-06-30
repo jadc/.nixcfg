@@ -11,6 +11,7 @@
         ./plugins/telescope.nix
         ./plugins/gitsigns.nix
         ./plugins/barbar.nix
+        ./plugins/lsp.nix
     ];
 
     programs.nixvim = {
