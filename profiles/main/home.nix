@@ -6,18 +6,15 @@
             ./../home.common.nix
 
             # Setup
-            ./../../user/cli/env.nix
-            ./../../user/cli/shells.nix
             ./../../user/scripts/enable.nix
             ./../../user/display/compositor.nix
             ./../../user/display/gui.nix
 
-            # CLI
-            ./../../user/cli/git.nix
-            ./../../user/cli/nixvim/init.nix
-
-            # GUI
+            # Apps
             ./../../user/display/bspwm.nix
+            ./../../user/app/shells.nix
+            ./../../user/app/git.nix
+            ./../../user/app/nixvim/init.nix
             ./../../user/app/kitty.nix
             ./../../user/app/maim.nix
             ./../../user/app/launcher/rofi.nix
