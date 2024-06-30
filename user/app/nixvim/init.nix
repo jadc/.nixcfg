@@ -10,6 +10,7 @@
         ./plugins/treesitter.nix
         ./plugins/telescope.nix
         ./plugins/gitsigns.nix
+        ./plugins/barbar.nix
     ];
 
     programs.nixvim = {
