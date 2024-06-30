@@ -8,6 +8,7 @@
 
         # Plugins
         ./plugins/treesitter.nix
+        ./plugins/telescope.nix
     ];
 
     programs.nixvim = {
