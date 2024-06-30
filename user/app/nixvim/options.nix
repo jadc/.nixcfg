@@ -31,7 +31,7 @@
         };
 
         # Highlight trailing whitespace
-        highlight.ExtraWhitespace.bg = "red";
+        highlight.ExtraWhitespace.bg = "grey";
         match.ExtraWhitespace = "\\s\\+$";
 
         extraConfigLua = ''
