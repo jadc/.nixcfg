@@ -27,6 +27,7 @@
             hlsearch = false;               # Removes search highlight
             cmdheight = 0;                  # No command line height
             laststatus = 0;                 # No status line
+            signcolumn = "yes";             # Always show sign column
         };
 
         # Highlight trailing whitespace
