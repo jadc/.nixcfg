@@ -7,7 +7,7 @@
         ./themes/onedark.nix
 
         # Plugins
-        ./plugins/lualine.nix
+        ./plugins/treesitter.nix
     ];
 
     programs.nixvim = {

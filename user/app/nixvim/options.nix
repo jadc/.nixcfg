@@ -13,7 +13,6 @@
             shiftround = true;              # Might not be needed
             copyindent = true;              # Might not be needed
             foldlevel = 20;                 # Nested level to start folding
-            foldmethod = "indent";          # Fold on indents
 
             # Disable backups
             backup = false;
@@ -27,6 +26,7 @@
             smartcase = true;               # Sensitive if search has caps
             hlsearch = false;               # Removes search highlight
             cmdheight = 0;                  # No command line height
+            laststatus = 0;                 # No status line
         };
 
         # Highlight trailing whitespace
