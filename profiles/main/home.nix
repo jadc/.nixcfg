@@ -20,6 +20,7 @@
             ./../../user/app/kitty.nix
             ./../../user/app/maim.nix
             ./../../user/app/launcher/rofi.nix
+            ./../../user/app/chromium.nix
         ];
     config = {
         # Custom user configuration
