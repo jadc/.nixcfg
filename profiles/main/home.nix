@@ -15,6 +15,7 @@
             ./../../user/app/shells.nix
             ./../../user/app/git.nix
             ./../../user/app/nixvim/init.nix
+            ./../../user/app/tmux.nix
             ./../../user/app/kitty.nix
             ./../../user/app/maim.nix
             ./../../user/app/launcher/rofi.nix
