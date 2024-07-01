@@ -22,6 +22,10 @@
             ./../../user/app/launcher/rofi.nix
             ./../../user/app/chromium.nix
             ./../../user/app/vesktop.nix
+            ./../../user/app/texlive.nix
+            ./../../user/app/archivers.nix
+            ./../../user/app/multimedia/audio.nix
+            ./../../user/app/multimedia/video.nix
         ];
     config = {
         # Custom user configuration
