@@ -9,6 +9,7 @@
             ./../../user/scripts/enable.nix
             ./../../user/display/compositor.nix
             ./../../user/display/gui.nix
+            ./../../user/app/redshift.nix
 
             # Apps
             ./../../user/display/bspwm.nix
