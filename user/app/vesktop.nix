@@ -119,6 +119,6 @@
                     "UserSettingsAPI": { "enabled": true }
                 }
             }
-    ''; 
+        ''; 
     };
 }
