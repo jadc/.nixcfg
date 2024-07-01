@@ -1,11 +1,14 @@
 # vesktop: An alternate client for Discord with Vencord built-in.
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
     home.packages = with pkgs; [ vesktop ];
-    home.file = {
-        "${config.home.homeDirectory}/.config/vesktop/settings/settings.json" = { text = ''
+    xdg.configFile.vesktop = { 
+        target = "vesktop/settings/settings.json";
+        recursive = true;
+        executable = false; 
+        text = ''
             {
                 "notifyAboutUpdates": true,
                 "autoUpdate": true,
@@ -116,6 +119,6 @@
                     "UserSettingsAPI": { "enabled": true }
                 }
             }
-        ''; executable = false; };
+    ''; 
     };
 }
