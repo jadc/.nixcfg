@@ -1,7 +1,7 @@
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let 
-    user = common.username;
+    user = config.common.username;
 in
 {
     # Create user

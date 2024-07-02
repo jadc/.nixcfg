@@ -1,4 +1,4 @@
-{ common, ... }:
+{ config, ... }:
 
 {
     boot.loader = {
@@ -6,7 +6,7 @@
 
         efi = {
             canTouchEfiVariables = true;
-            efiSysMountPoint = common.bootMountPoint;
+            efiSysMountPoint = config.common.bootMountPoint;
         };
     };
 }

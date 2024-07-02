@@ -3,8 +3,6 @@
 {
     imports = 
         [
-            ./../home.common.nix
-
             # Setup
             ./../../user/scripts/enable.nix
             ./../../user/display/compositor.nix
