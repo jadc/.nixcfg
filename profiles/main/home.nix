@@ -12,6 +12,7 @@
             # Apps
             ./../../user/display/bspwm.nix
             ./../../user/app/shells.nix
+            ./../../user/app/zoxide.nix
             ./../../user/app/git.nix
             ./../../user/app/nixvim/init.nix
             ./../../user/app/tmux.nix
@@ -25,6 +26,10 @@
             ./../../user/app/rsync.nix
             ./../../user/app/multimedia/audio.nix
             ./../../user/app/multimedia/video.nix
+            ./../../user/app/zathura.nix
+            ./../../user/app/spotify.nix
+
+            ./../../user/app/games/minecraft.nix
         ];
     config = {
         # Custom user configuration
