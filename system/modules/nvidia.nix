@@ -1,11 +1,8 @@
 # To support nVidia dedicated graphics
+{ config, pkgs, ... }:
+
 {
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-        extraPackages = [ pkgs.nvidia_x11 ];
-    };
+    hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
     boot.kernelParams = [ "nvidia-drm.modeset=1" ];
     hardware.nvidia = {

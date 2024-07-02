@@ -1,4 +1,4 @@
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     imports = [
@@ -29,7 +29,7 @@
     # Auto-login
     services.displayManager.autoLogin = {
         enable = true;
-        user = "${common.username}";
+        user = "${config.common.username}";
     };
 
     # Disable mouse acceleration

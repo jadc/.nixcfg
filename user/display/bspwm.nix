@@ -35,6 +35,7 @@
                 pointer_motion_interval = 4;
             };
 
+            # TODO: if secondary monitor is undefined, assign all workspaces to primary
             monitors = 
                 let
                     primary = config.monitors.primary;

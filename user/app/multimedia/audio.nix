@@ -1,14 +1,15 @@
 # Audio manipulation tools
 
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        audacity
-        spek
-        flac
-    ];
+    config = {
+        home.packages = with pkgs; [
+            audacity
+            spek
+            flac
+        ];
 
-    # TODO: make this work
-    # aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
+        common.aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
+    };
 }

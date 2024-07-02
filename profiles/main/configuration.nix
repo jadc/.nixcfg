@@ -2,7 +2,6 @@
     imports =
         [
             ./hardware-configuration.nix
-            ./../configuration.common.nix
 
             # Kernel configuration
             ./../../system/kernel/zen.nix

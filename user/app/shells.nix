@@ -1,6 +1,6 @@
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
-let shellAliases = common.aliases; in
+let shellAliases = config.common.aliases; in
 {
     programs.zsh = {
         enable = true;

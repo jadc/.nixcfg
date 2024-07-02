@@ -1,11 +1,12 @@
-{ common, ... }:
+{ config, ... }:
 
 {
-    programs.texlive = {
-        enable = true;
-        # TODO: add more packages as needed
-    };
+    config = {
+        programs.texlive = {
+            enable = true;
+            # TODO: add more packages as needed
+        };
 
-    # TODO: make this work
-    # common.aliases.texview = "latexmk -pdf -pvc *.tex";
+        common.aliases.texview = "latexmk -pdf -pvc *.tex";
+    };
 }
