@@ -1,12 +1,14 @@
 # The following home.nix is shared amongst all profiles
 # You shouldn't need to modify this file.
 
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
+    imports = [ ./options.common.nix ];
+
     home = {
-        username = common.username;
-        homeDirectory = "/home/${common.username}";
+        username = config.common.username;
+        homeDirectory = "/home/${config.common.username}";
         stateVersion = "24.05";  # Do not need to update
     };
 
