@@ -15,7 +15,6 @@
             mv="mv -iv";
             mkdir="mkdir -pv";
             make="make -j$(nproc)";
-            rsync="rsync -avhP --no-compress";
 
             ## Colors
             ls="ls -hN --color=auto --group-directories-first";
