@@ -1,25 +1,27 @@
 # The following configuration.nix is shared amongst all profiles
 # You shouldn't need to modify this file.
 
-{ common, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
+    imports = [ ./options.common.nix ];
+
     # Hostname
-    networking.hostName = common.hostname;
+    networking.hostName = config.common.hostname;
 
     # Setup locale
-    time.timeZone = common.region.timeZone;
-    i18n.defaultLocale = common.region.locale;
+    time.timeZone = config.common.timeZone;
+    i18n.defaultLocale = config.common.locale;
     i18n.extraLocaleSettings = {
-        LC_ADDRESS = common.region.locale;
-        LC_IDENTIFICATION = common.region.locale;
-        LC_MEASUREMENT = common.region.locale;
-        LC_MONETARY = common.region.locale;
-        LC_NAME = common.region.locale;
-        LC_NUMERIC = common.region.locale;
-        LC_PAPER = common.region.locale;
-        LC_TELEPHONE = common.region.locale;
-        LC_TIME = common.region.locale;
+        LC_ADDRESS = config.common.locale;
+        LC_IDENTIFICATION = config.common.locale;
+        LC_MEASUREMENT = config.common.locale;
+        LC_MONETARY = config.common.locale;
+        LC_NAME = config.common.locale;
+        LC_NUMERIC = config.common.locale;
+        LC_PAPER = config.common.locale;
+        LC_TELEPHONE = config.common.locale;
+        LC_TIME = config.common.locale;
     };
 
     # Rebuild won't work without git

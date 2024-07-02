@@ -21,9 +21,9 @@
     outputs = { self, nixpkgs, home-manager, ... }@inputs:
         let
             profile = ( import ./profile.nix ).profile;
-            common = ( import ./profiles/${profile}/common.nix );
-
+            common = ( import ./profiles/${profile}/common.nix ).config.common;
             system = common.arch;
+
             pkgs = import nixpkgs {
                 inherit system;
                 config.allowUnfree = true;
@@ -33,8 +33,13 @@
         # System configuration
         nixosConfigurations = {
             ${common.hostname} = nixpkgs.lib.nixosSystem {
-                modules = [ ./profiles/${profile}/configuration.nix ];
-                specialArgs = { inherit system; inherit common; };
+                inherit pkgs;
+                modules = [ 
+                    ./profiles/${profile}/common.nix
+                    ./profiles/configuration.common.nix
+                    ./profiles/${profile}/configuration.nix
+                ];
+                specialArgs = { inherit system; };
             };
         };
 
@@ -43,10 +48,11 @@
             ${common.username} = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [
+                    ./profiles/${profile}/common.nix
+                    ./profiles/home.common.nix
                     ./profiles/${profile}/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
-                extraSpecialArgs = { inherit common; };
             };
         };
 
