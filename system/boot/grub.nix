@@ -1,9 +1,9 @@
-{ common, ... }:
+{ config, ... }:
 
 {
     boot.loader.grub = {
         enable = true;
-        device = common.rootDevice;
+        device = config.common.rootDevice;
         useOSProber = true;
     };
 }
