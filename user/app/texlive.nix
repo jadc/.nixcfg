@@ -1,12 +1,8 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
     config = {
-        programs.texlive = {
-            enable = true;
-            # TODO: add more packages as needed
-        };
-
+        programs.texlive.enable = true;
         common.aliases.texview = "latexmk -pdf -pvc *.tex";
     };
 }
