@@ -22,6 +22,7 @@
             ./../../user/app/vesktop.nix
             ./../../user/app/texlive.nix
             ./../../user/app/archivers.nix
+            ./../../user/app/rsync.nix
             ./../../user/app/multimedia/audio.nix
             ./../../user/app/multimedia/video.nix
         ];
