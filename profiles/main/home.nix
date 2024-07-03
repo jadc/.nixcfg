@@ -28,6 +28,8 @@
             ./../../user/app/multimedia/video.nix
             ./../../user/app/zathura.nix
             ./../../user/app/spotify.nix
+            ./../../user/app/syncthing.nix
+            ./../../user/app/nautilus.nix
 
             ./../../user/app/games/minecraft.nix
         ];
