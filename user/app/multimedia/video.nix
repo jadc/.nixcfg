@@ -10,4 +10,6 @@
     home.packages = with pkgs; [
         avidemux
     ];
+
+    programs.obs-studio.enable = true;
 }
