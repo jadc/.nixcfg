@@ -17,7 +17,9 @@
             ./../../system/networkmanager.nix
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
-            #./../../system/modules/nvidia.nix
+            #./../../system/nvidia.nix
+            ./../../system/swapfile.nix
+            ./../../system/sshd.nix
 
             # Requires superuser
             ./../../system/xserver.nix
