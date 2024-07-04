@@ -26,6 +26,7 @@
             ./../../user/app/rsync.nix
             ./../../user/app/multimedia/audio.nix
             ./../../user/app/multimedia/video.nix
+            ./../../user/app/multimedia/image.nix
             ./../../user/app/zathura.nix
             ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
