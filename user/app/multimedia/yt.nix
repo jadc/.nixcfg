@@ -11,7 +11,7 @@
             add-metadata = true;
             embed-thumbnail = true;
             all-subs = true;
-            sub-format = "srt" ;
+            sub-format = "srt";
             embed-subs  = true;
             output = "%(title)s [%(upload_date)s %(id)s].%(ext)s";
         };
