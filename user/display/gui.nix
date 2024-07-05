@@ -10,10 +10,15 @@
         cursorTheme = {
             name = "Bibata-Modern-Ice";
             package = pkgs.bibata-cursors;
+            size = 24;
         };
         theme = {
-            package = pkgs.adw-gtk3;
-            name = "adw-gtk3";
+            name = "whitesur-gtk-theme";
+            package = pkgs.whitesur-gtk-theme;
+        };
+        font = {
+            name = "Open Sans";
+            package = pkgs.open-fonts;
         };
     };
 
