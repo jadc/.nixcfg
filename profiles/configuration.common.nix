@@ -27,6 +27,9 @@
     # Rebuild won't work without git
     environment.systemPackages = with pkgs; [ git ];
 
+    # Fix shutdown hang
+    hardware.enableAllFirmware = true;
+
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
