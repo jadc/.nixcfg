@@ -13,12 +13,4 @@
         # Use beta channel
         package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
-
-    programs.gamemode = {
-        enable = true;
-        settings = {
-            general.inhibit_screensaver = 0;
-        };
-    };
-    users.users.${config.common.username}.extraGroups = [ "gamemode" ];
 }
