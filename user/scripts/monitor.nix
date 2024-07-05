@@ -17,6 +17,6 @@ in
 
     # Add keybindings
     services.sxhkd.keybindings = {
-        "ctrl + shift + q" = "${monitor}/bin/monitor";
+        "super + alt + q" = "${monitor}/bin/monitor";
     };
 }
