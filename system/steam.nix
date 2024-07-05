@@ -1,8 +1,15 @@
 # Steam: game library
 
+{ config, ... }:
+
 {
-    programs.steam = {
+    programs.steam.enable = true;
+
+    programs.gamemode = {
         enable = true;
-        # TODO: add gamemode
+        settings = {
+            general.inhibit_screensaver = 0;
+        };
     };
+    users.users.${config.common.username}.extraGroups = [ "gamemode" ];
 }
