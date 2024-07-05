@@ -3,7 +3,7 @@
 { pkgs, ... }:
 
 let
-    alternative = with pkgs; [ jdk8 ];
+    alternative = with pkgs; [ jdk8 jdk17 ];
 in
 {
     home.packages = with pkgs; [ prismlauncher ];
