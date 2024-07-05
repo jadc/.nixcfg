@@ -36,14 +36,13 @@
             };
 
             # TODO: if secondary monitor is undefined, assign all workspaces to primary
-            monitors = 
-                let
-                    primary = config.monitors.primary;
-                    secondary = config.monitors.secondary;
-                in {
-                    ${primary} = [ "I" "II" "III" "IV" "V" "VI" ];
-                    ${secondary} = [ "VII" "VIII" "IX" ];
-                };
+            monitors = let
+                primary = config.monitors.primary;
+                secondary = config.monitors.secondary;
+            in {
+                ${primary} = [ "I" "II" "III" "IV" "V" "VI" ];
+                ${secondary} = [ "VII" "VIII" "IX" ];
+            };
         };
 
         # Hotkey daemon
@@ -71,5 +70,9 @@
                 # "super + shift + q" = "monitor";
             };
         };
+
+        # Wallpaper
+        programs.feh.enable = true;
+        xsession.windowManager.bspwm.extraConfig = "${pkgs.feh}/bin/feh --bg-fill $HOME/.background-image";
     };
 }
