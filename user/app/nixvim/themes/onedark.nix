@@ -5,11 +5,11 @@
             style = "deep";
             # Saturated by 25% (except marked)
             colors = {
+                fg = "#dde0e5";      #
                 bg0 = "#000000";
                 bg1 = "#000000";
-                bg2 = "#000000";
-                bg3 = "#000000";
-                fg = "#dde0e5";      #
+                #bg2 = "#000000";
+                #bg3 = "#000000";
                 /*
                 red = "#f3556c";
                 orange = "#dc9a5b";

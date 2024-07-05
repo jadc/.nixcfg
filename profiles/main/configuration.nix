@@ -9,15 +9,15 @@
             ./../../system/kernel/flags/performance.nix
 
             # Boot configuration
-            ./../../system/boot/grub.nix
-            #./../../system/boot/systemd-boot.nix
+            #./../../system/boot/grub.nix
+            ./../../system/boot/systemd-boot.nix
 
             # System configuration
             ./../../system/nix-gc.nix
             ./../../system/networkmanager.nix
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
-            #./../../system/nvidia.nix
+            ./../../system/nvidia.nix
             ./../../system/swapfile.nix
             ./../../system/sshd.nix
 

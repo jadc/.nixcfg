@@ -3,5 +3,5 @@
 { pkgs, ... }:
 
 {
-    home.packages = with pkgs; [ gnome.nautilus ];
+    home.packages = with pkgs; [ nautilus ];
 }

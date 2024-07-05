@@ -2,7 +2,7 @@
 
 {
     imports = [
-        #./sound.nix
+        ./sound.nix
         ./fonts.nix
     ];
 
@@ -15,6 +15,8 @@
             # Bind caps lock to escape
             options = "caps:escape";
         };
+
+        dpi = 120;
 
         # Disable default terminal
         excludePackages = [ pkgs.xterm ];
