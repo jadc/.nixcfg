@@ -1,9 +1,15 @@
 { pkgs, ... }:
 
 {
-    # Adds the scripts/bin directory to the user PATH
-    # TODO: make these actual nix packages
-    config.home.packages = [ 
-        (pkgs.buildEnv { name = "scripts"; paths = [ ./. ]; }) 
+    # Nixified scripts
+    imports = [
+        ./volume.nix
+        ./clock.nix
+        ./monitor.nix
+    ];
+
+    # Adds any scripts in ./bin to the user PATH
+    home.packages = [
+        (pkgs.buildEnv { name = "scripts"; paths = [ ./. ]; })
     ];
 }

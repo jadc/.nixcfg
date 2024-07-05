@@ -6,7 +6,7 @@
 
         efi = {
             canTouchEfiVariables = true;
-            efiSysMountPoint = config.common.bootMountPoint;
+            #efiSysMountPoint = config.common.bootMountPoint;
         };
     };
 }
