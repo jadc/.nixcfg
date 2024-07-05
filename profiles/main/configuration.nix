@@ -20,6 +20,7 @@
             ./../../system/nvidia.nix
             ./../../system/swapfile.nix
             ./../../system/sshd.nix
+            ./../../system/trim.nix
 
             # Requires superuser
             ./../../system/xserver.nix
