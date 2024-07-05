@@ -6,6 +6,7 @@
         ./volume.nix
         ./clock.nix
         ./monitor.nix
+        ./update.nix
     ];
 
     # Adds any scripts in ./bin to the user PATH

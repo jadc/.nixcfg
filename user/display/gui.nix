@@ -13,8 +13,8 @@
             size = 24;
         };
         theme = {
-            name = "whitesur-gtk-theme";
-            package = pkgs.whitesur-gtk-theme;
+            name = "Adwaita-dark";
+            package = pkgs.gnome-themes-extra;
         };
         font = {
             name = "Open Sans";
@@ -24,10 +24,9 @@
 
     qt = {
         enable = true;
-        platformTheme.name = "gtk";
+        platformTheme.name = "adwaita";
         style = {
             name = "adwaita-dark";
-            package = pkgs.adwaita-qt;
         };
     };
 }
