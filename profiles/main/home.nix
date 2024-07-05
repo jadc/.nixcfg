@@ -2,7 +2,7 @@
     imports = 
         [
             # Setup
-            ./../../user/scripts/enable.nix
+            ./../../user/scripts
             ./../../user/display/monitors.nix
             ./../../user/display/compositor.nix
             ./../../user/display/gui.nix
@@ -31,8 +31,9 @@
             ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
             ./../../user/app/nautilus.nix
+            ./../../user/app/ripgrep.nix
 
-            ./../../user/app/games/minecraft.nix
+            ./../../user/games
         ];
     config = {
         # Custom user configuration

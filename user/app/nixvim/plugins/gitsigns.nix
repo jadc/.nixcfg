@@ -5,7 +5,6 @@
         settings = {
             signcolumn = true;
             numhl = true;
-            word_diff = true;
         };
     };
 }
