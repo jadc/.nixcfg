@@ -65,6 +65,10 @@
 
                 # Move a floating window
                 "super + {Left,Down,Up,Right}" = "${pkgs.bspwm}/bin/bspc node -v {-20 0,0 20,0 -20,20 0}";
+
+                # Fix monitors
+                # TODO: make monitor script an actual package so this works
+                # "super + shift + q" = "monitor";
             };
         };
     };

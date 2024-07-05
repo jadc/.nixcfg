@@ -7,7 +7,7 @@
         font = {
             package = pkgs.jetbrains-mono;
             name = "JetBrains Mono Medium";
-            size = 13;
+            size = 16;
         };
 
         keybindings = {
@@ -18,6 +18,7 @@
         settings = {
             enable_audio_bell = false;
             update_check_interval = 0;
+            window_padding_width = 24;
         };
 
         extraConfig = ''

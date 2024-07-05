@@ -4,7 +4,7 @@
         hostname = "jadc";
         username = "jad";
 
-        rootDevice = "/dev/vda";
+        rootDevice = "/dev/nvme0n1";
         bootMountPoint = "/boot";
 
         aliases = {
