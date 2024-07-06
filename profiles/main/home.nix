@@ -12,6 +12,7 @@
             # Apps
             ./../../user/display/bspwm.nix
             ./../../user/app/shells.nix
+            ./../../user/app/feh.nix
             ./../../user/app/zoxide.nix
             ./../../user/app/git.nix
             ./../../user/app/nixvim/init.nix
