@@ -81,4 +81,7 @@
     services.sxhkd.keybindings = {
         "super + Return" = "${pkgs.kitty}/bin/kitty";
     };
+
+    # Correct aliases to use kitty
+    common.aliases.ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
 }
