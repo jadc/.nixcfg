@@ -70,9 +70,5 @@
                 # "super + shift + q" = "monitor";
             };
         };
-
-        # Wallpaper
-        programs.feh.enable = true;
-        xsession.windowManager.bspwm.extraConfig = "${pkgs.feh}/bin/feh --bg-fill $HOME/.background-image";
     };
 }
