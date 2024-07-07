@@ -25,6 +25,7 @@
             ./../../user/app/texlive.nix
             ./../../user/app/archivers.nix
             ./../../user/app/rsync.nix
+            ./../../user/app/downloaders
             ./../../user/app/multimedia/audio.nix
             ./../../user/app/multimedia/video.nix
             ./../../user/app/multimedia/image.nix
