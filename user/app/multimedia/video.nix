@@ -3,9 +3,8 @@
 { pkgs, ... }:
 
 {
-    imports = [ 
-        ./ffmpeg.nix 
-        ./yt.nix
+    imports = [
+        ./ffmpeg.nix
     ];
     home.packages = with pkgs; [
         avidemux
