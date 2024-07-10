@@ -1,10 +1,10 @@
 # eza: ls replacement
 
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
     programs.eza.enable = true;
 
     # Replace ls with eza
-    common.aliases.ls = lib.mkForce "${pkgs.eza}/bin/eza --icons";
+    common.aliases.ls = "${pkgs.eza}/bin/eza --icons";
 }
