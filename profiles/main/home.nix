@@ -11,30 +11,46 @@
 
             # Apps
             ./../../user/display/bspwm.nix
-            ./../../user/app/shells.nix
             ./../../user/app/feh.nix
-            ./../../user/app/zoxide.nix
-            ./../../user/app/git.nix
-            ./../../user/app/nixvim/init.nix
-            ./../../user/app/tmux.nix
             ./../../user/app/kitty.nix
             ./../../user/app/maim.nix
-            ./../../user/app/launcher/rofi.nix
+            ./../../user/app/rofi.nix
             ./../../user/app/chromium.nix
             ./../../user/app/vesktop.nix
-            ./../../user/app/texlive.nix
-            ./../../user/app/archivers.nix
-            ./../../user/app/rsync.nix
-            ./../../user/app/downloaders
-            ./../../user/app/multimedia/audio.nix
-            ./../../user/app/multimedia/video.nix
-            ./../../user/app/multimedia/image.nix
             ./../../user/app/zathura.nix
             ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
             ./../../user/app/nautilus.nix
-            ./../../user/app/ripgrep.nix
 
+            ## Multimedia
+            ./../../user/app/audacity.nix
+            ./../../user/app/spek.nix
+            ./../../user/app/puddletag.nix
+            ./../../user/app/avidemux.nix
+            ./../../user/app/gimp.nix
+            ./../../user/app/inkscape.nix
+            ./../../user/app/jellyfin-player.nix
+            ./../../user/app/mpv.nix
+            ./../../user/app/obs.nix
+            ./../../user/cli/flac.nix
+            ./../../user/cli/exiftool.nix
+            ./../../user/cli/ffmpeg.nix
+            ./../../user/cli/imagemagick.nix
+
+            # Command-line Interface
+            ./../../user/cli/shells.nix
+            ./../../user/cli/zoxide.nix
+            ./../../user/cli/git.nix
+            ./../../user/cli/nixvim
+            ./../../user/cli/tmux.nix
+            ./../../user/cli/texlive.nix
+            ./../../user/cli/archivers.nix
+            ./../../user/cli/rsync.nix
+            ./../../user/cli/yt.nix
+            ./../../user/cli/gallery-dl.nix
+            ./../../user/cli/ripgrep.nix
+
+            # Games
             ./../../user/games
         ];
     config = {
