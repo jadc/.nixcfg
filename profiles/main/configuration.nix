@@ -25,5 +25,6 @@
             # Requires superuser
             ./../../system/xserver.nix
             ./../../system/steam.nix
+            ./../../system/virtualbox.nix
         ];
 }
