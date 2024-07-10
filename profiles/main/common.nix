@@ -17,7 +17,7 @@
             make="make -j$(nproc)";
 
             ## Colors
-            ls="ls -hN --color=auto --group-directories-first";
+            # ls="ls -hN --color=auto --group-directories-first";
             grep="grep --color=auto";
             fgrep="fgrep --color=auto";
             egrep="egrep --color=auto";

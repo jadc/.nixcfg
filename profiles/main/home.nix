@@ -40,6 +40,7 @@
             # Command-line Interface
             ./../../user/cli/shells.nix
             ./../../user/cli/zoxide.nix
+            ./../../user/cli/eza.nix
             ./../../user/cli/git.nix
             ./../../user/cli/nixvim
             ./../../user/cli/tmux.nix
