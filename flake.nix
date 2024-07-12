@@ -53,6 +53,15 @@
                 inherit pkgs;
             };
 
+            work = home-manager.lib.homeManagerConfiguration {
+                modules = [
+                    ./config/home.common.nix
+                    ./config/work/common.nix
+                    ./config/work/home.nix
+                    inputs.nixvim.homeManagerModules.nixvim
+                ];
+                inherit pkgs;
+            };
         };
 
     };
