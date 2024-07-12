@@ -34,9 +34,9 @@
         nixosConfigurations = {
             ${common.hostname} = nixpkgs.lib.nixosSystem {
                 inherit pkgs;
-                modules = [ 
-                    ./profiles/${profile}/common.nix
+                modules = [
                     ./profiles/configuration.common.nix
+                    ./profiles/${profile}/common.nix
                     ./profiles/${profile}/configuration.nix
                 ];
                 specialArgs = { inherit system; };
@@ -48,8 +48,8 @@
             ${common.username} = home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 modules = [
-                    ./profiles/${profile}/common.nix
                     ./profiles/home.common.nix
+                    ./profiles/${profile}/common.nix
                     ./profiles/${profile}/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
