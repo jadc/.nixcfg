@@ -20,40 +20,39 @@
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs:
         let
-            profile = ( import ./profile.nix ).profile;
-            common = ( import ./profiles/${profile}/common.nix ).config.common;
-            system = common.arch;
+            x86 = "x86_64-linux";
 
             pkgs = import nixpkgs {
-                inherit system;
+                system = x86;
                 config.allowUnfree = true;
             };
         in {
 
         # System configuration
         nixosConfigurations = {
-            ${common.hostname} = nixpkgs.lib.nixosSystem {
-                inherit pkgs;
+            jadc = nixpkgs.lib.nixosSystem {
+                specialArgs.system = x86;
                 modules = [
-                    ./profiles/configuration.common.nix
-                    ./profiles/${profile}/common.nix
-                    ./profiles/${profile}/configuration.nix
+                    ./config/configuration.common.nix
+                    ./config/main/common.nix
+                    ./config/main/configuration.nix
                 ];
-                specialArgs = { inherit system; };
+                inherit pkgs;
             };
         };
 
         # User(s) configuration
         homeConfigurations = {
-            ${common.username} = home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
+            jad = home-manager.lib.homeManagerConfiguration {
                 modules = [
-                    ./profiles/home.common.nix
-                    ./profiles/${profile}/common.nix
-                    ./profiles/${profile}/home.nix
+                    ./config/home.common.nix
+                    ./config/main/common.nix
+                    ./config/main/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
+                inherit pkgs;
             };
+
         };
 
     };
