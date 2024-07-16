@@ -3,6 +3,7 @@
         arch = "aarch64-darwin";
         hostname = "jadc";
         username = "jad";
+        home = "/Users/jad";
 
         rootDevice = "/dev/nvme0n1";
         bootMountPoint = "/boot";
