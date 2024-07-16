@@ -2,11 +2,16 @@
     programs.git = {
         enable = true;
 
+        # Credentials
         userName = "jadc";
         userEmail = "chehimj@gmail.com";
 
-        # TODO: git config --global init.defaultBranch main
-        # TODO: git config --global push.autoSetupRemote or something
+        # Configuration
+        ignores = [ ".DS_Store" ];
+        extraConfig = {
+            init.defaultBranch = "main";
+            push.autoSetupRemote = true;
+        };
 
         # Prettier diffs
         delta.enable = true;
