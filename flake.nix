@@ -1,6 +1,6 @@
 {
 
-    description = "jad's nixos";
+    description = "jad's nix";
 
     inputs = {
         nixpkgs = {
@@ -16,9 +16,14 @@
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nix-darwin = {
+            url = "github:LnL7/nix-darwin";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
         let
             x86 = "x86_64-linux";
 
@@ -28,8 +33,8 @@
             };
         in {
 
-        # System configuration
         nixosConfigurations = {
+            # Main: System-level configuration
             jadc = nixpkgs.lib.nixosSystem {
                 specialArgs.system = x86;
                 modules = [
@@ -41,8 +46,8 @@
             };
         };
 
-        # User(s) configuration
         homeConfigurations = {
+            # Main: User-level configuration
             jad = home-manager.lib.homeManagerConfiguration {
                 modules = [
                     ./config/home.common.nix
@@ -53,6 +58,7 @@
                 inherit pkgs;
             };
 
+            # Work: User-level configuration
             work = home-manager.lib.homeManagerConfiguration {
                 modules = [
                     ./config/home.common.nix
@@ -64,6 +70,29 @@
             };
         };
 
+        darwinConfigurations = {
+            # Laptop: System-level configuration
+            jadc = nix-darwin.lib.darwinSystem {
+                modules = [
+                    ./config/mac/common.nix
+
+                    ./config/configuration.common.nix
+                    ./config/mac/configuration.nix
+
+                    ./config/home.common.nix
+                    ./config/mac/home.nix
+
+                    home-manager.darwinModules.home-manager {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.verbose = true;
+                        home-manager.users.jad = ./config/mac/home.nix;
+                    }
+
+                    inputs.nixvim.homeManagerModules.nixvim
+                ];
+            };
+        };
     };
 
 }
