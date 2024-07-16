@@ -21,6 +21,7 @@
             ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
             ./../../user/app/nautilus.nix
+            ./../../user/app/deluge.nix
 
             ## Multimedia
             ./../../user/app/audacity.nix
