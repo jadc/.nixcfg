@@ -38,8 +38,6 @@
             jadc = nixpkgs.lib.nixosSystem {
                 specialArgs.system = x86;
                 modules = [
-                    ./config/configuration.common.nix
-                    ./config/main/common.nix
                     ./config/main/configuration.nix
                 ];
                 inherit pkgs;
@@ -50,8 +48,6 @@
             # Main: User-level configuration
             jad = home-manager.lib.homeManagerConfiguration {
                 modules = [
-                    ./config/home.common.nix
-                    ./config/main/common.nix
                     ./config/main/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
@@ -61,8 +57,6 @@
             # Work: User-level configuration
             work = home-manager.lib.homeManagerConfiguration {
                 modules = [
-                    ./config/home.common.nix
-                    ./config/work/common.nix
                     ./config/work/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
@@ -74,9 +68,6 @@
             # Laptop: System-level configuration
             jadc = nix-darwin.lib.darwinSystem {
                 modules = [
-                    ./config/mac/common.nix
-
-                    ./config/configuration.common.nix
                     ./config/mac/configuration.nix
 
                     ./config/home.common.nix

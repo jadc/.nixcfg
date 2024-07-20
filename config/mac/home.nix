@@ -1,6 +1,10 @@
 {
     imports =
         [
+            # Standard configuration
+            ./../home.common.nix
+            ./common.nix
+
             # Apps
             ./../../user/app/kitty.nix
             #./../../user/app/chromium.nix

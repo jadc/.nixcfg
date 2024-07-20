@@ -3,6 +3,10 @@
 {
     imports =
         [
+            # Standard configuration
+            ./../configuration.common.nix
+            ./common.nix
+
             # System configuration
             ./../../system/users.nix
             ./../../system/nix-gc.nix
