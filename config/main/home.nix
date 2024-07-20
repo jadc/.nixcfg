@@ -15,7 +15,7 @@
             ./../../user/app/kitty.nix
             ./../../user/app/maim.nix
             ./../../user/app/rofi.nix
-            ./../../user/app/chromium.nix
+            ./../../user/app/chrome.nix
             ./../../user/app/vesktop.nix
             ./../../user/app/zathura.nix
             ./../../user/app/spotify.nix
