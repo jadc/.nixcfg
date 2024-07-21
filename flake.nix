@@ -86,11 +86,11 @@
             common = ( import ./config/${profile}/common.nix ).config.common;
         in {
             # Work: User-level configuration
-            work = home-manager.lib.homeManagerConfiguration {
+            ${common.hostname} = home-manager.lib.homeManagerConfiguration {
                 modules = [
                     ./config/${profile}/home.nix
-                    inputs.nixvim.homeManagerModules.nixvim
                 ];
+                extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
 
                 # Use correct architecture
                 pkgs = import nixpkgs {
