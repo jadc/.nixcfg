@@ -1,3 +1,5 @@
+{ inputs, ... }:
+
 {
     imports =
         [
@@ -44,6 +46,7 @@
             ./../../user/cli/imagemagick.nix
 
             # Command-line Interface
+            inputs.nixvim.homeManagerModules.nixvim
             ./../../user/cli/shells.nix
             ./../../user/cli/git.nix
             ./../../user/cli/zoxide.nix

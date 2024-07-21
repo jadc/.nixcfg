@@ -23,44 +23,44 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
-        let
-            x86 = "x86_64-linux";
+    outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs: {
 
-            pkgs = import nixpkgs {
-                system = x86;
-                config.allowUnfree = true;
-            };
+        # Main NixOS machine
+        nixosConfigurations = let
+            profile = "main";
+            common = ( import ./config/${profile}/common.nix ).config.common;
         in {
-
-        nixosConfigurations = {
-            # Main: System-level configuration
-            jadc = nixpkgs.lib.nixosSystem {
-                specialArgs.system = x86;
+            ${common.hostname} = nixpkgs.lib.nixosSystem {
                 modules = [
-                    ./config/main/configuration.nix
+                    # System-level configuration
+                    ./config/${profile}/configuration.nix
+
+                    # User-level configuration
+                    home-manager.nixosModules.home-manager {
+                        home-manager.extraSpecialArgs = { inherit inputs; };
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
+                    }
                 ];
-                inherit pkgs;
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
             };
         };
 
         homeConfigurations = {
-            # Main: User-level configuration
-            jad = home-manager.lib.homeManagerConfiguration {
-                modules = [
-                    ./config/main/home.nix
-                    inputs.nixvim.homeManagerModules.nixvim
-                ];
-                inherit pkgs;
-            };
-
             # Work: User-level configuration
             work = home-manager.lib.homeManagerConfiguration {
                 modules = [
                     ./config/work/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
-                inherit pkgs;
+                #inherit pkgs;
             };
         };
 
