@@ -1,5 +1,4 @@
 {
-
     description = "jad's nix";
 
     inputs = {
@@ -37,7 +36,7 @@
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
-                        home-manager.extraSpecialArgs = { inherit inputs; };
+                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${common.username} = import ./config/${profile}/home.nix;
@@ -53,36 +52,54 @@
             };
         };
 
-        homeConfigurations = {
+        # macOS Laptop
+        darwinConfigurations = let
+            profile = "mac";
+            common = ( import ./config/${profile}/common.nix ).config.common;
+        in {
+            ${common.hostname} = nix-darwin.lib.darwinSystem {
+                modules = [
+                    # System-level configuration
+                    ./config/${profile}/configuration.nix
+
+                    # User-level configuration
+                    home-manager.darwinModules.home-manager {
+                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
+                    }
+                ];
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
+            };
+        };
+
+        # Non-NixOS machines
+        homeConfigurations = let
+            profile = "work";
+            common = ( import ./config/${profile}/common.nix ).config.common;
+        in {
             # Work: User-level configuration
             work = home-manager.lib.homeManagerConfiguration {
                 modules = [
-                    ./config/work/home.nix
+                    ./config/${profile}/home.nix
                     inputs.nixvim.homeManagerModules.nixvim
                 ];
-                #inherit pkgs;
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
             };
         };
 
-        darwinConfigurations = {
-            # Laptop: System-level configuration
-            jadc = nix-darwin.lib.darwinSystem {
-                modules = [
-                    ./config/mac/configuration.nix
-
-                    ./config/home.common.nix
-                    ./config/mac/home.nix
-
-                    home-manager.darwinModules.home-manager {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.jad = ./config/mac/home.nix;
-                    }
-
-                    inputs.nixvim.homeManagerModules.nixvim
-                ];
-            };
-        };
     };
-
 }
