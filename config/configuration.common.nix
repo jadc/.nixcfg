@@ -33,6 +33,9 @@
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    # Ensure nixpkgs serves binaries for the correct architecture
+    nixpkgs.hostPlatform = config.common.arch;
+
     # Do not need to update
     system.stateVersion = "24.05";
 }
