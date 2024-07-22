@@ -3,6 +3,7 @@
         arch = "x86_64-linux";
         hostname = "jadc";
         username = "jad";
+        home = "/home/jad";
 
         rootDevice = "/dev/nvme0n1";
         bootMountPoint = "/boot";

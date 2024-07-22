@@ -1,6 +1,10 @@
 {
-    imports = 
+    imports =
         [
+            # Standard configuration
+            ./../home.common.nix
+            ./common.nix
+
             # Setup
             ./../../user/scripts
             ./../../user/display/monitors.nix
