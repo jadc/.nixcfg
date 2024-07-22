@@ -20,6 +20,11 @@
             default = "jad";
             description = "The username of the user";
         };
+        home = lib.mkOption {
+            type = lib.types.str;
+            default = "/home/jad";
+            description = "The home directory of the user";
+        };
 
         rootDevice = lib.mkOption {
             type = lib.types.str;

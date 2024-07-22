@@ -1,6 +1,5 @@
 {
-
-    description = "jad's nixos";
+    description = "jad's nix";
 
     inputs = {
         nixpkgs = {
@@ -16,54 +15,91 @@
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nix-darwin = {
+            url = "github:LnL7/nix-darwin";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs:
-        let
-            x86 = "x86_64-linux";
+    outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs: {
 
-            pkgs = import nixpkgs {
-                system = x86;
-                config.allowUnfree = true;
-            };
+        # Main NixOS machine
+        nixosConfigurations = let
+            profile = "main";
+            common = ( import ./config/${profile}/common.nix ).config.common;
         in {
-
-        # System configuration
-        nixosConfigurations = {
-            jadc = nixpkgs.lib.nixosSystem {
-                specialArgs.system = x86;
+            ${common.hostname} = nixpkgs.lib.nixosSystem {
                 modules = [
-                    ./config/configuration.common.nix
-                    ./config/main/common.nix
-                    ./config/main/configuration.nix
+                    # System-level configuration
+                    ./config/${profile}/configuration.nix
+
+                    # User-level configuration
+                    home-manager.nixosModules.home-manager {
+                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
+                    }
                 ];
-                inherit pkgs;
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
             };
         };
 
-        # User(s) configuration
-        homeConfigurations = {
-            jad = home-manager.lib.homeManagerConfiguration {
+        # macOS Laptop
+        darwinConfigurations = let
+            profile = "mac";
+            common = ( import ./config/${profile}/common.nix ).config.common;
+        in {
+            ${common.hostname} = nix-darwin.lib.darwinSystem {
                 modules = [
-                    ./config/home.common.nix
-                    ./config/main/common.nix
-                    ./config/main/home.nix
-                    inputs.nixvim.homeManagerModules.nixvim
-                ];
-                inherit pkgs;
-            };
+                    # System-level configuration
+                    ./config/${profile}/configuration.nix
 
-            work = home-manager.lib.homeManagerConfiguration {
-                modules = [
-                    ./config/home.common.nix
-                    ./config/work/common.nix
-                    ./config/work/home.nix
-                    inputs.nixvim.homeManagerModules.nixvim
+                    # User-level configuration
+                    home-manager.darwinModules.home-manager {
+                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
+                    }
                 ];
-                inherit pkgs;
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
+            };
+        };
+
+        # Non-NixOS machines
+        homeConfigurations = let
+            profile = "work";
+            common = ( import ./config/${profile}/common.nix ).config.common;
+        in {
+            # Work: User-level configuration
+            ${common.hostname} = home-manager.lib.homeManagerConfiguration {
+                modules = [
+                    ./config/${profile}/home.nix
+                ];
+                extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+
+                # Use correct architecture
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
             };
         };
 
     };
-
 }
