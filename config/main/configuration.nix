@@ -1,6 +1,9 @@
 {
     imports =
         [
+            # Standard configuration
+            ./../configuration.common.nix
+            ./common.nix
             ./hardware-configuration.nix
 
             # Kernel configuration

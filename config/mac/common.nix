@@ -1,9 +1,9 @@
 {
     config.common = {
-        arch = "x86_64-linux";
+        arch = "aarch64-darwin";
         hostname = "jadc";
         username = "jad";
-        home = "/home/jad";
+        home = "/Users/jad";
 
         rootDevice = "/dev/nvme0n1";
         bootMountPoint = "/boot";
