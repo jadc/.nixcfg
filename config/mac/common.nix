@@ -5,9 +5,6 @@
         username = "jad";
         home = "/Users/jad";
 
-        rootDevice = "/dev/nvme0n1";
-        bootMountPoint = "/boot";
-
         aliases = {
             # Default flags
             sudo="sudo -E";
