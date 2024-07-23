@@ -7,7 +7,7 @@ let
         text = ''
             ${pkgs.xorg.xrandr}/bin/xrandr --dpi 120 \
                 --output ${config.monitors.primary} --mode 2560x1440 --scale 1x1 --pos 0x0 \
-                --output ${config.monitors.secondary}   --mode 1920x1080 --scale 1x1 --pos 2560x-324 --rotate right
+                --output ${config.monitors.secondary} --mode 1920x1080 --scale 1x1 --pos 2560x-324 --rotate right
         '';
     };
 in
