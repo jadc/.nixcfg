@@ -1,7 +1,7 @@
 # The following configuration.nix is shared amongst all profiles
 # You shouldn't need to modify this file.
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
     imports = [ ./options.common.nix ];
@@ -21,10 +21,4 @@
 
     # Do not need to update
     system.stateVersion = "24.05";
-}
-
-// lib.optionalAttrs pkgs.stdenv.isLinux {
-    # Set default shell to zsh for all users
-    # Unnecessary on macOS
-    users.defaultUserShell = pkgs.zsh;
 }
