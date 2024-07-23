@@ -8,7 +8,7 @@
             ./common.nix
 
             # System configuration
-            ./../../system/users.nix
+            #./../../system/users.nix
             ./../../system/nix-gc.nix
             #./../../system/fonts.nix
         ];
