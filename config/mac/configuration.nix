@@ -10,7 +10,7 @@
             # System configuration
             ./../../system/users.nix
             ./../../system/nix-gc.nix
-            ./../../system/fonts.nix
+            #./../../system/fonts.nix
         ];
 
     # Enable Nix daemon for macOS
