@@ -79,12 +79,15 @@
             NSNavPanelExpandedStateForSaveMode = true;
             NSNavPanelExpandedStateForSaveMode2 = true;
         };
+    };
 
+    system = {
         keyboard = {
             enableKeyMapping = true;
             remapCapsLockToEscape  = true;
         };
     };
+
 
     # Do not need to update
     system.stateVersion = lib.mkForce 4;
