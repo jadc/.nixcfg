@@ -31,4 +31,7 @@
             ./../../system/virtualbox.nix
             ./../../system/docker.nix
         ];
+
+    # Fix shutdown hang
+    hardware.enableAllFirmware = true;
 }
