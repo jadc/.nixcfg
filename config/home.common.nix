@@ -1,14 +1,14 @@
 # The following home.nix is shared amongst all profiles
 # You shouldn't need to modify this file.
 
-{ config, ... }:
+{ config, lib, ... }:
 
 {
     imports = [ ./options.common.nix ];
 
     home = {
-        username = config.common.username;
-        homeDirectory = config.common.home;
+        username = lib.mkForce config.common.username;
+        homeDirectory = lib.mkForce config.common.home;
         stateVersion = "24.05";  # Do not need to update
     };
 
