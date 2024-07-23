@@ -5,7 +5,7 @@
         enable = true;
 
         font = {
-            package = pkgs.jetbrains-mono;
+            package = ( pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; } );
             name = "JetBrains Mono Medium";
             size = 16;
         };
