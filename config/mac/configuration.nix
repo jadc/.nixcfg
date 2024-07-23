@@ -9,7 +9,7 @@
 
             # System configuration
             #./../../system/users.nix
-            ./../../system/nix-gc.nix
+            #./../../system/nix-gc.nix
             #./../../system/fonts.nix
         ];
 
