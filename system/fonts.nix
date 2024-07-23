@@ -2,13 +2,18 @@
 
 {
     fonts = {
-        enableDefaultPackages = true;
-
         packages = with pkgs; [
             noto-fonts
             open-sans
             twemoji-color-font
             ( nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
+
+            # Default fonts
+            dejavu_fonts
+            freefont_ttf
+            gyre-fonts   # TrueType substitutes for standard PostScript fonts
+            liberation_ttf
+            unifont
         ];
 
         fontconfig = {
