@@ -9,7 +9,7 @@
 
             # Apps
             ./../../user/app/kitty.nix
-            ./../../user/app/chrome.nix
+            #./../../user/app/chrome.nix
             #./../../user/app/vesktop.nix
             #./../../user/app/zathura.nix
             #./../../user/app/spotify.nix
