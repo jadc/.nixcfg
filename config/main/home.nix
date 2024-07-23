@@ -6,7 +6,6 @@
             ./common.nix
 
             # Setup
-            ./../../user/scripts
             ./../../user/display/monitors.nix
             ./../../user/display/compositor.nix
             ./../../user/display/gui.nix
@@ -61,6 +60,12 @@
 
             # Games
             ./../../user/games
+
+            # Scripts
+            ./../../user/scripts
+            ./../../user/scripts/monitor.nix
+            ./../../user/scripts/volume.nix
+            ./../../user/scripts/clock.nix
         ];
     config = {
         # Custom user configuration
