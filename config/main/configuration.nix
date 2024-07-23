@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
     imports =
@@ -52,5 +52,7 @@
         LC_TIME = config.common.locale;
     };
 
-
+    # Set default shell to zsh for all users
+    # Unnecessary on macOS
+    users.defaultUserShell = pkgs.zsh;
 }
