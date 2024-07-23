@@ -1,4 +1,4 @@
-{ self, lib, ... }:
+{ lib, ... }:
 
 {
     imports =
@@ -15,7 +15,6 @@
 
     # Enable Nix daemon for macOS
     services.nix-daemon.enable = true;
-    system.configurationRevision = self.rev or self.dirtyRev or null;
 
     # Enable homebrew packages
     homebrew = {
