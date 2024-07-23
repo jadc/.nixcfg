@@ -9,7 +9,7 @@
 
             # Apps
             ./../../user/app/kitty.nix
-            #./../../user/app/chromium.nix
+            ./../../user/app/chrome.nix
             #./../../user/app/vesktop.nix
             #./../../user/app/zathura.nix
             #./../../user/app/spotify.nix
@@ -32,7 +32,6 @@
             ./../../user/cli/imagemagick.nix
 
             # Command-line Interface
-            inputs.nixvim.homeManagerModules.nixvim
             ./../../user/scripts
             ./../../user/cli/shells.nix
             ./../../user/cli/git.nix
