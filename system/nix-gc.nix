@@ -3,6 +3,6 @@
     nix.gc = {
         automatic = true;
         options = "--delete-older-than 7d";
-        interval = [{ Hour = 3; Minute = 0; Weekday = 7; }];
+        interval = [{ Hour = 21; Minute = 0; Weekday = 7; }];
     };
 }
