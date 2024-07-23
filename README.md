@@ -19,6 +19,10 @@ sudo nixos-rebuild switch --flake ~/.nixcfg
 
 ### nix-darwin
 ```sh
+# Install nix-darwin (only run once)
+nix run nix-darwin -- switch --flake ~/.nixcfg
+
+# Run after every change
 sudo darwin-rebuild switch --flake ~/.nixcfg
 ```
 
