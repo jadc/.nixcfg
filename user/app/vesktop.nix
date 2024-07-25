@@ -63,7 +63,7 @@
                         "ignoreUsers": "",
                         "ignoreChannels": "",
                         "ignoreGuilds": "",
-                        "logEdits": true,
+                        "logEdits": false,
                         "logDeletes": true
                     },
                     "NoBlockedMessages": {
