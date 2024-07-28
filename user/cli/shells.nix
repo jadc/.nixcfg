@@ -18,7 +18,12 @@ let shellAliases = config.common.aliases; in
         };
 
         # Appended to end of ~/.zshrc
-        initExtra = ''
+        initExtra = let 
+                C = "\\e[1;34m";
+                G = "\\e[1;33m";
+                B = "\\e[0;30m";
+                NC = "\\e[0m";
+            in ''
             setopt BANG_HIST                # Treat the '!' character specially during expansion.
             setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
             setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
@@ -30,7 +35,13 @@ let shellAliases = config.common.aliases; in
             export PS1='%F{black}%1~%f %(!.%F{red}.%F{blue})$%f '
 
             # Neofetch knockoff
-            fetch
+            i=$(cat /proc/uptime | awk -F'.' '{print $1}')
+            ((i/=60, min=i%60, hrs=i/60))
+            echo "${B} ,o()()o,  ${C}$USER${NC}"
+            echo "${B},o'    'o,  ${C}dt${NC}  $(date '+%b. %d' | awk '{print tolower($0)}')"
+            echo "${B}'O ${G}.  .${B} O'  ${C}up${NC}  $(printf "%dh %02dm" $hrs $min)"
+            echo "${B}  ·____·"
+            echo ""
         '';
     };
 
