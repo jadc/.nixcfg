@@ -25,6 +25,7 @@
             ./../../system/swapfile.nix
             ./../../system/sshd.nix
             ./../../system/trim.nix
+            ./../../system/automount.nix
 
             # Requires superuser
             ./../../system/xserver.nix
