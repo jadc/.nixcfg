@@ -57,6 +57,7 @@
             ./../../user/cli/gallery-dl.nix
             ./../../user/cli/ripgrep.nix
             ./../../user/cli/htop.nix
+            ./../../user/cli/go.nix
 
             # Games
             ./../../user/games
