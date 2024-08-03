@@ -26,6 +26,7 @@
             ./../../user/app/nautilus.nix
             ./../../user/app/deluge.nix
             ./../../user/app/obsidian.nix
+            ./../../user/app/idea.nix
 
             ## Multimedia
             ./../../user/app/audacity.nix
