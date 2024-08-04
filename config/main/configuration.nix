@@ -18,7 +18,6 @@
             ./../../system/boot/systemd-boot.nix
 
             # System configuration
-            ./../../system/nix-gc.nix
             ./../../system/networkmanager.nix
             ./../../system/users.nix
             ./../../system/paths-to-link.nix
@@ -55,4 +54,11 @@
     # Set default shell to zsh for all users
     # Unnecessary on macOS
     users.defaultUserShell = pkgs.zsh;
+
+    # Clean >= 30 day old generations every week
+    nix.gc = {
+        automatic = true;
+        options = "--delete-older-than 7d";
+        dates = "weekly";
+    };
 }
