@@ -85,7 +85,6 @@
             profile = "work";
             common = ( import ./config/${profile}/common.nix ).config.common;
         in {
-            # Work: User-level configuration
             ${common.hostname} = home-manager.lib.homeManagerConfiguration {
                 modules = [
                     ./config/${profile}/home.nix
