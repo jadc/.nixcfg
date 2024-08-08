@@ -62,6 +62,7 @@
                             end
                         end, { "i", "s" })
                     '';
+                    "<S-Tab>" = "cmp.mapping.select_prev_item()";
                 };
             };
         };
