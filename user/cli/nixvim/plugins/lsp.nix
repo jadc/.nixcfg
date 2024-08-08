@@ -46,6 +46,9 @@
                     border = "rounded";
                 };
 
+                # Do not automatically select from complete dropdown
+                preselect = "cmp.PreselectMode.None";
+
                 mapping = {
                     "<C-Space>" = "cmp.mapping.complete()";
                     "<CR>" = "cmp.mapping.confirm({ select = true })";
