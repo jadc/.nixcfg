@@ -73,7 +73,7 @@
         # Custom user configuration
         monitors = {
             primary = "HDMI-0";
-            secondary = "DP-0";
+            secondary = "HDMI-1";
         };
     };
 }
