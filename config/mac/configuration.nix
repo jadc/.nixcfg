@@ -40,7 +40,8 @@
         casks = [
             #discord
             "google-chrome"
-            #jellyfin-media-player
+            "jellyfin-media-player"
+            "spotify"
             #mactex
             #moonlight
             #obsidian
