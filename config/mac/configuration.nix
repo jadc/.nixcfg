@@ -44,6 +44,7 @@
             #mactex
             #moonlight
             #obsidian
+            "syncthing"
         ];
     };
 
