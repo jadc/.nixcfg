@@ -32,6 +32,7 @@
             ./../../system/steam.nix
             ./../../system/virtualbox.nix
             ./../../system/docker.nix
+            ./../../system/sunshine.nix
         ];
 
     # Fix shutdown hang
