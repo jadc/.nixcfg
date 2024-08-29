@@ -1,7 +1,7 @@
 {
     config.common = {
         arch = "aarch64-darwin";
-        hostname = "jadc";
+        hostname = "jadbook";
         username = "jad";
         home = "/Users/jad";
 
