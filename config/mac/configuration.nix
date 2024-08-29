@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, lib, ... }:
 
 {
     imports =
@@ -16,6 +16,7 @@
 
     # Clean >= 30 day old generations every week
     nix.gc = {
+        user = config.common.username;
         automatic = true;
         options = "--delete-older-than 7d";
         interval = [{ Hour = 21; Minute = 0; Weekday = 7; }];
