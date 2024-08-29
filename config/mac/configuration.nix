@@ -47,6 +47,9 @@
             #obsidian
             "syncthing"
         ];
+        masApps = {
+            "Wireguard" = 1451685025;
+        };
     };
 
     # Allow Touch ID to grant superuser
