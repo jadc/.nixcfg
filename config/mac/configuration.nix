@@ -9,18 +9,16 @@
 
             # System configuration
             #./../../system/users.nix
+            ./../../system/gc
+
+            # Require superuser
+            ## Homebrew
+            ./../../user/app/jellyfin-player/mac.nix
+            ./../../user/app/wireguard/mac.nix
         ];
 
     # Enable Nix daemon for macOS
     services.nix-daemon.enable = true;
-
-    # Clean >= 30 day old generations every week
-    nix.gc = {
-        user = config.common.username;
-        automatic = true;
-        options = "--delete-older-than 7d";
-        interval = [{ Hour = 21; Minute = 0; Weekday = 7; }];
-    };
 
     # Fonts
     /*
@@ -38,16 +36,6 @@
     homebrew = {
         enable = true;
         onActivation.cleanup = "uninstall";
-        casks = [
-            #discord
-            "jellyfin-media-player"
-            #mactex
-            #moonlight
-            #obsidian
-        ];
-        masApps = {
-            "Wireguard" = 1451685025;
-        };
     };
 
     # Allow Touch ID to grant superuser
