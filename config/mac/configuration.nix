@@ -46,7 +46,6 @@
             #mactex
             #moonlight
             #obsidian
-            "syncthing"
         ];
         masApps = {
             "Wireguard" = 1451685025;
