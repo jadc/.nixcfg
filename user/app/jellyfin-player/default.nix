@@ -1,5 +1,3 @@
-# Jellyfin Media Player: A media player for Jellyfin
-
 { pkgs, ... }:
 
 {

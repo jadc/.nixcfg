@@ -18,6 +18,7 @@
             ./../../system/systemd-boot
 
             # System configuration
+            ./../../system/gc
             ./../../system/networkmanager
             ./../../system/users
             ./../../system/nvidia
@@ -55,13 +56,6 @@
     # Set default shell to zsh for all users
     # Unnecessary on macOS
     users.defaultUserShell = pkgs.zsh;
-
-    # Clean >= 30 day old generations every week
-    nix.gc = {
-        automatic = true;
-        options = "--delete-older-than 7d";
-        dates = "weekly";
-    };
 
     # Paths to link
     environment.pathsToLink = [
