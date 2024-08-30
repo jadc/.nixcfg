@@ -2,8 +2,8 @@
 
 {
     imports = [
-        ./sound.nix
-        ./fonts.nix
+        ../sound
+        ../fonts
     ];
 
     services.xserver = {
