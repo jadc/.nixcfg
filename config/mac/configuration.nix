@@ -41,7 +41,6 @@
         casks = [
             #discord
             "jellyfin-media-player"
-            "spotify"
             #mactex
             #moonlight
             #obsidian

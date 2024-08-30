@@ -10,7 +10,7 @@
             ./../../user/app/chrome.nix
             ./../../user/app/vesktop.nix
             #./../../user/app/zathura.nix
-            #./../../user/app/spotify.nix
+            ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
             #./../../user/app/deluge.nix
 
