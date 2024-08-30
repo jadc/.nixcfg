@@ -40,7 +40,6 @@
         onActivation.cleanup = "uninstall";
         casks = [
             #discord
-            "google-chrome"
             "jellyfin-media-player"
             "spotify"
             #mactex
