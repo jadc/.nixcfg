@@ -9,30 +9,29 @@
             ./hardware-configuration.nix
 
             # Kernel configuration
-            ./../../system/kernel/zen.nix
-            ./../../system/kernel/flags/quiet.nix
-            ./../../system/kernel/flags/performance.nix
+            ./../../system/kernel/zen
+            ./../../system/kernel/flags/quiet
+            ./../../system/kernel/flags/performance
 
             # Boot configuration
-            #./../../system/boot/grub.nix
-            ./../../system/boot/systemd-boot.nix
+            #./../../system/grub
+            ./../../system/systemd-boot
 
             # System configuration
-            ./../../system/networkmanager.nix
-            ./../../system/users.nix
-            ./../../system/paths-to-link.nix
-            ./../../system/nvidia.nix
-            ./../../system/swapfile.nix
-            ./../../system/sshd.nix
-            ./../../system/trim.nix
-            ./../../system/automount.nix
+            ./../../system/networkmanager
+            ./../../system/users
+            ./../../system/nvidia
+            ./../../system/swapfile
+            ./../../system/sshd
+            ./../../system/trim
+            ./../../system/automount
 
             # Requires superuser
-            ./../../system/xserver.nix
-            ./../../system/steam.nix
-            ./../../system/virtualbox.nix
-            ./../../system/docker.nix
-            ./../../system/sunshine.nix
+            ./../../system/xserver
+            ./../../system/steam
+            #./../../system/virtualbox
+            ./../../system/docker
+            ./../../system/sunshine
         ];
 
     # Fix shutdown hang
@@ -63,4 +62,10 @@
         options = "--delete-older-than 7d";
         dates = "weekly";
     };
+
+    # Paths to link
+    environment.pathsToLink = [
+        "/share/bash-completion"
+        "/share/zsh"
+    ];
 }
