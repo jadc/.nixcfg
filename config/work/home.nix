@@ -6,15 +6,15 @@
             ./common.nix
 
             # CLI
-            ./../../user/cli/shells.nix
-            ./../../user/cli/git.nix
-            ./../../user/cli/zoxide.nix
-            ./../../user/cli/eza.nix
-            ./../../user/cli/fzf.nix
+            ./../../user/cli/shells
+            ./../../user/cli/git
+            ./../../user/cli/zoxide
+            ./../../user/cli/eza
+            ./../../user/cli/fzf
             ./../../user/cli/nixvim
-            ./../../user/cli/tmux.nix
-            ./../../user/cli/archivers.nix
-            ./../../user/cli/rsync.nix
-            ./../../user/cli/ripgrep.nix
+            ./../../user/cli/tmux
+            ./../../user/cli/archivers
+            ./../../user/cli/rsync
+            ./../../user/cli/ripgrep
         ];
 }
