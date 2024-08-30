@@ -9,7 +9,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 ### Config
 ```sh
-cd $HOME && git clone https://github.com/jad-c/.nixcfg.git
+cd $HOME && git clone https://github.com/jadc/.nixcfg.git
 ```
 
 ### NixOS
@@ -23,7 +23,7 @@ sudo nixos-rebuild switch --flake ~/.nixcfg
 nix run nix-darwin -- switch --flake ~/.nixcfg
 
 # Run after every change
-sudo darwin-rebuild switch --flake ~/.nixcfg
+sudo -u $USER darwin-rebuild switch --flake ~/.nixcfg
 ```
 
 ### Home Manager Only
