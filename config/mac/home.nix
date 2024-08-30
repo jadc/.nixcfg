@@ -6,45 +6,45 @@
             ./common.nix
 
             # Apps
-            ./../../user/app/kitty.nix
-            ./../../user/app/chrome.nix
-            ./../../user/app/vesktop.nix
-            #./../../user/app/zathura.nix
-            ./../../user/app/spotify.nix
-            ./../../user/app/syncthing.nix
-            #./../../user/app/deluge.nix
-            ./../../user/app/obsidian.nix
+            ./../../user/app/kitty
+            ./../../user/app/chrome
+            ./../../user/app/vesktop
+            #./../../user/app/zathura
+            ./../../user/app/spotify
+            ./../../user/app/syncthing
+            #./../../user/app/deluge
+            ./../../user/app/obsidian
 
             ## Multimedia
-            #./../../user/app/audacity.nix
-            #./../../user/app/spek.nix
-            #./../../user/app/puddletag.nix
-            #./../../user/app/avidemux.nix
-            #./../../user/app/gimp.nix
-            #./../../user/app/inkscape.nix
-            #./../../user/app/jellyfin-player.nix
-            #./../../user/app/mpv.nix
-            #./../../user/app/obs.nix
-            ./../../user/cli/flac.nix
-            ./../../user/cli/exiftool.nix
-            ./../../user/cli/ffmpeg.nix
-            ./../../user/cli/imagemagick.nix
+            #./../../user/app/audacity
+            #./../../user/app/spek
+            #./../../user/app/puddletag
+            #./../../user/app/avidemux
+            #./../../user/app/gimp
+            #./../../user/app/inkscape
+            #./../../user/app/jellyfin-player
+            #./../../user/app/mpv
+            #./../../user/app/obs
+            ./../../user/cli/flac
+            ./../../user/cli/exiftool
+            ./../../user/cli/ffmpeg
+            ./../../user/cli/imagemagick
 
             # Command-line Interface
             ./../../user/scripts
-            ./../../user/cli/shells.nix
-            ./../../user/cli/git.nix
-            ./../../user/cli/zoxide.nix
-            ./../../user/cli/eza.nix
-            ./../../user/cli/fzf.nix
+            ./../../user/cli/shells
+            ./../../user/cli/git
+            ./../../user/cli/zoxide
+            ./../../user/cli/eza
+            ./../../user/cli/fzf
             ./../../user/cli/nixvim
-            ./../../user/cli/tmux.nix
-            ./../../user/cli/texlive.nix
-            ./../../user/cli/archivers.nix
-            ./../../user/cli/rsync.nix
-            ./../../user/cli/yt.nix
-            ./../../user/cli/gallery-dl.nix
-            ./../../user/cli/ripgrep.nix
-            ./../../user/cli/htop.nix
+            ./../../user/cli/tmux
+            ./../../user/cli/texlive
+            ./../../user/cli/archivers
+            ./../../user/cli/rsync
+            ./../../user/cli/yt
+            ./../../user/cli/gallery-dl
+            ./../../user/cli/ripgrep
+            ./../../user/cli/htop
         ];
 }
