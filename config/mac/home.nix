@@ -13,6 +13,7 @@
             ./../../user/app/spotify.nix
             ./../../user/app/syncthing.nix
             #./../../user/app/deluge.nix
+            ./../../user/app/obsidian.nix
 
             ## Multimedia
             #./../../user/app/audacity.nix
