@@ -10,6 +10,7 @@
             # System configuration
             #./../../system/users.nix
             ./../../system/gc
+            ./../../system/fonts
 
             # Require superuser
             ## Homebrew
