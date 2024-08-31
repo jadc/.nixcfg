@@ -9,8 +9,13 @@
     # Hostname
     networking.hostName = config.common.hostname;
 
-    # Enable flakes
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    # Nix configuration
+    nix.settings = {
+        auto-optimize-store = true;
+
+        # Enable flakes
+        experimental-features = [ "nix-command" "flakes" ];
+    };
 
     # Ensure nixpkgs serves binaries for the correct architecture
     nixpkgs.hostPlatform = config.common.arch;
