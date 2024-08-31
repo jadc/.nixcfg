@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
     fonts = {
@@ -15,7 +15,8 @@
             liberation_ttf
             unifont
         ];
-
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
         fontconfig = {
             defaultFonts = {
                 serif = [ "Noto Serif" ];
