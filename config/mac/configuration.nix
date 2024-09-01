@@ -18,20 +18,11 @@
             ./../../user/app/wireguard/mac.nix
         ];
 
+    # Set hostname
+    networking.computerName = config.common.hostname;
+
     # Enable Nix daemon for macOS
     services.nix-daemon.enable = true;
-
-    # Fonts
-    /*
-    fonts.packages = with pkgs; [
-        (nerdfonts.override {
-            fonts = [
-                "NerdFontsSymbolsOnly"
-                "JetBrainsMono"
-            ];
-        })
-    ];
-    */
 
     # Enable homebrew packages
     homebrew = {
@@ -42,7 +33,6 @@
     # Allow Touch ID to grant superuser
     security.pam.enableSudoTouchIdAuth = true;
 
-    # Dock configuration
     system.defaults.dock = {
         tilesize = 48;
         autohide = true;
@@ -63,6 +53,8 @@
         ShowPathbar = true;
         # Show status bar
         ShowStatusBar = true;
+        # Disable desktop icons
+        CreateDesktop = false;
     };
 
     system.defaults.trackpad = {
