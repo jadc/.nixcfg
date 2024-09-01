@@ -1,4 +1,4 @@
-# zathura: pdf viewer
+{ lib, pkgs, ... }:
 
 {
     programs.zathura = {
@@ -8,12 +8,15 @@
         };
     };
 
-    # Set as default PDF viewer
-    # TODO: create zathura.desktop
-    xdg.mimeApps = {
-        enable = true;
-        defaultApplications = {
-            "application/pdf" = [ "zathura.desktop" ];
+    xdg = lib.optionalAttrs pkgs.stdenv.isLinux {
+        # Set as default PDF viewer
+        # TODO: create zathura.desktop
+        mimeApps = {
+            enable = true;
+            defaultApplications = {
+                "application/pdf" = [ "zathura.desktop" ];
+            };
         };
     };
+
 }
