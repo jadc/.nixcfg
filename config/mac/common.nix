@@ -12,6 +12,7 @@
             cp="cp -ivp";
             mv="mv -iv";
             mkdir="mkdir -pv";
+            nproc="sysctl -n hw.logicalcpu";
             make="make -j$(nproc)";
 
             ## Colors
