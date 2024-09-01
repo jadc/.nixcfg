@@ -3,10 +3,13 @@
 {
     fonts = {
         packages = with pkgs; [
+            jetbrains-mono
+            ( nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
+
+        ] ++ (if pkgs.stdenv.isLinux then [
             noto-fonts
             open-sans
             twemoji-color-font
-            ( nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
 
             # Default fonts
             dejavu_fonts
@@ -14,7 +17,7 @@
             gyre-fonts   # TrueType substitutes for standard PostScript fonts
             liberation_ttf
             unifont
-        ];
+        ] else []);
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
         fontconfig = {
