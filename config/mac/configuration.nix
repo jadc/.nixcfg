@@ -47,6 +47,15 @@
 
             # Minimize windows into application icon
             minimize-to-application = true;
+
+            # Faster dock (default 1.0)
+            autohide-time-modifier = 0.5;
+
+            # Faster Mission Control (default 1.0)
+            expose-animation-duration = 0.5;
+
+            # Disable reorganizing spaces based on use
+            mru-spaces = false;
         };
 
         finder = {
@@ -59,11 +68,8 @@
             # Disable warning when changing file extension
             FXEnableExtensionChangeWarning = false;
 
-            # Enable quit menu item
+            # Allow quitting Finder
             QuitMenuItem = true;
-
-            # Show path bar
-            ShowPathbar = true;
 
             # Show status bar
             ShowStatusBar = true;
@@ -71,8 +77,8 @@
             # Disable desktop icons
             CreateDesktop = false;
 
-            # Change the default finder view. “icnv” = Icon view
-            FXPreferredViewStyle = "icnv"; 
+            # Change the default finder view to list
+            FXPreferredViewStyle = "Nlsv";
         };
 
         trackpad = {
@@ -86,8 +92,34 @@
             TrackpadThreeFingerDrag = true;
         };
 
+        screencapture = {
+            # Disable drop shadow border
+            disable-shadow = true;
+
+            # Save screenshots to ~/Downloads
+            location = "${config.common.home}/Downloads";
+        };
+
         # Disable app quarantine
         LaunchServices.LSQuarantine = false;
+
+        # Automatically update macOS
+        SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+
+        # Allow any downloaded Application that has been signed to accept incoming requests
+        alf.allowdownloadsignedenabled = 1;
+
+        # Auto-login
+        loginwindow.autoLoginUser = config.common.username;
+
+        # Disable guest account
+        loginwindow.GuestEnabled = false;
+
+        # Show seconds in menu bar clock
+        menuExtraClock.ShowSeconds = true;
+
+        # Disable animation when switching screens or opening apps
+        universalaccess.reduceMotion = true;
 
         ".GlobalPreferences" = {
             # Disable mouse acceleration
@@ -95,9 +127,6 @@
         };
 
         NSGlobalDomain = {
-            # Enable natural scrolling
-            "com.apple.swipescrolldirection" = true;
-
             # Disable beep sound when pressing volume up/down key
             "com.apple.sound.beep.feedback" = 0;
 
@@ -131,8 +160,29 @@
 
             # Disable auto save text files to iCloud (TextEdit)
             NSDocumentSaveNewDocumentsToCloud = false;
+
+            # Move window by dragging from anywhere
+            NSWindowShouldDragOnGesture = true;
+        };
+
+        # Any system preferences that aren't currently in nix-darwin
+        CustomUserPreferences = {
+            "com.apple.finder" = {
+                # Keep folders on top when sorting
+                "_FXSortFoldersFirst" = true;
+
+                # Automatically empty trash every 30 days
+                "FXRemoveOldTrashItems" = true;
+            };
+            "com.apple.TimeMachine" = {
+                # Prevent prompting to use new drives for Time Machine
+                "DoNotOfferNewDisksForBackup" = true;
+            };
         };
     };
+
+    # Disable startup chime
+    system.startup.chime = false;
 
     system.keyboard = {
         enableKeyMapping = true;
