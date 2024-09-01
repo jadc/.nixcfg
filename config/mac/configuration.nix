@@ -33,97 +33,105 @@
     # Allow Touch ID to grant superuser
     security.pam.enableSudoTouchIdAuth = true;
 
-    # Disable app quarantine
-    system.defaults.LaunchServices.LSQuarantine = false;
+    # System preferences
+    system.defaults = {
+        dock = {
+            # Set size of dock icons
+            tilesize = 48;
 
-    system.defaults.dock = {
-        # Set size of dock icons
-        tilesize = 48;
+            # Enable auto hiding dock
+            autohide = true;
 
-        # Enable auto hiding dock
-        autohide = true;
+            # Hide recent applications
+            show-recents = false;
 
-        # Hide recent applications
-        show-recents = false;
+            # Minimize windows into application icon
+            minimize-to-application = true;
+        };
 
-        # Minimize windows into application icon
-        minimize-to-application = true;
-    };
+        finder = {
+            # Show full path in finder title
+            _FXShowPosixPathInTitle = true;
 
-    system.defaults.finder = {
-        # Show full path in finder title
-        _FXShowPosixPathInTitle = true;
+            # Show all file extensions
+            AppleShowAllExtensions = true;
 
-        # Show all file extensions
-        AppleShowAllExtensions = true;
+            # Disable warning when changing file extension
+            FXEnableExtensionChangeWarning = false;
 
-        # Disable warning when changing file extension
-        FXEnableExtensionChangeWarning = false;
+            # Enable quit menu item
+            QuitMenuItem = true;
 
-        # Enable quit menu item
-        QuitMenuItem = true;
+            # Show path bar
+            ShowPathbar = true;
 
-        # Show path bar
-        ShowPathbar = true;
+            # Show status bar
+            ShowStatusBar = true;
 
-        # Show status bar
-        ShowStatusBar = true;
+            # Disable desktop icons
+            CreateDesktop = false;
 
-        # Disable desktop icons
-        CreateDesktop = false;
+            # Change the default finder view. “icnv” = Icon view
+            FXPreferredViewStyle = "icnv"; 
+        };
 
-        # Change the default finder view. “icnv” = Icon view
-        FXPreferredViewStyle = "icnv"; 
-    };
+        trackpad = {
+            # Enable tap to click
+            Clicking = true;
 
-    system.defaults.trackpad = {
-        # Enable tap to click
-        Clicking = true;
+            # Enable two finger right click
+            TrackpadRightClick = true;
 
-        # Enable two finger right click
-        TrackpadRightClick = true;
+            # Enable three finger drag
+            TrackpadThreeFingerDrag = true;
+        };
 
-        # Enable three finger drag
-        TrackpadThreeFingerDrag = true;
-    };
+        # Disable app quarantine
+        LaunchServices.LSQuarantine = false;
 
-    system.defaults.NSGlobalDomain = {
-        # Enable natural scrolling
-        "com.apple.swipescrolldirection" = true;
+        ".GlobalPreferences" = {
+            # Disable mouse acceleration
+            "com.apple.mouse.scaling" = -1.0;
+        };
 
-        # Disable beep sound when pressing volume up/down key
-        "com.apple.sound.beep.feedback" = 0;
+        NSGlobalDomain = {
+            # Enable natural scrolling
+            "com.apple.swipescrolldirection" = true;
 
-        # Dark mode
-        AppleInterfaceStyle = "Dark";
+            # Disable beep sound when pressing volume up/down key
+            "com.apple.sound.beep.feedback" = 0;
 
-        # Enable full keyboard control
-        AppleKeyboardUIMode = 3;
+            # Dark mode
+            AppleInterfaceStyle = "Dark";
 
-        # Disable auto capitalization
-        NSAutomaticCapitalizationEnabled = false;
+            # Enable full keyboard control
+            AppleKeyboardUIMode = 3;
 
-        # Disable auto dash substitution
-        NSAutomaticDashSubstitutionEnabled = false;
+            # Disable auto capitalization
+            NSAutomaticCapitalizationEnabled = false;
 
-        # Disable adding . after pressing space twice
-        NSAutomaticPeriodSubstitutionEnabled = false;
+            # Disable auto dash substitution
+            NSAutomaticDashSubstitutionEnabled = false;
 
-        # Disable auto quote substitution
-        NSAutomaticQuoteSubstitutionEnabled = false;
+            # Disable adding . after pressing space twice
+            NSAutomaticPeriodSubstitutionEnabled = false;
 
-        # Disable spell checker
-        NSAutomaticSpellingCorrectionEnabled = false;
+            # Disable auto quote substitution
+            NSAutomaticQuoteSubstitutionEnabled = false;
 
-        # Expand save panel by default
-        NSNavPanelExpandedStateForSaveMode = true;
-        NSNavPanelExpandedStateForSaveMode2 = true;
+            # Disable spell checker
+            NSAutomaticSpellingCorrectionEnabled = false;
 
-        # Disable opening and closing animation
-        NSAutomaticWindowAnimationsEnabled = false;
+            # Expand save panel by default
+            NSNavPanelExpandedStateForSaveMode = true;
+            NSNavPanelExpandedStateForSaveMode2 = true;
 
-        # Disable auto save text files to iCloud (TextEdit)
-        NSDocumentSaveNewDocumentsToCloud = false;
+            # Disable opening and closing animation
+            NSAutomaticWindowAnimationsEnabled = false;
+
+            # Disable auto save text files to iCloud (TextEdit)
+            NSDocumentSaveNewDocumentsToCloud = false;
+        };
     };
 
     system.keyboard = {
