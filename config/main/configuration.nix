@@ -21,6 +21,7 @@
             ./../../system/gc
             ./../../system/networkmanager
             ./../../system/users
+            ./../../system/nfs
             ./../../system/nvidia
             ./../../system/swapfile
             ./../../system/sshd
