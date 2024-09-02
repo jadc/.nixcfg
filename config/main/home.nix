@@ -22,6 +22,7 @@
             ./../../user/app/vesktop
             ./../../user/app/zathura
             ./../../user/app/spotify
+            ./../../user/app/syncthing
             ./../../user/app/nautilus
             ./../../user/app/deluge
             ./../../user/app/obsidian
