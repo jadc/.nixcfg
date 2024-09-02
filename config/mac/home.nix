@@ -11,6 +11,7 @@
             ./../../user/app/vesktop
             ./../../user/app/zathura
             ./../../user/app/spotify
+            ./../../user/app/syncthing
             ./../../user/app/deluge
             ./../../user/app/obsidian
             ./../../user/app/minecraft
