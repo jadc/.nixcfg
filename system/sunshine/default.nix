@@ -3,6 +3,6 @@
         enable = true;
         autoStart = true;
         capSysAdmin = true;
-        openFirewall = false;
+        openFirewall = true;
     };
 }

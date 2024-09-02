@@ -1,5 +1,6 @@
-# Syncthing: Sync files across devices
-
 {
-    services.syncthing.enable = true;
+    services.syncthing = {
+        enable = true;
+        openDefaultPorts = true;
+    };
 }
