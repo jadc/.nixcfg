@@ -13,8 +13,6 @@
             ./../../system/fonts
 
             # Require superuser
-            ./../../user/app/syncthing
-
             ## Homebrew
             ./../../user/app/jellyfin-player/mac.nix
             ./../../user/app/wireguard/mac.nix
