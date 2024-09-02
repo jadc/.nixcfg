@@ -15,6 +15,7 @@
             ./../../user/app/deluge
             ./../../user/app/obsidian
             ./../../user/app/minecraft
+            ./../../user/app/clion
             ./../../user/app/415
 
             ## Multimedia
