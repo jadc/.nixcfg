@@ -31,7 +31,6 @@
             ./../../user/cli/imagemagick
 
             # Command-line Interface
-            ./../../user/scripts
             ./../../user/cli/shells
             ./../../user/cli/git
             ./../../user/cli/zoxide
@@ -46,5 +45,9 @@
             ./../../user/cli/gallery-dl
             ./../../user/cli/ripgrep
             ./../../user/cli/htop
+
+            # Scripts
+            ./../../user/scripts
+            ./../../user/scripts/spotifyify.nix
         ];
 }
