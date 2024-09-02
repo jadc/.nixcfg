@@ -34,6 +34,7 @@
             #./../../system/virtualbox
             ./../../system/docker
             ./../../system/sunshine
+            ./../../user/app/syncthing
         ];
 
     # Fix shutdown hang
