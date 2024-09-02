@@ -1,6 +1,7 @@
 {
     services.syncthing = {
         enable = true;
-        openDefaultPorts = true;
+        # TODO: not a home-manager option
+        #openDefaultPorts = true;
     };
 }
