@@ -16,7 +16,8 @@
             ./../../user/app/obsidian
             ./../../user/app/minecraft
             ./../../user/app/clion
-            ./../../user/app/415
+            ./../../user/app/clion/415.nix
+            ./../../user/app/moonlight
 
             ## Multimedia
             ./../../user/app/audacity
