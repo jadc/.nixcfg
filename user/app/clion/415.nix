@@ -1,12 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        jetbrains.clion
-        cmake
-        ninja
-    ];
-
     home.sessionVariables = let
         root = "${config.common.home}/Documents/cmput415";
         ANTLR_PARENT = "${root}/antlr";
