@@ -66,6 +66,7 @@
             ./../../user/scripts/monitor.nix
             ./../../user/scripts/volume.nix
             ./../../user/scripts/clock.nix
+            ./../../user/scripts/spotifyify.nix
         ];
     config = {
         # Custom user configuration
