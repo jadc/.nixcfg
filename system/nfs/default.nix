@@ -1,7 +1,7 @@
 {
     services.nfs.server = {
         enable = true;
-        exports = "/data *(rw,insecure,fsid=0,no_subtree_check)";
+        exports = "/data *(rw,insecure,fsid=0,no_subtree_check,anonuid=1000,anongid=1000,all_squash)";
 
         # fixed rpc.statd port; for firewall
         lockdPort = 4001;
