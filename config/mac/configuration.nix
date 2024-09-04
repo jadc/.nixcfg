@@ -118,9 +118,6 @@
         # Show seconds in menu bar clock
         menuExtraClock.ShowSeconds = true;
 
-        # Disable animation when switching screens or opening apps
-        universalaccess.reduceMotion = true;
-
         ".GlobalPreferences" = {
             # Disable mouse acceleration
             "com.apple.mouse.scaling" = -1.0;
