@@ -105,6 +105,7 @@
         },
         "WebScreenShareFixes": { "enabled": true },
         "MessageUpdaterAPI": { "enabled": true },
-        "UserSettingsAPI": { "enabled": true }
+        "UserSettingsAPI": { "enabled": true },
+        "YoutubeAdblock": { "enabled": true }
     }
 }
