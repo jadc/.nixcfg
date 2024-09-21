@@ -4,7 +4,7 @@
             enable = true;
 
             servers = {
-                tsserver.enable = true;
+                ts-ls.enable = true;
                 pyright.enable = true;
                 clangd.enable = true;
                 gopls.enable = true;
