@@ -120,7 +120,10 @@
 
         ".GlobalPreferences" = {
             # Disable mouse acceleration
-            "com.apple.mouse.scaling" = -1.0;
+            # "com.apple.mouse.scaling" = -1.0;
+
+            # Temporary until I can adjust my DPI
+            "com.apple.mouse.scaling" = 5.0;
         };
 
         NSGlobalDomain = {
