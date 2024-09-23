@@ -1,7 +1,7 @@
 {
     config.common = {
         arch = "x86_64-linux";
-        hostname = "jadc";
+        hostname = "jadwork";
         username = "jad";
         home = "/home/jad";
 
