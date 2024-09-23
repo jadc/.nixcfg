@@ -96,7 +96,6 @@
                     system = common.arch;
                     config.allowUnfree = true;
                 };
-                specialArgs.system = common.arch;
             };
         };
 
