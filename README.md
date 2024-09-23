@@ -28,5 +28,9 @@ sudo -u $USER darwin-rebuild switch --flake ~/.nixcfg
 
 ### Home Manager Only
 ```sh
+# Initial install
+nix run home-manager/master -- init --switch
+
+# After any change
 home-manager switch --flake ~/.nixcfg
 ```
