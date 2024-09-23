@@ -17,6 +17,9 @@
         };
     };
 
+    # Dependency
+    programs.nixvim.plugins.web-devicons.enable = true;
+
     # C-w is an existing mapping, so must map outside barbar
     # in order to use nowait flag
     programs.nixvim.keymaps = [
