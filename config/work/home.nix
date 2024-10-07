@@ -16,5 +16,9 @@
             ./../../user/cli/archivers
             ./../../user/cli/rsync
             ./../../user/cli/ripgrep
+
+            # Scripts
+            ./../../user/scripts
+            ./../../user/scripts/rebuild.nix
         ];
 }
