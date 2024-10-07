@@ -1,24 +1,33 @@
 {
-    programs.nixvim.plugins.telescope = {
-        enable = true;
+    programs.nixvim = {
+        plugins.telescope.enable = true;
+        plugins.web-devicons.enable = true;
 
-        keymaps = {
-            "<C-p>" = {
-                # TODO: rebind to find_files if not in git repo
-                action = "git_files";
+        keymaps = [
+            {
+                key = "<C-p>";
+                action = "<Cmd>lua project_files()<CR>";
                 options = {
                     desc = "Telescope Git Files";
                 };
-            };
-            "<C-S-p>" = {
-                action = "find_files";
-                options = {
-                    desc = "Telescope Find Files";
-                };
-            }; 
-        };
-    };
+            }
+        ];
 
-    # Dependency
-    programs.nixvim.plugins.web-devicons.enable = true;
+        extraConfigLuaPre = ''
+            local is_inside_work_tree = {}
+            _G.project_files = function()
+                local opts = {}
+                local cwd = vim.fn.getcwd()
+                if is_inside_work_tree[cwd] == nil then
+                    vim.fn.system("git rev-parse --is-inside-work-tree")
+                    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+                end
+                if is_inside_work_tree[cwd] then
+                    require("telescope.builtin").git_files(opts)
+                else
+                    require("telescope.builtin").find_files(opts)
+                end
+            end
+        '';
+    };
 }
