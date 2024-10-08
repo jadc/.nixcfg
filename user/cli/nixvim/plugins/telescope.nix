@@ -1,8 +1,14 @@
 {
     programs.nixvim = {
-        plugins.telescope.enable = true;
+        plugins.telescope = {
+            enable = true;
+
+            # Telescope keymaps
+            keymaps."<C-f>".action = "live_grep";
+        };
         plugins.web-devicons.enable = true;
 
+        # Regular neovim keymaps
         keymaps = [
             {
                 key = "<C-p>";
