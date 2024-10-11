@@ -13,8 +13,6 @@
             ./../../system/fonts
 
             # Require superuser
-            ./../../user/app/syncthing
-
             ## Homebrew
             ./../../user/app/jellyfin-player/mac.nix
             ./../../user/app/wireguard/mac.nix
@@ -120,12 +118,12 @@
         # Show seconds in menu bar clock
         menuExtraClock.ShowSeconds = true;
 
-        # Disable animation when switching screens or opening apps
-        universalaccess.reduceMotion = true;
-
         ".GlobalPreferences" = {
             # Disable mouse acceleration
-            "com.apple.mouse.scaling" = -1.0;
+            # "com.apple.mouse.scaling" = -1.0;
+
+            # Temporary until I can adjust my DPI
+            "com.apple.mouse.scaling" = 5.0;
         };
 
         NSGlobalDomain = {
