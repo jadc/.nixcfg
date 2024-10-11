@@ -11,7 +11,7 @@
 
     # Nix configuration
     nix.settings = {
-        auto-optimise-store = true;
+        auto-optimise-store = pkgs.stdenv.isLinux;
 
         # Enable flakes
         experimental-features = [ "nix-command" "flakes" ];

@@ -65,6 +65,7 @@
             ./../../user/scripts
             ./../../user/scripts/monitor.nix
             ./../../user/scripts/volume.nix
+            ./../../user/scripts/rebuild.nix
             ./../../user/scripts/clock.nix
             ./../../user/scripts/spotifyify.nix
         ];
