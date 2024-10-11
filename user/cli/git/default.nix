@@ -7,7 +7,18 @@
         userEmail = "chehimj@gmail.com";
 
         # Configuration
-        ignores = [ ".DS_Store" ];
+        ignores = [
+            ".DS_Store"
+            "._.DS_Store"
+            "**/.DS_Store"
+            "**/._.DS_Store"
+            ".vscode"
+            ".idea"
+            "Thumbs.db"
+            "log"
+            "*.log"
+            "*~"
+        ];
         extraConfig = {
             init.defaultBranch = "main";
             push.autoSetupRemote = true;
