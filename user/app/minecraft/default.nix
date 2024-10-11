@@ -3,7 +3,7 @@
 { pkgs, ... }:
 
 let
-    alternative = with pkgs; [ jdk8 jdk17 ];
+    alternative = with pkgs; [ jdk8 jdk ];
 in
 {
     home.packages = with pkgs; [ prismlauncher ];
@@ -12,8 +12,8 @@ in
     programs.java = {
         enable = true;
         
-        # Default java is latest
-        package = pkgs.jdk;
+        # Default java is 17
+        package = pkgs.jdk17;
     };
 
     # Alternative java versions

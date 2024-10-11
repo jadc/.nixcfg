@@ -1,8 +1,22 @@
 { config, pkgs, ... }:
 
+let
+    root = if pkgs.stdenv.isDarwin then
+        "${config.common.home}/Documents/cmput415"
+    else
+        "${config.common.home}/docs/projects/coding/cpp/cmput415"
+    ;
+in
 {
+    home.packages = with pkgs; [
+        gnumake
+        cmake
+        ninja
+        gcc
+        python3
+    ];
+
     home.sessionVariables = let
-        root = "${config.common.home}/Documents/cmput415";
         ANTLR_PARENT = "${root}/antlr";
         ANTLR_INS="${ANTLR_PARENT}/antlr4-install";
         ANTLR_BIN="${ANTLR_INS}/bin";
@@ -21,9 +35,7 @@
         MLIR_DIR="${MLIR_DIR}";
     };
 
-    home.sessionPath = let 
-        root = "${config.common.home}/Documents/cmput415";
-    in [
+    home.sessionPath = [
         "${root}/llvm-project/build/bin"
         "${root}/Tester/bin"
     ];
