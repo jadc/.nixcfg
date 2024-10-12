@@ -4,7 +4,7 @@
             enable = true;
 
             servers = {
-                ts-ls.enable = true;
+                ts_ls.enable = true;
                 pyright.enable = true;
                 clangd.enable = true;
                 gopls.enable = true;
@@ -16,12 +16,12 @@
                 cssls.enable = true;
                 cmake.enable = true;
                 bashls.enable = true;
-                rust-analyzer = {
+                rust_analyzer = {
                     enable = true;
                     installCargo = true;
                     installRustc = true;
                 };
-                lua-ls = {
+                lua_ls = {
                     enable = true;
                     settings.telemetry.enable = false;
                 };
