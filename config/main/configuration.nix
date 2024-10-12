@@ -34,6 +34,8 @@
             #./../../system/virtualbox
             ./../../system/docker
             ./../../system/sunshine
+            ./../../system/rgb
+            ./../../system/rgb/no-rgb.nix
         ];
 
     # Fix shutdown hang
