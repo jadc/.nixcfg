@@ -35,12 +35,14 @@
                 pointer_motion_interval = 4;
             };
 
-            # TODO: if secondary monitor is undefined, assign all workspaces to primary
             monitors = let
                 primary = config.monitors.primary;
                 secondary = config.monitors.secondary;
             in {
-                ${primary} = [ "I" "II" "III" "IV" "V" "VI" ];
+                ${primary} = if secondary != "" then
+                    [ "I" "II" "III" "IV" "V" "VI" ]
+                else
+                    [ "I" "II" "III" "IV" "V" "VI" "VII" "VIII" "IX" ];
                 ${secondary} = [ "VII" "VIII" "IX" ];
             };
         };
