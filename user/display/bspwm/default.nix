@@ -7,8 +7,8 @@
                 type = lib.types.str;
                 default = "";
             };
-            secondary = lib.mkOption { 
-                type = lib.types.str; 
+            secondary = lib.mkOption {
+                type = lib.types.str;
                 default = "";
             };
         };
@@ -24,7 +24,7 @@
 
             settings = {
                 border_width = 0;
-                window_gap = 8;
+                window_gap = 0;
 
                 split_ratio = 0.5;
                 borderless_monocle = true;
