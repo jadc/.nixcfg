@@ -12,7 +12,7 @@ in
         gnumake
         cmake
         ninja
-        gcc
+        clang
         python3
     ];
 
