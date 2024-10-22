@@ -36,6 +36,7 @@
             ./../../system/sunshine
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
+            ./../../user/app/wireguard
         ];
 
     # Fix shutdown hang
