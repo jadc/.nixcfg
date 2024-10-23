@@ -16,7 +16,7 @@
             options = "caps:escape";
         };
 
-        dpi = 120;
+        dpi = 96;
 
         # Disable default terminal
         excludePackages = [ pkgs.xterm ];
