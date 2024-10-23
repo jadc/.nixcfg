@@ -2,7 +2,7 @@
     services.picom = {
         enable = true;
         settings = {
-            corner-radius = 12;
+            /* corner-radius = 12; */
         };
     };
 }
