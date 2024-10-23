@@ -9,11 +9,15 @@ let
 in
 {
     home.packages = with pkgs; [
-        gnumake
-        cmake
-        ninja
+        antlr4_13
         clang
+        cmake
+        gnumake
+        just
+        llvm_18
+        ninja
         python3
+        llvmPackages.mlir
     ];
 
     home.sessionVariables = let
