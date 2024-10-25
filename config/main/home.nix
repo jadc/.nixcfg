@@ -62,7 +62,6 @@
             ./../../user/cli/gallery-dl
             ./../../user/cli/ripgrep
             ./../../user/cli/htop
-            ./../../user/cli/go
 
             # Scripts
             ./../../user/scripts
