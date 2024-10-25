@@ -8,15 +8,9 @@
 
     services.xserver = {
         enable = true;
-        xkb = {
-            layout = "us";
-            variant = "";
 
-            # Bind caps lock to escape
-            options = "caps:escape";
-        };
-
-        dpi = 96;
+        # Bind caps lock to escape
+        xkb.options = "caps:escape";
 
         # Disable default terminal
         excludePackages = [ pkgs.xterm ];
@@ -25,10 +19,10 @@
         # (configure in home-manager)
         # TODO: find a way to not hardcode this
         windowManager.bspwm.enable = true;
-        displayManager.lightdm.enable = true;
     };
 
     # Auto-login
+    services.xserver.displayManager.lightdm.enable = true;
     services.displayManager.autoLogin = {
         enable = true;
         user = "${config.common.username}";
