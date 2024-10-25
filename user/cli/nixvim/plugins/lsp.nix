@@ -4,31 +4,33 @@
             enable = true;
 
             servers = {
-                ts_ls.enable = true;
-                pyright.enable = true;
-                clangd.enable = true;
-                gopls.enable = true;
-                svelte.enable = true;
-                omnisharp.enable = true;
-                nixd.enable = true;
-                jsonls.enable = true;
-                html.enable = true;
-                cssls.enable = true;
-                cmake.enable = true;
                 bashls.enable = true;
+                clangd.enable = true;
+                cmake.enable = true;
+                cssls.enable = true;
+                gopls.enable = true;
+                html.enable = true;
+                jsonls.enable = true;
+                lua_ls = {
+                    enable = true;
+                    settings.telemetry.enable = false;
+                };
+                nixd.enable = true;
+                omnisharp.enable = true;
+                pyright.enable = true;
                 rust_analyzer = {
                     enable = true;
                     installCargo = true;
                     installRustc = true;
                 };
-                lua_ls = {
-                    enable = true;
-                    settings.telemetry.enable = false;
-                };
+                svelte.enable = true;
+                ts_ls.enable = true;
             };
         };
+        lspkind.enable = true;
+        lsp-lines.enable = true;
 
-       cmp = {
+        cmp = {
             enable = true;
             autoEnableSources = true;
 
