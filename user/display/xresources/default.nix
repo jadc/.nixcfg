@@ -1,0 +1,11 @@
+{
+    xresources.properties = {
+        "Xft.antialias" = "true";
+        "Xft.autohint" = "false";
+        "Xft.dpi" = 96;
+        "Xft.hinting" = "true";
+        "Xft.hintstyle" = "hintslight";
+        "Xft.lcdfilter" = "lcddefault";
+        "Xft.rgba" = "rgb";
+    };
+}
