@@ -32,7 +32,7 @@
                 gapless_monocle = true;
 
                 # 60Hz = 17, 144Hz = 7, 240Hz = 4
-                pointer_motion_interval = 4;
+                pointer_motion_interval = 7;
             };
 
             monitors = let

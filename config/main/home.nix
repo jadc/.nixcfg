@@ -9,6 +9,7 @@
             ./../../user/display/monitors
             ./../../user/display/compositor
             ./../../user/display/gui
+            ./../../user/display/xresources
             ./../../user/app/redshift
             ./../../user/app/notifications
 
