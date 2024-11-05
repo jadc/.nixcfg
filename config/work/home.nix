@@ -1,5 +1,5 @@
 {
-    imports = 
+    imports =
         [
             # Standard configuration
             ./../home.common.nix
@@ -16,6 +16,7 @@
             ./../../user/cli/archivers
             ./../../user/cli/rsync
             ./../../user/cli/ripgrep
+            ./../../user/cli/imagemagick
 
             # Scripts
             ./../../user/scripts
