@@ -23,7 +23,8 @@
             ./../../system/networkmanager
             ./../../system/nfs
             ./../../system/nvidia
-            ./../../system/sshd
+            ./../../system/remote/mosh
+            ./../../system/remote/ssh
             ./../../system/swapfile
             ./../../system/trim
             ./../../system/users
