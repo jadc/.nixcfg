@@ -63,6 +63,7 @@
             ./../../user/cli/ripgrep
             ./../../user/cli/htop
             ./../../user/cli/go
+            ./../../user/cli/moshclient
 
             # Scripts
             ./../../user/scripts

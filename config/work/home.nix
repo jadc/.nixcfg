@@ -17,6 +17,7 @@
             ./../../user/cli/rsync
             ./../../user/cli/ripgrep
             ./../../user/cli/imagemagick
+            ./../../user/cli/moshclient
 
             # Scripts
             ./../../user/scripts
