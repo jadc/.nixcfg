@@ -9,33 +9,33 @@
             ./hardware-configuration.nix
 
             # Kernel configuration
-            ./../../system/kernel/zen
-            ./../../system/kernel/flags/quiet
             ./../../system/kernel/flags/performance
+            ./../../system/kernel/flags/quiet
+            ./../../system/kernel/zen
 
             # Boot configuration
             #./../../system/grub
             ./../../system/systemd-boot
 
             # System configuration
+            ./../../system/automount
             ./../../system/gc
             ./../../system/networkmanager
-            ./../../system/users
             ./../../system/nfs
             ./../../system/nvidia
-            ./../../system/swapfile
             ./../../system/sshd
+            ./../../system/swapfile
             ./../../system/trim
-            ./../../system/automount
+            ./../../system/users
 
             # Requires superuser
-            ./../../system/xserver
-            ./../../system/steam
-            #./../../system/virtualbox
             ./../../system/docker
-            ./../../system/sunshine
+            ./../../system/remote/x2go
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
+            ./../../system/steam
+            #./../../system/virtualbox
+            ./../../system/xserver
             ./../../user/app/wireguard
         ];
 
