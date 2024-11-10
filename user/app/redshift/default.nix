@@ -2,7 +2,7 @@
 {
     services.redshift = {
         enable = true;
-        dawnTime = "8:00-9:00";
-        duskTime = "19:00-20:00";
+        dawnTime = "7:00-8:00";
+        duskTime = "16:00-17:00";
     };
 }

@@ -29,12 +29,12 @@
             ./../../system/users
 
             # Requires superuser
+            #./../../system/virtualbox
             ./../../system/docker
             ./../../system/remote/x2go
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
-            #./../../system/virtualbox
             ./../../system/xserver
             ./../../user/app/wireguard
         ];
