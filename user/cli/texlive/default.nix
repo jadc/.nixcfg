@@ -13,6 +13,7 @@
             inherit (tpkgs) collection-fontsextra;
         };
     };
-    home.packages = with pkgs; [ ghostscript];
-    common.aliases.texview = "latexmk -pdf -pvc *.tex";
+    home.packages = with pkgs; [ ghostscript ];
+    # common.aliases.texview = "latexmk -pdf -pvc *.tex";
+    common.aliases.texview = "pdflatex *.tex";
 }
