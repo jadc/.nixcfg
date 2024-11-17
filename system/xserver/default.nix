@@ -3,7 +3,6 @@
 {
     imports = [
         ../sound
-        ../fonts
     ];
 
     services.xserver = {
