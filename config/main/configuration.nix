@@ -18,6 +18,7 @@
             ./../../system/systemd-boot
 
             # System configuration
+            ./../../system/fonts
             ./../../system/automount
             ./../../system/gc
             ./../../system/networkmanager
