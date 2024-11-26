@@ -11,11 +11,11 @@
         ./themes/onedark.nix
 
         # Plugins
-        ./plugins/treesitter.nix
-        ./plugins/telescope.nix
-        ./plugins/gitsigns.nix
         ./plugins/barbar.nix
+        ./plugins/gitsigns.nix
         ./plugins/lsp.nix
+        ./plugins/telescope.nix
+        ./plugins/treesitter.nix
     ];
 
     programs.nixvim = {
