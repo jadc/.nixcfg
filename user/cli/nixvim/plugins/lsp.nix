@@ -5,7 +5,10 @@
 
             servers = {
                 bashls.enable = true;
-                clangd.enable = true;
+                clangd = {
+                    enable = true;
+                    cmd = ["clangd" "--background-index" "--clang-tidy"];
+                };
                 cmake.enable = true;
                 cssls.enable = true;
                 gopls.enable = true;
