@@ -18,6 +18,18 @@
             # unbind everything
             unbind -a
 
+            # switch to window with prefix + 1..9+0
+            bind 1 select-window -t :1
+            bind 2 select-window -t :2
+            bind 3 select-window -t :3
+            bind 4 select-window -t :4
+            bind 5 select-window -t :5
+            bind 6 select-window -t :6
+            bind 7 select-window -t :7
+            bind 8 select-window -t :8
+            bind 9 select-window -t :9
+            bind 0 select-window -t :10
+
             # split panes using | and -, in the current path
             bind \\ split-window -h -c "#{pane_current_path}"
             bind - split-window -v -c "#{pane_current_path}"
@@ -40,8 +52,8 @@
             # resize panes using Alt-shift-arrow without prefix
             bind -n -r M-H resize-pane -L 5
             bind -n -r M-L resize-pane -R 5
-            bind -n -r M-J resize-pane -U 5
-            bind -n -r M-K resize-pane -D 5
+            bind -n -r M-J resize-pane -D 5
+            bind -n -r M-K resize-pane -U 5
 
             # hide status bar
             set -g status off
