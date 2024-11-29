@@ -30,6 +30,11 @@
             bind 9 select-window -t :9
             bind 0 select-window -t :10
 
+            # detach
+            bind d detach-client
+
+            bind x confirm-before -p "kill-pane #P? (y/n)" kill-pane
+
             # split panes using | and -, in the current path
             bind \\ split-window -h -c "#{pane_current_path}"
             bind - split-window -v -c "#{pane_current_path}"
