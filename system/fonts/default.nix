@@ -4,7 +4,7 @@
     fonts = {
         packages = with pkgs; [
             jetbrains-mono
-            ( nerdfonts.override { fonts = [ "JetBrainsMono" ]; } )
+            nerd-fonts.jetbrains-mono
 
         ] ++ (if pkgs.stdenv.isLinux then [
             noto-fonts
