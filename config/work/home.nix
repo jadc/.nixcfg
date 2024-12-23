@@ -6,17 +6,7 @@
             ./common.nix
 
             # CLI
-            ./../../user/cli/shells
-            ./../../user/cli/git
-            ./../../user/cli/zoxide
-            ./../../user/cli/eza
-            ./../../user/cli/fzf
-            ./../../user/cli/nixvim
-            ./../../user/cli/tmux
-            ./../../user/cli/archivers
-            ./../../user/cli/rsync
-            ./../../user/cli/ripgrep
-            ./../../user/cli/imagemagick
+            ./../../user/cli
 
             # Scripts
             ./../../user/scripts
