@@ -29,6 +29,7 @@
             ./../../user/app/obsidian
             ./../../user/app/idea
             ./../../user/app/minecraft
+            ./../../user/app/qdirstat
 
             ## Multimedia
             ./../../user/app/audacity
