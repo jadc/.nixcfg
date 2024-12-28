@@ -1,6 +1,7 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+    environment.systemPackages = with pkgs; [ pavucontrol ];
     hardware.pulseaudio.enable = lib.mkForce false;  # disable pulseAudio
     security.rtkit.enable = true;
     services.pipewire = {
