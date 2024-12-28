@@ -30,6 +30,7 @@
             ./../../user/app/idea
             ./../../user/app/minecraft
             ./../../user/app/qdirstat
+            ./../../user/app/handbrake
 
             ## Multimedia
             ./../../user/app/audacity

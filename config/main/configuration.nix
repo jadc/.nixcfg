@@ -30,9 +30,8 @@
             ./../../system/users
 
             # Requires superuser
-            #./../../system/virtualbox
             ./../../system/docker
-            ./../../system/remote/x2go
+            ./../../system/remote/sunshine
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
