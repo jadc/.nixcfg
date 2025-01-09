@@ -2,7 +2,8 @@
 
 {
     imports = [
-        ../sound
+        # temp until upstream fixed
+        # ../sound
     ];
 
     services.xserver = {
