@@ -22,7 +22,6 @@
             ./../../system/automount
             ./../../system/gc
             ./../../system/networkmanager
-            ./../../system/nfs
             ./../../system/nvidia
             ./../../system/remote/ssh
             ./../../system/swapfile
@@ -36,7 +35,6 @@
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
             ./../../system/xserver
-            ./../../user/app/wireguard
         ];
 
     # Fix shutdown hang
