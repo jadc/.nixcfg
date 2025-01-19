@@ -4,30 +4,48 @@
             enable = true;
 
             servers = {
-                bashls.enable = true;
+                # C/C++
                 clangd = {
                     enable = true;
                     cmd = ["clangd" "--background-index" "--clang-tidy"];
                 };
                 cmake.enable = true;
-                cssls.enable = true;
+
+                # Go
                 gopls.enable = true;
-                html.enable = true;
-                jsonls.enable = true;
+
+                # Lua
                 lua_ls = {
                     enable = true;
                     settings.telemetry.enable = false;
                 };
+
+                # Nix
                 nixd.enable = true;
+
+                # C#
                 omnisharp.enable = true;
+
+                # Python
                 pyright.enable = true;
+
+                # Rust
                 rust_analyzer = {
                     enable = true;
                     installCargo = true;
                     installRustc = true;
                 };
+
+                # Web Development
+                cssls.enable = true;
+                eslint.enable = true;
+                html.enable = true;
                 svelte.enable = true;
                 ts_ls.enable = true;
+
+                # Misc
+                jsonls.enable = true;
+                bashls.enable = true;
             };
         };
         lspkind.enable = true;
@@ -84,8 +102,10 @@
         # Copilot setup
         copilot-lua = {
             enable = true;
-            suggestion.enabled = false;
-            panel.enabled = false;
+            settings = {
+                suggestion.enabled = false;
+                panel.enabled = false;
+            };
         };
         copilot-cmp.enable = true;
     };
