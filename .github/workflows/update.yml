@@ -1,0 +1,32 @@
+name: Update flake
+
+on:
+    schedule:
+        - cron: "0 6 * * *"
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Install Nix
+              uses: cachix/install-nix-action@v20
+
+            - name: Update flake.lock
+              run: nix flake update
+
+            - name: Commit changes
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  commit_message: Update flake.lock
+                  branch: main
+                  commit_options: "--no-verify --signoff"
+                  file_pattern: flake.lock
+                  commit_author: GitHub Actions <actions@github.com>
+                  skip_dirty_check: false
+                  skip_fetch: true
