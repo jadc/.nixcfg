@@ -128,6 +128,7 @@
             vim.cmd.amenu([[PopUp.Definition <Cmd>lua vim.lsp.buf.definition()<CR>]])
             vim.cmd.amenu([[PopUp.Usages <Cmd>lua vim.lsp.buf.references()<CR>]])
             vim.cmd.amenu([[PopUp.Refactor <Cmd>lua vim.lsp.buf.rename()<CR>]])
+            vim.cmd.amenu([[PopUp.Error <Cmd>lua vim.diagnostic.open_float()<CR>]])
         '';
     };
 }
