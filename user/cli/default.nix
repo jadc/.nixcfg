@@ -15,6 +15,7 @@
             ./ripgrep
             ./rsync
             ./shells
+            ./sshfs
             ./texlive
             ./tmux
             ./yt
