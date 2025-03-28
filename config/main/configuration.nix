@@ -18,9 +18,10 @@
             ./../../system/systemd-boot
 
             # System configuration
-            ./../../system/fonts
             ./../../system/automount
+            ./../../system/fonts
             ./../../system/gc
+            ./../../system/ios
             ./../../system/networkmanager
             ./../../system/nvidia
             ./../../system/remote/ssh
