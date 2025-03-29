@@ -14,7 +14,6 @@
             ./../../system/kernel/zen
 
             # Boot configuration
-            #./../../system/grub
             ./../../system/systemd-boot
 
             # System configuration
@@ -31,10 +30,10 @@
 
             # Requires superuser
             ./../../system/docker
-            ./../../system/remote/sunshine
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
+            ./../../system/syncthing
             ./../../system/xserver
         ];
 
