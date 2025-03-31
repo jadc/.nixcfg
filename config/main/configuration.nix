@@ -35,6 +35,7 @@
             ./../../system/steam
             ./../../system/syncthing
             ./../../system/xserver
+            ./../../system/filebrowser
         ];
 
     # Fix shutdown hang
