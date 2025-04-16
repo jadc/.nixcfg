@@ -1,50 +1,33 @@
-require("lsp_lines").setup()
-
 local __lspServers = {
-    {
-        extraOptions = {
-            filetypes = {
-                "javascript",
-                "javascriptreact",
-                "javascript.jsx",
-                "typescript",
-                "typescriptreact",
-                "typescript.tsx",
-            },
-        },
-        name = "ts_ls",
-    },
-    { name = "svelte" },
-    { name = "rust_analyzer" },
-    { name = "pyright" },
-    { extraOptions = { cmd = { "OmniSharp" } }, name = "omnisharp" },
-    { name = "nixd" },
-    { extraOptions = { settings = { Lua = { telemetry = { enable = false } } } }, name = "lua_ls" },
-    { name = "jsonls" },
-    { name = "html" },
-    { name = "gopls" },
-    { name = "eslint" },
-    { name = "cssls" },
-    { name = "cmake" },
-    { extraOptions = { cmd = { "clangd", "--background-index", "--clang-tidy" } }, name = "clangd" },
     { name = "bashls" },
+    { name = "clangd", extraOptions = { cmd = { "clangd", "--background-index", "--clang-tidy" } } },
+    { name = "cmake" },
+    { name = "cssls" },
+    { name = "eslint" },
+    { name = "gopls" },
+    { name = "html" },
+    { name = "lua_ls", extraOptions = { settings = { Lua = { telemetry = { enable = false } } } } },
+    { name = "nixd" },
+    { name = "pyright" },
+    { name = "rust_analyzer" },
+    { name = "svelte" },
+    { name = "ts_ls", extraOptions = { filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" } } },
+    { name = "yamlls" },
 }
--- Adding lspOnAttach function to nixvim module lua table so other plugins can hook into it.
-_M.lspOnAttach = function(client, bufnr) end
+
+local lspOnAttach = function(client, bufnr) end
 local __lspCapabilities = function()
     capabilities = vim.lsp.protocol.make_client_capabilities()
-
     capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
     return capabilities
 end
 
 local __setup = {
-    on_attach = _M.lspOnAttach,
+    on_attach = lspOnAttach,
     capabilities = __lspCapabilities(),
 }
 
-for i, server in ipairs(__lspServers) do
+for _, server in ipairs(__lspServers) do
     if type(server) == "string" then
         require("lspconfig")[server].setup(__setup)
     else
@@ -60,39 +43,16 @@ for i, server in ipairs(__lspServers) do
     end
 end
 
-local __nixvim_autogroups = { nixvim_binds_LspAttach = { clear = true } }
+-- Setup LSP actions dropdown menu
+vim.api.nvim_create_autocmd("LspAttach", {
+    desc = "LSP actions",
+    callback = function(event)
+        local opts = {buffer = event.buf}
 
-for group_name, options in pairs(__nixvim_autogroups) do
-    vim.api.nvim_create_augroup(group_name, options)
-end
-
-local __nixvim_autocommands = {
-    {
-        callback = function(args)
-            do
-                local __nixvim_binds = {}
-
-                for i, map in ipairs(__nixvim_binds) do
-                    local options = vim.tbl_extend("keep", map.options or {}, { buffer = args.buf })
-                    vim.keymap.set(map.mode, map.key, map.action, options)
-                end
-            end
-        end,
-        desc = "Load keymaps for LspAttach",
-        event = "LspAttach",
-        group = "nixvim_binds_LspAttach",
-    },
-}
-
-for _, autocmd in ipairs(__nixvim_autocommands) do
-    vim.api.nvim_create_autocmd(autocmd.event, {
-        group = autocmd.group,
-        pattern = autocmd.pattern,
-        buffer = autocmd.buffer,
-        desc = autocmd.desc,
-        callback = autocmd.callback,
-        command = autocmd.command,
-        once = autocmd.once,
-        nested = autocmd.nested,
-    })
-end
+        vim.cmd.amenu([[PopUp.Info <Cmd>lua vim.lsp.buf.hover()<CR>]])
+        vim.cmd.amenu([[PopUp.Definition <Cmd>lua vim.lsp.buf.definition()<CR>]])
+        vim.cmd.amenu([[PopUp.Usages <Cmd>lua vim.lsp.buf.references()<CR>]])
+        vim.cmd.amenu([[PopUp.Refactor <Cmd>lua vim.lsp.buf.rename()<CR>]])
+        vim.cmd.amenu([[PopUp.Error <Cmd>lua vim.diagnostic.open_float()<CR>]])
+    end
+})
