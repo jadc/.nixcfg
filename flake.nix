@@ -11,11 +11,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        nixvim = {
-            url = "github:nix-community/nixvim";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         nix-darwin = {
             url = "github:LnL7/nix-darwin";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +31,7 @@
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
-                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+                        home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${common.username} = import ./config/${profile}/home.nix;
@@ -64,7 +59,7 @@
 
                     # User-level configuration
                     home-manager.darwinModules.home-manager {
-                        home-manager.extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+                        home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${common.username} = import ./config/${profile}/home.nix;

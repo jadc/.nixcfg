@@ -9,9 +9,10 @@
             ./fzf
             ./gallery-dl
             ./git
+            ./go
             ./htop
             ./imagemagick
-            ./nixvim
+            ./neovim
             ./ripgrep
             ./rsync
             ./shells
