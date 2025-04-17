@@ -57,7 +57,6 @@
     };
 
     # Set default shell to zsh for all users
-    # Unnecessary on macOS
     users.defaultUserShell = pkgs.zsh;
 
     # Paths to link
