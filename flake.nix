@@ -10,14 +10,9 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
-        nix-darwin = {
-            url = "github:LnL7/nix-darwin";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
-    outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs: {
+    outputs = { self, nixpkgs, home-manager, ... }@inputs: {
 
         # Main NixOS machine
         nixosConfigurations = let
@@ -31,34 +26,6 @@
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
-                        home-manager.extraSpecialArgs = { inherit inputs; };
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
-                    }
-                ];
-
-                # Use correct architecture
-                pkgs = import nixpkgs {
-                    system = common.arch;
-                    config.allowUnfree = true;
-                };
-                specialArgs.system = common.arch;
-            };
-        };
-
-        # macOS Laptop
-        darwinConfigurations = let
-            profile = "mac";
-            common = ( import ./config/${profile}/common.nix ).config.common;
-        in {
-            ${common.hostname} = nix-darwin.lib.darwinSystem {
-                modules = [
-                    # System-level configuration
-                    ./config/${profile}/configuration.nix
-
-                    # User-level configuration
-                    home-manager.darwinModules.home-manager {
                         home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
