@@ -17,15 +17,6 @@ cd $HOME && git clone https://github.com/jadc/.nixcfg.git
 sudo nixos-rebuild switch --flake ~/.nixcfg
 ```
 
-### nix-darwin
-```sh
-# Install nix-darwin (only run once)
-nix run nix-darwin -- switch --flake ~/.nixcfg
-
-# Run after every change
-sudo -u $USER darwin-rebuild switch --flake ~/.nixcfg
-```
-
 ### Home Manager Only
 ```sh
 # Initial install
