@@ -8,7 +8,7 @@
 
     home = {
         username = lib.mkForce config.common.username;
-        homeDirectory = lib.mkForce config.common.home;
+        homeDirectory = lib.mkForce ("/home/" + config.common.username);
         stateVersion = "24.05";  # Do not need to update
     };
 

@@ -3,7 +3,6 @@
         arch = "x86_64-linux";
         hostname = "jadwork";
         username = "jad";
-        home = "/home/jad";
 
         aliases = {
             # Default flags
