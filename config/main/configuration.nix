@@ -17,25 +17,29 @@
             ./../../system/systemd-boot
 
             # System configuration
+            ./../../system/autologin
             ./../../system/automount
             ./../../system/fonts
             ./../../system/gc
             ./../../system/ios
+            ./../../system/libinput
             ./../../system/networkmanager
             ./../../system/nvidia
             ./../../system/remote/ssh
+            ./../../system/sound
             ./../../system/swapfile
             ./../../system/trim
             ./../../system/users
 
             # Requires superuser
             ./../../system/docker
+            ./../../system/gnome
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
             ./../../system/syncthing
-            ./../../system/xserver
-            ./../../system/filebrowser
+            #./../../system/xserver
+            #./../../system/filebrowser
         ];
 
     # Fix shutdown hang
