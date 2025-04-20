@@ -10,31 +10,15 @@
             default = "x86_64-linux";
             description = "The architecture of the system";
         };
+
         hostname = lib.mkOption {
             type = lib.types.str;
-            default = "jadc";
             description = "The hostname of the system";
         };
+
         username = lib.mkOption {
             type = lib.types.str;
-            default = "jad";
             description = "The username of the user";
-        };
-        home = lib.mkOption {
-            type = lib.types.str;
-            default = "/home/jad";
-            description = "The home directory of the user";
-        };
-
-        rootDevice = lib.mkOption {
-            type = lib.types.str;
-            default = "/dev/sda";
-            description = "The root device of the system";
-        };
-        bootMountPoint = lib.mkOption {
-            type = lib.types.str;
-            default = "/boot";
-            description = "The boot mount point of the system";
         };
 
         timeZone = lib.mkOption {
