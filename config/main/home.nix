@@ -6,24 +6,25 @@
             ./common.nix
 
             # Setup
-            ./../../user/display/monitors
-            ./../../user/display/compositor
-            ./../../user/display/gui
-            ./../../user/display/xresources
-            ./../../user/app/redshift
-            ./../../user/app/notifications
+            #./../../user/display/monitors
+            #./../../user/display/compositor
+            ./../../system/gnome/home.nix
+            #./../../user/display/gui
+            #./../../user/display/xresources
+            #./../../user/app/redshift
+            #./../../user/app/notifications
 
             # Apps
-            ./../../user/display/bspwm
-            ./../../user/app/feh
+            #./../../user/display/bspwm
+            #./../../user/app/feh
             ./../../user/app/kitty
-            ./../../user/app/maim
-            ./../../user/app/rofi
+            #./../../user/app/maim
+            #./../../user/app/rofi
             ./../../user/app/chrome
             ./../../user/app/vesktop
             ./../../user/app/zathura
             ./../../user/app/spotify
-            ./../../user/app/nautilus
+            #./../../user/app/nautilus
             ./../../user/app/deluge
             ./../../user/app/obsidian
             ./../../user/app/idea
@@ -47,17 +48,10 @@
 
             # Scripts
             ./../../user/scripts
-            ./../../user/scripts/monitor.nix
-            ./../../user/scripts/volume.nix
+            #./../../user/scripts/monitor.nix
+            #./../../user/scripts/volume.nix
             ./../../user/scripts/rebuild.nix
-            ./../../user/scripts/clock.nix
+            #./../../user/scripts/clock.nix
             ./../../user/scripts/spotifyify.nix
         ];
-    config = {
-        # Custom user configuration
-        monitors = {
-            primary = "HDMI-1";
-            secondary = "";
-        };
-    };
 }
