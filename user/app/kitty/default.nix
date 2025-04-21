@@ -7,7 +7,7 @@
         font = {
             package = pkgs.jetbrains-mono;
             name = "JetBrains Mono";
-            size = 13;
+            size = 14;
         };
 
         keybindings = {
