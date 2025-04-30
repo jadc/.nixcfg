@@ -1,10 +1,6 @@
 {
     imports =
         [
-            # Standard configuration
-            ./../home.common.nix
-            ./common.nix
-
             # CLI
             ./../../user/cli
 

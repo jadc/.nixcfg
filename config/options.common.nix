@@ -5,6 +5,11 @@
 
 {
     options.common = {
+        profile = lib.mkOption {
+            type = lib.types.str;
+            description = "The profile of the system";
+        };
+
         arch = lib.mkOption {
             type = lib.types.str;
             default = "x86_64-linux";
