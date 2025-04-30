@@ -1,10 +1,6 @@
 {
     imports =
         [
-            # Standard configuration
-            ./../home.common.nix
-            ./common.nix
-
             # Setup
             #./../../user/display/monitors
             #./../../user/display/compositor
