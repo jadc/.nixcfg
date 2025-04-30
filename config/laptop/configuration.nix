@@ -17,8 +17,8 @@
             ./../../system/ios
             ./../../system/libinput
             ./../../system/networkmanager
-            ./../../system/nvidia
-            ./../../system/remote/ssh
+            #./../../system/nvidia
+            #./../../system/remote/ssh
             ./../../system/sound
             ./../../system/swapfile
             ./../../system/trim
@@ -27,8 +27,6 @@
             # Requires superuser
             ./../../system/docker
             ./../../system/gnome
-            ./../../system/rgb
-            ./../../system/rgb/no-rgb.nix
             ./../../system/steam
             ./../../system/syncthing
             #./../../system/xserver
