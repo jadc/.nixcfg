@@ -12,24 +12,33 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+    outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+        profiles = [ "main" "laptop" ];
 
-        # Main NixOS machine
-        nixosConfigurations = let
-            profile = "main";
-            common = ( import ./config/${profile}/common.nix ).config.common;
+        # Given a profile string, creates a NixOS system
+        toNixOS = profile: let
+            path = ./config/${profile};
+            common = ( import (path + "/common.nix") ).config.common;
         in {
-            ${common.hostname} = nixpkgs.lib.nixosSystem {
+            name = common.profile;
+            value = nixpkgs.lib.nixosSystem {
                 modules = [
                     # System-level configuration
-                    ./config/${profile}/configuration.nix
+                    (path + "/common.nix")
+                    ./config/configuration.common.nix
+                    (path + "/hardware-configuration.nix")
+                    (path + "/configuration.nix")
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
                         home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${common.username} = import ./config/${profile}/home.nix;
+                        home-manager.users.${common.username} = nixpkgs.lib.mkMerge [
+                            ( import (path + "/common.nix") )
+                            ( import ./config/home.common.nix )
+                            ( import (path + "/home.nix") )
+                        ];
                     }
                 ];
 
@@ -41,17 +50,17 @@
                 specialArgs.system = common.arch;
             };
         };
+    in {
+        # NixOS machines
+        nixosConfigurations = builtins.listToAttrs (map toNixOS profiles);
 
         # Non-NixOS machines
         homeConfigurations = let
-            profile = "work";
-            common = ( import ./config/${profile}/common.nix ).config.common;
+            common = ( import ./config/home/common.nix ).config.common;
         in {
-            ${common.hostname} = home-manager.lib.homeManagerConfiguration {
-                modules = [
-                    ./config/${profile}/home.nix
-                ];
-                extraSpecialArgs = { inherit inputs; };  # Required for Nixvim
+            ${common.profile} = home-manager.lib.homeManagerConfiguration {
+                modules = [ ./config/${common.profile}/home.nix ];
+                extraSpecialArgs = { inherit inputs; };
 
                 # Use correct architecture
                 pkgs = import nixpkgs {
