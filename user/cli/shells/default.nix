@@ -18,7 +18,7 @@ let shellAliases = config.common.aliases; in
         };
 
         # Appended to end of ~/.zshrc
-        initExtra = let 
+        initContent = let 
                 C = "\\e[1;34m";
                 G = "\\e[1;33m";
                 B = "\\e[0;30m";
