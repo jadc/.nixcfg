@@ -7,16 +7,11 @@
         displayManager.gdm.wayland = true;
 
         # Gnome
-        desktopManager.gnome = {
-            enable = true;
-            extraGSettingsOverrides = ''
-               [org.gnome.desktop.input-sources]
-               xkb-options=['caps:escape']
-            '';
-        };
+        desktopManager.gnome.enable = true;
     };
 
     environment.defaultPackages = with pkgs; [
+        gnome-tweaks
         xdg-desktop-portal
         xdg-desktop-portal-gnome
     ];

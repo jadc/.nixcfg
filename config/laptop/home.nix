@@ -6,27 +6,28 @@
             ./../../user/qt
 
             # Apps
-            ./../../user/kitty
             ./../../user/chrome
+            ./../../user/deluge
+            ./../../user/handbrake
+            ./../../user/kitty
+            ./../../user/majora
+            ./../../user/minecraft
+            ./../../user/obsidian
+            ./../../user/qdirstat
+            ./../../user/spotify
             ./../../user/vesktop
             ./../../user/zathura
-            ./../../user/spotify
-            ./../../user/deluge
-            ./../../user/obsidian
-            ./../../user/minecraft
-            ./../../user/qdirstat
-            ./../../user/handbrake
 
             ## Multimedia
             ./../../user/audacity
-            ./../../user/spek
-            ./../../user/puddletag
             ./../../user/avidemux
             ./../../user/gimp
             ./../../user/inkscape
             ./../../user/jellyfin-player
             ./../../user/mpv
             ./../../user/obs
+            ./../../user/puddletag
+            ./../../user/spek
 
             # Command-line Interface
             ./../../user/archivers
