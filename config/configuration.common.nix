@@ -17,9 +17,6 @@
         experimental-features = [ "nix-command" "flakes" ];
     };
 
-    # Ensure nixpkgs serves binaries for the correct architecture
-    nixpkgs.hostPlatform = config.common.arch;
-
     # Set default shell to zsh for all users
     programs.zsh.enable = true;
     environment.shells = with pkgs; [ zsh ];
