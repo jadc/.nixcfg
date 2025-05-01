@@ -14,6 +14,7 @@
             ./../../system/automount
             ./../../system/fonts
             ./../../system/gc
+            ./../../system/intel
             ./../../system/ios
             ./../../system/libinput
             ./../../system/networkmanager
@@ -31,7 +32,5 @@
             ./../../system/rgb/no-rgb.nix
             ./../../system/steam
             ./../../system/syncthing
-            #./../../system/xserver
-            #./../../system/filebrowser
         ];
 }

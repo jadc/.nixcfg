@@ -2,52 +2,57 @@
     imports =
         [
             # Setup
-            #./../../user/display/monitors
-            #./../../user/display/compositor
             ./../../system/gnome/home.nix
-            #./../../user/display/gui
-            #./../../user/display/xresources
-            #./../../user/app/redshift
-            #./../../user/app/notifications
+            ./../../user/qt
 
             # Apps
-            #./../../user/display/bspwm
-            #./../../user/app/feh
-            ./../../user/app/kitty
-            #./../../user/app/maim
-            #./../../user/app/rofi
-            ./../../user/app/chrome
-            ./../../user/app/vesktop
-            ./../../user/app/zathura
-            ./../../user/app/spotify
-            #./../../user/app/nautilus
-            ./../../user/app/deluge
-            ./../../user/app/obsidian
-            ./../../user/app/idea
-            ./../../user/app/minecraft
-            ./../../user/app/qdirstat
-            ./../../user/app/handbrake
+            ./../../user/kitty
+            ./../../user/chrome
+            ./../../user/vesktop
+            ./../../user/zathura
+            ./../../user/spotify
+            ./../../user/deluge
+            ./../../user/obsidian
+            ./../../user/minecraft
+            ./../../user/qdirstat
+            ./../../user/handbrake
 
             ## Multimedia
-            ./../../user/app/audacity
-            ./../../user/app/spek
-            ./../../user/app/puddletag
-            ./../../user/app/avidemux
-            ./../../user/app/gimp
-            ./../../user/app/inkscape
-            ./../../user/app/jellyfin-player
-            ./../../user/app/mpv
-            ./../../user/app/obs
+            ./../../user/audacity
+            ./../../user/spek
+            ./../../user/puddletag
+            ./../../user/avidemux
+            ./../../user/gimp
+            ./../../user/inkscape
+            ./../../user/jellyfin-player
+            ./../../user/mpv
+            ./../../user/obs
 
             # Command-line Interface
-            ./../../user/cli
+            ./../../user/archivers
+            ./../../user/exiftool
+            ./../../user/eza
+            ./../../user/ffmpeg
+            ./../../user/flac
+            ./../../user/fzf
+            ./../../user/gallery-dl
+            ./../../user/git
+            ./../../user/go
+            ./../../user/htop
+            ./../../user/imagemagick
+            ./../../user/neovim
+            ./../../user/ripgrep
+            ./../../user/rsync
+            ./../../user/shells
+            ./../../user/sshfs
+            ./../../user/texlive
+            ./../../user/tmux
+            ./../../user/yt
+            ./../../user/zoxide
 
             # Scripts
-            ./../../user/scripts
-            #./../../user/scripts/monitor.nix
-            #./../../user/scripts/volume.nix
-            ./../../user/scripts/rebuild.nix
-            #./../../user/scripts/clock.nix
-            ./../../user/scripts/spotifyify.nix
+            ./../../user/Scripts
+            ./../../user/Scripts/rebuild.nix
+            ./../../user/Scripts/spotifyify.nix
         ];
 }
