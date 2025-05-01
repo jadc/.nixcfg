@@ -14,11 +14,10 @@
             ./../../system/automount
             ./../../system/fonts
             ./../../system/gc
+            ./../../system/intel
             ./../../system/ios
             ./../../system/libinput
             ./../../system/networkmanager
-            #./../../system/nvidia
-            #./../../system/remote/ssh
             ./../../system/sound
             ./../../system/swapfile
             ./../../system/trim
@@ -29,7 +28,5 @@
             ./../../system/gnome
             ./../../system/steam
             ./../../system/syncthing
-            #./../../system/xserver
-            #./../../system/filebrowser
         ];
 }
