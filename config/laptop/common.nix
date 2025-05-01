@@ -2,7 +2,6 @@
     config.common = {
         profile = "laptop";
         arch = "x86_64-linux";
-        hostname = "jadc";
         username = "jad";
 
         aliases = {
