@@ -6,9 +6,6 @@
 {
     imports = [ ./options.common.nix ];
 
-    # Hostname
-    networking.hostName = config.common.hostname;
-
     # Nix configuration
     nix.settings = {
         auto-optimise-store = pkgs.stdenv.isLinux;

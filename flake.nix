@@ -24,6 +24,7 @@
             value = nixpkgs.lib.nixosSystem {
                 modules = [
                     # System-level configuration
+                    { networking.hostName = "jadc"; }
                     (path + "/common.nix")
                     ./config/configuration.common.nix
                     (path + "/hardware-configuration.nix")
