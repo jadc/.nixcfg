@@ -2,11 +2,19 @@
     imports =
         [
             # CLI
-            ./../../user/cli
+            ./../../user/archivers
+            ./../../user/eza
+            ./../../user/fzf
+            ./../../user/git
+            ./../../user/neovim
+            ./../../user/ripgrep
+            ./../../user/shells
+            ./../../user/sshfs
+            ./../../user/tmux
+            ./../../user/zoxide
 
             # Scripts
-            ./../../user/scripts
-            ./../../user/scripts/rebuild.nix
-            ./../../user/scripts/spotifyify.nix
+            ./../../user/Scripts
+            ./../../user/Scripts/rebuild.nix
         ];
 }
