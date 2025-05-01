@@ -35,6 +35,16 @@
         "org/gnome/desktop/datetime" = {
             automatic-timezone = true;
         };
+
+        # Text scaling
+        "org/gnome/desktop/interface" = {
+            text-scaling-factor = 0.85;
+        };
+
+        # Caps to escape
+        "org/gnome/desktop/input-sources" = {
+            xkb-options = ["caps:escape"];
+        };
     };
 
     # Black title bar
