@@ -16,11 +16,6 @@
             description = "The architecture of the system";
         };
 
-        hostname = lib.mkOption {
-            type = lib.types.str;
-            description = "The hostname of the system";
-        };
-
         username = lib.mkOption {
             type = lib.types.str;
             description = "The username of the user";
