@@ -4,6 +4,7 @@
             # Setup
             ./../../system/gnome/home.nix
             ./../../user/qt
+            ./../../user/xdg
 
             # Apps
             ./../../user/chrome
