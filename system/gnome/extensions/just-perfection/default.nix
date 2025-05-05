@@ -19,9 +19,6 @@
                     # Shutup
                     support-notifier-type = 0;
 
-                    # Slightly shrinks panel
-                    theme = false;
-
                     # Hide quick settings toggles
                     quick-settings-dark-mode = false;
                     quick-settings-airplane-mode = false;
