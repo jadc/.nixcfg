@@ -1,4 +1,8 @@
 {
+    imports = [ ./extensions ];
+
+    # GNOME Configuration
+    dconf.enable = true;
     dconf.settings = {
         # Enable dark theme
         "org/gnome/desktop/interface" = {
