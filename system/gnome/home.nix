@@ -36,9 +36,8 @@
         };
 
         # Automatic timezone
-        "org/gnome/desktop/datetime" = {
-            automatic-timezone = true;
-        };
+        "org/gnome/system/location".enabled = true;
+        "org/gnome/desktop/datetime".automatic-timezone = true;
 
         # Text scaling
         "org/gnome/desktop/interface" = {
