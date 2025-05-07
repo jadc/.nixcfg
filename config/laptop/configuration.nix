@@ -25,6 +25,7 @@
 
             # Requires superuser
             ./../../system/docker
+            ./../../system/droidcam
             ./../../system/gnome
             ./../../system/steam
             ./../../system/syncthing
