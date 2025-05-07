@@ -21,7 +21,6 @@
             ## Multimedia
             ./../../user/audacity
             ./../../user/avidemux
-            ./../../user/droidcam
             ./../../user/gimp
             ./../../user/inkscape
             ./../../user/jellyfin-player
