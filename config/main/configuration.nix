@@ -27,6 +27,7 @@
 
             # Requires superuser
             ./../../system/docker
+            ./../../system/droidcam
             ./../../system/gnome
             ./../../system/rgb
             ./../../system/rgb/no-rgb.nix

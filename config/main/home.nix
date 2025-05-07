@@ -20,14 +20,15 @@
 
             ## Multimedia
             ./../../user/audacity
-            ./../../user/spek
-            ./../../user/puddletag
             ./../../user/avidemux
+            ./../../user/droidcam
             ./../../user/gimp
             ./../../user/inkscape
             ./../../user/jellyfin-player
             ./../../user/mpv
             ./../../user/obs
+            ./../../user/puddletag
+            ./../../user/spek
 
             # Command-line Interface
             ./../../user/archivers
