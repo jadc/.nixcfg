@@ -1,8 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 {
-    # environment.systemPackages = with pkgs; [ pavucontrol ];
-    # hardware.pulseaudio.enable = lib.mkForce false;  # disable pulseAudio
     security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
@@ -12,6 +10,6 @@
         pulse.enable = true;
     };
 
-    # Add user to networkmanager group
+    # Add user to audio group
     users.users.${config.common.username}.extraGroups = [ "audio" ];
 }
