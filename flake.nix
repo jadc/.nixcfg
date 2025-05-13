@@ -60,8 +60,12 @@
             common = ( import ./config/home/common.nix ).config.common;
         in {
             ${common.profile} = home-manager.lib.homeManagerConfiguration {
-                modules = [ ./config/${common.profile}/home.nix ];
-                extraSpecialArgs = { inherit inputs; };
+                modules = [
+										./config/home.common.nix
+										./config/${common.profile}/common.nix
+										./config/${common.profile}/home.nix
+								];
+								extraSpecialArgs = { inherit inputs; };
 
                 # Use correct architecture
                 pkgs = import nixpkgs {
