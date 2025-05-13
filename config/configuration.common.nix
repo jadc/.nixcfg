@@ -19,8 +19,9 @@
     environment.shells = with pkgs; [ zsh ];
     users.defaultUserShell = pkgs.zsh;
 
-    # Fix shutdown hang
+    # Ensure all firmware and drivers is installed
     hardware.enableAllFirmware = true;
+    hardware.enableRedistributableFirmware = true;
 
     # Setup locale
     time.timeZone = config.common.timeZone;
