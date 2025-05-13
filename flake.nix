@@ -13,8 +13,6 @@
     };
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs: let
-        profiles = [ "main" "laptop" ];
-
         # Given a profile string, creates a NixOS system
         toNixOS = profile: let
             path = ./config/${profile};
@@ -36,9 +34,9 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${common.username} = nixpkgs.lib.mkMerge [
-                            ( import (path + "/common.nix") )
+                            ( import (path + "/common.nix")   )
                             ( import ./config/home.common.nix )
-                            ( import (path + "/home.nix") )
+                            ( import (path + "/home.nix")     )
                         ];
                     }
                 ];
@@ -51,29 +49,36 @@
                 specialArgs.system = common.arch;
             };
         };
-    in {
-        # NixOS machines
-        nixosConfigurations = builtins.listToAttrs (map toNixOS profiles);
-
-        # Non-NixOS machines
-        homeConfigurations = let
-            common = ( import ./config/home/common.nix ).config.common;
-        in {
-            ${common.profile} = home-manager.lib.homeManagerConfiguration {
+        
+        toHome = system: {
+            name = "home-${system}"; 
+            value = home-manager.lib.homeManagerConfiguration {
                 modules = [
-										./config/home.common.nix
-										./config/${common.profile}/common.nix
-										./config/${common.profile}/home.nix
-								];
-								extraSpecialArgs = { inherit inputs; };
+                    ./config/home/common.nix
+                    ./config/home.common.nix
+                    ./config/home/home.nix
+                ];
 
                 # Use correct architecture
                 pkgs = import nixpkgs {
-                    system = common.arch;
+                    inherit system;
                     config.allowUnfree = true;
                 };
+                extraSpecialArgs = { inherit inputs; };
             };
         };
+    in {
+        # NixOS machines
+        nixosConfigurations = let
+            profiles = [ "main" "laptop" ];
+	in
+            builtins.listToAttrs (map toNixOS profiles);
+
+        # Non-NixOS machines
+        homeConfigurations = let
+            systems = [ "x86_64-linux" "aarch64-linux" ];
+        in
+            builtins.listToAttrs (map toHome systems);
 
     };
 }
