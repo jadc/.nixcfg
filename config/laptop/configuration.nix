@@ -2,6 +2,7 @@
     imports =
         [
             # Kernel configuration
+            ./../../system/kernel/flags/intel
             ./../../system/kernel/flags/performance
             ./../../system/kernel/flags/quiet
             ./../../system/kernel/zen
