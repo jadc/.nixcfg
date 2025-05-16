@@ -2,11 +2,6 @@
     programs.git = {
         enable = true;
 
-        # Credentials
-        userName = "jadc";
-        userEmail = "chehimj@gmail.com";
-
-        # Configuration
         ignores = [
             ".DS_Store"
             "._.DS_Store"
@@ -22,7 +17,7 @@
         extraConfig = {
             init.defaultBranch = "main";
             push.autoSetupRemote = true;
-            pull.rebase = false;                            # always merge
+            pull.rebase = false;                            # default to merge
             credential.helper = "cache --timeout=86400";    # store credentials in memory
         };
 
