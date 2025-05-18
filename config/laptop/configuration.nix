@@ -13,6 +13,7 @@
             # System configuration
             ./../../system/autologin
             ./../../system/automount
+            ./../../system/bluetooth
             ./../../system/fonts
             ./../../system/gc
             ./../../system/intel
