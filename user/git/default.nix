@@ -19,6 +19,7 @@
             push.autoSetupRemote = true;
             pull.rebase = false;                            # default to merge
             credential.helper = "cache --timeout=86400";    # store credentials in memory
+            core.fileMode = false;                          # ignore file permissions
         };
 
         # Prettier diffs
