@@ -37,6 +37,7 @@
             ./../../user/flac
             ./../../user/fzf
             ./../../user/gallery-dl
+            ./../../user/gdb
             ./../../user/git
             ./../../user/go
             ./../../user/htop
@@ -45,7 +46,6 @@
             ./../../user/ripgrep
             ./../../user/rsync
             ./../../user/shells
-            ./../../user/sshfs
             ./../../user/texlive
             ./../../user/tmux
             ./../../user/yt

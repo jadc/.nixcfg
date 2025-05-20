@@ -17,7 +17,6 @@
 
     # Use xdg user directories
     xdg.enable = true;
-    xdg.configFile."mimeapps.list".force = true;
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
