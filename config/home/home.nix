@@ -5,11 +5,11 @@
             ./../../user/archivers
             ./../../user/eza
             ./../../user/fzf
+            ./../../user/gdb
             ./../../user/git
             ./../../user/neovim
             ./../../user/ripgrep
             ./../../user/shells
-            ./../../user/sshfs
             ./../../user/tmux
             ./../../user/zoxide
 
