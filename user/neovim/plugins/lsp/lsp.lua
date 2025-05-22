@@ -15,16 +15,28 @@ local __lspServers = {
     { name = "yamlls" },
 }
 
-local lspOnAttach = function(client, bufnr) end
-local __lspCapabilities = function()
-    capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-    return capabilities
-end
-
 local __setup = {
-    on_attach = lspOnAttach,
-    capabilities = __lspCapabilities(),
+    on_attach = function(client, bufnr)
+        local ts = require("telescope.builtin")
+        local opts = { buffer = bufnr }
+
+        local mappings = {
+            { key = "gd", action = ts.lsp_definitions,      desc = "Go to definition" },
+            { key = "gD", action = vim.lsp.buf.declaration, desc = "Go to declaration" },
+            { key = "gi", action = ts.lsp_implementations,  desc = "Go to implementation" },
+            { key = "gr", action = ts.lsp_references,       desc = "Find references" },
+            { key = "gt", action = ts.lsp_type_definitions, desc = "Go to type definition" },
+            { key = "gK", action = vim.lsp.buf.hover,       desc = "Hover documentation" },
+        }
+
+        for _, map in ipairs(mappings) do
+            vim.keymap.set("n", map.key, map.action, vim.tbl_extend("force", opts, { desc = map.desc }))
+        end
+    end,
+    capabilities = vim.tbl_deep_extend("force",
+        vim.lsp.protocol.make_client_capabilities(),
+        require("cmp_nvim_lsp").default_capabilities()
+    ),
 }
 
 for _, server in ipairs(__lspServers) do
@@ -43,16 +55,12 @@ for _, server in ipairs(__lspServers) do
     end
 end
 
--- Setup LSP actions dropdown menu
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "LSP actions",
-    callback = function(event)
-        local opts = {buffer = event.buf}
-
-        vim.cmd.amenu([[PopUp.Info <Cmd>lua vim.lsp.buf.hover()<CR>]])
-        vim.cmd.amenu([[PopUp.Definition <Cmd>lua vim.lsp.buf.definition()<CR>]])
-        vim.cmd.amenu([[PopUp.Usages <Cmd>lua vim.lsp.buf.references()<CR>]])
-        vim.cmd.amenu([[PopUp.Refactor <Cmd>lua vim.lsp.buf.rename()<CR>]])
-        vim.cmd.amenu([[PopUp.Error <Cmd>lua vim.diagnostic.open_float()<CR>]])
-    end
+-- Setup styling of error virtual text
+vim.diagnostic.config({
+    virtual_text = false,      -- Disable in-line errors
+    virtual_lines = true,      -- Enable errors on separate line
+    underline = true,
+    signs = true,
+    update_in_insert = false,  -- Only update errors in normal mode
+    severity_sort = true,      -- Show errors over warnings
 })
