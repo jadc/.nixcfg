@@ -49,8 +49,8 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Remove weird drop-down menu option
-vim.cmd.aunmenu([[PopUp.How-to\ disable\ mouse]])
+-- Disable right-click menu
+vim.cmd.aunmenu("PopUp")
 
 -- Highlight trailing whitespace
 vim.fn.matchadd("ExtraWhitespace", "\\s\\+$")
