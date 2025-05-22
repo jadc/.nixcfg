@@ -21,12 +21,13 @@ local __setup = {
         local opts = { buffer = bufnr }
 
         local mappings = {
-            { key = "gd", action = ts.lsp_definitions,      desc = "Go to definition" },
-            { key = "gD", action = vim.lsp.buf.declaration, desc = "Go to declaration" },
-            { key = "gi", action = ts.lsp_implementations,  desc = "Go to implementation" },
-            { key = "gr", action = ts.lsp_references,       desc = "Find references" },
-            { key = "gt", action = ts.lsp_type_definitions, desc = "Go to type definition" },
-            { key = "gK", action = vim.lsp.buf.hover,       desc = "Hover documentation" },
+            { key = "gd", action = ts.lsp_definitions,          desc = "Go to definition" },
+            { key = "gD", action = vim.lsp.buf.declaration,     desc = "Go to declaration" },
+            { key = "gi", action = ts.lsp_implementations,      desc = "Go to implementation" },
+            { key = "gr", action = ts.lsp_references,           desc = "Find references" },
+            { key = "gt", action = ts.lsp_type_definitions,     desc = "Go to type definition" },
+            { key = "gK", action = vim.lsp.buf.hover,           desc = "Hover documentation" },
+            { key = "ge", action = vim.diagnostic.open_float,   desc = "Show error" },
         }
 
         for _, map in ipairs(mappings) do
