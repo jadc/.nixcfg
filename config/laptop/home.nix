@@ -42,6 +42,7 @@
             ./../../user/git
             ./../../user/go
             ./../../user/htop
+            ./../../user/hyperfine
             ./../../user/imagemagick
             ./../../user/neovim
             ./../../user/ripgrep
