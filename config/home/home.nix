@@ -3,6 +3,7 @@
         [
             # CLI
             ./../../user/archivers
+            ./../../user/bat
             ./../../user/eza
             ./../../user/fzf
             ./../../user/gdb
