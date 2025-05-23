@@ -11,7 +11,6 @@
             ./../../user/deluge
             ./../../user/handbrake
             ./../../user/kitty
-            ./../../user/majora
             ./../../user/minecraft
             ./../../user/obsidian
             ./../../user/qdirstat
