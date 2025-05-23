@@ -31,6 +31,7 @@
 
             # Command-line Interface
             ./../../user/archivers
+            ./../../user/bat
             ./../../user/exiftool
             ./../../user/eza
             ./../../user/ffmpeg
@@ -41,6 +42,7 @@
             ./../../user/git
             ./../../user/go
             ./../../user/htop
+            ./../../user/hyperfine
             ./../../user/imagemagick
             ./../../user/neovim
             ./../../user/ripgrep
