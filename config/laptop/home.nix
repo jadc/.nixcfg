@@ -32,6 +32,7 @@
 
             # Command-line Interface
             ./../../user/archivers
+            ./../../user/bat
             ./../../user/exiftool
             ./../../user/eza
             ./../../user/ffmpeg
