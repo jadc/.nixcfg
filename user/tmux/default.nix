@@ -1,6 +1,11 @@
+{ pkgs, ... }:
+
 {
     programs.tmux = {
         enable = true;
+
+        # window indices start at 1
+        baseIndex = 1;
 
         # mouse support
         mouse = true;
@@ -14,27 +19,10 @@
         # fix colors
         terminal = "tmux-256color";
 
+        # adds bind (y) to copy to system clipboard
+        plugins = with pkgs; [ tmuxPlugins.yank ];
+
         extraConfig = ''
-            # unbind everything
-            unbind -a
-
-            # switch to window with prefix + 1..9+0
-            bind 1 select-window -t :1
-            bind 2 select-window -t :2
-            bind 3 select-window -t :3
-            bind 4 select-window -t :4
-            bind 5 select-window -t :5
-            bind 6 select-window -t :6
-            bind 7 select-window -t :7
-            bind 8 select-window -t :8
-            bind 9 select-window -t :9
-            bind 0 select-window -t :10
-
-            # detach
-            bind d detach-client
-
-            bind x confirm-before -p "kill-pane #P? (y/n)" kill-pane
-
             # split panes using | and -, in the current path
             bind \\ split-window -h -c "#{pane_current_path}"
             bind - split-window -v -c "#{pane_current_path}"
@@ -43,10 +31,6 @@
 
             # open new windows in the current path
             bind c new-window -c "#{pane_current_path}"
-
-            # start with window and pane 1
-            set -g base-index 1
-            set -g pane-base-index 1
 
             # switch panes using Alt-arrow without prefix
             bind -n M-h select-pane -L
