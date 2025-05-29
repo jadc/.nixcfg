@@ -1,35 +1,17 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    servers = [ (builtins.readFile ./init.lua) ] ++ config.opts.neovim.servers;
+    concat = lib.concatStringsSep "\n" servers;
+    script = pkgs.writeText "lsp.lua" concat;
+in
 {
-    programs.neovim.plugins = with pkgs.vimPlugins; [
-        nvim-cmp
-        nvim-lspconfig
-        cmp-buffer
-        cmp-nvim-lsp
-        cmp-path
-        lsp_lines-nvim
-        lspkind-nvim
-        luasnip
-        friendly-snippets
-        cmp_luasnip
-    ];
-    xdg.configFile."nvim/after/plugin/cmp.lua".source = ./cmp.lua;
-    xdg.configFile."nvim/after/plugin/lsp.lua".source = ./lsp.lua;
+    options.opts.neovim.servers = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+    };
 
-    # Language Servers
-    home.packages = with pkgs; [
-        bash-language-server
-        clang-tools
-        cmake-language-server
-        eslint
-        gopls
-        lua-language-server
-        nixd
-        pyright
-        rust-analyzer
-        svelte-language-server
-        typescript-language-server
-        vscode-langservers-extracted
-        yaml-language-server
-    ];
+    config = {
+        xdg.configFile."nvim/after/plugin/lsp.lua".source = script;
+    };
 }
