@@ -33,5 +33,6 @@ local __setup = {
 }
 
 local setup_server = function(name, opts)
-    require("lspconfig")[name].setup(vim.tbl_deep_extend("force", __setup, opts or {}))
+    vim.lsp.config(name, vim.tbl_deep_extend("force", __setup, opts or {}))
+    vim.lsp.enable(name)
 end
