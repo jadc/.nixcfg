@@ -1,22 +1,47 @@
 local __lspServers = {
     { name = "bashls" },
-    { name = "clangd", extraOptions = { cmd = { "clangd", "--background-index", "--clang-tidy" } } },
+    { name = "clangd", opts = { cmd = { "clangd", "--background-index", "--clang-tidy" } } },
     { name = "cmake" },
     { name = "cssls" },
     { name = "eslint" },
     { name = "gopls" },
     { name = "html" },
-    { name = "lua_ls", extraOptions = { settings = { Lua = { telemetry = { enable = false } } } } },
+    { name = "lua_ls", opts = {
+        settings = {
+            Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you"re using
+                    -- (most likely LuaJIT in the case of Neovim)
+                    version = "LuaJIT",
+                },
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = {
+                        "vim",
+                        "require"
+                    },
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true),
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                    enable = false,
+                },
+            },
+        },
+    } },
     { name = "nixd" },
     { name = "pyright" },
     { name = "rust_analyzer" },
     { name = "svelte" },
-    { name = "ts_ls", extraOptions = { filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" } } },
+    { name = "ts_ls", opts = { filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" } } },
     { name = "yamlls" },
 }
 
 local __setup = {
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
         local ts = require("telescope.builtin")
         local opts = { buffer = bufnr }
 
@@ -41,19 +66,7 @@ local __setup = {
 }
 
 for _, server in ipairs(__lspServers) do
-    if type(server) == "string" then
-        require("lspconfig")[server].setup(__setup)
-    else
-        local options = server.extraOptions
-
-        if options == nil then
-            options = __setup
-        else
-            options = vim.tbl_extend("keep", options, __setup)
-        end
-
-        require("lspconfig")[server.name].setup(options)
-    end
+    require("lspconfig")[server.name].setup(vim.tbl_deep_extend("force", __setup, server.opts or {}))
 end
 
 -- Setup styling of error virtual text
