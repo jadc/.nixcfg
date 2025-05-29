@@ -1,0 +1,3 @@
+setup_server(
+    "gopls", {}
+)
