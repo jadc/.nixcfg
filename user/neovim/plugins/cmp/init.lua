@@ -43,8 +43,7 @@ cmp.setup({
         { name = "luasnip" },
     },
     window = {
-        completion = {
-            border = "rounded"
-        }
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
 })
