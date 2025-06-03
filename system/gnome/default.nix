@@ -1,13 +1,12 @@
 { lib, pkgs, ... }:
 
 {
-    services.xserver = {
-        # Login server
-        displayManager.gdm.enable = true;
-        displayManager.gdm.wayland = true;
+    services.desktopManager.gnome.enable = true;
 
-        # Gnome
-        desktopManager.gnome.enable = true;
+    # Login server
+    services.displayManager.gdm = {
+        enable = true;
+        wayland = true;
     };
 
     environment.defaultPackages = with pkgs; [
