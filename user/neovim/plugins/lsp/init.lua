@@ -11,14 +11,13 @@ vim.diagnostic.config({
 local ts = require("telescope.builtin")
 local __setup = {
     on_attach = function(_, bufnr)
-
         local mappings = {
             { key = "gd", action = ts.lsp_definitions },
             { key = "gD", action = vim.lsp.buf.declaration },
             { key = "gi", action = ts.lsp_implementations },
             { key = "gr", action = ts.lsp_references },
             { key = "gt", action = ts.lsp_type_definitions },
-            { key = "gK", action = vim.lsp.buf.hover },
+            { key = "gK", action = function() vim.lsp.buf.hover { border = "rounded" } end },
             { key = "ge", action = vim.diagnostic.open_float },
         }
 
