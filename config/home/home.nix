@@ -8,6 +8,7 @@
             ./../../user/fzf
             ./../../user/gdb
             ./../../user/git
+            ./../../user/htop
             ./../../user/hyperfine
             ./../../user/neovim
             ./../../user/ripgrep
