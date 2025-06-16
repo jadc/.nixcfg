@@ -13,6 +13,8 @@
             "log"
             "*.log"
             "*~"
+            "__pycache__"
+            "*.jad"
         ];
         extraConfig = {
             init.defaultBranch = "main";
