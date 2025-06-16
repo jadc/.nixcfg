@@ -3,18 +3,19 @@
         enable = true;
 
         ignores = [
-            ".DS_Store"
-            "._.DS_Store"
             "**/.DS_Store"
             "**/._.DS_Store"
-            ".vscode"
-            ".idea"
-            "Thumbs.db"
-            "log"
+            "*.jad"
             "*.log"
             "*~"
+            ".DS_Store"
+            "._.DS_Store"
+            ".idea"
+            ".vscode"
+            "Thumbs.db"
             "__pycache__"
-            "*.jad"
+            "build"
+            "log"
         ];
         extraConfig = {
             init.defaultBranch = "main";
