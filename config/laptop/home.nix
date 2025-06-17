@@ -14,6 +14,7 @@
             ./../../user/minecraft
             ./../../user/obsidian
             ./../../user/qdirstat
+            ./../../user/sm64
             ./../../user/spotify
             ./../../user/vesktop
             ./../../user/zathura
