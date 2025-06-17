@@ -10,11 +10,13 @@
             "*~"
             ".DS_Store"
             "._.DS_Store"
+            ".cache"
             ".idea"
             ".vscode"
             "Thumbs.db"
             "__pycache__"
             "build"
+            "compile_commands.json"
             "log"
         ];
         extraConfig = {
