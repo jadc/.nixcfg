@@ -19,6 +19,7 @@ local __setup = {
             { key = "gt", action = ts.lsp_type_definitions },
             { key = "gK", action = function() vim.lsp.buf.hover { border = "rounded" } end },
             { key = "ge", action = vim.diagnostic.open_float },
+            { key = "gE", action = vim.lsp.buf.code_action },
         }
 
         for _, map in ipairs(mappings) do
