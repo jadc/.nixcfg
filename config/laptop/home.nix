@@ -9,7 +9,6 @@
             # Apps
             ./../../user/chrome
             ./../../user/deluge
-            ./../../user/handbrake
             ./../../user/kitty
             ./../../user/minecraft
             ./../../user/obsidian
