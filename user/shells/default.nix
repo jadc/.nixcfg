@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
-let shellAliases = config.common.aliases; in
 {
     programs.zsh = {
         enable = true;
-        inherit shellAliases;
+        shellAliases = config.common.aliases;
         autosuggestion.enable = true;
         enableCompletion = true;
         syntaxHighlighting.enable = true;
@@ -43,12 +42,5 @@ let shellAliases = config.common.aliases; in
             echo "${B}  ·____·"
             echo ""
         '';
-    };
-
-    # Backup shell
-    programs.bash = {
-        enable = true;
-        inherit shellAliases;
-        enableCompletion = true;
     };
 }
