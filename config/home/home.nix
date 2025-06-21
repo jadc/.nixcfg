@@ -4,6 +4,7 @@
             # CLI
             ./../../user/archivers
             ./../../user/bat
+            ./../../user/direnv
             ./../../user/eza
             ./../../user/fzf
             ./../../user/gdb
