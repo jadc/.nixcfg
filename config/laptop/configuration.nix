@@ -22,7 +22,6 @@
             ./../../system/networkmanager
             ./../../system/sound
             ./../../system/swapfile
-            ./../../system/tlp
             ./../../system/trim
             ./../../system/users
 
