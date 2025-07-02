@@ -8,6 +8,7 @@
         ./plugins/cmp
         ./plugins/gitsigns
         ./plugins/lsp
+        ./plugins/mini-trailspace
         ./plugins/telescope
         ./plugins/treesitter
 

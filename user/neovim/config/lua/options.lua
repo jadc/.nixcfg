@@ -51,7 +51,3 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Disable right-click menu
 vim.cmd.aunmenu("PopUp")
-
--- Highlight trailing whitespace
-vim.fn.matchadd("ExtraWhitespace", "\\s\\+$")
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "grey" })
