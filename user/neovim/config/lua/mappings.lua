@@ -4,41 +4,55 @@ vim.g.mapleader = " "
 local mappings = {
     -- Allow movement through wrapped lines
     {
-        action = "gj",
         key = "j",
+        action = "gj",
         mode = { "n", "x" },
         options = { noremap = true, silent = true },
     },
     {
-        action = "gk",
         key = "k",
+        action = "gk",
         mode = { "n", "x" },
         options = { noremap = true, silent = true },
     },
     {
-        action = "g$",
         key = "$",
+        action = "g$",
         mode = { "n", "x" },
         options = { noremap = true, silent = true },
     },
     {
-        action = "g0",
         key = "0",
+        action = "g0",
         mode = { "n", "x" },
         options = { noremap = true, silent = true },
     },
 
     -- Maintain selection after indent
     {
-        action = "<gv",
         key = "<",
+        action = "<gv",
         mode = { "v" },
         options = { noremap = true, silent = true },
     },
     {
-        action = ">gv",
         key = ">",
+        action = ">gv",
         mode = { "v" },
+        options = { noremap = true, silent = true },
+    },
+
+    -- Center search query to middle of buffer
+    {
+        key = "n",
+        action = "nzzzv",
+        mode = { "n" },
+        options = { noremap = true, silent = true },
+    },
+    {
+        key = "N",
+        action = "Nzzzv",
+        mode = { "n" },
         options = { noremap = true, silent = true },
     },
 }
