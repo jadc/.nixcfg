@@ -8,6 +8,7 @@
         ./plugins/cmp
         ./plugins/gitsigns
         ./plugins/lsp
+        ./plugins/mini-cursorword
         ./plugins/mini-jump2d
         ./plugins/mini-pairs
         ./plugins/mini-trailspace
