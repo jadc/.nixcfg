@@ -48,6 +48,11 @@
         "org/gnome/desktop/input-sources" = {
             xkb-options = ["caps:escape"];
         };
+
+        # Disable sleeping
+        "org/gnome/settings-daemon/plugins/power" = {
+            sleep-inactive-ac-type = "nothing";
+        };
     };
 
     # Black title bar
