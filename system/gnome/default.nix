@@ -7,6 +7,7 @@
     services.displayManager.gdm = {
         enable = true;
         wayland = true;
+        autoSuspend = false;
     };
 
     environment.defaultPackages = with pkgs; [
