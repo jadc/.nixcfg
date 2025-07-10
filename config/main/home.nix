@@ -46,6 +46,7 @@
             ./../../user/hyperfine
             ./../../user/imagemagick
             ./../../user/neovim
+            ./../../user/poppler
             ./../../user/ripgrep
             ./../../user/rsync
             ./../../user/shells
