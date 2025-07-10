@@ -51,6 +51,7 @@
             ./../../user/shells
             ./../../user/texlive
             ./../../user/tmux
+            ./../../user/whisper/gpu.nix
             ./../../user/yt
             ./../../user/zoxide
 
