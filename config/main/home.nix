@@ -33,6 +33,7 @@
             ./../../user/archivers
             ./../../user/bat
             ./../../user/direnv
+            ./../../user/envs
             ./../../user/exiftool
             ./../../user/eza
             ./../../user/ffmpeg
@@ -52,7 +53,6 @@
             ./../../user/shells
             ./../../user/texlive
             ./../../user/tmux
-            ./../../user/whisper/gpu.nix
             ./../../user/yt
             ./../../user/zoxide
 
