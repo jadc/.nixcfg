@@ -20,4 +20,7 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
+
+    # Allow unfree packages in nix shells
+    xdg.configFile."nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
 }
