@@ -1,4 +1,10 @@
+{ pkgs, ... }:
+
 {
-    # TODO: don't hardcode path
-    common.aliases.enter = '''nix develop ~/.nixcfg/user/envs/"$1"'';
+    home.packages = [
+        (pkgs.writeShellApplication {
+            name = "enter";
+            text = ''nix-shell "$HOME/.nixcfg/user/envs/$1"'';
+        })
+    ];
 }
