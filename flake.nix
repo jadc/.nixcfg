@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs = {
-            url = "nixpkgs/nixos-unstable";
+            url = "github:NixOS/nixpkgs/nixos-unstable";
         };
 
         home-manager = {
@@ -20,6 +20,12 @@
         in {
             name = common.profile;
             value = nixpkgs.lib.nixosSystem {
+                pkgs = import nixpkgs {
+                    system = common.arch;
+                    config.allowUnfree = true;
+                };
+                specialArgs.system = common.arch;
+
                 modules = [
                     # System-level configuration
                     { networking.hostName = "jadc"; }
@@ -40,31 +46,23 @@
                         ];
                     }
                 ];
-
-                # Use correct architecture
-                pkgs = import nixpkgs {
-                    system = common.arch;
-                    config.allowUnfree = true;
-                };
-                specialArgs.system = common.arch;
             };
         };
-        
-        toHome = system: {
-            name = "home-${system}"; 
-            value = home-manager.lib.homeManagerConfiguration {
-                modules = [
-                    ./config/home/common.nix
-                    ./config/home.common.nix
-                    ./config/home/home.nix
-                ];
 
-                # Use correct architecture
+        toHome = system: {
+            name = "home-${system}";
+            value = home-manager.lib.homeManagerConfiguration {
                 pkgs = import nixpkgs {
                     inherit system;
                     config.allowUnfree = true;
                 };
                 extraSpecialArgs = { inherit inputs; };
+
+                modules = [
+                    ./config/home/common.nix
+                    ./config/home.common.nix
+                    ./config/home/home.nix
+                ];
             };
         };
     in {
