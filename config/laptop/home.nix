@@ -33,6 +33,7 @@
             ./../../user/archivers
             ./../../user/bat
             ./../../user/direnv
+            ./../../user/envs
             ./../../user/exiftool
             ./../../user/eza
             ./../../user/ffmpeg

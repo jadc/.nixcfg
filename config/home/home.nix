@@ -5,6 +5,7 @@
             ./../../user/archivers
             ./../../user/bat
             ./../../user/direnv
+            ./../../user/envs
             ./../../user/eza
             ./../../user/fzf
             ./../../user/gdb
