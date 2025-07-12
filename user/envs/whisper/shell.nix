@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
-    buildInputs = with pkgs; [ whisper-cpp ];
+    buildInputs = with pkgs; [ openai-whisper ];
 }
