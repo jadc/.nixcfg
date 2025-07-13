@@ -12,6 +12,7 @@
             ./../../user/kitty
             ./../../user/minecraft
             ./../../user/obsidian
+            ./../../user/parallel-launcher
             ./../../user/qdirstat
             ./../../user/sm64
             ./../../user/spotify

@@ -7,16 +7,17 @@
             ./../../user/xdg
 
             # Apps
-            ./../../user/kitty
             ./../../user/chrome
+            ./../../user/deluge
+            ./../../user/handbrake
+            ./../../user/kitty
+            ./../../user/minecraft
+            ./../../user/obsidian
+            ./../../user/parallel-launcher
+            ./../../user/qdirstat
+            ./../../user/spotify
             ./../../user/vesktop
             ./../../user/zathura
-            ./../../user/spotify
-            ./../../user/deluge
-            ./../../user/obsidian
-            ./../../user/minecraft
-            ./../../user/qdirstat
-            ./../../user/handbrake
 
             ## Multimedia
             ./../../user/audacity
