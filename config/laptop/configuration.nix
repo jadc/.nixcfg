@@ -28,7 +28,6 @@
             # Requires superuser
             ./../../system/docker
             ./../../system/gnome
-            ./../../system/qemu
             ./../../system/steam
             ./../../system/syncthing
         ];
