@@ -9,7 +9,7 @@
         ./plugins/gitsigns
         ./plugins/lsp
         ./plugins/mini-cursorword
-        ./plugins/mini-jump2d
+        ./plugins/oil
         ./plugins/mini-pairs
         ./plugins/mini-trailspace
         ./plugins/telescope
