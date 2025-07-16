@@ -44,11 +44,6 @@
             text-scaling-factor = 0.85;
         };
 
-        # Caps to escape
-        "org/gnome/desktop/input-sources" = {
-            xkb-options = ["caps:escape"];
-        };
-
         # Disable sleeping
         "org/gnome/settings-daemon/plugins/power" = {
             sleep-inactive-ac-type = "nothing";
