@@ -18,6 +18,7 @@
             ./../../system/gc
             ./../../system/intel
             ./../../system/ios
+            ./../../system/keyd
             ./../../system/libinput
             ./../../system/networkmanager
             ./../../system/sound
