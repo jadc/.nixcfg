@@ -47,9 +47,6 @@
             };
         };
 
-        # Remap caps to escape
-        services.xserver.xkb.options = "caps:escape";
-
         # Hotkey daemon
         services.sxhkd = {
             enable = true;
