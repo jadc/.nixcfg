@@ -5,13 +5,13 @@ let
         name = "rebuild";
         text =
             if (pkgs.stdenv.isDarwin) then
-                ''sudo -u "$USER" darwin-rebuild switch --flake "$HOME/.nixcfg"#${config.common.profile}''
+                ''sudo -u "$USER" darwin-rebuild switch --accept-flake-config --flake "$HOME/.nixcfg"#${config.common.profile}''
             else
                 ''
                 if grep -q "NixOS" /etc/os-release; then
-                    sudo nixos-rebuild switch --flake "$HOME/.nixcfg"#${config.common.profile};
+                    sudo nixos-rebuild switch --accept-flake-config --flake "$HOME/.nixcfg"#${config.common.profile};
                 else
-                    home-manager switch --flake "$HOME/.nixcfg"#${config.common.profile}-${pkgs.system};
+                    home-manager switch --accept-flake-config --flake "$HOME/.nixcfg"#${config.common.profile}-${pkgs.system};
                 fi
                 ''
             ;
