@@ -1,12 +1,6 @@
 {
     description = "jad's nix";
 
-    # Use pre-compiled binaries from nix-community cache if available
-    nixConfig = {
-        substituters = [ "https://nix-community.cachix.org" ];
-        trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-    };
-
     inputs = {
         nixpkgs = {
             url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -19,6 +13,13 @@
     };
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+        # Use pre-compiled binaries from nix-community cache if available
+        cache = {
+            substituters = [ "https://nix-community.cachix.org" ];
+            trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+            trusted-users = [ "@wheel" ];
+        };
+
         # Given a profile string, creates a NixOS system
         toNixOS = profile: let
             path = ./config/${profile};
@@ -34,7 +35,8 @@
 
                 modules = [
                     # System-level configuration
-                    { networking.hostName = "jadc"; }
+                    { networking.hostName = "jadc"; nix.settings = cache; }
+
                     (path + "/common.nix")
                     ./config/configuration.common.nix
                     (path + "/hardware-configuration.nix")
@@ -57,14 +59,17 @@
 
         toHome = system: {
             name = "home-${system}";
-            value = home-manager.lib.homeManagerConfiguration {
+            value = let
                 pkgs = import nixpkgs {
                     inherit system;
                     config.allowUnfree = true;
                 };
+            in home-manager.lib.homeManagerConfiguration {
+                inherit pkgs;
                 extraSpecialArgs = { inherit inputs; };
 
                 modules = [
+                    { nix.package = pkgs.nix; nix.settings = cache; }
                     ./config/home/common.nix
                     ./config/home.common.nix
                     ./config/home/home.nix

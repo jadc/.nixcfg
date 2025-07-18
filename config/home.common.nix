@@ -12,9 +12,6 @@
         stateVersion = "24.05";  # Do not need to update
     };
 
-    # Allow to use untrusted substituters (e.g. cachix)
-    nix.settings.trusted-users = [ "root" config.common.username ];
-
     # Automatically start systemd user services
     systemd.user.startServices = true;
 
