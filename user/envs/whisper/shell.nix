@@ -1,19 +1,35 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
 
 pkgs.mkShell {
     buildInputs = with pkgs; [
-        openai-whisper
-        cudaPackages.cuda_cudart
-        cudaPackages.cuda_nvcc
+        python3
+        (python3.withPackages (ps: with ps; [ torchWithCuda ]))
         cudaPackages.cudatoolkit
+        cudaPackages.cudnn
+        cudaPackages.cuda_cudart
+        pkgs.gcc13
+
+        openai-whisper
     ];
 
     shellHook = ''
-        export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
-        export PATH=$CUDA_PATH/bin:$PATH
-        export LIBRARY_PATH=$CUDA_PATH/lib:$LIBRARY_PATH
-        export LD_LIBRARY_PATH=$CUDA_PATH/lib:/run/opengl-driver/lib:/run/opengl-driver-32:$LD_LIBRARY_PATH
+        export CUDA_PATH=${pkgs.cudatoolkit}
+        export CC=${pkgs.gcc13}/bin/gcc
+        export CXX=${pkgs.gcc13}/bin/g++
+        export PATH=${pkgs.gcc13}/bin:$PATH
+        export LD_LIBRARY_PATH=${
+            pkgs.lib.makeLibraryPath [
+                "/run/opengl-driver"
+                pkgs.cudaPackages.cudatoolkit
+                pkgs.cudaPackages.cudnn
+            ]
+        }:$LD_LIBRARY_PATH
+        export LIBRARY_PATH=${
+            pkgs.lib.makeLibraryPath [
+                pkgs.cudaPackages.cudatoolkit
+            ]
+        }:$LIBRARY_PATH
 
-        alias whisper="whisper --model large-v3 --output_format txt --task transcribe --language en"
+        alias whisper="whisper --model turbo --output_format txt --task transcribe --language en"
     '';
 }
