@@ -12,6 +12,9 @@
 
         # Enable flakes
         experimental-features = [ "nix-command" "flakes" ];
+
+        # Allow to use untrusted substituters (e.g. cachix)
+        trusted-users = [ "root" config.common.username ];
     };
 
     # Set default shell to zsh for all users
