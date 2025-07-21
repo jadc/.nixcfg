@@ -1,5 +1,3 @@
-# minecraft (via prismlauncher) and java runtime
-
 { pkgs, ... }:
 
 let
@@ -11,7 +9,7 @@ in
     # Java
     programs.java = {
         enable = true;
-        
+
         # Default java is 17
         package = pkgs.jdk17;
     };

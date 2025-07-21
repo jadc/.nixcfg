@@ -14,7 +14,6 @@
             ./../../user/obsidian
             ./../../user/parallel-launcher
             ./../../user/qdirstat
-            ./../../user/sm64
             ./../../user/spotify
             ./../../user/vesktop
             ./../../user/zathura
