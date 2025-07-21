@@ -13,13 +13,6 @@
     };
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs: let
-        # Use pre-compiled binaries from nix-community cache if available
-        cache = {
-            substituters = [ "https://nix-community.cachix.org" ];
-            trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
-            trusted-users = [ "@wheel" ];
-        };
-
         # Given a profile string, creates a NixOS system
         toNixOS = profile: let
             path = ./config/${profile};
@@ -35,7 +28,7 @@
 
                 modules = [
                     # System-level configuration
-                    { networking.hostName = "jadc"; nix.settings = cache; }
+                    { networking.hostName = "jadc"; }
 
                     (path + "/common.nix")
                     ./config/configuration.common.nix
@@ -59,17 +52,14 @@
 
         toHome = system: {
             name = "home-${system}";
-            value = let
+            value = home-manager.lib.homeManagerConfiguration {
                 pkgs = import nixpkgs {
                     inherit system;
                     config.allowUnfree = true;
                 };
-            in home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
                 extraSpecialArgs = { inherit inputs; };
 
                 modules = [
-                    { nix.package = pkgs.nix; nix.settings = cache; }
                     ./config/home/common.nix
                     ./config/home.common.nix
                     ./config/home/home.nix
@@ -80,14 +70,11 @@
         # NixOS machines
         nixosConfigurations = let
             profiles = [ "main" "laptop" ];
-	in
-            builtins.listToAttrs (map toNixOS profiles);
+        in builtins.listToAttrs (map toNixOS profiles);
 
         # Non-NixOS machines
         homeConfigurations = let
             systems = [ "x86_64-linux" "aarch64-linux" ];
-        in
-            builtins.listToAttrs (map toHome systems);
-
+        in builtins.listToAttrs (map toHome systems);
     };
 }
