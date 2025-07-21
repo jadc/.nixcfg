@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs> {} }:
 
 let
     sm64baserom = pkgs.runCommand "baserom-us-safety-dir" { } ''
@@ -9,7 +9,8 @@ let
         override = _: sm64baserom;
     };
     sm64 = pkgs.sm64coopdx.override { inherit sm64baserom; };
-in 
-{
-    home.packages = [ sm64 ];
+in
+pkgs.mkShell {
+    buildInputs = [ sm64 ];
+    shellHook = ''${sm64}/bin/sm64coopdx'';
 }
