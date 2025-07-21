@@ -10,7 +10,6 @@
         ./plugins/lsp
         ./plugins/mini-cursorword
         ./plugins/oil
-        ./plugins/mini-pairs
         ./plugins/mini-trailspace
         ./plugins/telescope
         ./plugins/treesitter
