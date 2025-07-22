@@ -8,3 +8,4 @@ _onedark.setup({
     },
 })
 _onedark.load()
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#111111" })
