@@ -12,6 +12,8 @@ local opts = {
     linebreak = true,
     -- shiftround = true,
     -- copyindent = true,
+    -- Column width marker
+    colorcolumn = "80",
 
     -- Folding
     foldlevel = 20,
