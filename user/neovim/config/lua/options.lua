@@ -32,8 +32,8 @@ local opts = {
     ignorecase = true,
     -- Sensitive if search has caps
     smartcase = true,
-    -- Removes search highlight
-    hlsearch = false,
+    -- Enables search highlight
+    hlsearch = true,
     -- Use system clipboard
     clipboard = "unnamedplus",
 
