@@ -7,7 +7,7 @@ pkgs.mkShell {
         cudaPackages.cudatoolkit
         cudaPackages.cudnn
         cudaPackages.cuda_cudart
-        pkgs.gcc13
+        gcc13
 
         openai-whisper
     ];
