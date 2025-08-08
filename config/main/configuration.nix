@@ -35,4 +35,6 @@
             ./../../system/steam
             ./../../system/syncthing
         ];
+
+    networking.hostName = "jadc";
 }

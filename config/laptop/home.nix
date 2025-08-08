@@ -16,6 +16,7 @@
             ./../../user/qdirstat
             ./../../user/spotify
             ./../../user/vesktop
+            ./../../user/xournalpp
             ./../../user/zathura
 
             ## Multimedia
