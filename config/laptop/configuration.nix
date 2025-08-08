@@ -32,4 +32,7 @@
             ./../../system/steam
             ./../../system/syncthing
         ];
+
+    # Enable laptop sensors
+    hardware.sensor.iio.enable = true;
 }
