@@ -7,10 +7,11 @@
         ./plugins/barbar
         ./plugins/cmp
         ./plugins/gitsigns
+        ./plugins/rainbow-delimiters
         ./plugins/lsp
         ./plugins/mini-cursorword
-        ./plugins/oil
         ./plugins/mini-trailspace
+        ./plugins/oil
         ./plugins/telescope
         ./plugins/treesitter
 
