@@ -8,6 +8,9 @@ vim.diagnostic.config({
     severity_sort = true,      -- Show errors over warnings
 })
 
+-- Disable logging to ~/.local/state/nvim/lsp.log
+vim.lsp.set_log_level("off")
+
 local ts = require("telescope.builtin")
 local __setup = {
     on_attach = function(_, bufnr)
