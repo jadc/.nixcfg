@@ -8,4 +8,7 @@ _onedark.setup({
     },
 })
 _onedark.load()
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#111111" })
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#080808" })
+
+-- Requires visual-whitespace-nvim
+vim.api.nvim_set_hl(0, "VisualNonText", { fg = "#5d5f71", bg = "#2a324a"})
