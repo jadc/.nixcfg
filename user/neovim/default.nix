@@ -7,12 +7,13 @@
         ./plugins/barbar
         ./plugins/cmp
         ./plugins/gitsigns
-        ./plugins/rainbow
         ./plugins/lsp
         ./plugins/mini-cursorword
         ./plugins/mini-trailspace
+        ./plugins/rainbow
         ./plugins/telescope
         ./plugins/treesitter
+        ./plugins/visual-whitespace
 
         # Language Servers
         ./plugins/lsp/bash
