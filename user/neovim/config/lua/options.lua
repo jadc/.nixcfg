@@ -1,46 +1,37 @@
 -- Options
 local opts = {
-    -- Tab size
-    tabstop = 4,
-    softtabstop = 4,
-    shiftwidth = 4,
-    -- Tabs as spaces
-    expandtab = true,
-    -- Maintain indent when wrapping
-    breakindent = true,
-    -- Don't cut words while wrapping
-    linebreak = true,
-    -- shiftround = true,
-    -- copyindent = true,
-    -- Column width marker
-    colorcolumn = "80",
+    --- Disable backups
+    backup = false,
+    swapfile = false,
+    undofile = false,
+    writebackup = false,
 
-    -- Folding
-    foldlevel = 20,
+    --- Tabs, Wrapping, and Spacing
+    breakindent = true,  -- Maintain indent when wrapping
+    colorcolumn = "80",  -- Column width marker
+    expandtab = true,    -- Tabs as spaces
+    linebreak = true,    -- Don't cut words while wrapping
+    shiftwidth = 4,
+    softtabstop = 4,
+    tabstop = 4,         -- Tab size
+
+    --- Visibility
+    cmdheight = 0,   -- Hide command line
+    laststatus = 0,  -- Hide status line
+    number = true,   -- Show line numbers
+
+    --- Folding
     foldexpr = "nvim_treesitter#foldexpr()",
+    foldlevel = 20,
     foldmethod = "expr",
 
-    -- Disable backups
-    backup = false,
-    writebackup = false,
-    undofile = false,
-    swapfile = false,
+    --- Search
+    hlsearch = true,    -- Enables search highlight
+    ignorecase = true,  -- Case insensitive search
+    smartcase = true,   -- Sensitive if search has caps
 
-    -- Line numbers
-    number = true,
-    -- Case insensitive search
-    ignorecase = true,
-    -- Sensitive if search has caps
-    smartcase = true,
-    -- Enables search highlight
-    hlsearch = true,
-    -- Use system clipboard
-    clipboard = "unnamedplus",
-
-    -- Hide command line
-    cmdheight = 0,
-    -- Hide status line
-    laststatus = 0,
+    --- Miscellaneous
+    clipboard = "unnamedplus",  -- Use system clipboard
 }
 
 for k, v in pairs(opts) do
