@@ -11,6 +11,9 @@ vim.diagnostic.config({
 -- Disable logging to ~/.local/state/nvim/lsp.log
 vim.lsp.set_log_level("off")
 
+-- Customize hover window appearance
+vim.opt.winborder = "rounded"
+
 local ts = require("telescope.builtin")
 local __setup = {
     on_attach = function(_, bufnr)
@@ -20,7 +23,6 @@ local __setup = {
             { key = "gi", action = ts.lsp_implementations },
             { key = "gr", action = ts.lsp_references },
             { key = "gt", action = ts.lsp_type_definitions },
-            { key = "gK", action = function() vim.lsp.buf.hover { border = "rounded" } end },
             { key = "ge", action = vim.diagnostic.open_float },
             { key = "gee", action = vim.diagnostic.setqflist },
             { key = "gE", action = vim.lsp.buf.code_action },
