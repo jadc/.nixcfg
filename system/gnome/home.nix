@@ -39,13 +39,19 @@
         "org/gnome/system/location".enabled = true;
         "org/gnome/desktop/datetime".automatic-timezone = true;
 
-        # Text scaling
         "org/gnome/desktop/interface" = {
+            # Text scaling
             text-scaling-factor = 0.85;
+
+            # Show battery percentage
+            show-battery-percentage = true;
         };
 
-        # Disable sleeping
         "org/gnome/settings-daemon/plugins/power" = {
+            # Power button => power off
+            power-button-action = "interactive";
+
+            # Disable sleeping
             sleep-inactive-ac-type = "nothing";
         };
     };
