@@ -52,7 +52,6 @@
             ./../../user/ripgrep
             ./../../user/rsync
             ./../../user/shells
-            ./../../user/texlive
             ./../../user/tmux
             ./../../user/yt
             ./../../user/zoxide
