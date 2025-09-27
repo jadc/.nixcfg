@@ -43,7 +43,6 @@
             ./../../user/gallery-dl
             ./../../user/gdb
             ./../../user/git
-            ./../../user/go
             ./../../user/htop
             ./../../user/hyperfine
             ./../../user/imagemagick
