@@ -1,3 +1,5 @@
+# HP OmniBook Ultra Flip Laptop 14-fh0xxx (SBKPF)
+
 {
     imports =
         [
@@ -16,6 +18,7 @@
             ./../../system/bluetooth
             ./../../system/fonts
             ./../../system/gc
+            ./../../system/hp-rotate
             ./../../system/intel
             ./../../system/ios
             ./../../system/keyd
@@ -32,7 +35,4 @@
             ./../../system/steam
             ./../../system/syncthing
         ];
-
-    # Enable laptop sensors
-    hardware.sensor.iio.enable = true;
 }
