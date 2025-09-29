@@ -33,6 +33,7 @@
             # Command-line Interface
             ./../../user/archivers
             ./../../user/bat
+            ./../../user/claude-code
             ./../../user/direnv
             ./../../user/envs
             ./../../user/exiftool
