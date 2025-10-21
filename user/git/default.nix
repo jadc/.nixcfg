@@ -19,18 +19,22 @@
             "compile_commands.json"
             "log"
         ];
-        extraConfig = {
+
+        settings = {
             init.defaultBranch = "main";
             push.autoSetupRemote = true;
-            pull.rebase = true;                            # default to rebase
+            pull.rebase = true;                             # default to rebase
             credential.helper = "cache --timeout=86400";    # store credentials in memory
             core.fileMode = false;                          # ignore file permissions
         };
 
-        # Prettier diffs
-        delta.enable = true;
     };
+
     programs.gh.enable = true;
 
-    common.aliases.g = "git";
+    # Prettier diffs
+    programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
+    };
 }
