@@ -6,6 +6,7 @@
         # Plugins
         ./plugins/barbar
         ./plugins/cmp
+        ./plugins/flash
         ./plugins/gitsigns
         ./plugins/lsp
         ./plugins/mini-cursorword
