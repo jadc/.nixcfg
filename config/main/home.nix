@@ -15,6 +15,7 @@
             ./../../user/obsidian
             ./../../user/parallel-launcher
             ./../../user/qdirstat
+            ./../../user/rnote
             ./../../user/spotify
             ./../../user/vesktop
             ./../../user/zathura
