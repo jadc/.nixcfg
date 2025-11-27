@@ -1,7 +1,19 @@
 # Downloader for many sites
 
+{ config, lib, ... }:
+
+let
+    name = "gallery-dl";
+    self = config.cfg.user.${name};
+in
 {
-    programs.gallery-dl = {
-        enable = true;
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        programs.gallery-dl = {
+            enable = true;
+        };
     };
 }

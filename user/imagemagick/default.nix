@@ -1,7 +1,17 @@
 # Imagemagick: Image manipulation tools
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "imagemagick";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ imagemagick libwebp ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ imagemagick libwebp ];
+    };
 }

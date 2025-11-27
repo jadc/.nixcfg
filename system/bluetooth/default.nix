@@ -1,11 +1,23 @@
+{ config, lib, ... }:
+
+let
+    name = "bluetooth";
+    self = config.cfg.system.${name};
+in
 {
-    # Install bluetooth, but don't enable it
-    hardware.bluetooth.enable = true;
-    hardware.bluetooth.powerOnBoot = false;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Bluetooth pairing tool
-    services.blueman.enable = true;
+    config = lib.mkIf self.enable {
+        # Install bluetooth, but don't enable it
+        hardware.bluetooth.enable = true;
+        hardware.bluetooth.powerOnBoot = false;
 
-    # Enable A2DP sink
-    hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket";
+        # Bluetooth pairing tool
+        services.blueman.enable = true;
+
+        # Enable A2DP sink
+        hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket";
+    };
 }

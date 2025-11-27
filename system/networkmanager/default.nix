@@ -1,12 +1,22 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "networkmanager";
+    self = config.cfg.system.${name};
+in
 {
-    # Enable networking
-    networking.networkmanager.enable = true;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Disable weird service that fails
-    systemd.services.NetworkManager-wait-online.enable = false;
+    config = lib.mkIf self.enable {
+        # Enable networking
+        networking.networkmanager.enable = true;
 
-    # Add user to networkmanager group
-    users.users.${config.common.username}.extraGroups = [ "networkmanager" ];
+        # Disable weird service that fails
+        systemd.services.NetworkManager-wait-online.enable = false;
+
+        # Add user to networkmanager group
+        users.users.${config.common.username}.extraGroups = [ "networkmanager" ];
+    };
 }

@@ -1,15 +1,25 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "xdg";
+    self = config.cfg.user.${name};
+in
 {
-    xdg.userDirs = let home = config.home.homeDirectory; in {
-        enable = true;
-        createDirectories = true;
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-        download = "${home}/downloads";
-        desktop = config.xdg.userDirs.download;
-        documents = "${home}/docs";
-        music = "${home}/music";
-        pictures = "${home}/pics";
-        videos = "${home}/videos";
+    config = lib.mkIf self.enable {
+        xdg.userDirs = let home = config.home.homeDirectory; in {
+            enable = true;
+            createDirectories = true;
+
+            download = "${home}/downloads";
+            desktop = config.xdg.userDirs.download;
+            documents = "${home}/docs";
+            music = "${home}/music";
+            pictures = "${home}/pics";
+            videos = "${home}/videos";
+        };
     };
 }

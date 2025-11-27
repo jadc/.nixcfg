@@ -1,23 +1,33 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "nvidia";
+    self = config.cfg.system.${name};
+in
 {
-    # Enable OpenGL
-    hardware.graphics.enable = true;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Load driver for Xorg and Wayland
-    services.xserver.videoDrivers = [ "nvidia" ];
-    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+    config = lib.mkIf self.enable {
+        # Enable OpenGL
+        hardware.graphics.enable = true;
 
-    hardware.nvidia = {
-        modesetting.enable = true;
+        # Load driver for Xorg and Wayland
+        services.xserver.videoDrivers = [ "nvidia" ];
+        boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 
-        # Use open drivers (for modern cards)
-        open = true;
+        hardware.nvidia = {
+            modesetting.enable = true;
 
-        # Enable settings menu (nvidia-settings)
-        nvidiaSettings = true;
+            # Use open drivers (for modern cards)
+            open = true;
 
-        # Use beta channel
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+            # Enable settings menu (nvidia-settings)
+            nvidiaSettings = true;
+
+            # Use beta channel
+            package = config.boot.kernelPackages.nvidiaPackages.beta;
+        };
     };
 }

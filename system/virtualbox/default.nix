@@ -1,16 +1,26 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "virtualbox";
+    self = config.cfg.system.${name};
+in
 {
-    # Enable virtualbox
-    virtualisation.virtualbox.host.enable = true;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Create virtualbox group
-    users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+    config = lib.mkIf self.enable {
+        # Enable virtualbox
+        virtualisation.virtualbox.host.enable = true;
 
-    # Add user to virtualbox group
-    users.users.${config.common.username}.extraGroups = [ "vboxusers" ];
+        # Create virtualbox group
+        users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
-    # Guest additions
-    virtualisation.virtualbox.guest.enable = true;
-    virtualisation.virtualbox.guest.dragAndDrop = true;
+        # Add user to virtualbox group
+        users.users.${config.common.username}.extraGroups = [ "vboxusers" ];
+
+        # Guest additions
+        virtualisation.virtualbox.guest.enable = true;
+        virtualisation.virtualbox.guest.dragAndDrop = true;
+    };
 }

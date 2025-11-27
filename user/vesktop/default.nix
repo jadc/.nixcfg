@@ -1,10 +1,20 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "vesktop";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ vesktop ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    home.file.vesktop = {
-        source = ./settings.json;
-        target = "${config.xdg.configHome}/vesktop/settings/settings.json";
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ vesktop ];
+
+        home.file.vesktop = {
+            source = ./settings.json;
+            target = "${config.xdg.configHome}/vesktop/settings/settings.json";
+        };
     };
 }

@@ -1,10 +1,20 @@
 # eza: ls replacement
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "eza";
+    self = config.cfg.user.${name};
+in
 {
-    programs.eza.enable = true;
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Replace ls with eza
-    common.aliases.ls = "${pkgs.eza}/bin/eza --icons=always $@";
+    config = lib.mkIf self.enable {
+        programs.eza.enable = true;
+
+        # Replace ls with eza
+        common.aliases.ls = "${pkgs.eza}/bin/eza --icons=always $@";
+    };
 }

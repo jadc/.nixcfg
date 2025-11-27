@@ -1,17 +1,27 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "droidcam";
+    self = config.cfg.system.${name};
+in
 {
-    # Install Droidcam
-    programs.droidcam.enable = true;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    # Enable iOS USB support
-    services.usbmuxd.enable = true;
+    config = lib.mkIf self.enable {
+        # Install Droidcam
+        programs.droidcam.enable = true;
 
-    # Create virtual camera
-    boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-    boot.kernelModules = ["v4l2loopback"];
+        # Enable iOS USB support
+        services.usbmuxd.enable = true;
 
-    boot.extraModprobeConfig = ''
-        options v4l2loopback devices=1 video_nr=1 card_label="DroidCam" exclusive_caps=1
-    '';
+        # Create virtual camera
+        boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+        boot.kernelModules = ["v4l2loopback"];
+
+        boot.extraModprobeConfig = ''
+            options v4l2loopback devices=1 video_nr=1 card_label="DroidCam" exclusive_caps=1
+        '';
+    };
 }

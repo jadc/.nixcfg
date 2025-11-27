@@ -1,10 +1,22 @@
 # noxide: frequency cd
 
-{
-    programs.zoxide = {
-        enable = true;
+{ config, lib, ... }:
 
-        # Replace cd with zoxide
-        options = [ "--cmd cd" ];
+let
+    name = "zoxide";
+    self = config.cfg.user.${name};
+in
+{
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        programs.zoxide = {
+            enable = true;
+
+            # Replace cd with zoxide
+            options = [ "--cmd cd" ];
+        };
     };
 }

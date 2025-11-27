@@ -1,5 +1,15 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "handbrake";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ handbrake ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ handbrake ];
+    };
 }

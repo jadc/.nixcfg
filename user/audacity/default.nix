@@ -1,7 +1,17 @@
 # Audacity: A free, open source, cross-platform software for recording and editing sounds.
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "audacity";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ audacity ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ audacity ];
+    };
 }

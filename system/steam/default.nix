@@ -1,15 +1,25 @@
 # Steam: game library
 
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "steam";
+    self = config.cfg.system.${name};
+in
 {
-    programs.steam.enable = true;
-
-    programs.gamemode = {
-        enable = true;
-        settings = {
-            general.inhibit_screensaver = 0;
-        };
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
     };
-    users.users.${config.common.username}.extraGroups = [ "gamemode" ];
+
+    config = lib.mkIf self.enable {
+        programs.steam.enable = true;
+
+        programs.gamemode = {
+            enable = true;
+            settings = {
+                general.inhibit_screensaver = 0;
+            };
+        };
+        users.users.${config.common.username}.extraGroups = [ "gamemode" ];
+    };
 }

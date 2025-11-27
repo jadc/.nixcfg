@@ -1,9 +1,21 @@
+{ config, lib, ... }:
+
+let
+    name = "claude-code";
+    self = config.cfg.user.${name};
+in
 {
-    programs.claude-code = {
-        enable = true;
-        commands = {
-            create-prompt = ./commands/create-prompt.md;
-            run-prompt = ./commands/run-prompt.md;
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        programs.claude-code = {
+            enable = true;
+            commands = {
+                create-prompt = ./commands/create-prompt.md;
+                run-prompt = ./commands/run-prompt.md;
+            };
         };
     };
 }

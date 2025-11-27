@@ -1,7 +1,13 @@
 { config, pkgs, lib, ... }:
 
+let
+    name = "bspwm";
+    self = config.cfg.user.${name};
+in
 {
-    options = {
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+
         monitors = {
             primary = lib.mkOption {
                 type = lib.types.str;
@@ -14,7 +20,7 @@
         };
     };
 
-    config = {
+    config = lib.mkIf self.enable {
         # Enable Xsession for user
         xsession.enable = true;
 
@@ -36,8 +42,8 @@
             };
 
             monitors = let
-                primary = config.monitors.primary;
-                secondary = config.monitors.secondary;
+                primary = self.monitors.primary;
+                secondary = self.monitors.secondary;
             in {
                 ${primary} = if secondary != "" then
                     [ "I" "II" "III" "IV" "V" "VI" ]

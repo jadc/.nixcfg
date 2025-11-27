@@ -1,3 +1,15 @@
+{ config, lib, ... }:
+
+let
+    name = "rgb";
+    self = config.cfg.system.${name};
+in
 {
-    services.hardware.openrgb.enable = true;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        services.hardware.openrgb.enable = true;
+    };
 }

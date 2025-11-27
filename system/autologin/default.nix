@@ -1,12 +1,22 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "autologin";
+    self = config.cfg.system.${name};
+in
 {
-    services.displayManager.autoLogin = {
-        enable = true;
-        user = config.common.username;
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
     };
 
-    # Hack
-    systemd.services."getty@tty1".enable = false;
-    systemd.services."autovt@tty1".enable = false;
+    config = lib.mkIf self.enable {
+        services.displayManager.autoLogin = {
+            enable = true;
+            user = config.common.username;
+        };
+
+        # Hack
+        systemd.services."getty@tty1".enable = false;
+        systemd.services."autovt@tty1".enable = false;
+    };
 }

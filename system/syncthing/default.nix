@@ -1,10 +1,20 @@
-{ config, ... }:
+{ config, lib, ... }:
 
+let
+    name = "syncthing";
+    self = config.cfg.system.${name};
+in
 {
-    services.syncthing = {
-        enable = true;
-        openDefaultPorts = true;
-        user = config.common.username;
-        group = "wheel";
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        services.syncthing = {
+            enable = true;
+            openDefaultPorts = true;
+            user = config.common.username;
+            group = "wheel";
+        };
     };
 }

@@ -1,32 +1,42 @@
 # Dunst: notifications display
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "notifications";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ libnotify ];
-    services.dunst = {
-        enable = true;
-        settings = {
-            global = {
-                # Font
-                font = "Open Sans";
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-                # Position
-                offset = "10x10";
-                origin = "bottom-right";
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ libnotify ];
+        services.dunst = {
+            enable = true;
+            settings = {
+                global = {
+                    # Font
+                    font = "Open Sans";
 
-                # Min and max width
-                width = "(0, 300)";
+                    # Position
+                    offset = "10x10";
+                    origin = "bottom-right";
 
-                # No border radius
-                frame_width = 0;
+                    # Min and max width
+                    width = "(0, 300)";
 
-                # Padding
-                horizontal_padding = 12;
-                padding = 12;
+                    # No border radius
+                    frame_width = 0;
 
-                # Transparency
-                transparency = 10;
+                    # Padding
+                    horizontal_padding = 12;
+                    padding = 12;
+
+                    # Transparency
+                    transparency = 10;
+                };
             };
         };
     };

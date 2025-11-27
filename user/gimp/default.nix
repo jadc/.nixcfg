@@ -1,7 +1,17 @@
 # Gimp: the least intuitive program ever made
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "gimp";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ gimp ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ gimp ];
+    };
 }

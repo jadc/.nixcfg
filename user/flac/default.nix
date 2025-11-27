@@ -1,9 +1,19 @@
 # flac: A command-line flac encoder/decoder
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+    name = "flac";
+    self = config.cfg.user.${name};
+in
 {
-    home.packages = with pkgs; [ flac ];
+    options.cfg.user.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
 
-    common.aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
+    config = lib.mkIf self.enable {
+        home.packages = with pkgs; [ flac ];
+
+        common.aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
+    };
 }
