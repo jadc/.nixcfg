@@ -1,6 +1,4 @@
 {
-    description = "jad's nix";
-
     inputs = {
         nixpkgs = {
             url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -12,37 +10,37 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+    outputs = { self, nixpkgs, home-manager, ... } @ inputs: let
         # Given a profile string, creates a NixOS system
         toNixOS = profile: let
-            path = ./config/${profile};
-            common = ( import (path + "/common.nix") ).config.common;
+            path = ./profiles/${profile};
+            const = ( import (path + "/configuration.nix") ).config.cfg.const;
         in {
-            name = common.profile;
+            name = const.profile;
             value = nixpkgs.lib.nixosSystem {
                 pkgs = import nixpkgs {
-                    system = common.arch;
+                    system = const.arch;
                     config.allowUnfree = true;
                     config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
                 };
-                specialArgs.system = common.arch;
+                specialArgs.system = const.arch;
 
                 modules = [
+                    # Expose options
+                    ./cfg
+
                     # System-level configuration
-                    (path + "/common.nix")
-                    ./config/configuration.common.nix
                     (path + "/hardware-configuration.nix")
-                    (path + "/configuration.nix")
+                    (path + "/configuration.nix") { home = false; }
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
                         home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${common.username} = nixpkgs.lib.mkMerge [
-                            ( import (path + "/common.nix")   )
-                            ( import ./config/home.common.nix )
-                            ( import (path + "/home.nix")     )
+                        home-manager.users.${const.username} = nixpkgs.lib.mkMerge [
+                            ( import ./cfg )
+                            ( import (path + "/configuration.nix") { home = true; } )
                         ];
                     }
                 ];
@@ -59,9 +57,7 @@
                 extraSpecialArgs = { inherit inputs; };
 
                 modules = [
-                    ./config/home/common.nix
-                    ./config/home.common.nix
-                    ./config/home/home.nix
+                    ./profiles/home/configuration.nix
                 ];
             };
         };

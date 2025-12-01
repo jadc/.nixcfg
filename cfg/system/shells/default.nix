@@ -7,13 +7,17 @@ in
 {
     options.cfg.user.${name} = with lib; {
         enable = mkEnableOption name;
+
+        aliases = mkOption {
+            type = types.attrs;
+            description = "The shell aliases of the system";
+        };
     };
 
     config = lib.mkIf self.enable {
-        imports = [ ./alias.nix ];
         programs.zsh = {
             enable = true;
-            shellAliases = config.common.aliases;
+            shellAliases = self.aliases;
             autosuggestion.enable = true;
             enableCompletion = true;
             syntaxHighlighting.enable = true;

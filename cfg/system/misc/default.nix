@@ -1,10 +1,6 @@
-# The following home.nix is shared amongst all profiles
-# You shouldn't need to modify this file.
-
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-    imports = [ ./options.common.nix ];
 
     home = {
         username = lib.mkForce config.common.username;
@@ -16,7 +12,6 @@
     systemd.user.startServices = true;
 
     # Use xdg user directories
-    xdg.enable = true;
     xdg.configFile."mimeapps.list".force = true;
 
     # Let Home Manager install and manage itself.
@@ -24,4 +19,26 @@
 
     # Allow unfree packages in nix shells
     xdg.configFile."nixpkgs/config.nix".text = ''{ allowUnfree = true; }'';
+
+
+
+
+    # Set default shell to zsh for all users
+    # TODO: move to shell opt
+    programs.zsh.enable = true;
+    environment.shells = with pkgs; [ zsh ];
+    users.defaultUserShell = pkgs.zsh;
+
+    # Ensure all firmware and drivers is installed
+    hardware.enableAllFirmware = true;
+    hardware.enableRedistributableFirmware = true;
+
+    # Paths to link
+    environment.pathsToLink = [
+        "/share/bash-completion"
+        "/share/zsh"
+    ];
+
+    # Do not need to update
+    system.stateVersion = "24.05";
 }
