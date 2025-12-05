@@ -20,6 +20,6 @@ in
         };
 
         # Add user to audio group
-        users.users.${config.common.username}.extraGroups = [ "audio" ];
+        users.users.${config.cfg.const.username}.extraGroups = [ "audio" ];
     };
 }

@@ -15,6 +15,6 @@ in
         programs.eza.enable = true;
 
         # Replace ls with eza
-        common.aliases.ls = "${pkgs.eza}/bin/eza --icons=always $@";
+        cfg.const.aliases.ls = "${pkgs.eza}/bin/eza --icons=always $@";
     };
 }

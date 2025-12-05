@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-    name = "syncthing";
+    name = "x2go";
     self = config.cfg.system.${name};
 in
 {
@@ -10,11 +10,6 @@ in
     };
 
     config = lib.mkIf self.enable {
-        services.syncthing = {
-            enable = true;
-            openDefaultPorts = true;
-            user = config.cfg.const.username;
-            group = "wheel";
-        };
+        services.x2goserver.enable = true;
     };
 }

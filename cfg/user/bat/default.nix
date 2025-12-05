@@ -23,6 +23,6 @@ in
                 theme = "OneHalfDark";
             };
         };
-        common.aliases.cat = "${pkgs.bat}/bin/bat";
+        cfg.const.aliases.cat = "${pkgs.bat}/bin/bat";
     };
 }

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-    name = "syncthing";
+    name = "sunshine";
     self = config.cfg.system.${name};
 in
 {
@@ -10,11 +10,11 @@ in
     };
 
     config = lib.mkIf self.enable {
-        services.syncthing = {
+        services.sunshine = {
             enable = true;
-            openDefaultPorts = true;
-            user = config.cfg.const.username;
-            group = "wheel";
+            autoStart = true;
+            capSysAdmin = true;
+            openFirewall = true;
         };
     };
 }

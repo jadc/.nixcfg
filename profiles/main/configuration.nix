@@ -1,40 +1,48 @@
+{ pkgs, ... }:
+
 {
-    imports =
-        [
-            # Kernel configuration
-            ./../../system/kernel/flags/performance
-            ./../../system/kernel/flags/quiet
-            ./../../system/kernel/zen
+    cfg.system = {
+        # Kernel configuration
+        kernel = {
+            enable = true;
+            build = pkgs.linuxPackages_zen;
+            flags = {
+                performance = true;
+                quiet = true;
+            };
+        };
 
-            # Boot configuration
-            ./../../system/systemd-boot
+        # Boot configuration
+        systemd-boot.enable = true;
 
-            # System configuration
-            ./../../system/autologin
-            ./../../system/automount
-            ./../../system/fonts
-            ./../../system/gc
-            ./../../system/intel
-            ./../../system/ios
-            ./../../system/keyd
-            ./../../system/libinput
-            ./../../system/networkmanager
-            ./../../system/nvidia
-            ./../../system/remote/ssh
-            ./../../system/sound
-            ./../../system/swapfile
-            ./../../system/trim
-            ./../../system/users
+        # System configuration
+        autologin.enable = true;
+        automount.enable = true;
+        fonts.enable = true;
+        gc.enable = true;
+        intel.enable = true;
+        ios.enable = true;
+        keyd.enable = true;
+        libinput.enable = true;
+        networkmanager.enable = true;
+        nvidia.enable = true;
+        remote.ssh.enable = true;
+        sound.enable = true;
+        swapfile.enable = true;
+        trim.enable = true;
+        users.enable = true;
 
-            # Requires superuser
-            ./../../system/docker
-            ./../../system/droidcam
-            ./../../system/gnome
-            ./../../system/rgb
-            ./../../system/rgb/no-rgb.nix
-            ./../../system/steam
-            ./../../system/syncthing
-        ];
+        # Requires superuser
+        docker.enable = true;
+        droidcam.enable = true;
+        gnome.enable = true;
+        rgb = {
+            enable = true;
+            no-rgb.enable = true;
+        };
+        steam.enable = true;
+        syncthing.enable = true;
+    };
 
     networking.hostName = "jadc";
 }

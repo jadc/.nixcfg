@@ -14,7 +14,7 @@
         # Given a profile string, creates a NixOS system
         toNixOS = profile: let
             path = ./profiles/${profile};
-            const = ( import (path + "/configuration.nix") ).config.cfg.const;
+            const = ( import (path + "/const.nix") ).cfg.const;
         in {
             name = const.profile;
             value = nixpkgs.lib.nixosSystem {
@@ -26,12 +26,10 @@
                 specialArgs.system = const.arch;
 
                 modules = [
-                    # Expose options
-                    ./cfg
-
-                    # System-level configuration
+                    ./cfg/const
+                    ./cfg/system
                     (path + "/hardware-configuration.nix")
-                    (path + "/configuration.nix") { home = false; }
+                    (path + "/configuration.nix")
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
@@ -39,8 +37,9 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${const.username} = nixpkgs.lib.mkMerge [
-                            ( import ./cfg )
-                            ( import (path + "/configuration.nix") { home = true; } )
+                            ( import ./cfg/const )
+                            ( import ./cfg/user )
+                            ( import (path + "/home.nix") )
                         ];
                     }
                 ];
@@ -57,7 +56,9 @@
                 extraSpecialArgs = { inherit inputs; };
 
                 modules = [
-                    ./profiles/home/configuration.nix
+                    ./cfg/const
+                    ./cfg/user
+                    ./profiles/home/home.nix
                 ];
             };
         };

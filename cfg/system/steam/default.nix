@@ -20,6 +20,6 @@ in
                 general.inhibit_screensaver = 0;
             };
         };
-        users.users.${config.common.username}.extraGroups = [ "gamemode" ];
+        users.users.${config.cfg.const.username}.extraGroups = [ "gamemode" ];
     };
 }

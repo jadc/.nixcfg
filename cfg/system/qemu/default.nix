@@ -37,6 +37,6 @@ in
         programs.dconf.enable = true;
 
         # Add user to libvirtd group
-        users.users.${config.common.username}.extraGroups = [ "libvirtd" ];
+        users.users.${config.cfg.const.username}.extraGroups = [ "libvirtd" ];
     };
 }

@@ -17,6 +17,6 @@ in
         systemd.services.NetworkManager-wait-online.enable = false;
 
         # Add user to networkmanager group
-        users.users.${config.common.username}.extraGroups = [ "networkmanager" ];
+        users.users.${config.cfg.const.username}.extraGroups = [ "networkmanager" ];
     };
 }

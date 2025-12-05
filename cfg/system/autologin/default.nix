@@ -12,7 +12,7 @@ in
     config = lib.mkIf self.enable {
         services.displayManager.autoLogin = {
             enable = true;
-            user = config.common.username;
+            user = config.cfg.const.username;
         };
 
         # Hack

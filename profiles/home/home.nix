@@ -1,26 +1,29 @@
-{
-    imports =
-        [
-            # CLI
-            ./../../user/archivers
-            ./../../user/bat
-            ./../../user/claude-code
-            ./../../user/direnv
-            ./../../user/envs
-            ./../../user/eza
-            ./../../user/fzf
-            ./../../user/gdb
-            ./../../user/git
-            ./../../user/htop
-            ./../../user/hyperfine
-            ./../../user/neovim
-            ./../../user/ripgrep
-            ./../../user/shells
-            ./../../user/tmux
-            ./../../user/zoxide
+{ config, ... }:
 
-            # Scripts
-            ./../../user/Scripts
-            ./../../user/Scripts/rebuild.nix
-        ];
+{
+    cfg.user = let cfg = config.cfg; in {
+        # Command-line Interface
+        archivers.enable = true;
+        bat.enable = true;
+        claude-code.enable = true;
+        direnv.enable = true;
+        envs.enable = true;
+        eza.enable = true;
+        fzf.enable = true;
+        gdb.enable = true;
+        git.enable = true;
+        htop.enable = true;
+        hyperfine.enable = true;
+        neovim.enable = true;
+        ripgrep.enable = true;
+        shells = {
+            enable = true;
+            aliases = cfg.const.aliases;
+        };
+        tmux.enable = true;
+        zoxide.enable = true;
+
+        # Scripts
+        Scripts.enable = true;
+    };
 }

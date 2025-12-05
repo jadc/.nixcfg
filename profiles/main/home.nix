@@ -1,65 +1,72 @@
+{ config, ... }:
+
 {
-    imports =
-        [
-            # Setup
-            ./../../system/gnome/home.nix
-            ./../../user/qt
-            ./../../user/xdg
+    imports = [
+        ./../../cfg/system/gnome/home.nix
+        ./../../cfg/user/Scripts/rebuild.nix
+        ./../../cfg/user/Scripts/spotifyify.nix
+    ];
 
-            # Apps
-            ./../../user/chrome
-            ./../../user/deluge
-            ./../../user/handbrake
-            ./../../user/kitty
-            ./../../user/minecraft
-            ./../../user/obsidian
-            ./../../user/parallel-launcher
-            ./../../user/qdirstat
-            ./../../user/rnote
-            ./../../user/spotify
-            ./../../user/vesktop
-            ./../../user/zathura
+    cfg.user = let cfg = config.cfg; in {
+        # Setup
+        qt.enable = true;
+        xdg.enable = true;
 
-            ## Multimedia
-            ./../../user/audacity
-            ./../../user/avidemux
-            ./../../user/gimp
-            ./../../user/inkscape
-            ./../../user/jellyfin-player
-            ./../../user/mpv
-            ./../../user/obs
-            ./../../user/puddletag
-            ./../../user/spek
+        # Apps
+        chrome.enable = true;
+        deluge.enable = true;
+        handbrake.enable = true;
+        kitty.enable = true;
+        minecraft.enable = true;
+        obsidian.enable = true;
+        parallel-launcher.enable = true;
+        qdirstat.enable = true;
+        rnote.enable = true;
+        spotify.enable = true;
+        vesktop.enable = true;
+        zathura.enable = true;
 
-            # Command-line Interface
-            ./../../user/archivers
-            ./../../user/bat
-            ./../../user/claude-code
-            ./../../user/direnv
-            ./../../user/envs
-            ./../../user/exiftool
-            ./../../user/eza
-            ./../../user/ffmpeg
-            ./../../user/flac
-            ./../../user/fzf
-            ./../../user/gallery-dl
-            ./../../user/gdb
-            ./../../user/git
-            ./../../user/htop
-            ./../../user/hyperfine
-            ./../../user/imagemagick
-            ./../../user/neovim
-            ./../../user/poppler
-            ./../../user/ripgrep
-            ./../../user/rsync
-            ./../../user/shells
-            ./../../user/tmux
-            ./../../user/yt
-            ./../../user/zoxide
+        # Multimedia
+        audacity.enable = true;
+        avidemux.enable = true;
+        gimp.enable = true;
+        inkscape.enable = true;
+        jellyfin-player.enable = true;
+        mpv.enable = true;
+        obs.enable = true;
+        puddletag.enable = true;
+        spek.enable = true;
 
-            # Scripts
-            ./../../user/Scripts
-            ./../../user/Scripts/rebuild.nix
-            ./../../user/Scripts/spotifyify.nix
-        ];
+        # Command-line Interface
+        archivers.enable = true;
+        bat.enable = true;
+        claude-code.enable = true;
+        direnv.enable = true;
+        envs.enable = true;
+        exiftool.enable = true;
+        eza.enable = true;
+        ffmpeg.enable = true;
+        flac.enable = true;
+        fzf.enable = true;
+        gallery-dl.enable = true;
+        gdb.enable = true;
+        git.enable = true;
+        htop.enable = true;
+        hyperfine.enable = true;
+        imagemagick.enable = true;
+        neovim.enable = true;
+        poppler.enable = true;
+        ripgrep.enable = true;
+        rsync.enable = true;
+        shells = {
+            enable = true;
+            aliases = cfg.const.aliases;
+        };
+        tmux.enable = true;
+        yt.enable = true;
+        zoxide.enable = true;
+
+        # Scripts
+        Scripts.enable = true;
+    };
 }

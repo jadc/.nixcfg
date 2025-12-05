@@ -12,9 +12,6 @@ in
     config = lib.mkIf self.enable {
         home.packages = with pkgs; [ vesktop ];
 
-        home.file.vesktop = {
-            source = ./settings.json;
-            target = "${config.xdg.configHome}/vesktop/settings/settings.json";
-        };
+        xdg.configFile."vesktop/settings/settings.json".source = ./settings.json;
     };
 }

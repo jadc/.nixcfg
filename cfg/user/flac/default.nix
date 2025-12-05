@@ -14,6 +14,6 @@ in
     config = lib.mkIf self.enable {
         home.packages = with pkgs; [ flac ];
 
-        common.aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
+        cfg.const.aliases.wavtoflac = "${pkgs.flac}/bin/flac --best --delete-input-file -e -p -V -f --keep-foreign-metadata *.wav";
     };
 }

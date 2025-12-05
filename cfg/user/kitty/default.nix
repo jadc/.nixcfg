@@ -93,6 +93,6 @@ in
         };
 
         # Correct aliases to use kitty
-        common.aliases.ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
+        cfg.const.aliases.ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
     };
 }

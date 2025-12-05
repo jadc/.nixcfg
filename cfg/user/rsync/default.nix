@@ -14,6 +14,6 @@ in
     config = lib.mkIf self.enable {
         home.packages = with pkgs; [ rsync ];
 
-        common.aliases.rsync="rsync -avhP --no-compress";
+        cfg.const.aliases.rsync="rsync -avhP --no-compress";
     };
 }

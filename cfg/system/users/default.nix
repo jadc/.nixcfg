@@ -3,7 +3,7 @@
 let
     name = "users";
     self = config.cfg.system.${name};
-    user = config.common.username;
+    user = config.cfg.const.username;
 in
 {
     options.cfg.system.${name} = with lib; {

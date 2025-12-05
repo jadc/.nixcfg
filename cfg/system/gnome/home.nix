@@ -54,6 +54,14 @@
             # Disable sleeping
             sleep-inactive-ac-type = "nothing";
         };
+
+        "org/gnome/nautilus/preferences" = {
+            # Set default folder view to details
+            default-folder-viewer = "list-view";
+
+            # Always show path in title bar
+            always-use-location-entry = true;
+        };
     };
 
     # Black title bar

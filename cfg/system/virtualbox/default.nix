@@ -17,7 +17,7 @@ in
         users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
         # Add user to virtualbox group
-        users.users.${config.common.username}.extraGroups = [ "vboxusers" ];
+        users.users.${config.cfg.const.username}.extraGroups = [ "vboxusers" ];
 
         # Guest additions
         virtualisation.virtualbox.guest.enable = true;

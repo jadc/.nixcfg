@@ -18,7 +18,7 @@ in
             dates = "weekly";
         }
         // lib.optionalAttrs pkgs.stdenv.isDarwin {
-            user = config.common.username;
+            user = config.cfg.const.username;
             interval = [{ Hour = 21; Minute = 0; Weekday = 7; }];
         };
     };
