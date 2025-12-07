@@ -26,7 +26,7 @@
         libinput.enable = true;
         networkmanager.enable = true;
         nvidia.enable = true;
-        remote.ssh.enable = true;
+        ssh.enable = true;
         sound.enable = true;
         swapfile.enable = true;
         trim.enable = true;
@@ -38,7 +38,7 @@
         gnome.enable = true;
         rgb = {
             enable = true;
-            no-rgb.enable = true;
+            off = true;
         };
         steam.enable = true;
         syncthing.enable = true;

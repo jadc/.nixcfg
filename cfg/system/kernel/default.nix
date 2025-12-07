@@ -9,7 +9,7 @@ in
         enable = mkEnableOption name;
 
         build = mkOption {
-            type = raw;
+            type = types.raw;
             default = pkgs.linuxPackages_latest;
         };
 

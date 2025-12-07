@@ -11,7 +11,7 @@ let
                 if grep -q "NixOS" /etc/os-release; then
                     sudo nixos-rebuild switch --flake "$HOME/.nixcfg"#${config.cfg.const.profile};
                 else
-                    home-manager switch --flake "$HOME/.nixcfg"#${config.cfg.const.profile}-${pkgs.system};
+                    home-manager switch --flake "$HOME/.nixcfg"#${config.cfg.const.profile}-${pkgs.stdenv.hostPlatform.system};
                 fi
                 ''
             ;

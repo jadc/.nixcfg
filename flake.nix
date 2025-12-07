@@ -26,9 +26,11 @@
                 specialArgs.system = const.arch;
 
                 modules = [
-                    ./cfg/const
-                    ./cfg/system
                     (path + "/hardware-configuration.nix")
+
+                    ./cfg/const
+                    (path + "/const.nix")
+                    ./cfg/system
                     (path + "/configuration.nix")
 
                     # User-level configuration
@@ -38,6 +40,7 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.${const.username} = nixpkgs.lib.mkMerge [
                             ( import ./cfg/const )
+                            ( import (path + "/const.nix") )
                             ( import ./cfg/user )
                             ( import (path + "/home.nix") )
                         ];

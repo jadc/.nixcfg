@@ -2,11 +2,11 @@
 
 let
     name = "wireguard";
-    self = config.cfg.user.${name};
+    self = config.cfg.system.${name};
     wg-name = "home";
 in
 {
-    options.cfg.user.${name} = with lib; {
+    options.cfg.system.${name} = with lib; {
         enable = mkEnableOption name;
     };
 
