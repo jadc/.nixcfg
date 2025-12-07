@@ -3,9 +3,8 @@
 {
     # TODO
     imports = [
-        ./../../cfg/system/gnome/home.nix
-        ./../../cfg/user/Scripts/rebuild.nix
-        ./../../cfg/user/Scripts/spotifyify.nix
+        ./../../cfg/modules/Scripts/rebuild.nix
+        ./../../cfg/modules/Scripts/spotifyify.nix
     ];
 
     cfg.user = let cfg = config.cfg; in {

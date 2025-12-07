@@ -30,7 +30,7 @@
 
                     ./cfg/const
                     (path + "/const.nix")
-                    ./cfg/system
+                    ./cfg/modules
                     (path + "/configuration.nix")
 
                     # User-level configuration
@@ -38,12 +38,11 @@
                         home-manager.extraSpecialArgs = { inherit inputs; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${const.username} = nixpkgs.lib.mkMerge [
-                            ( import ./cfg/const )
-                            ( import (path + "/const.nix") )
-                            ( import ./cfg/user )
-                            ( import (path + "/home.nix") )
+                        home-manager.sharedModules = [
+                            ./cfg/const
+                            (path + "/const.nix")
                         ];
+                        home-manager.users.${const.username} = import (path + "/home.nix");
                     }
                 ];
             };
@@ -60,7 +59,8 @@
 
                 modules = [
                     ./cfg/const
-                    ./cfg/user
+                    ./profiles/home/const.nix
+                    ./cfg/modules/home.nix
                     ./profiles/home/home.nix
                 ];
             };
