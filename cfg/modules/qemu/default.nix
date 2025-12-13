@@ -1,0 +1,42 @@
+{ config, lib, pkgs, ... }:
+
+let
+    name = "qemu";
+    self = config.cfg.system.${name};
+in
+{
+    options.cfg.system.${name} = with lib; {
+        enable = mkEnableOption name;
+    };
+
+    config = lib.mkIf self.enable {
+        environment.systemPackages = with pkgs; [
+            adwaita-icon-theme
+            spice spice-gtk
+            spice-protocol
+            virt-manager
+            virt-viewer
+            win-spice
+            win-virtio
+        ];
+
+        virtualisation = {
+            libvirtd = {
+                enable = true;
+                qemu = {
+                    swtpm.enable = true;
+                    ovmf.enable = true;
+                    ovmf.packages = [ pkgs.OVMFFull.fd ];
+                };
+            };
+            spiceUSBRedirection.enable = true;
+        };
+        services.spice-vdagentd.enable = true;
+
+        # Enable dconf (system management tool)
+        programs.dconf.enable = true;
+
+        # Add user to libvirtd group
+        users.users.${config.cfg.const.username}.extraGroups = [ "libvirtd" ];
+    };
+}
