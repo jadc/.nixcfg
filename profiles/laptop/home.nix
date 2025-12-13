@@ -36,6 +36,12 @@
         puddletag.enable = true;
         spek.enable = true;
 
+        # IDE
+        zed = {
+            enable = true;
+            server = false;
+        };
+
         # Command-line Interface
         archivers.enable = true;
         bat.enable = true;

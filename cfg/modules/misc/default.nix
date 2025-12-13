@@ -18,6 +18,9 @@
         "/share/zsh"
     ];
 
+    # Enable compatibility shim for dynamically linked executables
+    programs.nix-ld.enable = true;
+
     # Do not need to update
     system.stateVersion = "24.05";
 }
