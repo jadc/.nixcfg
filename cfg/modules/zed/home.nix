@@ -35,8 +35,11 @@ in
             ];
 
             userSettings = {
-                cursor_shape = "block";
+                buffer_font_family = "JetBrainsMono Nerd Font";
+                ui_font_size = 16.0;
+                buffer_font_size = 16.0;
                 buffer_font_weight = 400.0;
+
                 show_wrap_guides = true;
                 soft_wrap = "editor_width";
                 git = {
@@ -45,7 +48,6 @@ in
                 };
                 collaboration_panel.button = false;
                 notification_panel.button = false;
-                project_panel.scrollbar.show = "auto";
                 preview_tabs = {
                     enabled = false;
                     enable_preview_from_file_finder = false;
@@ -69,11 +71,14 @@ in
                 ensure_final_newline_on_save = false;
                 remove_trailing_whitespace_on_save = false;
                 format_on_save = "off";
+
                 minimap = {
                     thumb_border = "none";
                     max_width_columns = 32;
                     show = "always";
                 };
+                project_panel.scrollbar.show = "never";
+
                 relative_line_numbers = "enabled";
                 auto_signature_help = true;
                 auto_update = false;
@@ -95,9 +100,6 @@ in
                     dock = "right";
                     font_size = 14.0;
                 };
-                buffer_font_family = "JetBrainsMono Nerd Font";
-                ui_font_size = 14.0;
-                buffer_font_size = 12.0;
                 auto_install_extensions = {
                     assembly = true;
                     basher = true;
