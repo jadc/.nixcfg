@@ -73,5 +73,8 @@
 
         # Scripts
         Scripts.enable = true;
+
+        # Desktop
+        gnome.monitors = ./../../cfg/modules/gnome/monitors/desktop.xml;
     };
 }
