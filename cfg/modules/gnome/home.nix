@@ -82,6 +82,7 @@ in
         # Monitor configuration
         xdg.configFile."monitors.xml" = lib.mkIf (self.monitors != null) {
             source = self.monitors;
+            force = true;
         };
 
         # Black title bar
