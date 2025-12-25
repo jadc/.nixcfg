@@ -35,86 +35,84 @@ in
             ];
 
             userSettings = {
+                vim_mode = true;
+
+                # Font size and family
                 buffer_font_family = "JetBrainsMono Nerd Font";
-                ui_font_size = 16.0;
                 buffer_font_size = 16.0;
                 buffer_font_weight = 400.0;
+                ui_font_size = 16.0;
 
-                show_wrap_guides = true;
-                soft_wrap = "editor_width";
-                git = {
-                    hunk_style = "unstaged_hollow";
-                    inline_blame.show_commit_summary = true;
+                # Theme
+                theme = "One Black";
+                theme_overrides."One Black" = {
+                    "tab.active_background" = "#262626ff";
+                    "tab.inactive_background" = "#030303ff";
+                    "tab_bar.background" = "#030303ff";
+                    syntax = {
+                        "comment".font_style = "italic";
+                        "comment.doc".font_style = "italic";
+                    };
                 };
+
+                # Editor 
+                auto_signature_help = true;
+                colorize_brackets = true;
+                indent_guides = {
+                    enabled = true;
+                    coloring = "indent_aware";
+                };
+                inlay_hints = {
+                    enabled = true;
+                    show_background = true;
+                };
+                show_whitespaces = "trailing";
+                soft_wrap = "editor_width";
+                show_wrap_guides = true;
+                wrap_guides = [ 80 ];
+
+                # UI/UX 
                 collaboration_panel.button = false;
                 notification_panel.button = false;
-                preview_tabs = {
-                    enabled = false;
-                    enable_preview_from_file_finder = false;
+                title_bar = {
+                    show_branch_icon = true;
+                    show_menus = false;
+                    show_onboarding_banner = false;
+                    show_sign_in = false;
+                    show_user_picture = false;
                 };
+                terminal = {
+                    dock = "right";
+                    font_size = 14.0;
+                };
+                preview_tabs = {
+                  enabled = true;
+                  enable_preview_multibuffer_from_code_navigation = true;
+                };
+                project_panel.hide_root = true;
+
+                # Tabs
                 tabs = {
                     file_icons = true;
                     git_status = true;
                 };
                 close_on_file_delete = true;
+
+                # Search and Navigation
                 search.center_on_match = true;
                 use_smartcase_search = true;
-                prettier.allowed = true;
-                colorize_brackets = true;
-                inlay_hints = {
-                    enabled = true;
-                    show_background = false;
-                };
-                show_whitespaces = "trailing";
-                use_auto_surround = false;
-                use_autoclose = false;
+                double_click_in_multibuffer = "open";
+
+                # Disable auto-formatting
                 ensure_final_newline_on_save = false;
-                remove_trailing_whitespace_on_save = false;
                 format_on_save = "off";
+                remove_trailing_whitespace_on_save = false;
 
-                minimap = {
-                    thumb_border = "none";
-                    max_width_columns = 32;
-                    show = "always";
-                };
-                project_panel.scrollbar.show = "never";
-
-                relative_line_numbers = "enabled";
-                auto_signature_help = true;
+                # Meta
                 auto_update = false;
                 telemetry = {
                     diagnostics = false;
                     metrics = false;
-                };
-                title_bar = {
-                    show_menus = false;
-                    show_onboarding_banner = false;
-                    show_branch_name = true;
-                    show_branch_icon = true;
-                    show_sign_in = false;
-                };
-                theme = "One Black";
-                vim_mode = true;
-                terminal = {
-                    toolbar.breadcrumbs = false;
-                    dock = "right";
-                    font_size = 14.0;
-                };
-                auto_install_extensions = {
-                    assembly = true;
-                    basher = true;
-                    csharp = true;
-                    discord-presence = true;
-                    dockerfile = true;
-                    html = true;
-                    java = true;
-                    latex = true;
-                    lua = true;
-                    neocmake = true;
-                    nix = true;
-                    one-black-theme = true;
-                    sql = true;
-                    toml = true;
                 };
             };
 
