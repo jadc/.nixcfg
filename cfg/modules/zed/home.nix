@@ -55,7 +55,7 @@ in
                     };
                 };
 
-                # Editor 
+                # Editor
                 auto_signature_help = true;
                 colorize_brackets = true;
                 indent_guides = {
@@ -66,12 +66,13 @@ in
                     enabled = true;
                     show_background = true;
                 };
+                diagnostics.inline.enabled = true;
                 show_whitespaces = "trailing";
                 soft_wrap = "editor_width";
                 show_wrap_guides = true;
                 wrap_guides = [ 80 ];
 
-                # UI/UX 
+                # UI/UX
                 collaboration_panel.button = false;
                 notification_panel.button = false;
                 title_bar = {
