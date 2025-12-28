@@ -93,6 +93,7 @@ in
                 project_panel.hide_root = true;
 
                 # Tabs
+                tab_size = 4;
                 tabs = {
                     file_icons = true;
                     git_status = true;
