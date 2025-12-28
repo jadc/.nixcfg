@@ -15,10 +15,6 @@
         hyperfine.enable = true;
         neovim.enable = true;
         ripgrep.enable = true;
-        shells = {
-            enable = true;
-            aliases = cfg.const.aliases;
-        };
         tmux.enable = true;
         zoxide.enable = true;
     };

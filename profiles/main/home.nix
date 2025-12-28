@@ -58,10 +58,6 @@
         poppler.enable = true;
         ripgrep.enable = true;
         rsync.enable = true;
-        shells = {
-            enable = true;
-            aliases = cfg.const.aliases;
-        };
         tmux.enable = true;
         yt.enable = true;
         zoxide.enable = true;
