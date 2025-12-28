@@ -1,11 +1,6 @@
 { config, ... }:
 
 {
-    imports = [
-        ./../../cfg/modules/Scripts/rebuild.nix
-        ./../../cfg/modules/Scripts/spotifyify.nix
-    ];
-
     cfg.user = let cfg = config.cfg; in {
         # Setup
         qt.enable = true;
@@ -72,7 +67,7 @@
         zoxide.enable = true;
 
         # Scripts
-        Scripts.enable = true;
+        spotifyify.enable = true;
 
         # Desktop
         gnome.monitors = ./../../cfg/modules/gnome/monitors/desktop.xml;
