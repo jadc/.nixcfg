@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-    name = "Scripts";
+    name = "spotifyify";
     self = config.cfg.user.${name};
 in
 {
@@ -10,9 +10,12 @@ in
     };
 
     config = lib.mkIf self.enable {
-        # Adds any scripts in ./bin to the user PATH
         home.packages = [
-            (pkgs.buildEnv { name = "scripts"; paths = [ ./. ]; })
+            (pkgs.writeShellApplication {
+                name = "spotifyify";
+                runtimeInputs = [ pkgs.ffmpeg ];
+                text = builtins.readFile ./spotifyify.sh;
+            })
         ];
     };
 }

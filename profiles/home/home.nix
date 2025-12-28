@@ -2,7 +2,6 @@
 
 {
     cfg.user = let cfg = config.cfg; in {
-        # Command-line Interface
         archivers.enable = true;
         bat.enable = true;
         claude-code.enable = true;
@@ -22,8 +21,5 @@
         };
         tmux.enable = true;
         zoxide.enable = true;
-
-        # Scripts
-        Scripts.enable = true;
     };
 }
