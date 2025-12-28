@@ -32,6 +32,7 @@
         networkmanager.enable = true;
         sound.enable = true;
         swapfile.enable = true;
+        timezone.enable = true;
         trim.enable = true;
         users.enable = true;
 

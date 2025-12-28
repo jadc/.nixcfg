@@ -26,9 +26,10 @@
         libinput.enable = true;
         networkmanager.enable = true;
         nvidia.enable = true;
-        ssh.enable = true;
         sound.enable = true;
+        ssh.enable = true;
         swapfile.enable = true;
+        timezone.enable = true;
         trim.enable = true;
         users.enable = true;
 
