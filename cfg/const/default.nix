@@ -19,27 +19,29 @@
         };
 
         aliases = mkOption {
-            type = types.attrs;
+            type = types.attrsOf types.str;
             description = "The shell aliases of the system";
-
-            default = {
-                # Default flags
-                sudo="sudo -E";
-                du="du -h";
-                cp="cp -ivp";
-                mv="mv -iv";
-                mkdir="mkdir -pv";
-                make="make -j$(nproc)";
-
-                ## Colors
-                grep="grep --color=auto";
-                fgrep="fgrep --color=auto";
-                egrep="egrep --color=auto";
-                diff="diff --color=auto";
-
-                # New
-                diffs="diff -W $(tput cols) --color=always --side-by-side --left-column";
-            };
+            default = {};
         };
+    };
+
+    # Default aliases
+    config.cfg.const.aliases = with lib; {
+        # Default flags
+        sudo  = mkDefault "sudo -E";
+        du    = mkDefault "du -h";
+        cp    = mkDefault "cp -ivp";
+        mv    = mkDefault "mv -iv";
+        mkdir = mkDefault "mkdir -pv";
+        make  = mkDefault "make -j$(nproc)";
+
+        ## Colors
+        grep  = mkDefault "grep --color=auto";
+        fgrep = mkDefault "fgrep --color=auto";
+        egrep = mkDefault "egrep --color=auto";
+        diff  = mkDefault "diff --color=auto";
+
+        # New
+        diffs = mkDefault "diff -W $(tput cols) --color=always --side-by-side --left-column";
     };
 }
