@@ -50,10 +50,6 @@ in
                 night-light-schedule-automatic = true;
             };
 
-            # Automatic timezone
-            "org/gnome/system/location".enabled = true;
-            "org/gnome/desktop/datetime".automatic-timezone = true;
-
             "org/gnome/desktop/interface" = {
                 # Text scaling
                 text-scaling-factor = 0.85;

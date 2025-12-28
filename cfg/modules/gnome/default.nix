@@ -45,8 +45,5 @@ in
             tali              # poker game
             totem             # video player
         ]);
-
-        # Allow GNOME to set the timezone
-        time.timeZone = lib.mkForce null;
     };
 }

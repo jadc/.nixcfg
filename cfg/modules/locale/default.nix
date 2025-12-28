@@ -2,12 +2,6 @@
 
 {
     options.cfg.system = {
-        timeZone = lib.mkOption {
-            type = lib.types.str;
-            default = "America/Edmonton";
-            description = "The timezone of the system";
-        };
-
         locale = lib.mkOption {
             type = lib.types.str;
             default = "en_CA.UTF-8";
@@ -16,10 +10,8 @@
     };
 
     config = let
-        timeZone = config.cfg.system.timeZone;
         locale = config.cfg.system.locale;
     in {
-        time.timeZone = timeZone;
         i18n.defaultLocale = locale;
         i18n.extraLocaleSettings = {
             LC_ADDRESS = locale;
