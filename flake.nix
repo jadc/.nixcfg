@@ -12,9 +12,9 @@
 
     outputs = { self, nixpkgs, home-manager, ... } @ inputs: let
         # Given a profile string, creates a NixOS system
-        toNixOS = profile: let
-            path = ./profiles/${profile};
-            const = ( import (path + "/const.nix") ).cfg.const;
+        toNixOS = name: let
+            profile = ./profiles/${name};
+            const = ( import (profile + "/const.nix") ).cfg.const;
         in {
             name = const.profile;
             value = nixpkgs.lib.nixosSystem {
@@ -26,12 +26,12 @@
                 specialArgs.system = const.arch;
 
                 modules = [
-                    (path + "/hardware-configuration.nix")
+                    (profile + "/hardware-configuration.nix")
 
                     ./cfg/const
-                    (path + "/const.nix")
+                    (profile + "/const.nix")
                     ./cfg/modules
-                    (path + "/configuration.nix")
+                    (profile + "/configuration.nix")
 
                     # User-level configuration
                     home-manager.nixosModules.home-manager {
@@ -40,9 +40,9 @@
                         home-manager.useUserPackages = true;
                         home-manager.sharedModules = [
                             ./cfg/const
-                            (path + "/const.nix")
+                            (profile + "/const.nix")
                         ];
-                        home-manager.users.${const.username} = import (path + "/home.nix");
+                        home-manager.users.${const.username} = import (profile + "/home.nix");
                     }
                 ];
             };
