@@ -29,7 +29,6 @@
         sound.enable = true;
         swapfile.enable = true;
         timezone.enable = true;
-        tlp.enable = true;
         trim.enable = true;
         users.enable = true;
         wireguard = {
