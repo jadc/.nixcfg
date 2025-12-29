@@ -3,7 +3,7 @@
 let
     name = "minecraft";
     self = config.cfg.user.${name};
-    alternative = with pkgs; [ jdk8 jdk ];
+    alternative = with pkgs; [ jdk8 jdk17 ];
 in
 {
     options.cfg.user.${name} = with lib; {
@@ -17,12 +17,12 @@ in
         programs.java = {
             enable = true;
 
-            # Default java is 17
-            package = pkgs.jdk17;
+            # Default java is latest
+            package = pkgs.jdk;
         };
 
         # Alternative java versions
-        home.file = (builtins.listToAttrs (builtins.map (jdk: {
+        home.file = (builtins.listToAttrs (map (jdk: {
             name = ".jdks/${jdk.version}";
             value = { source = jdk; };
         }) alternative));

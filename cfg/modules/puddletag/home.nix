@@ -1,5 +1,3 @@
-# puddletag: Music tag editor
-
 { config, lib, pkgs, ... }:
 
 let

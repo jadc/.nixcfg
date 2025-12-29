@@ -1,5 +1,3 @@
-# Spek: A free acoustic spectrum analyzer
-
 { config, lib, pkgs, ... }:
 
 let

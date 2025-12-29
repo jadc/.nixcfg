@@ -1,5 +1,3 @@
-# MPV: A video player without cp
-
 { config, lib, ... }:
 
 let

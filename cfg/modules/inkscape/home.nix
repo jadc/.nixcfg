@@ -1,5 +1,3 @@
-# Inkscape: An open-source vector graphics editor
-
 { config, lib, pkgs, ... }:
 
 let

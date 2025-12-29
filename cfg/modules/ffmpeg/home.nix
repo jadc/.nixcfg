@@ -1,5 +1,3 @@
-# The most important FOSS project ever made.
-
 { config, lib, pkgs, ... }:
 
 let

@@ -1,5 +1,3 @@
-# Feh: image viewer and wallpaper engine
-
 { config, lib, pkgs, ... }:
 
 let

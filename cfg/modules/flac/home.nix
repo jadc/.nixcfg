@@ -1,5 +1,3 @@
-# flac: A command-line flac encoder/decoder
-
 { config, lib, pkgs, ... }:
 
 let

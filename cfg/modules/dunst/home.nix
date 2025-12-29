@@ -1,5 +1,3 @@
-# Dunst: notifications display
-
 { config, lib, pkgs, ... }:
 
 let

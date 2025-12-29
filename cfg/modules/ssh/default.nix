@@ -1,5 +1,3 @@
-# Enables SSH server (sshd)
-
 { config, lib, ... }:
 
 let

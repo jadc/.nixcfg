@@ -8,7 +8,10 @@
         brave.enable = true;
         deluge.enable = true;
         handbrake.enable = true;
-        kitty.enable = true;
+        kitty = {
+            enable = true;
+            fontSize = 12;
+        };
         minecraft.enable = true;
         obsidian.enable = true;
         parallel-launcher.enable = true;

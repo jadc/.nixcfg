@@ -1,5 +1,3 @@
-# Imagemagick: Image manipulation tools
-
 { config, lib, pkgs, ... }:
 
 let

@@ -1,5 +1,3 @@
-# Avidemux: Simple video editor
-
 { config, lib, pkgs, ... }:
 
 let
