@@ -1,5 +1,3 @@
-# Rsync: a fast, versatile, remote (and local) file-copying tool
-
 { config, lib, pkgs, ... }:
 
 let

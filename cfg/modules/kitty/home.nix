@@ -7,6 +7,10 @@ in
 {
     options.cfg.user.${name} = with lib; {
         enable = mkEnableOption name;
+        fontSize = mkOption {
+            type = types.int;
+            default = 12;
+        };
     };
 
     config = lib.mkIf self.enable {
@@ -16,7 +20,7 @@ in
             font = {
                 package = pkgs.jetbrains-mono;
                 name = "JetBrains Mono";
-                size = 10;
+                size = self.fontSize;
             };
 
             keybindings = {

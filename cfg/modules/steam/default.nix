@@ -1,5 +1,3 @@
-# Steam: game library
-
 { config, lib, ... }:
 
 let

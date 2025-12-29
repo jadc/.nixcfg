@@ -1,5 +1,3 @@
-# Downloader for many sites
-
 { config, lib, ... }:
 
 let
@@ -12,8 +10,6 @@ in
     };
 
     config = lib.mkIf self.enable {
-        programs.gallery-dl = {
-            enable = true;
-        };
+        programs.gallery-dl.enable = true;
     };
 }

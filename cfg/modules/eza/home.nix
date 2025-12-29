@@ -1,5 +1,3 @@
-# eza: ls replacement
-
 { config, lib, pkgs, ... }:
 
 let

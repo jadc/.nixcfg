@@ -1,5 +1,3 @@
-# Gimp: the least intuitive program ever made
-
 { config, lib, pkgs, ... }:
 
 let
