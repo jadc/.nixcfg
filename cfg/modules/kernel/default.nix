@@ -54,5 +54,7 @@ in
                     "i915.modeset=1"
                 ];
         };
+
+        hardware.cpu.intel.updateMicrocode = self.flags.intel;
     };
 }

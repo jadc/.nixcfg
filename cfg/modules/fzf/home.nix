@@ -1,5 +1,3 @@
-# fzf: fuzzy finder
-
 { config, lib, ... }:
 
 let

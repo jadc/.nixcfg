@@ -1,5 +1,3 @@
-# Deluge: torrent client
-
 { config, lib, pkgs, ... }:
 
 let

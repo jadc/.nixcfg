@@ -23,16 +23,13 @@
         automount.enable = true;
         bluetooth.enable = true;
         fonts.enable = true;
-        gc.enable = true;
-        hp-rotate.enable = true;
-        intel.enable = true;
-        ios.enable = true;
         keyd.enable = true;
         libinput.enable = true;
         networkmanager.enable = true;
         sound.enable = true;
         swapfile.enable = true;
         timezone.enable = true;
+        tlp.enable = true;
         trim.enable = true;
         users.enable = true;
         wireguard = {
@@ -48,4 +45,18 @@
         steam.enable = true;
         syncthing.enable = true;
     };
+
+    # Installs HP driver for proximity and gyroscopic sensors
+    nixpkgs.overlays = [
+        (final: prev: {
+            linux-firmware = prev.linux-firmware.overrideAttrs (old: {
+                postInstall = ''
+                    cp ${./files/ishC_0207.bin} $out/lib/firmware/intel/ish/ish_lnlm_12128606.bin
+                '';
+            });
+        })
+    ];
+    boot.kernelModules = [ "intel_ishtp_hid" ];
+    hardware.firmware = [ pkgs.linux-firmware ];
+    hardware.sensor.iio.enable = true;
 }

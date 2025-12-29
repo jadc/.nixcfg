@@ -1,5 +1,3 @@
-# spotify: music player
-
 { config, lib, pkgs, ... }:
 
 let

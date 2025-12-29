@@ -7,7 +7,10 @@
         # Apps
         brave.enable = true;
         deluge.enable = true;
-        kitty.enable = true;
+        kitty = {
+            enable = true;
+            fontSize = 10;
+        };
         minecraft.enable = true;
         obsidian.enable = true;
         parallel-launcher.enable = true;

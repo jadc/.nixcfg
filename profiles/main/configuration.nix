@@ -7,6 +7,7 @@
             enable = true;
             build = pkgs.linuxPackages_zen;
             flags = {
+                intel = true;
                 performance = true;
                 quiet = true;
             };
@@ -19,9 +20,6 @@
         autologin.enable = true;
         automount.enable = true;
         fonts.enable = true;
-        gc.enable = true;
-        intel.enable = true;
-        ios.enable = true;
         keyd.enable = true;
         libinput.enable = true;
         networkmanager.enable = true;
