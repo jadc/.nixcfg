@@ -3,31 +3,66 @@
 let
     name = "wireguard";
     self = config.cfg.system.${name};
-    wg-name = "home";
 in
 {
     options.cfg.system.${name} = with lib; {
         enable = mkEnableOption name;
+
+        configurations = mkOption {
+            type = types.listOf (types.submodule {
+                options = {
+                    name = mkOption {
+                        type = types.str;
+                        description = "Name of the WireGuard configuration";
+                    };
+                    configFile = mkOption {
+                        type = types.path;
+                        description = "Path to the WireGuard configuration file";
+                    };
+                };
+            });
+            default = [];
+            description = "List of WireGuard configurations to manage";
+        };
     };
 
     config = lib.mkIf self.enable {
-        # Create interface and service for wireguard vpn
-        networking.wg-quick.interfaces."${wg-name}".configFile = "/etc/wireguard/${wg-name}.conf";
+        # Create interfaces and services for all wireguard configurations with existing files
+        networking.wg-quick.interfaces = lib.listToAttrs (
+            map (wgConfig: {
+                name = wgConfig.name;
+                value.configFile = wgConfig.configFile;
+            }) self.configurations
+        );
 
-        # Disable automatically starting at boot
-        systemd.services."wg-quick-${wg-name}".wantedBy = lib.mkForce [];
+        # Disable all configurations from automatically starting at boot
+        systemd.services = lib.listToAttrs (
+            map (wgConfig: {
+                name = "wg-quick-${wgConfig.name}";
+                value.wantedBy = lib.mkForce [];
+            }) self.configurations
+        );
 
-        # Create a command to toggle wireguard service
+        # Create a command to toggle wireguard service by name
         environment.systemPackages = with pkgs; [
             (writeShellApplication {
                 name = "vpn";
-                text = let service = "wg-quick-${wg-name}"; in ''
-                    if systemctl is-active ${service} > /dev/null 2>&1; then
-                        sudo systemctl stop ${service} && \
-                        printf "Stopped WireGuard '%s' VPN\n" "${wg-name}"
+                text = ''
+                    if [ $# -ne 1 ]; then
+                        echo "Usage: vpn <name>"
+                        echo "Available configurations: ${lib.concatMapStringsSep ", " (c: c.name) self.configurations}"
+                        exit 1
+                    fi
+
+                    CONFIG_NAME="$1"
+                    SERVICE="wg-quick-$CONFIG_NAME"
+
+                    if systemctl is-active "$SERVICE" > /dev/null 2>&1; then
+                        sudo systemctl stop "$SERVICE" && \
+                        printf "Stopped WireGuard '%s' VPN\n" "$CONFIG_NAME"
                     else
-                        sudo systemctl start ${service} && \
-                        printf "Started WireGuard '%s' VPN\n" "${wg-name}"
+                        sudo systemctl start "$SERVICE" && \
+                        printf "Started WireGuard '%s' VPN\n" "$CONFIG_NAME"
                     fi
                 '';
             })
