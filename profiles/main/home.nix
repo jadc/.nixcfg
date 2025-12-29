@@ -5,7 +5,7 @@
         xdg.enable = true;
 
         # Apps
-        chrome.enable = true;
+        brave.enable = true;
         deluge.enable = true;
         handbrake.enable = true;
         kitty.enable = true;

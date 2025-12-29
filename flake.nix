@@ -21,7 +21,6 @@
                 pkgs = import nixpkgs {
                     system = const.arch;
                     config.allowUnfree = true;
-                    config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
                 };
                 specialArgs.system = const.arch;
 
