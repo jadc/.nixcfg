@@ -6,5 +6,5 @@ let
         (name: files.${name} == "directory")
         (builtins.attrNames files);
 in {
-    imports = builtins.map (dir: ./${dir}) dirs;
+    imports = map (dir: ./${dir}) dirs;
 }
