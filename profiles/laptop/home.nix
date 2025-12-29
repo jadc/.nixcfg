@@ -1,7 +1,5 @@
-{ config, ... }:
-
 {
-    cfg.user = let cfg = config.cfg; in {
+    cfg.user = {
         # Setup
         qt.enable = true;
         xdg.enable = true;
