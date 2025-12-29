@@ -5,6 +5,9 @@ let
     dirs = builtins.filter
         (name: files.${name} == "directory")
         (builtins.attrNames files);
+    hasHome = builtins.filter
+        (dir: builtins.pathExists ./${dir}/home.nix)
+        dirs;
 in {
-    imports = builtins.map (dir: ./${dir}/home.nix) dirs;
+    imports = map (dir: ./${dir}/home.nix) hasHome;
 }
