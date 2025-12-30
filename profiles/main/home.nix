@@ -10,7 +10,7 @@
         handbrake.enable = true;
         kitty = {
             enable = true;
-            fontSize = 12;
+            fontSize = 13;
         };
         minecraft.enable = true;
         obsidian.enable = true;
