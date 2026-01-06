@@ -31,6 +31,7 @@
         obs.enable = true;
         puddletag.enable = true;
         spek.enable = true;
+        virt-manager.enable = true;
 
         # IDE
         zed = {
