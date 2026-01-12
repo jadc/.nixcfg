@@ -13,7 +13,6 @@
         };
         minecraft.enable = true;
         obsidian.enable = true;
-        parallel-launcher.enable = true;
         qdirstat.enable = true;
         rnote.enable = true;
         spotify.enable = true;
