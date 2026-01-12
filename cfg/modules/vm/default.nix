@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-    name = "qemu";
+    name = "vm";
     self = config.cfg.system.${name};
 in
 {
@@ -11,27 +11,22 @@ in
 
     config = lib.mkIf self.enable {
         environment.systemPackages = with pkgs; [
-            adwaita-icon-theme
-            spice spice-gtk
+            spice
+            spice-gtk
             spice-protocol
-            virt-manager
-            virt-viewer
             win-spice
-            win-virtio
+            virtio-win
         ];
 
-        virtualisation = {
-            libvirtd = {
-                enable = true;
-                qemu = {
-                    swtpm.enable = true;
-                    ovmf.enable = true;
-                    ovmf.packages = [ pkgs.OVMFFull.fd ];
-                };
-            };
-            spiceUSBRedirection.enable = true;
-        };
         services.spice-vdagentd.enable = true;
+        virtualisation.spiceUSBRedirection.enable = true;
+        virtualisation.libvirtd = {
+            enable = true;
+            qemu = {
+                runAsRoot = true;
+                swtpm.enable = true;
+            };
+        };
 
         # Enable dconf (system management tool)
         programs.dconf.enable = true;
