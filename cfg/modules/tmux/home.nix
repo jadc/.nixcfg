@@ -28,10 +28,8 @@ in
             # fix colors
             terminal = "tmux-256color";
 
-            plugins = with pkgs.tmuxPlugins; [
-                # adds bind (y) to copy to system clipboard
-                yank
-            ];
+            # adds bind (y) to copy to system clipboard
+            plugins = with pkgs; [ tmuxPlugins.yank ];
 
             extraConfig = ''
                 # split panes using | and -, in the current path
@@ -43,23 +41,17 @@ in
                 # open new windows in the current path
                 bind c new-window -c "#{pane_current_path}"
 
-                # detect if vim is running in the current pane
-                is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+                # switch panes using Alt-arrow without prefix
+                bind -n M-h select-pane -L
+                bind -n M-l select-pane -R
+                bind -n M-j select-pane -U
+                bind -n M-k select-pane -D
 
-                # navigate panes using Alt+hjkl without prefix
-                # pass through to vim if vim is running, otherwise select tmux pane
-                bind -n M-h if-shell "$is_vim" 'send-keys M-h' 'select-pane -L'
-                bind -n M-l if-shell "$is_vim" 'send-keys M-l' 'select-pane -R'
-                bind -n M-j if-shell "$is_vim" 'send-keys M-j' 'select-pane -D'
-                bind -n M-k if-shell "$is_vim" 'send-keys M-k' 'select-pane -U'
-
-                # resize panes using Alt+Shift+hjkl without prefix
-                # pass through to vim if vim is running, otherwise resize tmux pane
-                bind -n M-H if-shell "$is_vim" 'send-keys M-H' 'resize-pane -L 5'
-                bind -n M-L if-shell "$is_vim" 'send-keys M-L' 'resize-pane -R 5'
-                bind -n M-J if-shell "$is_vim" 'send-keys M-J' 'resize-pane -D 5'
-                bind -n M-K if-shell "$is_vim" 'send-keys M-K' 'resize-pane -U 5'
+                # resize panes using Alt-shift-arrow without prefix
+                bind -n -r M-H resize-pane -L 5
+                bind -n -r M-L resize-pane -R 5
+                bind -n -r M-J resize-pane -D 5
+                bind -n -r M-K resize-pane -U 5
 
                 # hide status bar
                 set -g status off
