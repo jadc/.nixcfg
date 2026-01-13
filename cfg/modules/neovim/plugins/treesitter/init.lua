@@ -1,11 +1,14 @@
-vim.opt.runtimepath:prepend(vim.fs.joinpath(vim.fn.stdpath("data"), "site"))
-require("nvim-treesitter.configs").setup({
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-    indent = {
-        enable = true,
-    },
-    parser_install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site"),
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        -- Run only when a parser exists
+        if vim.treesitter.get_parser(0, vim.bo.filetype, { error = false }) then
+            -- Highlighting
+            vim.treesitter.start()
+            -- Indentation
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            -- Folding
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        end
+    end,
 })
