@@ -17,7 +17,7 @@ local opts = {
 
     --- Visibility
     cmdheight = 0,   -- Hide command line
-    laststatus = 0,  -- Hide status line
+    --laststatus = 0,  -- Hide status line
     number = true,   -- Show line numbers
 
     --- Folding
