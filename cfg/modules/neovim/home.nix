@@ -20,7 +20,6 @@ in
         ./plugins/rainbow
         ./plugins/telescope
         ./plugins/treesitter
-        ./plugins/vim-tmux-navigator
         ./plugins/visual-whitespace
 
         # Language Servers
