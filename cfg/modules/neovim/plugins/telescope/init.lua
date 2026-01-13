@@ -1,6 +1,8 @@
+require("nvim-web-devicons").setup({})
+
 require("telescope").setup({
     defaults = {
-        border = false,
+        border = true,
         layout_strategy = "vertical",
         sorting_strategy = "ascending",
         layout_config = {
@@ -8,6 +10,14 @@ require("telescope").setup({
                 height = 0.999,
                 width = 0.999,
                 prompt_position = "top",
+            },
+        },
+    },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = { ["<c-w>"] = "delete_buffer" },
+                n = { ["<c-w>"] = "delete_buffer" },
             },
         },
     },
@@ -28,6 +38,13 @@ _G.project_files = function()
     end
 end
 
+-- Color telescope UI borders
+local border_hl = { fg = "#404040", bg = "#000000" }
+for _, group in ipairs({ "TelescopeBorder", "TelescopePromptBorder", "TelescopeResultsBorder", "TelescopePreviewBorder" }) do
+    vim.api.nvim_set_hl(0, group, border_hl)
+end
+
 vim.keymap.set({ "n", "x" }, "<c-f>", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<c-p>", "<cmd>lua project_files()<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<c-P>", ts.find_files, { noremap = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<c-t>", ts.buffers, { noremap = true, silent = true })

@@ -10,7 +10,6 @@ in
         ./themes/onedark
 
         # Plugins
-        ./plugins/barbar
         ./plugins/cmp
         ./plugins/flash
         ./plugins/gitsigns
