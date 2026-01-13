@@ -21,9 +21,7 @@ local opts = {
     number = true,   -- Show line numbers
 
     --- Folding
-    foldexpr = "nvim_treesitter#foldexpr()",
     foldlevel = 20,
-    foldmethod = "expr",
 
     --- Search
     hlsearch = true,    -- Enables search highlight
