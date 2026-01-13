@@ -14,6 +14,7 @@ in
         ./plugins/flash
         ./plugins/gitsigns
         ./plugins/lsp
+        ./plugins/lualine
         ./plugins/mini-cursorword
         ./plugins/mini-trailspace
         ./plugins/rainbow
