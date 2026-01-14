@@ -80,15 +80,5 @@ in
             source = self.monitors;
             force = true;
         };
-
-        # Black title bar
-        /*
-        xdg.configFile."gtk-3.0/gtk.css".text = ''
-            window.ssd headerbar.titlebar {
-                background-color: #000000;
-                color: white;
-            }
-        '';
-        */
     };
 }
