@@ -73,6 +73,11 @@ in
                 # Always show path in title bar
                 always-use-location-entry = true;
             };
+
+            # Screenshot keybinding
+            "org/gnome/shell/keybindings" = {
+                show-screenshot-ui = ["Print" "<Super><Shift>s"];
+            };
         };
 
         # Monitor configuration
