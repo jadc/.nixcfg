@@ -33,6 +33,7 @@ in
                 update_check_interval = 0;
                 window_padding_width = 24;
                 confirm_os_window_close = 0;
+                wayland_titlebar_color = "black";
             };
 
             extraConfig = ''
