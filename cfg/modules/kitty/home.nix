@@ -26,14 +26,16 @@ in
             keybindings = {
                 "kitty_mod+equal" = "change_font_size all +1.0";
                 "kitty_mod+minus" = "change_font_size all -1.0";
+                "f11" = "toggle_fullscreen";
             };
 
             settings = {
-                enable_audio_bell = false;
-                update_check_interval = 0;
-                window_padding_width = 24;
                 confirm_os_window_close = 0;
+                enable_audio_bell = false;
+                resize_in_steps = false;
+                update_check_interval = 0;
                 wayland_titlebar_color = "black";
+                window_padding_width = 24;
             };
 
             extraConfig = ''
