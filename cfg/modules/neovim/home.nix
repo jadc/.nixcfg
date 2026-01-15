@@ -1,41 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
     name = "neovim";
     self = config.cfg.user.${name};
 in
 {
-    imports = [
-        # Theme
-        ./themes/onedark
-
-        # Plugins
-        ./plugins/cmp
-        ./plugins/flash
-        ./plugins/gitsigns
-        ./plugins/lsp
-        ./plugins/lualine
-        ./plugins/mini-cursorword
-        ./plugins/mini-trailspace
-        ./plugins/rainbow
-        ./plugins/telescope
-        ./plugins/treesitter
-        ./plugins/visual-whitespace
-
-        # Language Servers
-        ./plugins/lsp/bash
-        ./plugins/lsp/c
-        ./plugins/lsp/go
-        ./plugins/lsp/lua
-        ./plugins/lsp/nix
-        ./plugins/lsp/python
-        ./plugins/lsp/rust
-        ./plugins/lsp/svelte
-        ./plugins/lsp/typescript
-        ./plugins/lsp/web
-        ./plugins/lsp/yaml
-    ];
-
     options.cfg.user.${name} = with lib; {
         enable = mkEnableOption name;
     };
@@ -54,5 +23,21 @@ in
             source = ./config;
             recursive = true;
         };
+
+        # Install all language servers
+        home.packages = with pkgs; [
+            bash-language-server
+            clang-tools
+            clippy
+            gopls
+            lua-language-server
+            nixd
+            pyright
+            rust-analyzer
+            svelte-language-server
+            typescript-language-server
+            vscode-langservers-extracted
+            yaml-language-server
+        ];
     };
 }
