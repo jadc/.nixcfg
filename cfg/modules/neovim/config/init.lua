@@ -1,3 +1,19 @@
+-- Themes
+require("themes.onedark")
+
+-- Plugins
+require("plugins.cmp")
+require("plugins.flash")
+require("plugins.gitsigns")
+require("plugins.lualine")
+require("plugins.mini-cursorword")
+require("plugins.mini-trailspace")
+require("plugins.rainbow")
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.visual-whitespace")
+
+-- Defaults
 require("options")
 require("mappings")
-require("theme")
+require("lsp")
