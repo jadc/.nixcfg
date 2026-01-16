@@ -24,8 +24,13 @@ in
             recursive = true;
         };
 
-        # Install all language servers
+        # Install all required packages
         home.packages = with pkgs; [
+            gcc
+            gnumake
+            tree-sitter
+
+            # Language Servers
             bash-language-server
             clang-tools
             clippy
