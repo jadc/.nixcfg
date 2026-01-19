@@ -52,8 +52,12 @@ setup_server("clangd", {
         "clangd",
         "--background-index",
         "--clang-tidy",
+        "--completion-style=detailed",
+        "--enable-config",
+        "--header-insertion=never",
         "--limit-results=0",
-        "--log=verbose"
+        "--log=verbose",
+        "--pch-storage=memory",
     },
     init_options = {
         fallbackFlags = { "-std=c++11" },
