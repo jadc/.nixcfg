@@ -19,14 +19,6 @@ require("telescope").setup({
             },
         },
     },
-    pickers = {
-        buffers = {
-            mappings = {
-                i = { ["<c-w>"] = "delete_buffer" },
-                n = { ["<c-w>"] = "delete_buffer" },
-            },
-        },
-    },
 })
 
 local ts = require("telescope.builtin")
@@ -53,4 +45,3 @@ end
 vim.keymap.set({ "n", "x" }, "<c-f>", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<c-p>", "<cmd>lua project_files()<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<c-P>", ts.find_files, { noremap = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<c-t>", ts.buffers, { noremap = true, silent = true })

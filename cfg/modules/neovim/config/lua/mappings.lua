@@ -55,7 +55,48 @@ local mappings = {
         mode = { "n" },
         options = { noremap = true, silent = true },
     },
+
+    -- Buffer navigation
+    {
+        key = "<Tab>",
+        action = "<cmd>bnext<CR>",
+        mode = { "n" },
+        options = { noremap = true, silent = true, desc = "Next buffer" },
+    },
+    {
+        key = "<S-Tab>",
+        action = "<cmd>bprevious<CR>",
+        mode = { "n" },
+        options = { noremap = true, silent = true, desc = "Previous buffer" },
+    },
+    {
+        key = "<leader><leader>",
+        action = "<C-^>",
+        mode = { "n" },
+        options = { noremap = true, silent = true, desc = "Alternate buffer" },
+    },
+
+    -- Buffer management
+    {
+        key = "<c-w>",
+        action = "<cmd>bdelete<CR>",
+        mode = { "n" },
+        options = { noremap = true, silent = true, nowait = true, desc = "Close buffer" },
+    },
+    {
+        key = "<c-x>",
+        action = "<cmd>silent! %bdelete|edit#|silent! bdelete#<CR>",
+        mode = { "n" },
+        options = { noremap = true, silent = true, nowait = true, desc = "Close other buffers" },
+    },
 }
+
+-- Numeric buffer jumps (<leader>1-9)
+for i = 1, 9 do
+    vim.keymap.set("n", "<leader>" .. i, "<cmd>LualineBuffersJump! " .. i .. "<CR>",
+        { noremap = true, silent = true, desc = "Go to buffer " .. i })
+end
+
 for _, map in ipairs(mappings) do
     vim.keymap.set(map.mode, map.key, map.action, map.options)
 end
