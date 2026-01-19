@@ -53,6 +53,7 @@ require("lualine").setup({
                     hint =  { fg = "#88aaaa" }
                 }
             },
+            "lsp_status",
             "branch",
         },
         lualine_y = {},
