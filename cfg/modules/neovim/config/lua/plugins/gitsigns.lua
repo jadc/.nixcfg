@@ -5,7 +5,6 @@ require("gitsigns").setup({
     numhl = true,
     signcolumn = true,
     current_line_blame = true,
-    word_diff = true,
 
     on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
