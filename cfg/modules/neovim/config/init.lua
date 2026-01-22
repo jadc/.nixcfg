@@ -3,6 +3,7 @@ require("themes.onedark")
 
 -- Plugins
 require("plugins.cmp")
+require("plugins.dropbar")
 require("plugins.flash")
 require("plugins.fugitive")
 require("plugins.gitsigns")
