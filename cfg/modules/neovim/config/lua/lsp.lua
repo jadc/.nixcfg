@@ -17,22 +17,10 @@ vim.lsp.log.set_level("off")
 -- Customize hover window appearance
 vim.opt.winborder = "rounded"
 
--- TODO: move to telescope/mappings.lua
-local ts = require("telescope.builtin")
-local mappings = {
-    { key = "gd", action = ts.lsp_definitions },
-    { key = "gD", action = vim.lsp.buf.declaration },
-    { key = "gi", action = ts.lsp_implementations },
-    { key = "gr", action = ts.lsp_references },
-    { key = "gt", action = ts.lsp_type_definitions },
-    { key = "ge", action = vim.diagnostic.open_float },
-    { key = "gee", action = vim.diagnostic.setqflist },
-    { key = "gE", action = vim.lsp.buf.code_action },
-}
-
-for _, map in ipairs(mappings) do
-    vim.keymap.set("n", map.key, map.action)
-end
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+vim.keymap.set("n", "ge", vim.diagnostic.open_float)
+vim.keymap.set("n", "gee", vim.diagnostic.setqflist)
+vim.keymap.set("n", "gE", vim.lsp.buf.code_action)
 
 -- Enable language servers
 vim.lsp.enable({
