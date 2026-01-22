@@ -11,7 +11,7 @@ require("plugins.lualine")
 require("plugins.mini-cursorword")
 require("plugins.mini-trailspace")
 require("plugins.rainbow")
-require("plugins.telescope")
+require("plugins.fzf-lua")
 require("plugins.treesitter")
 require("plugins.visual-whitespace")
 
