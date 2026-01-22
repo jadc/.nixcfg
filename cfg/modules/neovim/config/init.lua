@@ -13,6 +13,7 @@ require("plugins.mini-trailspace")
 require("plugins.rainbow")
 require("plugins.fzf-lua")
 require("plugins.treesitter")
+require("plugins.vim-tmux-navigator")
 require("plugins.visual-whitespace")
 
 -- Defaults
