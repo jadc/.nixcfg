@@ -26,8 +26,11 @@ in
 
         # Install all required packages
         home.packages = with pkgs; [
+            fd
+            fzf
             gcc
             gnumake
+            ripgrep
             tree-sitter
 
             # Language Servers
