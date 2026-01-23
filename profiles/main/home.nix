@@ -33,12 +33,6 @@
         spek.enable = true;
         virt-manager.enable = true;
 
-        # IDE
-        zed = {
-            enable = true;
-            server = true;
-        };
-
         # Command-line Interface
         archivers.enable = true;
         bat.enable = true;
