@@ -32,6 +32,8 @@ in
             gnumake
             ripgrep
             tree-sitter
+            wl-clipboard
+            xclip
 
             # Language Servers
             bash-language-server
