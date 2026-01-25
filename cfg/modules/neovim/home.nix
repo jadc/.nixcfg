@@ -49,5 +49,31 @@ in
             vscode-langservers-extracted
             yaml-language-server
         ];
+
+        # Desktop entry for kitty+neovim
+        xdg.desktopEntries.nvim = {
+            name = "Neovim";
+            genericName = "Text Editor";
+            exec = "${pkgs.kitty}/bin/kitty -e nvim %F";
+            terminal = false;
+            categories = [ "Utility" "TextEditor" ];
+            mimeType = [ "text/plain" ];
+        };
+
+        # Set as default text editor
+        xdg.mimeApps.defaultApplications = {
+            "text/plain" = "nvim.desktop";
+            "text/markdown" = "nvim.desktop";
+            "text/x-csrc" = "nvim.desktop";
+            "text/x-chdr" = "nvim.desktop";
+            "text/x-python" = "nvim.desktop";
+            "text/x-shellscript" = "nvim.desktop";
+            "text/x-java" = "nvim.desktop";
+            "text/xml" = "nvim.desktop";
+            "application/json" = "nvim.desktop";
+            "application/x-yaml" = "nvim.desktop";
+            "application/toml" = "nvim.desktop";
+            "application/x-shellscript" = "nvim.desktop";
+        };
     };
 }

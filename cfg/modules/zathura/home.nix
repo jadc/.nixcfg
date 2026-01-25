@@ -17,14 +17,10 @@ in
             };
         };
 
-        xdg = lib.optionalAttrs pkgs.stdenv.isLinux {
-            # Set as default PDF viewer
-            # TODO: create zathura.desktop
-            mimeApps = {
-                enable = true;
-                defaultApplications = {
-                    "application/pdf" = [ "zathura.desktop" ];
-                };
+        xdg.mimeApps = lib.mkIf pkgs.stdenv.isLinux {
+            enable = true;
+            defaultApplications = {
+                "application/pdf" = "org.pwmt.zathura.desktop";
             };
         };
     };
