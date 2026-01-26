@@ -9,13 +9,14 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nvim.url = "github:jadc/nvim";
         neovim-nightly-overlay = {
             url = "github:nix-community/neovim-nightly-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... } @ inputs: let
+    outputs = { self, nixpkgs, home-manager, nvim, ... } @ inputs: let
         # Given a profile string, creates a NixOS system
         toNixOS = name: let
             profile = ./profiles/${name};
@@ -46,6 +47,7 @@
                         home-manager.sharedModules = [
                             ./cfg/const
                             (profile + "/const.nix")
+                            nvim.homeManagerModules.default
                         ];
                         home-manager.users.${const.username} = import (profile + "/home.nix");
                     }
@@ -68,6 +70,7 @@
                     ./profiles/home/const.nix
                     ./cfg/modules/home.nix
                     ./profiles/home/home.nix
+                    nvim.homeManagerModules.default
                 ];
             };
         };
