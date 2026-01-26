@@ -95,11 +95,27 @@
         "type": "github"
       }
     },
+    "nvim": {
+      "locked": {
+        "lastModified": 1769397713,
+        "narHash": "sha256-gKU62k7xpjKIrJ/Ykr8GvjP+p090uaB2xOU43FClFM0=",
+        "owner": "jadc",
+        "repo": "nvim",
+        "rev": "8dcb6a2469de31096302ce3011fc0e4b18951fbc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jadc",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim": "nvim"
       }
     }
   },

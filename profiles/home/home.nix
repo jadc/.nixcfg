@@ -13,7 +13,6 @@
         git.enable = true;
         htop.enable = true;
         hyperfine.enable = true;
-        neovim.enable = true;
         ripgrep.enable = true;
         tmux.enable = true;
         zoxide.enable = true;
