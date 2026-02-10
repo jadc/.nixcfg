@@ -13,7 +13,7 @@ in
         home.packages = [
             (pkgs.writeShellApplication {
                 name = "enter";
-                text = ''nix-shell "${toString ./.}/$1"'';
+                text = ''nix-shell "${./.}/$1"'';
             })
         ];
     };
