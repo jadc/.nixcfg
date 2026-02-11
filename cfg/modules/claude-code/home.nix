@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
     name = "claude-code";
@@ -17,5 +17,6 @@ in
                 run-prompt = ./commands/run-prompt.md;
             };
         };
+        cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
     };
 }
