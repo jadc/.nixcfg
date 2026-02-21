@@ -8,6 +8,7 @@
             build = pkgs.linuxPackages_zen;
             flags = {
                 intel = true;
+                nvidia = true;
                 performance = true;
                 quiet = true;
             };
