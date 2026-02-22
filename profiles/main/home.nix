@@ -19,6 +19,7 @@
         spotify.enable = true;
         vesktop.enable = true;
         zathura.enable = true;
+        moonlight.enable = true;
 
         # Multimedia
         audacity.enable = true;
