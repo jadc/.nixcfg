@@ -23,7 +23,6 @@
         fonts.enable = true;
         keyd.enable = true;
         libinput.enable = true;
-        networkmanager.enable = true;
         nvidia.enable = true;
         sound.enable = true;
         ssh.enable = true;
