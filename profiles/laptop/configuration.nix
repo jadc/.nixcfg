@@ -33,9 +33,7 @@
         users.enable = true;
         wireguard = {
             enable = true;
-            configurations = [
-                { name = "home"; configFile = "/etc/wireguard/home.conf"; }
-            ];
+            configurations.home = "/etc/wireguard/home.conf";
         };
 
         # Requires superuser
