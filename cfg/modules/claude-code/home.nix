@@ -12,9 +12,15 @@ in
     config = lib.mkIf self.enable {
         programs.claude-code = {
             enable = true;
-            commands = {
-                create-prompt = ./commands/create-prompt.md;
-                run-prompt = ./commands/run-prompt.md;
+            settings = {
+                enabledPlugins = {
+                    "superpowers@claude-plugins-official" = true;
+                };
+                effortLevel = "high";
+                skipDangerousModePermissionPrompt = true;
+
+                # Remove "Co-Authored by" watermark in commit messages
+                attribution.commit = "";
             };
         };
         cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
