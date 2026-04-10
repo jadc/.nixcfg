@@ -9,5 +9,5 @@
     programs.nix-ld.enable = true;
 
     # Do not need to update
-    system.stateVersion = "24.05";
+    system.stateVersion = "26.05";
 }
