@@ -12,6 +12,7 @@ in
     config = lib.mkIf self.enable {
         programs.git = {
             enable = true;
+            lfs.enable = true;
 
             ignores = [
                 "**/.DS_Store"
