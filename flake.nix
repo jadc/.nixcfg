@@ -10,10 +10,6 @@
         };
 
         nvim.url = "github:jadc/nvim";
-        neovim-nightly-overlay = {
-            url = "github:nix-community/neovim-nightly-overlay";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     outputs = { self, nixpkgs, home-manager, nvim, ... } @ inputs: let
@@ -27,7 +23,6 @@
                 pkgs = import nixpkgs {
                     system = const.arch;
                     config.allowUnfree = true;
-                    overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
                 };
                 specialArgs.system = const.arch;
 
@@ -61,7 +56,6 @@
                 pkgs = import nixpkgs {
                     inherit system;
                     config.allowUnfree = true;
-                    overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
                 };
                 extraSpecialArgs = { inherit inputs; };
 
