@@ -5,10 +5,10 @@ let
     self = config.cfg.system.${name};
 in
 {
-    options.cfg.system.${name} = with lib; {
-        enable = mkEnableOption name;
-        off = mkOption {
-            type = types.bool;
+    options.cfg.system.${name} = {
+        enable = lib.mkEnableOption name;
+        off = lib.mkOption {
+            type = lib.types.bool;
             default = false;
             description = "Disable all RGB lighting";
         };

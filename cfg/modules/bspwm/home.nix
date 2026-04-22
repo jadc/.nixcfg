@@ -5,8 +5,8 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
 
         monitors = {
             primary = lib.mkOption {

@@ -5,17 +5,17 @@ let
     self = config.cfg.system.${name};
 in
 {
-    options.cfg.system.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.system.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
-        environment.systemPackages = with pkgs; [
-            spice
-            spice-gtk
-            spice-protocol
-            win-spice
-            virtio-win
+        environment.systemPackages = [
+            pkgs.spice
+            pkgs.spice-gtk
+            pkgs.spice-protocol
+            pkgs.win-spice
+            pkgs.virtio-win
         ];
 
         services.spice-vdagentd.enable = true;

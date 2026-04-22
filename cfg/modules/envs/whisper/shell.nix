@@ -1,15 +1,15 @@
 { pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
 
 pkgs.mkShell {
-    buildInputs = with pkgs; [
-        python3
-        (python3.withPackages (ps: with ps; [ torchWithCuda ]))
-        cudaPackages.cudatoolkit
-        cudaPackages.cudnn
-        cudaPackages.cuda_cudart
-        gcc13
+    buildInputs = [
+        pkgs.python3
+        (pkgs.python3.withPackages (ps: [ ps.torchWithCuda ]))
+        pkgs.cudaPackages.cudatoolkit
+        pkgs.cudaPackages.cudnn
+        pkgs.cudaPackages.cuda_cudart
+        pkgs.gcc13
 
-        openai-whisper
+        pkgs.openai-whisper
     ];
 
     shellHook = ''

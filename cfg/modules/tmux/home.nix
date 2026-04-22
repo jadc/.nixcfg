@@ -5,8 +5,8 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
@@ -29,7 +29,7 @@ in
             terminal = "tmux-256color";
 
             # adds bind (y) to copy to system clipboard
-            plugins = with pkgs; [ tmuxPlugins.yank ];
+            plugins = [ pkgs.tmuxPlugins.yank ];
 
             extraConfig = ''
                 # split panes using | and -, in the current path
