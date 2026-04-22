@@ -3,15 +3,15 @@
 let
     name = "minecraft";
     self = config.cfg.user.${name};
-    alternative = with pkgs; [ jdk8 jdk17 ];
+    alternative = [ pkgs.jdk8 pkgs.jdk17 ];
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
-        home.packages = with pkgs; [ prismlauncher ];
+        home.packages = [ pkgs.prismlauncher ];
 
         # Java
         programs.java = {

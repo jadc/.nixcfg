@@ -5,8 +5,8 @@ let
     self = config.cfg.system.${name};
 in
 {
-    options.cfg.system.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.system.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
@@ -17,7 +17,7 @@ in
         services.usbmuxd.enable = true;
 
         # Create virtual camera
-        boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+        boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
         boot.kernelModules = ["v4l2loopback"];
 
         boot.extraModprobeConfig = ''

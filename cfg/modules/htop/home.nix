@@ -5,12 +5,12 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
         programs.htop.enable = true;
-        home.packages = with pkgs; [ killall ];
+        home.packages = [ pkgs.killall ];
     };
 }

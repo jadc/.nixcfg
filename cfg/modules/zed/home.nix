@@ -5,10 +5,10 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
-        server = mkOption {
-            type = types.bool;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
+        server = lib.mkOption {
+            type = lib.types.bool;
             default = true;
         };
     };
@@ -134,7 +134,7 @@ in
             installRemoteServer = self.server;
 
             # Appears only nil cannot be installed by Zed itself
-            extraPackages = with pkgs; [ nil ];
+            extraPackages = [ pkgs.nil ];
         };
     };
 }

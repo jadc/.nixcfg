@@ -3,7 +3,7 @@
 {
     options.gnome.extensions.just-perfection.enable = lib.mkEnableOption {};
     config = lib.mkIf config.gnome.extensions.just-perfection.enable {
-        home.packages = with pkgs; [ gnomeExtensions.just-perfection ];
+        home.packages = [ pkgs.gnomeExtensions.just-perfection ];
         dconf = {
             enable = true;
             settings = {
