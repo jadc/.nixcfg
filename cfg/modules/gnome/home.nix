@@ -19,18 +19,22 @@ in
         # GNOME Configuration
         dconf.enable = true;
         dconf.settings = {
-            # Enable dark theme
             "org/gnome/desktop/interface" = {
+                # Dark theme
                 color-scheme = "prefer-dark";
                 accent-color = "slate";
-            };
 
-            # Custom 12 hour clock
-            "org/gnome/desktop/interface" = {
+                # 12 hour clock
                 clock-format = "12h";
                 clock-show-weekday = false;
                 clock-show-date = false;
                 clock-show-seconds = true;
+
+                # Text scaling
+                text-scaling-factor = 0.85;
+
+                # Show battery percentage
+                show-battery-percentage = true;
             };
             "org/gtk/settings/file-chooser".clock-format = "12h";
 
@@ -48,14 +52,6 @@ in
             # Enable Night Shift
             "org/gnome/settings-daemon/plugins/color" = {
                 night-light-schedule-automatic = true;
-            };
-
-            "org/gnome/desktop/interface" = {
-                # Text scaling
-                text-scaling-factor = 0.85;
-
-                # Show battery percentage
-                show-battery-percentage = true;
             };
 
             "org/gnome/settings-daemon/plugins/power" = {
