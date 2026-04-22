@@ -24,7 +24,6 @@
                     system = const.arch;
                     config.allowUnfree = true;
                 };
-                specialArgs.system = const.arch;
 
                 modules = [
                     (profile + "/hardware-configuration.nix")

@@ -5,8 +5,8 @@ let
     self = config.cfg.system.${name};
 in
 {
-    options.cfg.system.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.system.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
@@ -22,28 +22,28 @@ in
             autoSuspend = false;
         };
 
-        environment.defaultPackages = with pkgs; [
-            gnome-tweaks
-            xdg-desktop-portal
-            xdg-desktop-portal-gnome
+        environment.defaultPackages = [
+            pkgs.gnome-tweaks
+            pkgs.xdg-desktop-portal
+            pkgs.xdg-desktop-portal-gnome
         ];
 
-        environment.gnome.excludePackages = (with pkgs; [
-            atomix            # puzzle game
-            cheese            # webcam tool
-            epiphany          # web browser
-            evince            # document viewer
-            geary             # email reader
-            gedit             # text editor
-            gnome-characters
-            gnome-music
-            gnome-photos
-            gnome-terminal
-            gnome-tour
-            hitori            # sudoku game
-            iagno             # go game
-            tali              # poker game
-            totem             # video player
-        ]);
+        environment.gnome.excludePackages = [
+            pkgs.atomix            # puzzle game
+            pkgs.cheese            # webcam tool
+            pkgs.epiphany          # web browser
+            pkgs.evince            # document viewer
+            pkgs.geary             # email reader
+            pkgs.gedit             # text editor
+            pkgs.gnome-characters
+            pkgs.gnome-music
+            pkgs.gnome-photos
+            pkgs.gnome-terminal
+            pkgs.gnome-tour
+            pkgs.hitori            # sudoku game
+            pkgs.iagno             # go game
+            pkgs.tali              # poker game
+            pkgs.totem             # video player
+        ];
     };
 }

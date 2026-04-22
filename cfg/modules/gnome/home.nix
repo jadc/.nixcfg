@@ -5,9 +5,9 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        monitors = mkOption {
-            type = types.nullOr types.path;
+    options.cfg.user.${name} = {
+        monitors = lib.mkOption {
+            type = lib.types.nullOr lib.types.path;
             default = null;
             description = "Path to monitors.xml file for GNOME display configuration";
         };

@@ -5,10 +5,10 @@ let
     self = config.cfg.user.${name};
 in
 {
-    options.cfg.user.${name} = with lib; {
-        enable = mkEnableOption name;
-        fontSize = mkOption {
-            type = types.int;
+    options.cfg.user.${name} = {
+        enable = lib.mkEnableOption name;
+        fontSize = lib.mkOption {
+            type = lib.types.int;
             default = 12;
         };
     };

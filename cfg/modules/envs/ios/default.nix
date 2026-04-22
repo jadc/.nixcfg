@@ -1,9 +1,9 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
-    buildInputs = with pkgs; [
-        libimobiledevice
-        ifuse
-        usbmuxd
+    buildInputs = [
+        pkgs.libimobiledevice
+        pkgs.ifuse
+        pkgs.usbmuxd
     ];
 }

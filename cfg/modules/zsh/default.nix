@@ -6,7 +6,7 @@
 
     # Set default shell to zsh for all users
     programs.zsh.enable = true;
-    environment.shells = with pkgs; [ zsh ];
+    environment.shells = [ pkgs.zsh ];
     users.defaultUserShell = pkgs.zsh;
 
     # Paths to link

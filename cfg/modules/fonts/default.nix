@@ -5,25 +5,25 @@ let
     self = config.cfg.system.${name};
 in
 {
-    options.cfg.system.${name} = with lib; {
-        enable = mkEnableOption name;
+    options.cfg.system.${name} = {
+        enable = lib.mkEnableOption name;
     };
 
     config = lib.mkIf self.enable {
         fonts = {
-            packages = with pkgs; [
-                jetbrains-mono
-                nerd-fonts.jetbrains-mono
-                noto-fonts
-                open-sans
-                twemoji-color-font
+            packages = [
+                pkgs.jetbrains-mono
+                pkgs.nerd-fonts.jetbrains-mono
+                pkgs.noto-fonts
+                pkgs.open-sans
+                pkgs.twemoji-color-font
 
                 # Default fonts
-                dejavu_fonts
-                freefont_ttf
-                gyre-fonts   # TrueType substitutes for standard PostScript fonts
-                liberation_ttf
-                unifont
+                pkgs.dejavu_fonts
+                pkgs.freefont_ttf
+                pkgs.gyre-fonts   # TrueType substitutes for standard PostScript fonts
+                pkgs.liberation_ttf
+                pkgs.unifont
             ];
 
             fontconfig = {
