@@ -1,0 +1,18 @@
+{
+    cfg = {
+        archivers.enable = true;
+        bat.enable = true;
+        claude-code.enable = true;
+        direnv.enable = true;
+        envs.enable = true;
+        eza.enable = true;
+        fzf.enable = true;
+        gdb.enable = true;
+        git.enable = true;
+        htop.enable = true;
+        hyperfine.enable = true;
+        ripgrep.enable = true;
+        tmux.enable = true;
+        zoxide.enable = true;
+    };
+}
