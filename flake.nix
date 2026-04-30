@@ -13,37 +13,30 @@
     };
 
     outputs = { self, nixpkgs, home-manager, nvim, ... } @ inputs: let
-        # Given a profile string, creates a NixOS system
+        username = "jad";
+
+        # Given a profile string, creates a NixOS system with it as hostname
         toNixOS = name: let
             profile = ./profiles/${name};
-            const = ( import (profile + "/const.nix") ).cfg.const;
         in {
-            name = const.profile;
+            inherit name;
             value = nixpkgs.lib.nixosSystem {
-                pkgs = import nixpkgs {
-                    system = const.arch;
-                    config.allowUnfree = true;
-                };
-
+                specialArgs = { inherit inputs username; };
                 modules = [
+                    { networking.hostName = name; }
+                    ./modules
                     (profile + "/hardware-configuration.nix")
+                    (profile + "/profile.nix")
 
-                    ./cfg/const
-                    (profile + "/const.nix")
-                    ./cfg/modules
-                    (profile + "/configuration.nix")
-
-                    # User-level configuration
                     home-manager.nixosModules.home-manager {
-                        home-manager.extraSpecialArgs = { inherit inputs; };
+                        home-manager.extraSpecialArgs = { inherit inputs username; };
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.sharedModules = [
-                            ./cfg/const
-                            (profile + "/const.nix")
+                            ./modules/home.nix
                             nvim.homeManagerModules.default
                         ];
-                        home-manager.users.${const.username} = import (profile + "/home.nix");
+                        home-manager.users.${username} = import (profile + "/profile.nix");
                     }
                 ];
             };
@@ -56,13 +49,11 @@
                     inherit system;
                     config.allowUnfree = true;
                 };
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = { inherit inputs username; };
 
                 modules = [
-                    ./cfg/const
-                    ./profiles/home/const.nix
-                    ./cfg/modules/home.nix
-                    ./profiles/home/home.nix
+                    ./modules/home.nix
+                    ./profiles/home/profile.nix
                     nvim.homeManagerModules.default
                 ];
             };
@@ -70,7 +61,7 @@
     in {
         # NixOS machines
         nixosConfigurations = let
-            profiles = [ "main" "laptop" ];
+            profiles = [ "jad-desktop" "jad-laptop" ];
         in builtins.listToAttrs (map toNixOS profiles);
 
         # Non-NixOS machines
