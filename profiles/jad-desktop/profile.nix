@@ -20,6 +20,11 @@
         # System
         autologin.enable = true;
         automount.enable = true;
+        homeMounts = {
+            enable = true;
+            source = "/data";
+            dirs = [ "Documents" "Music" "Pictures" "Videos" ];
+        };
         fonts.enable = true;
         keyd.enable = true;
         libinput.enable = true;

@@ -10,18 +10,15 @@ in
     config = lib.mkIf self.enable {
         xdg = {
             enable = true;
-            userDirs = let
-                home = config.home.homeDirectory;
-            in {
+            userDirs = {
                 enable = true;
                 createDirectories = true;
 
-                download = "${home}/downloads";
-                desktop = config.xdg.userDirs.download;
-                documents = "${home}/docs";
-                music = "${home}/music";
-                pictures = "${home}/pics";
-                videos = "${home}/videos";
+                # Disable undesired directories
+                desktop = null;
+                projects = null;
+                publicShare = null;
+                templates = null;
             };
         };
     };
