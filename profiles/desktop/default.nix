@@ -141,8 +141,7 @@ in
                         useUserPackages = true;
                         sharedModules =
                             (lib.attrValues top.config.flake.modules.generic)
-                            ++ (lib.attrValues top.config.flake.modules.homeManager)
-                            ++ [ inputs.nvim.homeManagerModules.default ];
+                            ++ (lib.attrValues top.config.flake.modules.homeManager);
                         users.${username} = profile;
                     };
                 }
