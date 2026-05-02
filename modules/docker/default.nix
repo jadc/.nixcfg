@@ -1,17 +1,22 @@
-{ config, lib, username, ... }:
+{ ... }:
 
 let
-    name = "docker";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        # Enable docker
-        virtualisation.docker.enable = true;
+    flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            # Enable docker
+            virtualisation.docker.enable = true;
 
-        # Add user to docker group
-        users.users.${username}.extraGroups = [ "docker" ];
+            # Add user to docker group
+            users.users.${username}.extraGroups = [ "docker" ];
+        };
     };
 }

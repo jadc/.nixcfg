@@ -1,22 +1,41 @@
-{ config, lib, username, ... }:
+{ ... }:
 
 let
-    name = "homeMounts";
-    self = config.cfg.${name};
-
-    home = "/home/${username}";
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
 
-    config = lib.mkIf self.enable {
-        fileSystems = lib.listToAttrs (map (n: {
-            name = "${home}/${n}";
-            value = {
-                device = "${self.source}/${n}";
-                fsType = "none";
-                options = [ "bind" ];
+            source = lib.mkOption {
+                type = lib.types.str;
+                default = "/data";
+                description = "Directory whose entries will be bind-mounted into the user's home.";
             };
-        }) self.dirs);
+
+            dirs = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = [ ];
+                description = "Names under `source` to bind-mount into ~ with the same name.";
+            };
+        };
+    };
+
+    flake.modules.nixos.${name} = { config, lib, username, ... }:
+    let
+        self = config.cfg.${name};
+        home = "/home/${username}";
+    in {
+        config = lib.mkIf self.enable {
+            fileSystems = lib.listToAttrs (map (n: {
+                name = "${home}/${n}";
+                value = {
+                    device = "${self.source}/${n}";
+                    fsType = "none";
+                    options = [ "bind" ];
+                };
+            }) self.dirs);
+        };
     };
 }

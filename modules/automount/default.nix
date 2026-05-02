@@ -1,15 +1,20 @@
-{ config, lib, ... }:
+{ ... }:
 
 let
-    name = "automount";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        services.devmon.enable = true;
-        services.gvfs.enable = true;
-        services.udisks2.enable = true;
+    flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            services.devmon.enable = true;
+            services.gvfs.enable = true;
+            services.udisks2.enable = true;
+        };
     };
 }

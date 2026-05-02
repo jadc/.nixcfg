@@ -1,18 +1,23 @@
-{ config, lib, ... }:
+{ ... }:
 
 let
-    name = "sunshine";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        services.sunshine = {
-            enable = true;
-            autoStart = true;
-            capSysAdmin = true;
-            openFirewall = true;
+    flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            services.sunshine = {
+                enable = true;
+                autoStart = true;
+                capSysAdmin = true;
+                openFirewall = true;
+            };
         };
     };
 }
