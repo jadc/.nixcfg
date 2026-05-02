@@ -16,7 +16,7 @@ in
             networking.networkmanager.enable = true;
 
             # Disable weird service that fails
-            systemd.services.NetworkManager-wait-online.enable = false;
+            systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
             # Add user to networkmanager group
             users.users.${username}.extraGroups = [ "networkmanager" ];
