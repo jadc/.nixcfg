@@ -19,6 +19,8 @@ in
                 # Replace cd with zoxide
                 options = [ "--cmd cd" ];
             };
+
+            cfg.impermanence.home.dirs = [ ".local/share/zoxide" ];
         };
     };
 }
