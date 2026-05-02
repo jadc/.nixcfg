@@ -51,6 +51,8 @@ in
                 pkgs.totem             # video player
             ];
 
+            services.gnome.localsearch.enable = false;
+
             cfg.impermanence.root.dirs = [ "/var/lib/AccountsService" ];
         };
     };
