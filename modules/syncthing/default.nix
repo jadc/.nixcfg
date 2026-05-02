@@ -18,6 +18,14 @@ in
                 user = username;
                 group = "wheel";
             };
+
+            # Device identity, certs, and DB
+            cfg.impermanence.root.dirs = [{
+                directory = "/var/lib/syncthing";
+                user = username;
+                group = "wheel";
+                mode = "0700";
+            }];
         };
     };
 }

@@ -20,6 +20,8 @@ in
 
             # Add user to networkmanager group
             users.users.${username}.extraGroups = [ "networkmanager" ];
+
+            cfg.impermanence.root.dirs = [ "/etc/NetworkManager/system-connections" ];
         };
     };
 }

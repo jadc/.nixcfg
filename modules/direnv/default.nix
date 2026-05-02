@@ -18,6 +18,8 @@ in
                 enableZshIntegration = true;
                 nix-direnv.enable = true;
             };
+
+            cfg.impermanence.home.dirs = [ ".local/share/direnv" ];
         };
     };
 }

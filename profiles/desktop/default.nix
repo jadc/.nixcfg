@@ -22,6 +22,7 @@ let
             systemd-boot.enable = true;
 
             # System
+            identity.passwordFile = "/persist/password";
             autologin.enable = true;
             automount.enable = true;
             homeMounts = {
@@ -29,12 +30,19 @@ let
                 source = "/data";
                 dirs = [ "Documents" "Music" "Pictures" "Videos" ];
             };
+            impermanence = {
+                enable = true;
+                home.dirs = [ "Downloads" ];
+            };
             fonts.enable = true;
             keyd.enable = true;
             libinput.enable = true;
             sound.enable = true;
             ssh.enable = true;
-            swapfile.enable = true;
+            swapfile = {
+                enable = true;
+                size = 16*1024;
+            };
             timezone.enable = true;
             trim.enable = true;
 

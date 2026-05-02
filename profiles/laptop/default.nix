@@ -23,16 +23,24 @@ let
             systemd-boot.enable = true;
 
             # System
+            identity.passwordFile = "/persist/password";
             autologin.enable = true;
             automount.enable = true;
             bluetooth.enable = true;
+            impermanence = {
+                enable = true;
+                home.dirs = [ "Documents" "Downloads" "Music" "Pictures" "Videos" ];
+            };
             fonts.enable = true;
             hp.enable = true;
             keyd.enable = true;
             libinput.enable = true;
             networkmanager.enable = true;
             sound.enable = true;
-            swapfile.enable = true;
+            swapfile = {
+                enable = true;
+                size = 4*1024;
+            };
             timezone.enable = true;
             trim.enable = true;
             wireguard = {

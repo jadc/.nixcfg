@@ -18,6 +18,8 @@ in
                 capSysAdmin = true;
                 openFirewall = true;
             };
+
+            cfg.impermanence.root.dirs = [ "/var/lib/sunshine" ];
         };
     };
 }

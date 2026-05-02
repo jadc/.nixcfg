@@ -19,6 +19,8 @@ in
                     "--disable-features=WebRtcAllowInputVolumeAdjustment"
                 ];
             };
+
+            cfg.impermanence.home.dirs = [ ".config/BraveSoftware" ];
         };
     };
 }
