@@ -1,18 +1,23 @@
-{ config, lib, ... }:
+{ ... }:
 
 let
-    name = "systemd-boot";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        boot.loader = {
-            systemd-boot.enable = true;
-            systemd-boot.configurationLimit = 5;
-            efi.canTouchEfiVariables = true;
-            timeout = 0;
+    flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            boot.loader = {
+                systemd-boot.enable = true;
+                systemd-boot.configurationLimit = 5;
+                efi.canTouchEfiVariables = true;
+                timeout = 0;
+            };
         };
     };
 }

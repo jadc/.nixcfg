@@ -1,47 +1,52 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 let
-    name = "filebrowser";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
-
-    config = lib.mkIf self.enable {
-        environment.systemPackages = [ pkgs.filebrowser ];
-
-        # Create user and group for file browser to operate as
-        users.groups.filebrowser = {};
-        users.users.filebrowser = {
-            isSystemUser = true;
-            group = "filebrowser";
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
         };
+    };
 
-        # Create temporary directories for file browser temp files
-        systemd.tmpfiles.rules = [
-            "d /var/lib/filebrowser 0770 filebrowser filebrowser"
-            "d /var/cache/filebrowser/storage 0770 filebrowser filebrowser"
-        ];
+    flake.modules.nixos.${name} = { config, lib, pkgs, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            environment.systemPackages = [ pkgs.filebrowser ];
 
-        # Create systemd service to run filebrowser on boot
-        systemd.services.filebrowser = {
-            after = [ "network.target" ];
-            wantedBy = [ "multi-user.target" ];
-            serviceConfig = {
-                Type = "simple";
-                User = "filebrowser";
-                Restart = "on-failure";
-                ExecStart = ''${pkgs.filebrowser}/bin/filebrowser \
-                    --port 8888 \
-                    --database /var/lib/filebrowser/filebrowser.db \
-                    --cache-dir /var/cache/filebrowser \
-                    --root /data \
-                    --disable-exec
-                '';
+            # Create user and group for file browser to operate as
+            users.groups.filebrowser = {};
+            users.users.filebrowser = {
+                isSystemUser = true;
+                group = "filebrowser";
             };
-        };
 
-        # Open filewall port for web ui
-        networking.firewall.allowedTCPPorts = [ 8888 ];
+            # Create temporary directories for file browser temp files
+            systemd.tmpfiles.rules = [
+                "d /var/lib/filebrowser 0770 filebrowser filebrowser"
+                "d /var/cache/filebrowser/storage 0770 filebrowser filebrowser"
+            ];
+
+            # Create systemd service to run filebrowser on boot
+            systemd.services.filebrowser = {
+                after = [ "network.target" ];
+                wantedBy = [ "multi-user.target" ];
+                serviceConfig = {
+                    Type = "simple";
+                    User = "filebrowser";
+                    Restart = "on-failure";
+                    ExecStart = ''${pkgs.filebrowser}/bin/filebrowser \
+                        --port 8888 \
+                        --database /var/lib/filebrowser/filebrowser.db \
+                        --cache-dir /var/cache/filebrowser \
+                        --root /data \
+                        --disable-exec
+                    '';
+                };
+            };
+
+            # Open filewall port for web ui
+            networking.firewall.allowedTCPPorts = [ 8888 ];
+        };
     };
 }

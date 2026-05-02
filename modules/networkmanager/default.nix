@@ -1,20 +1,25 @@
-{ config, lib, username, ... }:
+{ ... }:
 
 let
-    name = "networkmanager";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        # Enable networking
-        networking.networkmanager.enable = true;
+    flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            # Enable networking
+            networking.networkmanager.enable = true;
 
-        # Disable weird service that fails
-        systemd.services.NetworkManager-wait-online.enable = false;
+            # Disable weird service that fails
+            systemd.services.NetworkManager-wait-online.enable = false;
 
-        # Add user to networkmanager group
-        users.users.${username}.extraGroups = [ "networkmanager" ];
+            # Add user to networkmanager group
+            users.users.${username}.extraGroups = [ "networkmanager" ];
+        };
     };
 }
