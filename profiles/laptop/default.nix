@@ -41,7 +41,6 @@ let
                 enable = true;
                 size = 4*1024;
             };
-            timezone.enable = true;
             trim.enable = true;
             wireguard = {
                 enable = true;

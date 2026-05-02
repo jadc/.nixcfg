@@ -43,7 +43,7 @@ let
                 enable = true;
                 size = 16*1024;
             };
-            timezone.enable = true;
+            timeZone = "America/Edmonton";
             trim.enable = true;
 
             # Requires superuser
