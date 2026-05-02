@@ -65,11 +65,7 @@ in
     flake.modules.homeManager.${name} = { config, options, lib, ... }: let self = config.cfg.${name}; in {
         # Only declare if home.persistence is declared, which impermanence does automatically
         config = lib.optionalAttrs (options ? home.persistence) {
-            cfg.${name}.home.dirs = [
-                ".nixcfg"
-                ".local/share/nvim"
-                ".local/state/nvim"
-            ];
+            cfg.${name}.home.dirs = [ ".nixcfg" ];
 
             home.persistence."/persist" = lib.mkIf self.enable {
                 directories = lib.unique self.home.dirs;

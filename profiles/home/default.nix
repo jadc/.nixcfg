@@ -34,10 +34,7 @@ let
             modules =
                 (lib.attrValues top.config.flake.modules.generic)
                 ++ (lib.attrValues top.config.flake.modules.homeManager)
-                ++ [
-                    inputs.nvim.homeManagerModules.default
-                    profile
-                ];
+                ++ [ profile ];
         };
     };
 in
