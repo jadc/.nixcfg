@@ -15,6 +15,8 @@ in
             home.packages = [ pkgs.vesktop ];
 
             xdg.configFile."vesktop/settings/settings.json".source = ./settings.json;
+
+            cfg.impermanence.home.dirs = [ ".config/vesktop" ];
         };
     };
 }

@@ -14,6 +14,8 @@ in
     flake.modules.homeManager.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             programs.obs-studio.enable = true;
+
+            cfg.impermanence.home.dirs = [ ".config/obs-studio" ];
         };
     };
 }

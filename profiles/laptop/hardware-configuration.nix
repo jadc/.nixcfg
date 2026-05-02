@@ -14,8 +14,22 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=2G" "mode=755" ];
+    };
+
+  fileSystems."/persist" =
     { device = "/dev/disk/by-uuid/70100708-3d7f-411d-998b-a7fd7d2a1147";
       fsType = "xfs";
+      neededForBoot = true;
+    };
+
+  fileSystems."/nix" =
+    { device = "/persist/nix";
+      fsType = "none";
+      options = [ "bind" ];
+      neededForBoot = true;
     };
 
   fileSystems."/boot" =

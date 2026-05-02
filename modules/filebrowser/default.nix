@@ -47,6 +47,8 @@ in
 
             # Open filewall port for web ui
             networking.firewall.allowedTCPPorts = [ 8888 ];
+
+            cfg.impermanence.root.dirs = [ "/var/lib/filebrowser" ];
         };
     };
 }

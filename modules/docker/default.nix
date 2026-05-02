@@ -17,6 +17,8 @@ in
 
             # Add user to docker group
             users.users.${username}.extraGroups = [ "docker" ];
+
+            cfg.impermanence.root.dirs = [ "/var/lib/docker" ];
         };
     };
 }
