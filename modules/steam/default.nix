@@ -1,21 +1,26 @@
-{ config, lib, username, ... }:
+{ ... }:
 
 let
-    name = "steam";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
-
-    config = lib.mkIf self.enable {
-        programs.steam.enable = true;
-
-        programs.gamemode = {
-            enable = true;
-            settings = {
-                general.inhibit_screensaver = 0;
-            };
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
         };
-        users.users.${username}.extraGroups = [ "gamemode" ];
+    };
+
+    flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            programs.steam.enable = true;
+
+            programs.gamemode = {
+                enable = true;
+                settings = {
+                    general.inhibit_screensaver = 0;
+                };
+            };
+            users.users.${username}.extraGroups = [ "gamemode" ];
+        };
     };
 }

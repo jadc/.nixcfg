@@ -1,23 +1,28 @@
-{ config, lib, username, ... }:
+{ ... }:
 
 let
-    name = "sound";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
-
-    config = lib.mkIf self.enable {
-        security.rtkit.enable = true;
-        services.pipewire = {
-            enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
-            jack.enable = true;
-            pulse.enable = true;
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
         };
+    };
 
-        # Add user to audio group
-        users.users.${username}.extraGroups = [ "audio" ];
+    flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            security.rtkit.enable = true;
+            services.pipewire = {
+                enable = true;
+                alsa.enable = true;
+                alsa.support32Bit = true;
+                jack.enable = true;
+                pulse.enable = true;
+            };
+
+            # Add user to audio group
+            users.users.${username}.extraGroups = [ "audio" ];
+        };
     };
 }

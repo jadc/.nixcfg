@@ -1,116 +1,162 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 let
-    name = "kernel";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, pkgs, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
 
-    config = lib.mkIf self.enable {
-        hardware.enableAllFirmware = true;
-        hardware.enableRedistributableFirmware = true;
+            build = lib.mkOption {
+                type = lib.types.raw;
+                default = pkgs.linuxPackages_latest;
+            };
 
-        boot = {
-            kernelPackages = self.build;
+            flags = {
+                quiet = lib.mkOption {
+                    type = lib.types.bool;
+                    default = false;
+                };
 
-            # Load GPU kernel modules early in boot process
-            initrd.kernelModules =
-                lib.optionals (self.flags.vfio != []) [
-                    "vfio_pci"
-                    "vfio"
-                    "vfio_iommu_type1"
-                ] ++ lib.optionals self.flags.intel [
-                    "xe"             # Intel Xe graphics driver
-                ] ++ lib.optionals self.flags.nvidia [
-                    "nvidia"         # NVIDIA proprietary driver
-                    "nvidia_drm"     # NVIDIA DRM kernel module
-                    "nvidia_modeset" # NVIDIA modesetting module
-                ];
+                performance = lib.mkOption {
+                    type = lib.types.bool;
+                    default = false;
+                };
 
-            # Blacklist GPU drivers when their respective flags are disabled
-            blacklistedKernelModules =
-                lib.optionals (!self.flags.intel) [
-                    "xe"             # Intel Xe graphics driver
-                ] ++ lib.optionals (!self.flags.nvidia) [
-                    "nouveau"        # Open-source NVIDIA driver
-                    "nvidia"         # Proprietary NVIDIA driver
-                    "nvidia_drm"     # NVIDIA DRM kernel module
-                    "nvidia_modeset" # NVIDIA modesetting module
-                    "nvidia_uvm"     # NVIDIA Unified Memory module
-                ];
+                vfio = lib.mkOption {
+                    type = lib.types.listOf lib.types.str;
+                    default = [];
+                    description = "Enable VFIO kernel modules and specify PCI device IDs to passthrough";
+                };
 
-            kernelParams =
-                lib.optionals self.flags.quiet [
-                    # Report Linux to ACPI for better hardware compatibility
-                    "acpi_osi=Linux"
-                    # Only show errors and critical messages in kernel log
-                    "loglevel=3"
-                    # Suppress most boot messages
-                    "quiet"
-                    # Only show systemd status if boot takes too long
-                    "rd.systemd.show_status=auto"
-                    # Reduce udev logging to errors only
-                    "rd.udev.log_level=3"
-                ] ++ lib.optionals self.flags.performance [
-                    # Disable hardware watchdog timer to save CPU cycles
-                    "nowatchdog"
-                    # Disable machine check exception logging for performance
-                    "nomce"
-                    # Disable CPU vulnerability mitigations for maximum speed
-                    "mitigations=off"
-                    # Trust CPU's random number generator to speed up entropy gathering
-                    "random.trust_cpu=on"
-                    # Skip filesystem checks at boot
-                    "fsck.mode=skip"
-                    # Disable staggered spin-up for SATA drives (faster boot)
-                    "libahci.ignore_sss=1"
-                    # Disable audit subsystem to reduce overhead
-                    "audit=0"
-                    # Disable transparent hugepages defrag to reduce latency spikes
-                    "transparent_hugepage=madvise"
-                    # Disable NUMA balancing for better performance on single-node systems
-                    "numa_balancing=disable"
-                ] ++ lib.optionals (self.flags.vfio != []) [
-                    # Specify PCI device IDs for VFIO passthrough
-                    "vfio-pci.ids=${lib.concatStringsSep "," self.flags.vfio}"
-                ] ++ lib.optionals self.flags.intel [
-                    # Enable IOMMU functionality
-                    "intel_iommu=on"
-                    "iommu=pt"
-                ] ++ lib.optionals (!self.flags.nvidia) [
-                    # Disable NVIDIA GPU
-                    "nouveau.modeset=0"
-                ];
+                intel = lib.mkOption {
+                    type = lib.types.bool;
+                    default = false;
+                };
 
+                nvidia = lib.mkOption {
+                    type = lib.types.bool;
+                    default = false;
+                };
+            };
         };
+    };
 
-        services.xserver.videoDrivers = lib.mkIf self.flags.intel [ "modesetting" ];
+    flake.modules.nixos.${name} = { config, pkgs, lib, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            hardware.enableAllFirmware = true;
+            hardware.enableRedistributableFirmware = true;
 
-        hardware.graphics = lib.mkIf self.flags.intel {
-            enable = true;
-            enable32Bit = true;
-            extraPackages = [
-                # Required for modern Intel GPUs (Xe iGPU and ARC)
-                pkgs.intel-media-driver            # VA-API (iHD) userspace
-                pkgs.vpl-gpu-rt                    # oneVPL (QSV) runtime
-                pkgs.intel-compute-runtime         # OpenCL (NEO) + Level Zero for Arc/Xe
-            ];
-        };
+            boot = {
+                kernelPackages = self.build;
 
-        # System-wide environment variables for Intel hardware acceleration
-        environment.sessionVariables = lib.mkIf self.flags.intel {
-            LIBVA_DRIVER_NAME = "iHD";     # Prefer the modern iHD backend
-        };
+                # Load GPU kernel modules early in boot process
+                initrd.kernelModules =
+                    lib.optionals (self.flags.vfio != []) [
+                        "vfio_pci"
+                        "vfio"
+                        "vfio_iommu_type1"
+                    ] ++ lib.optionals self.flags.intel [
+                        "xe"             # Intel Xe graphics driver
+                    ] ++ lib.optionals self.flags.nvidia [
+                        "nvidia"         # NVIDIA proprietary driver
+                        "nvidia_drm"     # NVIDIA DRM kernel module
+                        "nvidia_modeset" # NVIDIA modesetting module
+                    ];
 
-        hardware.nvidia = lib.mkIf self.flags.nvidia {
-            modesetting.enable = true;
+                # Blacklist GPU drivers when their respective flags are disabled
+                blacklistedKernelModules =
+                    lib.optionals (!self.flags.intel) [
+                        "xe"             # Intel Xe graphics driver
+                    ] ++ lib.optionals (!self.flags.nvidia) [
+                        "nouveau"        # Open-source NVIDIA driver
+                        "nvidia"         # Proprietary NVIDIA driver
+                        "nvidia_drm"     # NVIDIA DRM kernel module
+                        "nvidia_modeset" # NVIDIA modesetting module
+                        "nvidia_uvm"     # NVIDIA Unified Memory module
+                    ];
 
-            # Use open drivers (for modern cards)
-            open = true;
+                kernelParams =
+                    lib.optionals self.flags.quiet [
+                        # Report Linux to ACPI for better hardware compatibility
+                        "acpi_osi=Linux"
+                        # Only show errors and critical messages in kernel log
+                        "loglevel=3"
+                        # Suppress most boot messages
+                        "quiet"
+                        # Only show systemd status if boot takes too long
+                        "rd.systemd.show_status=auto"
+                        # Reduce udev logging to errors only
+                        "rd.udev.log_level=3"
+                    ] ++ lib.optionals self.flags.performance [
+                        # Disable hardware watchdog timer to save CPU cycles
+                        "nowatchdog"
+                        # Disable machine check exception logging for performance
+                        "nomce"
+                        # Disable CPU vulnerability mitigations for maximum speed
+                        "mitigations=off"
+                        # Trust CPU's random number generator to speed up entropy gathering
+                        "random.trust_cpu=on"
+                        # Skip filesystem checks at boot
+                        "fsck.mode=skip"
+                        # Disable staggered spin-up for SATA drives (faster boot)
+                        "libahci.ignore_sss=1"
+                        # Disable audit subsystem to reduce overhead
+                        "audit=0"
+                        # Disable transparent hugepages defrag to reduce latency spikes
+                        "transparent_hugepage=madvise"
+                        # Disable NUMA balancing for better performance on single-node systems
+                        "numa_balancing=disable"
+                    ] ++ lib.optionals (self.flags.vfio != []) [
+                        # Specify PCI device IDs for VFIO passthrough
+                        "vfio-pci.ids=${lib.concatStringsSep "," self.flags.vfio}"
+                    ] ++ lib.optionals self.flags.intel [
+                        # Enable IOMMU functionality
+                        "intel_iommu=on"
+                        "iommu=pt"
+                    ] ++ lib.optionals self.flags.nvidia [
+                        # Enable kernel modesetting for NVIDIA driver
+                        "nvidia-drm.modeset=1"
+                    ] ++ lib.optionals (!self.flags.nvidia) [
+                        # Disable NVIDIA GPU
+                        "nouveau.modeset=0"
+                    ];
 
-            # Use beta channel
-            package = config.boot.kernelPackages.nvidiaPackages.beta;
+            };
+
+            services.xserver.videoDrivers =
+                lib.optionals self.flags.intel [ "modesetting" ]
+                ++ lib.optionals self.flags.nvidia [ "nvidia" ];
+
+            hardware.graphics = {
+                enable = true;
+                enable32Bit = true;
+                extraPackages = lib.optionals self.flags.intel [
+                    # Required for modern Intel GPUs (Xe iGPU and ARC)
+                    pkgs.intel-media-driver            # VA-API (iHD) userspace
+                    pkgs.vpl-gpu-rt                    # oneVPL (QSV) runtime
+                    pkgs.intel-compute-runtime         # OpenCL (NEO) + Level Zero for Arc/Xe
+                ];
+            };
+
+            # System-wide environment variables for Intel hardware acceleration
+            environment.sessionVariables = lib.mkIf self.flags.intel {
+                LIBVA_DRIVER_NAME = "iHD";     # Prefer the modern iHD backend
+            };
+
+            hardware.nvidia = lib.mkIf self.flags.nvidia {
+                modesetting.enable = true;
+
+                # Use open drivers (for modern cards)
+                open = true;
+
+                # Enable settings menu (nvidia-settings)
+                nvidiaSettings = true;
+
+                # Use beta channel
+                package = config.boot.kernelPackages.nvidiaPackages.beta;
+            };
         };
     };
 }

@@ -1,13 +1,18 @@
-{ config, lib, ... }:
+{ ... }:
 
 let
-    name = "x2go";
-    self = config.cfg.${name};
+    name = baseNameOf (toString ./.);
 in
 {
-    imports = [ ./options.nix ];
+    flake.modules.generic.${name} = { lib, ... }: {
+        options.cfg.${name} = {
+            enable = lib.mkEnableOption name;
+        };
+    };
 
-    config = lib.mkIf self.enable {
-        services.x2goserver.enable = true;
+    flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
+        config = lib.mkIf self.enable {
+            services.x2goserver.enable = true;
+        };
     };
 }
