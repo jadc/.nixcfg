@@ -18,6 +18,7 @@ in
                     enabledPlugins = {
                         "superpowers@claude-plugins-official" = true;
                     };
+                    model = "claude-opus-4-6[1m]";
                     effortLevel = "high";
                     skipDangerousModePermissionPrompt = true;
 
@@ -27,7 +28,10 @@ in
             };
             cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
 
-            cfg.impermanence.home.dirs = [ ".claude" ];
+            cfg.impermanence.home = {
+                dirs = [ ".claude" ];
+                files = [ ".claude.json" ];
+            };
         };
     };
 }
