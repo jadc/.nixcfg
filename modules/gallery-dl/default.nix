@@ -13,6 +13,9 @@ in
     flake.modules.homeManager.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             programs.gallery-dl.enable = true;
+
+            # Archive db tracking already-downloaded items
+            cfg.impermanence.home.dirs = [ ".local/share/gallery-dl" ];
         };
     };
 }

@@ -32,6 +32,8 @@ in
                 allowedTCPPorts = NFSv3;
                 allowedUDPPorts = NFSv3;
             };
+
+            cfg.impermanence.root.dirs = [ "/var/lib/nfs" ];
         };
     };
 }

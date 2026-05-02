@@ -50,6 +50,8 @@ in
                 pkgs.tali              # poker game
                 pkgs.totem             # video player
             ];
+
+            cfg.impermanence.root.dirs = [ "/var/lib/AccountsService" ];
         };
     };
 
@@ -158,6 +160,9 @@ in
                 source = self.monitors;
                 force = true;
             };
+
+            # Login keyring
+            cfg.impermanence.home.dirs = [ ".local/share/keyrings" ];
         };
     };
 }

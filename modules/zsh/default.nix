@@ -70,6 +70,8 @@ in
                     echo ""
                 '';
             };
+
+            cfg.impermanence.home.files = [ ".config/zsh/.zsh_history" ];
         };
     };
 }

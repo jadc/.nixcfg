@@ -17,6 +17,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        impermanence = {
+            url = "github:nix-community/impermanence";
+        };
+
         nvim = {
             url = "github:jadc/nvim";
         };

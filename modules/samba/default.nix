@@ -50,6 +50,8 @@ in
             # Ensures firewall is open
             networking.firewall.enable = true;
             networking.firewall.allowPing = true;
+
+            cfg.impermanence.root.dirs = [ "/var/lib/samba" ];
         };
     };
 }

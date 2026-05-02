@@ -36,6 +36,11 @@ in
                 _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
                 _JAVA_AWT_WM_NONREPARENTING = 1;
             };
+
+            cfg.impermanence.home.dirs = [
+                ".local/share/PrismLauncher"
+                ".minecraft"
+            ];
         };
     };
 }

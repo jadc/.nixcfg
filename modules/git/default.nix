@@ -51,6 +51,9 @@ in
                 enable = true;
                 enableGitIntegration = true;
             };
+
+            # gh OAuth tokens and config
+            cfg.impermanence.home.dirs = [ ".config/gh" ];
         };
     };
 }

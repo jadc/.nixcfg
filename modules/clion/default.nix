@@ -15,6 +15,12 @@ in
             home.packages = [
                 pkgs.jetbrains.clion
             ];
+
+            cfg.impermanence.home.dirs = [
+                ".config/JetBrains"
+                ".local/share/JetBrains"
+                ".cache/JetBrains"
+            ];
         };
     };
 }

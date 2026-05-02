@@ -138,6 +138,11 @@ in
                 # Appears only nil cannot be installed by Zed itself
                 extraPackages = [ pkgs.nil ];
             };
+
+            cfg.impermanence.home.dirs = [
+                ".local/share/zed"
+                ".config/zed"
+            ];
         };
     };
 }

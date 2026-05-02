@@ -18,6 +18,8 @@ in
 
     flake.modules.nixos.${name} = { config, lib, pkgs, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
+            cfg.impermanence.root.files = map toString (lib.attrValues self.configurations);
+
             # Import WireGuard configs into NetworkManager on boot
             systemd.services.wireguard-nm-import = {
                 description = "Import WireGuard configurations into NetworkManager";
