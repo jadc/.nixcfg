@@ -60,6 +60,7 @@ let
             # Apps
             brave.enable = true;
             deluge.enable = true;
+            handbrake.enable = true;
             kitty = {
                 enable = true;
                 fontSize = 10;
