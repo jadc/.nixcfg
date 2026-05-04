@@ -18,77 +18,63 @@ let
                     quiet = true;
                 };
             };
-
-            # Boot
             systemd-boot.enable = true;
 
-            # System
-            identity.passwordFile = "/persist/password";
+            # Setup
             automount.enable = true;
             bluetooth.enable = true;
+            hp.enable = true;
+            identity.passwordFile = "/persist/password";
             impermanence = {
                 enable = true;
                 home.dirs = [ "Documents" "Downloads" "Music" "Pictures" "Videos" ];
             };
-            fonts.enable = true;
-            hp.enable = true;
-            keyd.enable = true;
-            libinput.enable = true;
             networkmanager.enable = true;
+            qt.enable = true;
             sound.enable = true;
             swapfile = {
                 enable = true;
                 size = 4*1024;
             };
             trim.enable = true;
-            wireguard = {
-                enable = true;
-                configurations.home = "/etc/wireguard/home.conf";
-            };
+            xdg.enable = true;
 
-            # Requires superuser
+            # Apps
+            audacity.enable = true;
+            avidemux.enable = true;
+            brave.enable = true;
+            deluge.enable = true;
             docker.enable = true;
+            gimp.enable = true;
+            handbrake.enable = true;
+            inkscape.enable = true;
+            jellyfin-player.enable = true;
+            kitty.enable = true;
+            minecraft.enable = true;
+            moonlight.enable = true;
+            mpv.enable = true;
+            nautilus.enable = true;
+            niri.enable = true;
             noctalia = {
                 enable = true;
                 wallpaper = ../wallpaper.jpg;
             };
-            niri.enable = true;
-            steam.enable = true;
-            syncthing.enable = true;
-
-            # Setup
-            qt.enable = true;
-            xdg.enable = true;
-
-            # Apps
-            brave.enable = true;
-            deluge.enable = true;
-            handbrake.enable = true;
-            kitty = {
-                enable = true;
-                fontSize = 10;
-            };
-            nautilus.enable = true;
-            minecraft.enable = true;
+            obs.enable = true;
             obsidian.enable = true;
+            puddletag.enable = true;
             qdirstat.enable = true;
             rnote.enable = true;
-            spotify.enable = true;
-            vesktop.enable = true;
-            zathura.enable = true;
-            moonlight.enable = true;
-
-            # Multimedia
-            audacity.enable = true;
-            avidemux.enable = true;
-            gimp.enable = true;
-            inkscape.enable = true;
-            jellyfin-player.enable = true;
-            mpv.enable = true;
-            obs.enable = true;
-            puddletag.enable = true;
             spek.enable = true;
+            spotify.enable = true;
+            steam.enable = true;
+            syncthing.enable = true;
+            wireguard = {
+                enable = true;
+                configurations.home = "/etc/wireguard/home.conf";
+            };
+            vesktop.enable = true;
             virt-manager.enable = true;
+            zathura.enable = true;
 
             # Command-line Interface
             archivers.enable = true;

@@ -17,23 +17,25 @@ let
                     quiet = true;
                 };
             };
-
-            # Boot
             systemd-boot.enable = true;
 
-            # System
-            identity.passwordFile = "/persist/password";
+            # Setup
             automount.enable = true;
             homeMounts = {
                 enable = true;
                 source = "/data";
                 dirs = [ "Documents" "Music" "Pictures" "Videos" ];
             };
+            identity.passwordFile = "/persist/password";
             impermanence = {
                 enable = true;
                 home.dirs = [ "Downloads" ];
             };
-            libinput.enable = true;
+            qt.enable = true;
+            rgb = {
+                enable = true;
+                off = true;
+            };
             sound.enable = true;
             ssh.enable = true;
             swapfile = {
@@ -42,13 +44,24 @@ let
             };
             timeZone = "America/Edmonton";
             trim.enable = true;
+            xdg.enable = true;
 
+            # Apps
+            audacity.enable = true;
+            avidemux.enable = true;
+            brave.enable = true;
+            deluge.enable = true;
             docker.enable = true;
             droidcam.enable = true;
-            noctalia = {
-                enable = true;
-                wallpaper = ../wallpaper.jpg;
-            };
+            gimp.enable = true;
+            handbrake.enable = true;
+            inkscape.enable = true;
+            jellyfin-player.enable = true;
+            kitty.enable = true;
+            minecraft.enable = true;
+            moonlight.enable = true;
+            mpv.enable = true;
+            nautilus.enable = true;
             niri = {
                 enable = true;
 
@@ -66,43 +79,22 @@ let
                     }
                 '';
             };
-            rgb = {
+            noctalia = {
                 enable = true;
-                off = true;
+                wallpaper = ../wallpaper.jpg;
             };
-            steam.enable = true;
-            syncthing.enable = true;
-
-            # Setup
-            qt.enable = true;
-            xdg.enable = true;
-
-            # Apps
-            brave.enable = true;
-            deluge.enable = true;
-            handbrake.enable = true;
-            kitty.enable = true;
-            nautilus.enable = true;
-            minecraft.enable = true;
+            obs.enable = true;
             obsidian.enable = true;
+            puddletag.enable = true;
             qdirstat.enable = true;
             rnote.enable = true;
-            spotify.enable = true;
-            vesktop.enable = true;
-            zathura.enable = true;
-            moonlight.enable = true;
-
-            # Multimedia
-            audacity.enable = true;
-            avidemux.enable = true;
-            gimp.enable = true;
-            inkscape.enable = true;
-            jellyfin-player.enable = true;
-            mpv.enable = true;
-            obs.enable = true;
-            puddletag.enable = true;
             spek.enable = true;
+            spotify.enable = true;
+            steam.enable = true;
+            syncthing.enable = true;
+            vesktop.enable = true;
             virt-manager.enable = true;
+            zathura.enable = true;
 
             # Command-line Interface
             archivers.enable = true;
