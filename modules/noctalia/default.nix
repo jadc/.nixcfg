@@ -23,6 +23,7 @@ in
                 ".cache/noctalia/shell-state.json"
             ];
 
+            # Point wallpaper to path in nix store
             home.file.".cache/noctalia/wallpapers.json" = lib.mkIf (self.wallpaper != null) {
                 text = builtins.toJSON {
                     defaultWallpaper = toString self.wallpaper;
@@ -34,27 +35,26 @@ in
                 package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
                 colors = lib.mkForce {
-                    mPrimary = "#ffffff";
-                    mOnPrimary = "#000000";
-                    mSecondary = "#cccccc";
-                    mOnSecondary = "#000000";
-                    mTertiary = "#999999";
-                    mOnTertiary = "#000000";
-                    mError = "#ffffff";
-                    mOnError = "#000000";
-                    mSurface = "#000000";
-                    mOnSurface = "#ffffff";
-                    mSurfaceVariant = "#1a1a1a";
+                    mPrimary          = "#ffffff";
+                    mOnPrimary        = "#000000";
+                    mSecondary        = "#cccccc";
+                    mOnSecondary      = "#000000";
+                    mTertiary         = "#999999";
+                    mOnTertiary       = "#000000";
+                    mError            = "#ffffff";
+                    mOnError          = "#000000";
+                    mSurface          = "#000000";
+                    mOnSurface        = "#ffffff";
+                    mSurfaceVariant   = "#1a1a1a";
                     mOnSurfaceVariant = "#cccccc";
-                    mOutline = "#444444";
-                    mShadow = "#000000";
-                    mHover = "#222222";
-                    mOnHover = "#ffffff";
+                    mOutline          = "#444444";
+                    mShadow           = "#000000";
+                    mHover            = "#222222";
+                    mOnHover          = "#ffffff";
                 };
 
                 settings = lib.mkForce {
-                    appLauncher.terminalCommand = "$TERMINAL";
-                    audio.volumeFeedback = true;
+                    # Bar layout
                     bar = {
                         backgroundOpacity = 0.66;
                         contentPadding = 0;
@@ -66,7 +66,7 @@ in
                             center = [
                                 {
                                     clockColor = "none";
-                                    customFont = "Open Sans Semibold";
+                                    customFont = config.stylix.fonts.sansSerif.name;
                                     formatHorizontal = "h:mm:ss a";
                                     formatVertical = "";
                                     id = "Clock";
@@ -183,10 +183,20 @@ in
                             ];
                         };
                     };
+
+                    # Brightness
                     brightness = {
                         enableDdcSupport = true;
                         enforceMinimum = false;
                     };
+
+                    # Use default terminal for shell commands
+                    appLauncher.terminalCommand = "$TERMINAL";
+
+                    # Make a noise when adjusting volume
+                    audio.volumeFeedback = true;
+
+                    # Control center
                     controlCenter = {
                         cards = [
                             { enabled = true; id = "profile-card"; }
@@ -209,7 +219,44 @@ in
                             ];
                         };
                     };
+
+                    # Disable Dock
                     dock.enabled = false;
+
+                    # Only turn off display during idle, do not sleep
+                    idle = {
+                        enabled = true;
+                        lockTimeout = 0;
+                        suspendTimeout = 0;
+                    };
+
+                    # Location
+                    location = {
+                        hideWeatherCityName = true;
+                        hideWeatherTimezone = true;
+                        use12hourFormat = true;
+                    };
+
+                    # Night light
+                    nightLight = {
+                        enabled = true;
+                        nightTemp = "2500";
+                    };
+
+                    # System monitor
+                    systemMonitor = {
+                        enableDgpuMonitoring = true;
+                        criticalColor = "#ff6f9b";
+                        warningColor = "#d8b4ff";
+                    };
+
+                    # UI
+                    ui = {
+                        fontDefault = config.stylix.fonts.sansSerif.name;
+                        fontFixed = config.stylix.fonts.monospace.name;
+                        panelBackgroundOpacity = 1;
+                        scrollbarAlwaysVisible = false;
+                    };
                     general = {
                         enableBlurBehind = false;
                         enableShadows = false;
@@ -220,31 +267,9 @@ in
                         showChangelogOnStartup = false;
                         showScreenCorners = true;
                     };
-                    idle = {
-                        enabled = true;
-                        lockTimeout = 0;
-                        suspendTimeout = 0;
-                    };
-                    location = {
-                        hideWeatherCityName = true;
-                        hideWeatherTimezone = true;
-                        use12hourFormat = true;
-                    };
-                    nightLight = {
-                        enabled = true;
-                        nightTemp = "2500";
-                    };
-                    systemMonitor = {
-                        enableDgpuMonitoring = true;
-                        criticalColor = "#ff6f9b";
-                        warningColor = "#d8b4ff";
-                    };
-                    ui = {
-                        fontDefault = "Open Sans";
-                        fontFixed = "monospace";
-                        panelBackgroundOpacity = 1;
-                        scrollbarAlwaysVisible = false;
-                    };
+
+
+                    # Wallpaper
                     wallpaper.enabled = self.wallpaper != null;
                     noctaliaPerformance.disableWallpaper = false;
                 };
