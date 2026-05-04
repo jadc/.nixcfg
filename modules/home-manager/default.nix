@@ -1,6 +1,20 @@
-{ ... }:
+top@{ inputs, lib, ... }:
 
 {
+    flake.modules.nixos.home-manager = { config, username, ... }: {
+        imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+        home-manager = {
+            extraSpecialArgs = { inherit inputs username; };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            sharedModules =
+                (lib.attrValues top.config.flake.modules.generic)
+                ++ (lib.attrValues top.config.flake.modules.homeManager);
+            users.${username}.cfg = config.cfg;
+        };
+    };
+
     flake.modules.homeManager.home-manager = { config, lib, username, ... }: {
         home = {
             username = lib.mkForce username;
