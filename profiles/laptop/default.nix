@@ -115,19 +115,6 @@ in
             ++ [
                 ./hardware-configuration.nix
                 profile
-
-                inputs.home-manager.nixosModules.home-manager
-                {
-                    home-manager = {
-                        extraSpecialArgs = { inherit inputs username; };
-                        useGlobalPkgs = true;
-                        useUserPackages = true;
-                        sharedModules =
-                            (lib.attrValues top.config.flake.modules.generic)
-                            ++ (lib.attrValues top.config.flake.modules.homeManager);
-                        users.${username} = profile;
-                    };
-                }
             ];
     };
 }
