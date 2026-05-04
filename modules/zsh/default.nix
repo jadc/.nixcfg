@@ -47,7 +47,7 @@ in
                 initContent = let
                         C = "\\e[1;34m";
                         G = "\\e[1;33m";
-                        B = "\\e[0;30m";
+                        B = "\\e[0;90m";
                         NC = "\\e[0m";
                     in ''
                     setopt BANG_HIST                # Treat the '!' character specially during expansion.
@@ -58,7 +58,7 @@ in
                     bindkey -v                      # Use vi keybindings
 
                     # Prompt
-                    export PS1='%F{black}%1~%f %(!.%F{red}.%F{blue})$%f '
+                    export PS1='%F{8}%1~%f %(!.%F{red}.%F{blue})$%f '
 
                     # Neofetch knockoff
                     i=$(cat /proc/uptime | awk -F'.' '{print $1}')

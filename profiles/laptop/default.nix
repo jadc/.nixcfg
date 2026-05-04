@@ -24,7 +24,6 @@ let
 
             # System
             identity.passwordFile = "/persist/password";
-            autologin.enable = true;
             automount.enable = true;
             bluetooth.enable = true;
             impermanence = {
@@ -49,7 +48,12 @@ let
 
             # Requires superuser
             docker.enable = true;
-            gnome.enable = true;
+            fuzzel.enable = true;
+            mako.enable = true;
+            niri.enable = true;
+            swaybg.image = ../wallpaper.jpg;
+            swaylock.enable = true;
+            waybar.enable = true;
             steam.enable = true;
             syncthing.enable = true;
 
@@ -65,6 +69,7 @@ let
                 enable = true;
                 fontSize = 10;
             };
+            nautilus.enable = true;
             minecraft.enable = true;
             obsidian.enable = true;
             qdirstat.enable = true;

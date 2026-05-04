@@ -1,0 +1,82 @@
+@define-color bg #000000;
+@define-color fg #ffffff;
+
+* {
+    border: none;
+    border-radius: 0px;
+    font-family:
+        "Noto Sans", "Adwaita Mono", "Noto Sans Mono",
+        "JetBrainsMono Nerd Font Propo";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+    margin: 0px;
+    padding: 0px 2px;
+}
+
+tooltip {
+    background-color: @fg;
+    color: @bg;
+}
+
+window#waybar {
+    background: @bg;
+    color: @fg;
+}
+
+tooltip label {
+    color: @bg;
+}
+
+#workspaces {
+    padding: 10px 10px;
+    margin: 7px 5px;
+}
+
+#workspaces button {
+    font-size: 24px;
+    transition: all 150ms ease-in-out;
+}
+
+#workspaces button.active {
+    min-width: 40px;
+    background: @fg;
+    color: @bg;
+}
+
+#clock {
+    padding: 0px 10px;
+    margin: 7px 5px;
+}
+
+#battery {
+    font-size: 18px;
+    padding: 0px 10px;
+    margin: 7px 5px;
+}
+
+#pulseaudio {
+    padding: 0px 10px;
+    margin: 7px 5px;
+    font-size: 18px;
+}
+
+#custom-power {
+    padding: 0px 10px;
+    margin: 7px 5px;
+}
+
+#backlight {
+    padding: 0px 10px;
+    margin: 7px 5px;
+}
+
+#network {
+    padding: 0px 10px;
+    margin: 7px 5px;
+}
+
+#mpris {
+    padding: 0px 10px;
+    margin: 7px 5px;
+}

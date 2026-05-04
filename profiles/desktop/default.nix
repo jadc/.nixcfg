@@ -23,7 +23,6 @@ let
 
             # System
             identity.passwordFile = "/persist/password";
-            autologin.enable = true;
             automount.enable = true;
             homeMounts = {
                 enable = true;
@@ -34,8 +33,6 @@ let
                 enable = true;
                 home.dirs = [ "Downloads" ];
             };
-            fonts.enable = true;
-            keyd.enable = true;
             libinput.enable = true;
             sound.enable = true;
             ssh.enable = true;
@@ -46,12 +43,29 @@ let
             timeZone = "America/Edmonton";
             trim.enable = true;
 
-            # Requires superuser
             docker.enable = true;
             droidcam.enable = true;
-            gnome = {
+            fuzzel.enable = true;
+            mako.enable = true;
+            swaybg.image = ../wallpaper.jpg;
+            swaylock.enable = true;
+            waybar.enable = true;
+            niri = {
                 enable = true;
-                monitors = ./../../modules/gnome/monitors/desktop.xml;
+
+                # Monitor setup
+                extraConfig = ''
+                    output "DP-1" {
+                        mode "2560x1440@239.970"
+                        position x=0 y=0
+                    }
+
+                    output "HDMI-A-1" {
+                        mode "1920x1080@119.993"
+                        position x=2560 y=-360
+                        transform "270"
+                    }
+                '';
             };
             rgb = {
                 enable = true;
@@ -68,10 +82,8 @@ let
             brave.enable = true;
             deluge.enable = true;
             handbrake.enable = true;
-            kitty = {
-                enable = true;
-                fontSize = 13;
-            };
+            kitty.enable = true;
+            nautilus.enable = true;
             minecraft.enable = true;
             obsidian.enable = true;
             qdirstat.enable = true;
@@ -133,6 +145,7 @@ in
                 ./hardware-configuration.nix
                 profile
 
+                inputs.stylix.nixosModules.stylix
                 inputs.home-manager.nixosModules.home-manager
                 {
                     home-manager = {
