@@ -21,8 +21,6 @@ in
                     paging = "never";
                     # Remove decorations
                     style = "plain";
-                    # Syntax highlighting theme
-                    theme = "OneHalfDark";
                 };
             };
             cfg.const.aliases.cat = "${pkgs.bat}/bin/bat";

@@ -10,9 +10,9 @@ in
         };
     };
 
-    flake.modules.homeManager.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
+    flake.modules.homeManager.${name} = { config, lib, pkgs, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
-            qt.enable = true;
+            home.packages = [ pkgs.nautilus ];
         };
     };
 }
