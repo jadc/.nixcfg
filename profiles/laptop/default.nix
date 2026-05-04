@@ -48,12 +48,11 @@ let
 
             # Requires superuser
             docker.enable = true;
-            fuzzel.enable = true;
-            mako.enable = true;
+            noctalia = {
+                enable = true;
+                wallpaper = ../wallpaper.jpg;
+            };
             niri.enable = true;
-            swaybg.image = ../wallpaper.jpg;
-            swaylock.enable = true;
-            waybar.enable = true;
             steam.enable = true;
             syncthing.enable = true;
 
