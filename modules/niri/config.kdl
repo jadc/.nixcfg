@@ -24,6 +24,7 @@ input {
 }
 
 layout {
+    background-color "transparent"
     gaps 16
 
     // Focusing an off-screen column will keep at the left or right edge of the screen.
@@ -77,8 +78,7 @@ layout {
     }
 }
 
-// To spawn processes at startup, use spawn-at-startup.
-// spawn-at-startup "command"
+spawn-at-startup "noctalia-shell"
 
 // Disable the "Important Hotkeys" pop-up at startup.
 hotkey-overlay {
@@ -100,6 +100,15 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
+}
+
+layer-rule {
+    match namespace="^noctalia-wallpaper*"
+    place-within-backdrop true
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
 }
 
 // Rounded corners on all windows
@@ -141,8 +150,8 @@ window-rule {
 
 binds {
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn-sh "exec $TERMINAL"; }
-    Mod+Space hotkey-overlay-title="Open App Switcher" { spawn-sh "exec $SWITCHER"; }
-    Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "exec $LOCKER"; }
+    Mod+Space hotkey-overlay-title="Open App Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    Mod+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
 
     // Volume keys mappings
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
