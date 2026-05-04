@@ -45,11 +45,10 @@ let
 
             docker.enable = true;
             droidcam.enable = true;
-            fuzzel.enable = true;
-            mako.enable = true;
-            swaybg.image = ../wallpaper.jpg;
-            swaylock.enable = true;
-            waybar.enable = true;
+            noctalia = {
+                enable = true;
+                wallpaper = ../wallpaper.jpg;
+            };
             niri = {
                 enable = true;
 
