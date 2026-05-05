@@ -79,10 +79,8 @@ let
                     }
                 '';
             };
-            noctalia = {
-                enable = true;
-                wallpaper = ../wallpaper.jpg;
-            };
+            noctalia.enable = true;
+            swaybg.wallpaper = ../wallpaper.jpg;
             obs.enable = true;
             obsidian.enable = true;
             puddletag.enable = true;
