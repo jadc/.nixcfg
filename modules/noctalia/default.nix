@@ -7,10 +7,6 @@ in
     flake.modules.generic.${name} = { lib, ... }: {
         options.cfg.${name} = {
             enable = lib.mkEnableOption name;
-            wallpaper = lib.mkOption {
-                type = lib.types.nullOr lib.types.path;
-                default = null;
-            };
         };
     };
 
@@ -29,13 +25,6 @@ in
             cfg.impermanence.home.files = [
                 ".cache/noctalia/shell-state.json"
             ];
-
-            # Point wallpaper to path in nix store
-            home.file.".cache/noctalia/wallpapers.json" = lib.mkIf (self.wallpaper != null) {
-                text = builtins.toJSON {
-                    defaultWallpaper = toString self.wallpaper;
-                };
-            };
 
             programs.noctalia-shell = {
                 enable = true;
@@ -276,10 +265,8 @@ in
                         showScreenCorners = true;
                     };
 
-
-                    # Wallpaper
-                    wallpaper.enabled = self.wallpaper != null;
-                    noctaliaPerformance.disableWallpaper = false;
+                    # Disable wallpaper handling
+                    wallpaper.enabled = false;
                 };
             };
         };
