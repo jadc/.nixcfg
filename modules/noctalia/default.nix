@@ -239,6 +239,7 @@ in
 
                     # Location
                     location = {
+                        autoLocate = true;
                         hideWeatherCityName = true;
                         hideWeatherTimezone = true;
                         use12hourFormat = true;
