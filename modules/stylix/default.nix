@@ -17,6 +17,12 @@
             polarity = "dark";
             base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-black.yaml";
 
+            cursor = {
+                package = pkgs.apple-cursor;
+                name = "macOS";
+                size = 20;
+            };
+
             fonts = {
                 sizes.terminal = 13;
 
