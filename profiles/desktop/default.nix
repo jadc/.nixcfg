@@ -90,6 +90,7 @@ let
             spotify.enable = true;
             steam.enable = true;
             syncthing.enable = true;
+            unity.enable = true;
             vesktop.enable = true;
             virt-manager.enable = true;
             zathura.enable = true;
