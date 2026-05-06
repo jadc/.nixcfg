@@ -32,9 +32,10 @@ layout {
 
     // The widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
-        proportion 0.66667
+        proportion 1.0
+        proportion 0.75
         proportion 0.5
-        proportion 0.33333
+        proportion 0.25
     }
 
     // Default width of new windows
@@ -222,9 +223,8 @@ binds {
     Mod+Alt+R { switch-preset-window-height; }
 
     // Maximize, monocle, and fullscreen
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+M { maximize-window-to-edges; }
+    Mod+F { maximize-window-to-edges; }
+    Mod+Alt+F { fullscreen-window; }
 
     Mod+C { center-column; }
 
