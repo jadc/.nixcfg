@@ -27,7 +27,14 @@ let
             identity.passwordFile = "/persist/password";
             impermanence = {
                 enable = true;
-                home.dirs = [ "Documents" "Downloads" "Music" "Pictures" "Videos" ];
+                home.dirs = [
+                    "Documents"
+                    "Downloads"
+                    "Music"
+                    "Pictures"
+                    "Projects"
+                    "Videos"
+                ];
             };
             networkmanager.enable = true;
             qt.enable = true;
