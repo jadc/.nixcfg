@@ -141,8 +141,8 @@ in
             };
 
             # System-wide environment variables for Intel hardware acceleration
-            environment.sessionVariables = lib.mkIf self.flags.intel {
-                LIBVA_DRIVER_NAME = "iHD";     # Prefer the modern iHD backend
+            environment.sessionVariables = lib.mkIf (self.flags.intel && !self.flags.nvidia) {
+                LIBVA_DRIVER_NAME = "iHD";
             };
 
             hardware.nvidia = lib.mkIf self.flags.nvidia {
