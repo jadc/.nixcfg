@@ -22,6 +22,10 @@ in
                 pkgs.virt-manager
                 pkgs.virt-viewer
             ];
+
+            cfg.impermanence.home.dirs = [
+                ".config/virt-manager"
+            ];
         };
     };
 }
