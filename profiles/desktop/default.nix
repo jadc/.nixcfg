@@ -24,7 +24,13 @@ let
             homeMounts = {
                 enable = true;
                 source = "/data";
-                dirs = [ "Documents" "Music" "Pictures" "Videos" ];
+                dirs = [
+                    "Documents"
+                    "Music"
+                    "Pictures"
+                    "Projects"
+                    "Videos"
+                ];
             };
             identity.passwordFile = "/persist/password";
             impermanence = {

@@ -20,7 +20,6 @@ in
 
                     # Disable undesired directories
                     desktop = null;
-                    projects = null;
                     publicShare = null;
                     templates = null;
                 };
