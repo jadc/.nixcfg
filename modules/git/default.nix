@@ -53,7 +53,7 @@ in
             };
 
             # gh OAuth tokens and config
-            cfg.impermanence.home.dirs = [ ".config/gh" ];
+            cfg.save.home.dirs = [ ".config/gh" ];
         };
     };
 }

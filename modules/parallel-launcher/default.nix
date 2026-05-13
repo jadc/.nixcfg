@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.parallel-launcher ];
 
-            cfg.impermanence.home.dirs = [ ".local/share/parallel-launcher" ];
+            cfg.save.home.dirs = [ ".local/share/parallel-launcher" ];
         };
     };
 }

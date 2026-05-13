@@ -20,7 +20,7 @@ in
                 options = [ "--cmd cd" ];
             };
 
-            cfg.impermanence.home.dirs = [ ".local/share/zoxide" ];
+            cfg.save.home.dirs = [ ".local/share/zoxide" ];
         };
     };
 }

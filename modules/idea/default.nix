@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.jetbrains.idea-community-bin ];
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".config/JetBrains"
                 ".local/share/JetBrains"
                 ".cache/JetBrains"

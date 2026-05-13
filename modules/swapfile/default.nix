@@ -19,7 +19,7 @@ in
     flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             swapDevices = [ {
-                device = if config.cfg.impermanence.enable then "/persist/swapfile" else "/var/lib/swapfile";
+                device = if config.cfg.save.enable then "${config.cfg.save.path}/swapfile" else "/var/lib/swapfile";
                 size = self.size;
             } ];
         };

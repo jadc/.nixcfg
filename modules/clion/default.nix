@@ -16,7 +16,7 @@ in
                 pkgs.jetbrains.clion
             ];
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".config/JetBrains"
                 ".local/share/JetBrains"
                 ".cache/JetBrains"

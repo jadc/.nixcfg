@@ -19,7 +19,7 @@ in
                 openFirewall = true;
             };
 
-            cfg.impermanence.root.dirs = [ "/var/lib/sunshine" ];
+            cfg.save.root.dirs = [ "/var/lib/sunshine" ];
         };
     };
 }

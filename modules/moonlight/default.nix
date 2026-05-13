@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.moonlight-qt ];
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".config/Moonlight Game Streaming Project"
             ];
         };

@@ -16,7 +16,7 @@ in
 
             xdg.configFile."vesktop/settings/settings.json".source = ./settings.json;
 
-            cfg.impermanence.home.dirs = [ ".config/vesktop" ];
+            cfg.save.home.dirs = [ ".config/vesktop" ];
         };
     };
 }

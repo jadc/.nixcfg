@@ -71,7 +71,7 @@ in
                 '';
             };
 
-            cfg.impermanence.home.files = [ ".config/zsh/.zsh_history" ];
+            cfg.save.home.files = [ ".config/zsh/.zsh_history" ];
         };
     };
 }

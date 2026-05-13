@@ -10,6 +10,6 @@ in
     };
 
     flake.modules.homeManager.${name} = { ... }: {
-        cfg.impermanence.home.dirs = [ ".local/share/keyrings" ];
+        cfg.save.home.dirs = [ ".local/share/keyrings" ];
     };
 }

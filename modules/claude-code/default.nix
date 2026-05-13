@@ -28,7 +28,7 @@ in
             };
             cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
 
-            cfg.impermanence.home = {
+            cfg.save.home = {
                 dirs = [ ".claude" ];
                 files = [ ".claude.json" ];
             };

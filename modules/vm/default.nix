@@ -36,7 +36,7 @@ in
             # Add user to libvirtd group
             users.users.${username}.extraGroups = [ "libvirtd" ];
 
-            cfg.impermanence.root.dirs = [ "/var/lib/libvirt" ];
+            cfg.save.root.dirs = [ "/var/lib/libvirt" ];
         };
     };
 }

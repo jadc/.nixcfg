@@ -22,7 +22,7 @@ in
             # Enable A2DP sink
             hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket";
 
-            cfg.impermanence.root.dirs = [ "/var/lib/bluetooth" ];
+            cfg.save.root.dirs = [ "/var/lib/bluetooth" ];
         };
     };
 }
