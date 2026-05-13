@@ -19,6 +19,12 @@
             trusted-users = [ "@wheel" ];
         };
 
+        nix.gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 7d";
+        };
+
         system.stateVersion = config.cfg.const.stateVersion;
     };
 
