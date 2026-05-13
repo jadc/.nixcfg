@@ -73,6 +73,7 @@ layout {
     }
 }
 
+spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia-shell"
 
 // Disable the "Important Hotkeys" pop-up at startup.
