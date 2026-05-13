@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.deluge ];
 
-            cfg.impermanence.home.dirs = [ ".config/deluge" ];
+            cfg.save.home.dirs = [ ".config/deluge" ];
         };
     };
 }

@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.jellyfin-media-player ];
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".local/share/jellyfinmediaplayer"
                 ".config/Jellyfin Media Player"
             ];

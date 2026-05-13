@@ -139,7 +139,7 @@ in
                 extraPackages = [ pkgs.nil ];
             };
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".local/share/zed"
                 ".config/zed"
             ];

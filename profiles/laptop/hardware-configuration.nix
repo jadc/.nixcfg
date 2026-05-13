@@ -19,14 +19,14 @@
       options = [ "defaults" "size=512M" "mode=755" ];
     };
 
-  fileSystems."/persist" =
+  fileSystems."/static" =
     { device = "/dev/disk/by-uuid/70100708-3d7f-411d-998b-a7fd7d2a1147";
       fsType = "xfs";
       neededForBoot = true;
     };
 
   fileSystems."/nix" =
-    { device = "/persist/nix";
+    { device = "/static/nix";
       fsType = "none";
       options = [ "bind" ];
       neededForBoot = true;

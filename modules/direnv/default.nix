@@ -19,7 +19,7 @@ in
                 nix-direnv.enable = true;
             };
 
-            cfg.impermanence.home.dirs = [ ".local/share/direnv" ];
+            cfg.save.home.dirs = [ ".local/share/direnv" ];
         };
     };
 }

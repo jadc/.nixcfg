@@ -15,7 +15,7 @@ in
         config = lib.mkIf self.enable {
             programs.obs-studio.enable = true;
 
-            cfg.impermanence.home.dirs = [ ".config/obs-studio" ];
+            cfg.save.home.dirs = [ ".config/obs-studio" ];
         };
     };
 }

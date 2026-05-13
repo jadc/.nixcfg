@@ -51,7 +51,7 @@ in
             networking.firewall.enable = true;
             networking.firewall.allowPing = true;
 
-            cfg.impermanence.root.dirs = [ "/var/lib/samba" ];
+            cfg.save.root.dirs = [ "/var/lib/samba" ];
         };
     };
 }

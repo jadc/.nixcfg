@@ -33,7 +33,7 @@ in
                 allowedUDPPorts = NFSv3;
             };
 
-            cfg.impermanence.root.dirs = [ "/var/lib/nfs" ];
+            cfg.save.root.dirs = [ "/var/lib/nfs" ];
         };
     };
 }

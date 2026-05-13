@@ -20,7 +20,7 @@ in
             };
 
             # Device identity, certs, and DB
-            cfg.impermanence.root.dirs = [{
+            cfg.save.root.dirs = [{
                 directory = "/var/lib/syncthing";
                 user = username;
                 group = "wheel";

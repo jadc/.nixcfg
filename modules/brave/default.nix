@@ -20,7 +20,7 @@ in
                 ];
             };
 
-            cfg.impermanence.home.dirs = [ ".config/BraveSoftware" ];
+            cfg.save.home.dirs = [ ".config/BraveSoftware" ];
         };
     };
 }
