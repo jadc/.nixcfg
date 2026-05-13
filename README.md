@@ -56,7 +56,7 @@ A module only needs the namespaces it uses — many modules omit `nixos` or `hom
 
 Profiles live in `profiles/<name>/` and define a complete machine configuration by setting `cfg.*` options:
 
-- **desktop** (`jad-desktop`): Full workstation — Niri WM, NVIDIA+Intel GPU, impermanence, 100+ modules enabled
+- **desktop** (`jad-desktop`): Full workstation — Niri WM, NVIDIA+Intel GPU, preservation, 100+ modules enabled
 - **laptop** (`jad-laptop`): Similar to desktop without NVIDIA, adds bluetooth/wireguard/battery
 - **home**: Standalone home-manager config (CLI tools only, no NixOS), produces `home-<system>` outputs for all platforms
 
@@ -67,9 +67,9 @@ modules = (lib.attrValues top.config.flake.modules.generic)
        ++ [ ./hardware-configuration.nix  profile ];
 ```
 
-### Impermanence
+### Preservation
 
-All NixOS systems use ephemeral root (tmpfs). Persistent state goes under `/persist`. Modules declare what to persist via `cfg.impermanence.root.{dirs,files}` and `cfg.impermanence.home.{dirs,files}`.
+All NixOS systems use ephemeral root (tmpfs). Persistent state goes under `/static`. Modules declare what to persist via `cfg.preservation.root.{dirs,files}` and `cfg.preservation.home.{dirs,files}`.
 
 ### Adding a new module
 
@@ -83,7 +83,7 @@ All NixOS systems use ephemeral root (tmpfs). Persistent state goes under `/pers
 - **flake-parts**: Modular flake framework
 - **import-tree**: Auto-import directories as flake modules
 - **home-manager**: User environment management (follows nixpkgs)
-- **impermanence**: Ephemeral root filesystem support
+- **preservation**: Ephemeral root filesystem support
 - **stylix**: System-wide theming (follows nixpkgs)
 - **nvim**: External neovim flake (`github:jadc/nvim`)
 
@@ -112,11 +112,11 @@ Generate `hardware-configuration.nix` with `nixos-generate-config --root /mnt` a
 #### 3. Create Password file
 
 The user and root share a hashed password read from the path set by `cfg.identity.passwordFile`.
-_If using impermanence, use the path `/persist/password`, otherwise use the default `/password`._
+_If using preservation, use the path `/static/password`, otherwise use the default `/password`._
 
 ```sh
-mkpasswd -m sha-512 | sudo tee <path> >/dev/null
-sudo chmod 600 <path>
+# Run as root user
+mkpasswd -m scrypt > <path>
 ```
 
 #### 4. Switch to config

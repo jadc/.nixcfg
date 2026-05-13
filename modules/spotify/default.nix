@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.spotify ];
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".config/spotify"
                 ".cache/spotify"
             ];

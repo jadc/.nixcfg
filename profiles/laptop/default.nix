@@ -6,7 +6,7 @@ let
     hostname = "jad-laptop";
     username = "jad";
 
-    profile = { pkgs, ... }: {
+    profile = { pkgs, config, ... }: {
         cfg = {
             # Kernel
             kernel = {
@@ -24,8 +24,8 @@ let
             automount.enable = true;
             bluetooth.enable = true;
             hp.enable = true;
-            identity.passwordFile = "/persist/password";
-            impermanence = {
+            identity.passwordFile = "${config.cfg.save.path}/password";
+            save = {
                 enable = true;
                 home.dirs = [
                     "Documents"

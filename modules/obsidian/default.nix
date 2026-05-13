@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.obsidian ];
 
-            cfg.impermanence.home.dirs = [ ".config/obsidian" ];
+            cfg.save.home.dirs = [ ".config/obsidian" ];
         };
     };
 }

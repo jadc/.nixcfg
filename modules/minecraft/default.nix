@@ -37,7 +37,7 @@ in
                 _JAVA_AWT_WM_NONREPARENTING = 1;
             };
 
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".local/share/PrismLauncher"
                 ".minecraft"
             ];

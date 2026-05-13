@@ -53,7 +53,7 @@ in
 
             services.gnome.localsearch.enable = false;
 
-            cfg.impermanence.root.dirs = [ "/var/lib/AccountsService" ];
+            cfg.save.root.dirs = [ "/var/lib/AccountsService" ];
         };
     };
 
@@ -164,7 +164,7 @@ in
             };
 
             # Login keyring
-            cfg.impermanence.home.dirs = [ ".local/share/keyrings" ];
+            cfg.save.home.dirs = [ ".local/share/keyrings" ];
         };
     };
 }

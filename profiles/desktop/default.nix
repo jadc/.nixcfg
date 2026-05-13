@@ -4,7 +4,7 @@ let
     hostname = "jad-desktop";
     username = "jad";
 
-    profile = { pkgs, ... }: {
+    profile = { pkgs, config, ... }: {
         cfg = {
             # Kernel
             kernel = {
@@ -32,8 +32,8 @@ let
                     "Videos"
                 ];
             };
-            identity.passwordFile = "/persist/password";
-            impermanence = {
+            identity.passwordFile = "${config.cfg.save.path}/password";
+            save = {
                 enable = true;
                 home.dirs = [ "Downloads" ];
             };

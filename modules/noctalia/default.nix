@@ -22,7 +22,7 @@ in
 
         config = lib.mkIf self.enable {
             # Prevent telemetry pop-up after first time
-            cfg.impermanence.home.files = [
+            cfg.save.home.files = [
                 ".cache/noctalia/shell-state.json"
             ];
 

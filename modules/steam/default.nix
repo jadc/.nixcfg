@@ -26,7 +26,7 @@ in
 
     flake.modules.homeManager.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
-            cfg.impermanence.home.dirs = [
+            cfg.save.home.dirs = [
                 ".local/share/Steam"
                 ".steam"
             ];

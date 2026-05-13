@@ -15,7 +15,7 @@ in
             programs.gallery-dl.enable = true;
 
             # Archive db tracking already-downloaded items
-            cfg.impermanence.home.dirs = [ ".local/share/gallery-dl" ];
+            cfg.save.home.dirs = [ ".local/share/gallery-dl" ];
         };
     };
 }
