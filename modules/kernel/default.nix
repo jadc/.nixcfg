@@ -108,6 +108,8 @@ in
                         "transparent_hugepage=madvise"
                         # Disable NUMA balancing for better performance on single-node systems
                         "numa_balancing=disable"
+                        # Disable split-lock detection to prevent stalls in Wine/Proton games
+                        "split_lock_detect=off"
                     ] ++ lib.optionals (self.flags.vfio != []) [
                         # Specify PCI device IDs for VFIO passthrough
                         "vfio-pci.ids=${lib.concatStringsSep "," self.flags.vfio}"
@@ -123,6 +125,14 @@ in
                         "nouveau.modeset=0"
                     ];
 
+            };
+
+            boot.kernel.sysctl = lib.mkIf self.flags.performance {
+                # Prefer keeping pages in RAM over swapping
+                "vm.swappiness" = 10;
+                # Flush dirty pages in small batches instead of large bursts
+                "vm.dirty_bytes" = 256 * 1024 * 1024;            # hard limit
+                "vm.dirty_background_bytes" = 128 * 1024 * 1024; # soft limit
             };
 
             services.xserver.videoDrivers =

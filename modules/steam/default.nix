@@ -10,17 +10,10 @@ in
         };
     };
 
-    flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
+    flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             programs.steam.enable = true;
-
-            programs.gamemode = {
-                enable = true;
-                settings = {
-                    general.inhibit_screensaver = 0;
-                };
-            };
-            users.users.${username}.extraGroups = [ "gamemode" ];
+            programs.steam.gamescopeSession.enable = true;
         };
     };
 

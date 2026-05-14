@@ -71,6 +71,7 @@ let
             rnote.enable = true;
             spek.enable = true;
             spotify.enable = true;
+            gamemode.enable = true;
             steam.enable = true;
             syncthing.enable = true;
             wireguard = {
