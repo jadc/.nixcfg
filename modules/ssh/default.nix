@@ -22,11 +22,7 @@ in
                 { file = "/etc/ssh/ssh_host_rsa_key"; mode = "0600"; }
                 "/etc/ssh/ssh_host_rsa_key.pub"
             ];
-        };
-    };
 
-    flake.modules.homeManager.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
-        config = lib.mkIf self.enable {
             cfg.save.home.dirs = [ ".ssh" ];
         };
     };
