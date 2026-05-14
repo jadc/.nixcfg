@@ -7,9 +7,7 @@ in
     flake.modules.nixos.${name} = { ... }: {
         services.gnome.gnome-keyring.enable = true;
         security.pam.services.greetd.enableGnomeKeyring = true;
-    };
 
-    flake.modules.homeManager.${name} = { ... }: {
         cfg.save.home.dirs = [ ".local/share/keyrings" ];
     };
 }
