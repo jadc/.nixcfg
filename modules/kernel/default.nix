@@ -158,14 +158,12 @@ in
             hardware.nvidia = lib.mkIf self.flags.nvidia {
                 modesetting.enable = true;
 
-                # Use open drivers (for modern cards)
-                open = true;
-
                 # Enable settings menu (nvidia-settings)
                 nvidiaSettings = true;
 
-                # Use beta channel
-                package = config.boot.kernelPackages.nvidiaPackages.beta;
+                # Use open drivers (for modern cards)
+                open = true;
+                package = config.boot.kernelPackages.nvidiaPackages.stable;
             };
         };
     };
