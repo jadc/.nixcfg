@@ -17,6 +17,7 @@ let
                     quiet = true;
                 };
             };
+            cachyos.enable = true;
             systemd-boot.enable = true;
 
             # Setup
