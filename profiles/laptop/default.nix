@@ -51,6 +51,7 @@ let
             audacity.enable = true;
             avidemux.enable = true;
             brave.enable = true;
+            bruno.enable = true;
             deluge.enable = true;
             docker.enable = true;
             gimp.enable = true;
