@@ -16,7 +16,7 @@
   fileSystems."/" =
     { device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=512M" "mode=755" ];
+      options = [ "defaults" "size=50%" "mode=755" ];
     };
 
   fileSystems."/static" =
