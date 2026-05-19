@@ -26,6 +26,15 @@ in
                 ".cache/noctalia/shell-state.json"
             ];
 
+            # Restart noctalia-shell after rebuild so IPC matches the new binary
+            home.activation.restartNoctaliaShell = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                SOCKET="$(ls /run/user/$(id -u)/niri.*.sock 2>/dev/null | head -1)"
+                if [ -n "$SOCKET" ] && ${pkgs.procps}/bin/pkill -f quickshell; then
+                    ${pkgs.coreutils}/bin/sleep 1
+                    NIRI_SOCKET="$SOCKET" ${pkgs.niri}/bin/niri msg action spawn -- noctalia-shell
+                fi
+            '';
+
             programs.noctalia-shell = {
                 enable = true;
                 package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
