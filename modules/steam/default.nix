@@ -15,9 +15,14 @@ in
             programs.steam.enable = true;
             programs.steam.gamescopeSession.enable = true;
 
+            environment.sessionVariables = {
+                DXVK_STATE_CACHE_PATH = "$HOME/.cache/dxvk-state-cache";
+            };
+
             cfg.save.home.dirs = [
                 ".local/share/Steam"
                 ".steam"
+                ".cache/dxvk-state-cache"
             ];
         };
     };
