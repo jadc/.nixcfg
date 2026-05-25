@@ -60,6 +60,7 @@ let
             bruno.enable = true;
             deluge.enable = true;
             docker.enable = true;
+            k3s.enable = true;
             droidcam.enable = true;
             gimp.enable = true;
             handbrake.enable = true;
