@@ -42,34 +42,17 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        // How many logical pixels the ring extends out from the windows.
-        width 1
-
-        // Color of the ring on the active monitor.
-        active-color "#aaaaaa"
-
-        // Color of the ring on inactive monitors.
-        inactive-color "#505050"
+        off
     }
 
     border {
-        off
+        width 1
+        active-color "#606060"
+        inactive-color "#303030"
     }
 
     shadow {
         off
-
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        color "#0007"
     }
 }
 
@@ -83,6 +66,13 @@ hotkey-overlay {
 
 // Omit window decorations when possible.
 prefer-no-csd
+
+blur {
+    passes 1
+    offset 3.0
+    noise 0.1
+    saturation 1.0
+}
 
 // Disable saving screenshots to disk.
 screenshot-path null
@@ -109,18 +99,9 @@ debug {
 
 // Rounded corners on all windows
 window-rule {
-    geometry-corner-radius 4
+    geometry-corner-radius 8
     clip-to-geometry true
-}
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    background-effect { blur true; }
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -130,18 +111,6 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
 }
 
 binds {

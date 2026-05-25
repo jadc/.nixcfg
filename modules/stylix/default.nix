@@ -7,6 +7,11 @@
         config.stylix = {
             enable = true;
 
+            opacity = {
+                applications = 0.85;
+                terminal = 0.85;
+            };
+
             # Original custom scheme:
             # base00 = "000000"; base01 = "252525"; base02 = "535353"; base03 = "505050";
             # base04 = "7fc8ff"; base05 = "ffffff"; base06 = "ffffff"; base07 = "ffffff";
