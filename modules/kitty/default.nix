@@ -30,7 +30,6 @@ in
                     update_check_interval = 0;
                     wayland_titlebar_color = "black";
                     window_padding_width = 24;
-                    background_opacity = lib.mkForce "0.85";
                 };
 
                 extraConfig = ''
