@@ -16,6 +16,7 @@ in
 
             cfg.save.home.dirs = [
                 ".config/unity3d"
+                ".config/unityhub"
                 ".config/UnityHub"
                 ".local/share/unity3d"
             ];
