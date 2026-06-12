@@ -17,265 +17,153 @@ in
         };
     };
 
-    flake.modules.homeManager.${name} = { config, lib, inputs, pkgs, ... }: let self = config.cfg.${name}; in {
+    flake.modules.homeManager.${name} = { config, lib, inputs, ... }: let
+        self = config.cfg.${name};
+        c = config.lib.stylix.colors.withHashtag;
+    in {
         imports = [ inputs.noctalia.homeModules.default ];
 
         config = lib.mkIf self.enable {
-            # Prevent telemetry pop-up after first time
-            cfg.save.home.files = [
-                ".cache/noctalia/shell-state.json"
+            # Persist runtime settings overrides across reboots
+            cfg.save.home.dirs = [
+                ".local/state/noctalia"
             ];
 
-            # Restart noctalia-shell after rebuild so IPC matches the new binary
-            home.activation.restartNoctaliaShell = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-                SOCKET="$(ls /run/user/$(id -u)/niri.*.sock 2>/dev/null | head -1)"
-                if [ -n "$SOCKET" ] && ${pkgs.procps}/bin/pkill -f quickshell; then
-                    ${pkgs.coreutils}/bin/sleep 1
-                    NIRI_SOCKET="$SOCKET" ${pkgs.niri}/bin/niri msg action spawn -- noctalia-shell
-                fi
-            '';
-
-            programs.noctalia-shell = {
+            programs.noctalia = let
+                palette = "oledmono";
+            in {
                 enable = true;
-                package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+                systemd.enable = true;
 
-                colors = lib.mkForce {
-                    mPrimary          = "#ffffff";
-                    mOnPrimary        = "#000000";
-                    mSecondary        = "#cccccc";
-                    mOnSecondary      = "#000000";
-                    mTertiary         = "#999999";
-                    mOnTertiary       = "#000000";
+                customPalettes.${palette}.dark = {
                     mError            = "#ffffff";
-                    mOnError          = "#000000";
-                    mSurface          = "#000000";
-                    mOnSurface        = "#ffffff";
-                    mSurfaceVariant   = "#1a1a1a";
-                    mOnSurfaceVariant = "#cccccc";
-                    mOutline          = "#444444";
-                    mShadow           = "#000000";
                     mHover            = "#222222";
+                    mOnError          = "#000000";
                     mOnHover          = "#ffffff";
+                    mOnPrimary        = "#000000";
+                    mOnSecondary      = "#000000";
+                    mOnSurface        = "#ffffff";
+                    mOnSurfaceVariant = "#cccccc";
+                    mOnTertiary       = "#000000";
+                    mOutline          = "#444444";
+                    mPrimary          = "#ffffff";
+                    mSecondary        = "#cccccc";
+                    mShadow           = "#000000";
+                    mSurface          = "#000000";
+                    mSurfaceVariant   = "#1a1a1a";
+                    mTertiary         = "#999999";
+
+                    # TODO: theme won't apply without this defined,
+                    # even though it isn't used (due to stylix); upstream oversight?
+                    terminal = {
+                        background   = c.base00;
+                        bright = {
+                            black   = c.base03;
+                            blue    = c.base0D;
+                            cyan    = c.base0C;
+                            green   = c.base0B;
+                            magenta = c.base0E;
+                            red     = c.base08;
+                            white   = c.base07;
+                            yellow  = c.base0A;
+                        };
+                        cursor       = c.base05;
+                        cursorText   = c.base00;
+                        foreground   = c.base05;
+                        normal = {
+                            black   = c.base00;
+                            blue    = c.base0D;
+                            cyan    = c.base0C;
+                            green   = c.base0B;
+                            magenta = c.base0E;
+                            red     = c.base08;
+                            white   = c.base05;
+                            yellow  = c.base0A;
+                        };
+                        selectionBg  = c.base02;
+                        selectionFg  = c.base05;
+                    };
                 };
 
-                settings = lib.mkForce {
-                    # Bar layout
-                    bar = {
-                        backgroundOpacity = 0.66;
-                        contentPadding = 0;
-                        fontScale = 1.1;
-                        hideOnOverview = true;
-                        showCapsule = false;
-                        widgetSpacing = 8;
-                        widgets = {
-                            center = [
-                                {
-                                    clockColor = "none";
-                                    customFont = config.stylix.fonts.sansSerif.name;
-                                    formatHorizontal = "h:mm:ss a";
-                                    formatVertical = "";
-                                    id = "Clock";
-                                    tooltipFormat = "dddd, MMMM d";
-                                    useCustomFont = true;
-                                }
-                            ];
-                            left = [
-                                {
-                                    colorizeDistroLogo = false;
-                                    colorizeSystemIcon = "none";
-                                    colorizeSystemText = "none";
-                                    customIconPath = "";
-                                    enableColorization = true;
-                                    icon = "noctalia";
-                                    id = "ControlCenter";
-                                    useDistroLogo = true;
-                                }
-                                {
-                                    characterCount = 2;
-                                    colorizeIcons = true;
-                                    emptyColor = "secondary";
-                                    enableScrollWheel = true;
-                                    focusedColor = "primary";
-                                    followFocusedScreen = false;
-                                    fontWeight = "bold";
-                                    groupedBorderOpacity = 1;
-                                    hideUnoccupied = true;
-                                    iconScale = 0.9;
-                                    id = "Workspace";
-                                    labelMode = "index";
-                                    occupiedColor = "secondary";
-                                    pillSize = 0.8;
-                                    showApplications = false;
-                                    showApplicationsHover = false;
-                                    showBadge = false;
-                                    showLabelsOnlyWhenOccupied = true;
-                                    unfocusedIconsOpacity = 1;
-                                }
-                                {
-                                    compactMode = false;
-                                    hideMode = "hidden";
-                                    hideWhenIdle = false;
-                                    id = "MediaMini";
-                                    maxWidth = 360;
-                                    panelShowAlbumArt = true;
-                                    scrollingMode = "hover";
-                                    showAlbumArt = true;
-                                    showArtistFirst = true;
-                                    showProgressRing = true;
-                                    showVisualizer = true;
-                                    textColor = "none";
-                                    useFixedWidth = false;
-                                    visualizerType = "mirrored";
-                                }
-                            ];
-                            right = [
-                                {
-                                    compactMode = true;
-                                    diskPath = "/";
-                                    iconColor = "none";
-                                    id = "SystemMonitor";
-                                    showCpuCores = false;
-                                    showCpuFreq = false;
-                                    showCpuTemp = true;
-                                    showCpuUsage = true;
-                                    showDiskAvailable = false;
-                                    showDiskUsage = false;
-                                    showDiskUsageAsPercent = false;
-                                    showGpuTemp = true;
-                                    showLoadAverage = false;
-                                    showMemoryAsPercent = false;
-                                    showMemoryUsage = true;
-                                    showNetworkStats = false;
-                                    showSwapUsage = false;
-                                    textColor = "none";
-                                    useMonospaceFont = false;
-                                    usePadding = false;
-                                }
-                                {
-                                    displayMode = "onhover";
-                                    iconColor = "none";
-                                    id = "VPN";
-                                    textColor = "none";
-                                }
-                                {
-                                    displayMode = "onhover";
-                                    iconColor = "none";
-                                    id = "Network";
-                                    textColor = "none";
-                                }
-                                {
-                                    displayMode = "onhover";
-                                    iconColor = "none";
-                                    id = "Bluetooth";
-                                    textColor = "none";
-                                }
-                                {
-                                    displayMode = "onhover";
-                                    iconColor = "none";
-                                    id = "Volume";
-                                    middleClickCommand = "pwvucontrol || pavucontrol";
-                                    textColor = "none";
-                                }
-                                {
-                                    deviceNativePath = "__default__";
-                                    displayMode = "icon-always";
-                                    hideIfIdle = true;
-                                    hideIfNotDetected = true;
-                                    id = "Battery";
-                                    showNoctaliaPerformance = true;
-                                    showPowerProfiles = true;
-                                }
-                            ];
-                        };
-                    };
-
-                    # Brightness
-                    brightness = {
-                        enableDdcSupport = true;
-                        enforceMinimum = false;
-                    };
-
-                    # Use default terminal for shell commands
-                    appLauncher.terminalCommand = "$TERMINAL";
-
+                settings = {
                     # Make a noise when adjusting volume
-                    audio.volumeFeedback = true;
+                    audio.enable_sounds = true;
+
+                    # Bar layout
+                    bar.main = {
+                        margin_edge = 0;
+                        margin_ends = 0;
+                        padding = 8;
+                        radius = 0;
+                        scale = 1.1;
+                        shadow = false;
+                        widget_spacing = 8;
+
+                        start  = [ "workspaces" "media" ];
+                        center = [ "clock" ];
+                        end    = [ "network" "bluetooth" "battery" ];
+                    };
+
+                    # Connect brightness sliders to actual hardware
+                    brightness.enable_ddcutil = true;
 
                     # Control center
-                    controlCenter = {
-                        cards = [
-                            { enabled = true; id = "profile-card"; }
-                            { enabled = true; id = "shortcuts-card"; }
-                            { enabled = true; id = "audio-card"; }
-                            { enabled = true; id = "brightness-card"; }
-                            { enabled = true; id = "weather-card"; }
-                            { enabled = true; id = "media-sysmon-card"; }
-                        ];
-                        shortcuts = {
-                            left = [
-                                { id = "Network"; }
-                                { id = "Bluetooth"; }
-                                { id = "AirplaneMode"; }
-                            ];
-                            right = [
-                                { id = "Notifications"; }
-                                { id = "NightLight"; }
-                                { id = "KeepAwake"; }
-                            ];
-                        };
-                    };
-
-                    # Disable Dock
-                    dock.enabled = false;
-
-                    # Only turn off display during idle, do not sleep
-                    idle = {
-                        enabled = true;
-                        lockTimeout = 0;
-                        suspendTimeout = 0;
-                    };
+                    control_center.shortcuts = [
+                        { type = "wifi"; }
+                        { type = "bluetooth"; }
+                        { type = "nightlight"; }
+                        { type = "notification"; }
+                        { type = "caffeine"; }
+                        { type = "power_profile"; }
+                    ];
 
                     # Location
-                    location = {
-                        autoLocate = true;
-                        hideWeatherCityName = true;
-                        hideWeatherTimezone = true;
-                        use12hourFormat = true;
-                    };
+                    location.auto_locate = true;
 
                     # Night light
-                    nightLight = {
+                    nightlight = {
                         enabled = true;
-                        nightTemp = "2500";
+                        temperature_night = 2500;
                     };
 
-                    # System monitor
-                    systemMonitor = {
-                        enableDgpuMonitoring = true;
-                        criticalColor = "#ff6f9b";
-                        warningColor = "#d8b4ff";
+                    shell = {
+                        corner_radius_scale = 0.5;
+                        font_family = config.stylix.fonts.sansSerif.name;
+                        shadow.alpha = 0.0;
+                        show_location = false;
+                        time_format = "{:%-I:%M %p}";
                     };
 
-                    # UI
-                    ui = {
-                        fontDefault = config.stylix.fonts.sansSerif.name;
-                        fontFixed = config.stylix.fonts.monospace.name;
-                        panelBackgroundOpacity = 1;
-                        scrollbarAlwaysVisible = false;
-                    };
-                    general = {
-                        enableBlurBehind = false;
-                        enableShadows = false;
-                        forceBlackScreenCorners = true;
-                        screenRadiusRatio = 0.5;
-                        shadowDirection = "bottom";
-                        shadowOffsetX = 0;
-                        showChangelogOnStartup = false;
-                        showScreenCorners = true;
+                    theme = {
+                        source = "custom";
+                        custom_palette = palette;
                     };
 
                     # Disable wallpaper handling
                     wallpaper.enabled = false;
+
+                    widget = {
+                        clock = {
+                            format = "{:%-I:%M:%S %p}";
+                            tooltip_format = "{:%A, %B %d}";
+                            vertical_format = "";
+                        };
+                        media = {
+                            hide_when_no_media = true;
+                            max_length = 360;
+                            title_scroll = "on_hover";
+                        };
+                        workspaces = {
+                            display = "id";
+                            empty_color = "surface";
+                            focused_color = "primary";
+                            hide_when_empty = true;
+                            labels_only_when_occupied = true;
+                            max_label_chars = 2;
+                            occupied_color = "surface";
+                            pill_scale = 1.25;
+                        };
+                    };
                 };
             };
         };
