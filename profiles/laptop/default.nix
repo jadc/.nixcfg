@@ -80,7 +80,7 @@ let
                 enable = true;
                 configurations.home = "/etc/wireguard/home.conf";
             };
-            vesktop.enable = true;
+            discord.enable = true;
             virt-manager.enable = true;
             zathura.enable = true;
 
