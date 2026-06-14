@@ -101,7 +101,7 @@ let
             steam.enable = true;
             syncthing.enable = true;
             unity.enable = true;
-            vesktop.enable = true;
+            discord.enable = true;
             virt-manager.enable = true;
             zathura.enable = true;
 
