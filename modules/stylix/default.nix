@@ -32,8 +32,8 @@
                 sizes.terminal = 13;
 
                 monospace = {
-                    package = pkgs.nerd-fonts.jetbrains-mono;
-                    name = "JetBrainsMono Nerd Font";
+                    package = pkgs.maple-mono.NF-unhinted;
+                    name = "Maple Mono NF";
                 };
                 sansSerif = {
                     package = pkgs.open-sans;
