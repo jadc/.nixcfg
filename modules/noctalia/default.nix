@@ -136,7 +136,7 @@ in
 
                     theme = {
                         source = "custom";
-                        custom_palette = palette;
+                        custom_palette = lib.mkForce palette;
                     };
 
                     # Disable wallpaper handling
