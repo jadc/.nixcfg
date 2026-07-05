@@ -38,6 +38,7 @@ let
                 enable = true;
                 home.dirs = [ "Downloads" ];
             };
+            keyd.enable = true;
             qt.enable = true;
             rgb = {
                 enable = true;
