@@ -66,6 +66,7 @@ let
             nautilus.enable = true;
             niri.enable = true;
             noctalia.enable = true;
+            power.enable = true;
             swaybg.wallpaper = ../wallpaper.png;
             obs.enable = true;
             obsidian.enable = true;
