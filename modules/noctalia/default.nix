@@ -12,8 +12,6 @@ in
 
     flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
-            services.upower.enable = true;
-            services.power-profiles-daemon.enable = true;
         };
     };
 
