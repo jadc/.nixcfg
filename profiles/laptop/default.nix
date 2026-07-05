@@ -39,6 +39,7 @@ let
             };
             networkmanager.enable = true;
             timeZone = "America/Toronto";
+            keyd.enable = true;
             qt.enable = true;
             sound.enable = true;
             swapfile = {
