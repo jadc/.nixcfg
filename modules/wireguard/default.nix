@@ -33,11 +33,11 @@ in
                 };
                 script = lib.concatStrings (lib.mapAttrsToList (name: configFile: ''
                     nmcli connection delete "${name}" 2>/dev/null || true
-
                     nmcli connection import type wireguard file "${configFile}"
 
                     IMPORTED_NAME="$(basename "${configFile}" .conf)"
                     nmcli connection modify "$IMPORTED_NAME" connection.id "${name}" connection.autoconnect no
+                    nmcli connection down "${name}" 2>/dev/null || true
                 '') self.configurations);
             };
         };
