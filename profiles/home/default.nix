@@ -6,7 +6,6 @@ let
     profile = {
         cfg = {
             # Setup
-            ssh.enable = true;
             xdg.enable = true;
 
             # Command-line Interface
