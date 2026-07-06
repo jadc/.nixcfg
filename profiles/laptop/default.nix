@@ -42,6 +42,7 @@ let
             keyd.enable = true;
             qt.enable = true;
             sound.enable = true;
+            ssh.enable = true;
             swapfile = {
                 enable = true;
                 size = 4*1024;
