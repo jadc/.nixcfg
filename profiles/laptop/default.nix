@@ -43,9 +43,10 @@ let
             qt.enable = true;
             sound.enable = true;
             ssh.enable = true;
-            swapfile = {
-                enable = true;
-                size = 4*1024;
+            ram = {
+                swapfileSize = 4*1024;
+                zramPercent = 50;
+                oomThreshold = 5;
             };
             trim.enable = true;
             xdg.enable = true;

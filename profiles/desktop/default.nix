@@ -46,10 +46,7 @@ let
             };
             sound.enable = true;
             ssh.enable = true;
-            swapfile = {
-                enable = true;
-                size = 16*1024;
-            };
+            ram.swapfileSize = 16*1024;
             timeZone = "America/Edmonton";
             trim.enable = true;
             xdg.enable = true;
