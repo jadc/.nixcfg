@@ -42,7 +42,6 @@ let
             keyd.enable = true;
             qt.enable = true;
             sound.enable = true;
-            ssh.enable = true;
             ram = {
                 swapfileSize = 4*1024;
                 zramPercent = 50;

@@ -45,7 +45,6 @@ let
                 off = true;
             };
             sound.enable = true;
-            ssh.enable = true;
             ram.swapfileSize = 16*1024;
             timeZone = "America/Edmonton";
             trim.enable = true;
