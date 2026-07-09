@@ -17,7 +17,6 @@ let
             eza.enable = true;
             ffmpeg.enable = true;
             fzf.enable = true;
-            gdb.enable = true;
             git.enable = true;
             htop.enable = true;
             hyperfine.enable = true;
