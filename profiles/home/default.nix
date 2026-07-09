@@ -11,7 +11,6 @@ let
             # Command-line Interface
             archivers.enable = true;
             bat.enable = true;
-            claude-code.enable = true;
             direnv.enable = true;
             envs.enable = true;
             exiftool.enable = true;

@@ -43,13 +43,15 @@ in
                     share = true;                   # Share history between all sessions.
                 };
 
-                # Appended to end of ~/.zshrc
+                # Appended to end of .zshrc
                 initContent = let
                         C = "\\e[1;34m";
                         G = "\\e[1;33m";
                         B = "\\e[0;90m";
                         NC = "\\e[0m";
                     in ''
+                    source ~/.zshrc
+
                     setopt BANG_HIST                # Treat the '!' character specially during expansion.
                     setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
                     setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
