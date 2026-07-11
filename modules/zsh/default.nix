@@ -36,11 +36,12 @@ in
                 dotDir = "${config.xdg.configHome}/zsh";
 
                 history = {
-                    expireDuplicatesFirst = true;   # Expire duplicate entries first when trimming history.
-                    extended = true;                # Write the history file in the ":start:elapsed;command" format.
-                    ignoreAllDups = true;           # Delete old recorded entry if new entry is a duplicate.
-                    ignoreDups = true;              # Don't record an entry that was just recorded again.
-                    share = true;                   # Share history between all sessions.
+                    path = "${config.xdg.stateHome}/zsh/.zsh_history";
+                    expireDuplicatesFirst = true;
+                    extended = true;
+                    ignoreAllDups = true;
+                    ignoreDups = true;
+                    share = true;
                 };
 
                 # Appended to end of .zshrc
@@ -50,7 +51,7 @@ in
                         B = "\\e[0;90m";
                         NC = "\\e[0m";
                     in ''
-                    source ~/.zshrc
+                    source ${config.home.homeDirectory}/.zshrc
 
                     setopt BANG_HIST                # Treat the '!' character specially during expansion.
                     setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
@@ -73,7 +74,16 @@ in
                 '';
             };
 
-            cfg.save.home.files = [ ".config/zsh/.zsh_history" ];
+            # Some applications write to ~/.zshrc imperatively for their setup.
+            # It is therefore sourced in the main config, so it needs to at least exist.
+            home.activation.createZshrc = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                [ -f "$HOME/.zshrc" ] || touch "$HOME/.zshrc"
+            '';
+
+            cfg.save.home = {
+                dirs = [ ".local/state/zsh" ];
+                files = [ ".zshrc" ];
+            };
         };
     };
 }
