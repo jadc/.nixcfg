@@ -60,7 +60,6 @@ let
             k3s.enable = true;
             droidcam.enable = true;
             gimp.enable = true;
-            handbrake.enable = true;
             inkscape.enable = true;
             jellyfin-player.enable = true;
             kitty.enable = true;
