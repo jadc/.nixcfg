@@ -9,6 +9,11 @@
                 default = {};
             };
 
+            flakePath = lib.mkOption {
+                type = lib.types.str;
+                description = "Absolute path to the flake directory";
+            };
+
             stateVersion = lib.mkOption {
                 type = lib.types.str;
                 description = "The NixOS / Home Manager state version";
