@@ -56,7 +56,9 @@ let
             brave.enable = true;
             bruno.enable = true;
             deluge.enable = true;
+            discord.enable = true;
             docker.enable = true;
+            gamemode.enable = true;
             gimp.enable = true;
             handbrake.enable = true;
             inkscape.enable = true;
@@ -68,24 +70,23 @@ let
             nautilus.enable = true;
             niri.enable = true;
             noctalia.enable = true;
-            power.enable = true;
-            swaybg.wallpaper = ../wallpaper.png;
             obs.enable = true;
             obsidian.enable = true;
+            parallel-launcher.enable = true;
+            power.enable = true;
             puddletag.enable = true;
             qdirstat.enable = true;
             rnote.enable = true;
             spek.enable = true;
             spotify.enable = true;
-            gamemode.enable = true;
             steam.enable = true;
+            swaybg.wallpaper = ../wallpaper.png;
             syncthing.enable = true;
+            virt-manager.enable = true;
             wireguard = {
                 enable = true;
                 configurations.home = "/etc/wireguard/home.conf";
             };
-            discord.enable = true;
-            virt-manager.enable = true;
             zathura.enable = true;
 
             # Command-line Interface
