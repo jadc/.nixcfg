@@ -62,6 +62,7 @@ let
             gimp.enable = true;
             inkscape.enable = true;
             jellyfin-player.enable = true;
+            k3s.enable = true;
             kitty.enable = true;
             minecraft.enable = true;
             moonlight.enable = true;
