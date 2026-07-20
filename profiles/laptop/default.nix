@@ -60,7 +60,6 @@ let
             docker.enable = true;
             gamemode.enable = true;
             gimp.enable = true;
-            inkscape.enable = true;
             jellyfin-player.enable = true;
             k3s.enable = true;
             kitty.enable = true;
@@ -78,7 +77,6 @@ let
             qdirstat.enable = true;
             rnote.enable = true;
             spek.enable = true;
-            spotify.enable = true;
             steam.enable = true;
             swaybg.wallpaper = ../wallpaper.png;
             syncthing.enable = true;
