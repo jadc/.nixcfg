@@ -7,6 +7,7 @@
                 name = "rebuild";
                 text = ''
                     flake="${flake}"
+                    hostname="$(hostname)"
 
                     if [ "''${1:-}" = "now" ]; then
                         action="switch"
@@ -15,11 +16,11 @@
                     fi
                 '' + (if pkgs.stdenv.isDarwin then ''
                     echo "darwin-rebuild $action"
-                    sudo -u "$USER" darwin-rebuild "$action" --flake "$flake"
+                    sudo -u "$USER" darwin-rebuild "$action" --flake "$flake#$hostname"
                 '' else ''
                     if grep -q "NixOS" /etc/os-release; then
                         echo "nixos-rebuild $action"
-                        sudo nixos-rebuild "$action" --flake "$flake"
+                        sudo nixos-rebuild "$action" --flake "$flake#$hostname"
                     else
                         echo "home-manager switch"
                         home-manager switch --flake "$flake#home-${pkgs.stdenv.hostPlatform.system}"
