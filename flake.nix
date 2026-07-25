@@ -45,7 +45,6 @@
             systems = inputs.nixpkgs.lib.systems.flakeExposed;
             imports = [
                 inputs.flake-parts.flakeModules.modules
-                { flake.modules.generic.flakePath = { cfg.const.flakePath = "${./.}"; }; }
                 ./profiles
                 (inputs.import-tree ./modules)
             ];
