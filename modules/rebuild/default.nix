@@ -1,12 +1,12 @@
 { ... }:
 
 {
-    flake.modules.homeManager.rebuild = { config, pkgs, ... }: let flake = config.cfg.const.flakePath; in {
+    flake.modules.homeManager.rebuild = { config, pkgs, ... }: {
         home.packages = [
             (pkgs.writeShellApplication {
                 name = "rebuild";
                 text = ''
-                    flake="${flake}"
+                    repo="${config.home.homeDirectory}/.nixcfg"
                     hostname="$(hostname)"
 
                     if [ "''${1:-}" = "now" ]; then
@@ -16,14 +16,14 @@
                     fi
                 '' + (if pkgs.stdenv.isDarwin then ''
                     echo "darwin-rebuild $action"
-                    sudo -u "$USER" darwin-rebuild "$action" --flake "$flake#$hostname"
+                    sudo -u "$USER" darwin-rebuild "$action" --flake "$repo#$hostname"
                 '' else ''
                     if grep -q "NixOS" /etc/os-release; then
                         echo "nixos-rebuild $action"
-                        sudo nixos-rebuild "$action" --flake "$flake#$hostname"
+                        sudo nixos-rebuild "$action" --flake "$repo#$hostname"
                     else
                         echo "home-manager switch"
-                        home-manager switch --flake "$flake#home-${pkgs.stdenv.hostPlatform.system}"
+                        home-manager switch --flake "$repo#home-${pkgs.stdenv.hostPlatform.system}"
                     fi
                 '');
             })
