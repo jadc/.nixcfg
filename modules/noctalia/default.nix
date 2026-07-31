@@ -12,6 +12,11 @@ in
 
     flake.modules.nixos.${name} = { config, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
+            # Use pre-compiled binaries from noctalia cache if available
+            nix.settings = {
+                substituters = [ "https://noctalia.cachix.org" ];
+                trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+            };
         };
     };
 
