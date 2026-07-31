@@ -35,6 +35,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        helium = {
+            url = "github:oxcl/nix-flake-helium-browser";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nix-cachyos-kernel = {
             url = "github:xddxdd/nix-cachyos-kernel/release";
         };
