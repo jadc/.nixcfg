@@ -48,6 +48,9 @@
                     name = "Twemoji Color Emoji";
                 };
             };
+
+            # Disable forcing Chromium theme
+            targets.chromium.enable = false;
         };
 
         config.fonts = {
