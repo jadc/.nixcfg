@@ -39,6 +39,7 @@ let
                 home.dirs = [ "Downloads" ];
             };
             keyd.enable = true;
+            networkmanager.enable = true;
             qt.enable = true;
             rgb = {
                 enable = true;
@@ -46,7 +47,7 @@ let
             };
             sound.enable = true;
             ram.swapfileSize = 16*1024;
-            timeZone = "America/Edmonton";
+            timeZone = "America/Toronto";
             trim.enable = true;
             xdg.enable = true;
 
@@ -67,23 +68,7 @@ let
             moonlight.enable = true;
             mpv.enable = true;
             nautilus.enable = true;
-            niri = {
-                enable = true;
-
-                # Monitor setup
-                extraConfig = ''
-                    output "DP-1" {
-                        mode "2560x1440@239.970"
-                        position x=0 y=0
-                    }
-
-                    output "HDMI-A-1" {
-                        mode "1920x1080@119.993"
-                        position x=2560 y=-360
-                        transform "270"
-                    }
-                '';
-            };
+            niri.enable = true;
             noctalia.enable = true;
             swaybg.wallpaper = ../wallpaper.png;
             obs.enable = true;
