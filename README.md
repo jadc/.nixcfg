@@ -58,7 +58,16 @@ Profiles live in `profiles/<name>/` and define a complete machine configuration 
 
 - **desktop** (`jad-desktop`): Full workstation — Niri WM, NVIDIA+Intel GPU, preservation, 100+ modules enabled
 - **laptop** (`jad-laptop`): Similar to desktop without NVIDIA, adds bluetooth/wireguard/battery
-- **home**: Standalone home-manager config (CLI tools only, no NixOS), produces `home-<system>` outputs for all platforms
+- **work**: Standalone home-manager config (CLI tools only, no NixOS), produces `work-<system>` outputs for all platforms
+
+Profiles only declare what is unique to them. The shared layers live in `profiles/_common/`:
+
+- `_common/work.nix`: the CLI baseline, used directly by the **work** profile
+- `_common/default.nix`: imports `work.nix` and adds everything **desktop** and **laptop** have in common
+
+Both layers wrap their `cfg` block in `lib.mkDefault`, so a profile's own definitions always take
+precedence without needing `lib.mkForce`. Directories under `profiles/` prefixed with `_` are shared
+fragments and are skipped by the profile auto-import.
 
 Each NixOS profile composes its module list as:
 ```nix
@@ -130,6 +139,6 @@ sudo nixos-rebuild switch --flake ~/.nixcfg
 nix run home-manager/master -- init --switch
 
 # After any change
-home-manager switch --flake ~/.nixcfg
+home-manager switch --flake ~/.nixcfg#work-x86_64-linux
 ```
 
