@@ -23,7 +23,7 @@
                         sudo nixos-rebuild "$action" --flake "$repo#$hostname" && sudo nix-collect-garbage --quiet
                     else
                         echo "home-manager switch"
-                        home-manager switch --flake "$repo#home-${pkgs.stdenv.hostPlatform.system}" && nix-collect-garbage -d --quiet
+                        home-manager switch --flake "$repo#work-${pkgs.stdenv.hostPlatform.system}" && nix-collect-garbage -d --quiet
                     fi
                 '');
             })

@@ -6,113 +6,29 @@ let
     hostname = "jad-laptop";
     username = "jad";
 
-    profile = { pkgs, config, ... }: {
-        cfg = {
-            # Kernel
-            kernel = {
-                enable = true;
-                build = pkgs.linuxPackages_zen;
-                flags = {
-                    intel = true;
-                    performance = true;
-                    quiet = true;
-                };
-            };
-            cachyos.enable = true;
-            systemd-boot.enable = true;
+    profile = { ... }: {
+        imports = [ ../_common ];
 
+        cfg = {
             # Setup
-            automount.enable = true;
             bluetooth.enable = true;
             hp.enable = true;
-            identity.passwordFile = "${config.cfg.save.path}/password";
-            save = {
-                enable = true;
-                home.dirs = [
-                    "Documents"
-                    "Downloads"
-                    "Music"
-                    "Pictures"
-                    "Projects"
-                    "Videos"
-                ];
-            };
-            networkmanager.enable = true;
-            timeZone = "America/Toronto";
-            keyd.enable = true;
-            qt.enable = true;
-            sound.enable = true;
+            save.home.dirs = [
+                "Documents"
+                "Downloads"
+                "Music"
+                "Pictures"
+                "Projects"
+                "Videos"
+            ];
             ram = {
                 swapfileSize = 4*1024;
                 zramPercent = 50;
                 oomThreshold = 5;
             };
-            trim.enable = true;
-            xdg.enable = true;
 
             # Apps
-            audacity.enable = true;
-            avidemux.enable = true;
-            helium.enable = true;
-            bruno.enable = true;
-            deluge.enable = true;
-            discord.enable = true;
-            docker.enable = true;
-            gamemode.enable = true;
-            gimp.enable = true;
-            jellyfin-player.enable = true;
-            kitty.enable = true;
-            minecraft.enable = true;
-            moonlight.enable = true;
-            mpv.enable = true;
-            nautilus.enable = true;
-            niri.enable = true;
-            noctalia.enable = true;
-            obs.enable = true;
-            obsidian.enable = true;
-            parallel-launcher.enable = true;
             power.enable = true;
-            puddletag.enable = true;
-            qdirstat.enable = true;
-            rnote.enable = true;
-            spek.enable = true;
-            steam.enable = true;
-            swaybg.wallpaper = ../wallpaper.png;
-            syncthing.enable = true;
-            virt-manager.enable = true;
-            wireguard = {
-                enable = true;
-                configurations.home = "/etc/wireguard/home.conf";
-            };
-            zathura.enable = true;
-
-            # Command-line Interface
-            archivers.enable = true;
-            bat.enable = true;
-            claude-code.enable = true;
-            direnv.enable = true;
-            envs.enable = true;
-            exiftool.enable = true;
-            eza.enable = true;
-            ffmpeg.enable = true;
-            flac.enable = true;
-            fzf.enable = true;
-            gallery-dl.enable = true;
-            gdb.enable = true;
-            git.enable = true;
-            htop.enable = true;
-            hyperfine.enable = true;
-            imagemagick.enable = true;
-            poppler.enable = true;
-            ripgrep.enable = true;
-            rsync.enable = true;
-            tmux.enable = true;
-            yt.enable = true;
-            zoxide.enable = true;
-            zsh.enable = true;
-
-            # Scripts
-            spotifyify.enable = true;
         };
     };
 in
