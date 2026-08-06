@@ -1,6 +1,6 @@
 # Options shared amongst all the NixOS profiles.
 
-{ pkgs, config, lib, ... }:
+{ config, lib, ... }:
 
 {
     imports = [ ./work.nix ];
@@ -9,14 +9,12 @@
         # Kernel
         kernel = {
             enable = true;
-            build = pkgs.linuxPackages_zen;
             flags = {
                 intel = true;
                 performance = true;
                 quiet = true;
             };
         };
-        cachyos.enable = true;
         systemd-boot.enable = true;
 
         # Setup

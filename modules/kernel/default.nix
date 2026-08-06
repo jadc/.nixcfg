@@ -13,6 +13,12 @@ in
                 default = pkgs.linuxPackages_latest;
             };
 
+            cachyos = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "Override kernel build with CachyOS variant";
+            };
+
             flags = {
                 quiet = lib.mkOption {
                     type = lib.types.bool;
@@ -43,13 +49,17 @@ in
         };
     };
 
-    flake.modules.nixos.${name} = { config, pkgs, lib, ... }: let self = config.cfg.${name}; in {
+    flake.modules.nixos.${name} = { config, inputs, pkgs, lib, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             hardware.enableAllFirmware = true;
             hardware.enableRedistributableFirmware = true;
 
             boot = {
-                kernelPackages = self.build;
+                # Use CachyOS variant if its defined, otherwise use a kernel from nixpkgs
+                kernelPackages =
+                    if self.cachyos != null
+                    then pkgs.cachyosKernels.${self.cachyos}
+                    else self.build;
 
                 # Load GPU kernel modules early in boot process
                 initrd.kernelModules =
@@ -164,6 +174,15 @@ in
                 # Use open drivers (for modern cards)
                 open = true;
                 package = config.boot.kernelPackages.nvidiaPackages.stable;
+            };
+
+            nixpkgs.overlays = lib.optionals (self.cachyos != null) [
+                inputs.nix-cachyos-kernel.overlays.pinned
+            ];
+
+            nix.settings = lib.mkIf (self.cachyos != null) {
+                substituters = [ "https://attic.xuyh0120.win/lantian" ];
+                trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
             };
         };
     };
