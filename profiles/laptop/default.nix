@@ -10,6 +10,11 @@ let
         imports = [ ../_common ];
 
         cfg = {
+            # Kernel
+            kernel = {
+                cachyos = "linuxPackages-cachyos-bore-lto-x86_64-v3";
+            };
+
             # Setup
             bluetooth.enable = true;
             hp.enable = true;
