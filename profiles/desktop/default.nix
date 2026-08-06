@@ -9,7 +9,10 @@ let
 
         cfg = {
             # Kernel
-            kernel.flags.nvidia = true;
+            kernel = {
+                cachyos = "linuxPackages-cachyos-bore-lto-x86_64-v3";
+                flags.nvidia = true;
+            };
 
             # Setup
             homeMounts = {
