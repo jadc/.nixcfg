@@ -16,6 +16,7 @@
         htop.enable = true;
         hyperfine.enable = true;
         imagemagick.enable = true;
+        pi.enable = true;
         poppler.enable = true;
         ripgrep.enable = true;
         rsync.enable = true;

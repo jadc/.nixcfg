@@ -61,6 +61,10 @@ in
                     # hide status bar
                     set -g status off
 
+                    # enable extended key reporting for richer modified-key support
+                    set -s extended-keys on
+                    set -g extended-keys-format csi-u
+
                     # fix colors
                     set -sg terminal-overrides ",*:RGB"
                 '';
