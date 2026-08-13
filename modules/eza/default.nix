@@ -15,7 +15,7 @@ in
             programs.eza.enable = true;
 
             # Replace ls with eza
-            cfg.const.aliases.ls = "${pkgs.eza}/bin/eza --icons=always $@";
+            cfg.const.aliases.ls = "${pkgs.eza}/bin/eza --icons=always --binary $@";
         };
     };
 }
