@@ -15,6 +15,11 @@ in
             programs.claude-code.enable = true;
             cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
 
+            home.file.".claude/statusline-command.sh" = {
+                source = ./statusline-command.sh;
+                executable = true;
+            };
+
             home.activation.claudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
                 if [ ! -e "$HOME/.claude/settings.json" ]; then
                     run mkdir -p "$HOME/.claude"
