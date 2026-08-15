@@ -13,7 +13,7 @@
         ffmpeg.enable = true;
         fzf.enable = true;
         git.enable = true;
-        htop.enable = true;
+        btop.enable = true;
         hyperfine.enable = true;
         imagemagick.enable = true;
         lldb.enable = true;
