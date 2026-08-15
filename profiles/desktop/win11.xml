@@ -1,0 +1,171 @@
+<domain type='kvm'>
+  <name>win11</name>
+  <uuid>a1d5d212-b963-4610-b72b-855dccbea1fd</uuid>
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://microsoft.com/win/11"/>
+    </libosinfo:libosinfo>
+  </metadata>
+
+  <memory unit='KiB'>@memoryKiB@</memory>
+  <currentMemory unit='KiB'>@memoryKiB@</currentMemory>
+  <memtune>
+    <hard_limit unit='KiB'>@memoryLimitKiB@</hard_limit>
+  </memtune>
+  <memoryBacking>
+    <hugepages/>
+  </memoryBacking>
+
+  <!-- Pinning is specific to this host's i5-13600K (6 P-cores as CPUs 0-11,
+       8 E-cores as CPUs 12-19); regenerate it if the CPU changes. 5 of the
+       6 P-cores, as 5 cores x 2 threads. P-core 0 (CPUs 0-1) stays with the
+       host; emulator and iothread land on E-cores so they never contend with
+       a pinned vCPU. -->
+  <vcpu placement='static'>10</vcpu>
+  <iothreads>1</iothreads>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='2'/>
+    <vcpupin vcpu='1' cpuset='3'/>
+    <vcpupin vcpu='2' cpuset='4'/>
+    <vcpupin vcpu='3' cpuset='5'/>
+    <vcpupin vcpu='4' cpuset='6'/>
+    <vcpupin vcpu='5' cpuset='7'/>
+    <vcpupin vcpu='6' cpuset='8'/>
+    <vcpupin vcpu='7' cpuset='9'/>
+    <vcpupin vcpu='8' cpuset='10'/>
+    <vcpupin vcpu='9' cpuset='11'/>
+    <emulatorpin cpuset='12-13'/>
+    <iothreadpin iothread='1' cpuset='12-13'/>
+  </cputune>
+
+  <resource>
+    <partition>/machine</partition>
+  </resource>
+
+  <os firmware='efi'>
+    <type arch='x86_64' machine='pc-q35-11.0'>hvm</type>
+    <firmware>
+      <feature enabled='no' name='enrolled-keys'/>
+      <feature enabled='yes' name='secure-boot'/>
+    </firmware>
+  </os>
+
+  <features>
+    <acpi/>
+    <apic/>
+    <!-- Required by the secure-boot firmware descriptor -->
+    <smm state='on'/>
+    <vmport state='off'/>
+    <!-- In-kernel IOAPIC, so interrupts are not bounced through userspace -->
+    <ioapic driver='kvm'/>
+    <!-- Enlightenments: let Windows use paravirtualised timers, IPIs and TLB
+         shootdowns instead of trapping -->
+    <hyperv mode='custom'>
+      <relaxed state='on'/>
+      <vapic state='on'/>
+      <spinlocks state='on' retries='8191'/>
+      <vpindex state='on'/>
+      <runtime state='on'/>
+      <synic state='on'/>
+      <stimer state='on'/>
+      <vendor_id state='on' value='GenuineIntel'/>
+      <frequencies state='on'/>
+      <tlbflush state='on'/>
+      <ipi state='on'/>
+      <evmcs state='on'/>
+    </hyperv>
+    <!-- Hide the KVM CPUID leaf for the same reason -->
+    <kvm>
+      <hidden state='on'/>
+    </kvm>
+  </features>
+
+  <cpu mode='host-passthrough' check='none' migratable='off'>
+    <topology sockets='1' dies='1' clusters='1' cores='5' threads='2'/>
+    <cache mode='passthrough'/>
+  </cpu>
+
+  <!-- Windows expects the RTC in local time -->
+  <clock offset='localtime'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='no'/>
+    <timer name='hypervclock' present='yes'/>
+  </clock>
+
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+
+  <devices>
+    <emulator>/run/libvirt/nix-emulators/qemu-system-x86_64</emulator>
+
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='raw' cache='none' io='native' discard='unmap' iothread='1' queues='8'/>
+      <source file='@imageDir@/win11.raw'/>
+      <target dev='vda' bus='virtio'/>
+      <boot order='1'/>
+    </disk>
+
+    <controller type='usb' index='0' model='qemu-xhci' ports='15'/>
+    <controller type='pci' index='0' model='pcie-root'/>
+    <controller type='virtio-serial' index='0'/>
+
+    <!-- Fixed MAC: Windows treats a changed MAC as new hardware and may
+         re-trigger activation -->
+    <interface type='network'>
+      <source network='default'/>
+      <mac address='52:54:00:6a:8d:0a'/>
+      <model type='virtio'/>
+      <driver name='vhost' queues='4'/>
+    </interface>
+
+    <!-- TPM 2.0 via swtpm, required by Windows 11 -->
+    <tpm model='tpm-crb'>
+      <backend type='emulator' version='2.0'/>
+    </tpm>
+
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+      <image compression='off'/>
+    </graphics>
+    <!-- qxl has in-box VGA fallback so setup is visible before virtio-win is
+         installed; drops to a fallback display once the GPU is passed through -->
+    <video>
+      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+    </video>
+
+    <sound model='ich9'/>
+    <audio id='1' type='spice'/>
+
+    <channel type='spicevmc'>
+      <target type='virtio' name='com.redhat.spice.0'/>
+    </channel>
+    <serial type='pty'>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+
+    <input type='tablet' bus='usb'/>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <redirdev bus='usb' type='spicevmc'/>
+    <redirdev bus='usb' type='spicevmc'/>
+
+    @hostdevs@
+
+    <watchdog model='itco' action='reset'/>
+
+    <!-- Ballooning conflicts with hugepage-backed memory -->
+    <memballoon model='none'/>
+  </devices>
+</domain>

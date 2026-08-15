@@ -31,9 +31,9 @@ in
                 };
 
                 vfio = lib.mkOption {
-                    type = lib.types.listOf lib.types.str;
-                    default = [];
-                    description = "Enable VFIO kernel modules and specify PCI device IDs to passthrough";
+                    type = lib.types.bool;
+                    default = false;
+                    description = "Load VFIO kernel modules so devices can be bound to vfio-pci";
                 };
 
                 intel = lib.mkOption {
@@ -61,14 +61,17 @@ in
                     then pkgs.cachyosKernels.${self.cachyos}
                     else self.build;
 
-                # Load GPU kernel modules early in boot process
-                initrd.kernelModules =
-                    lib.optionals (self.flags.vfio != []) [
+                # Load the iGPU driver early so the console comes up on it
+                initrd.kernelModules = lib.optionals self.flags.intel [
+                    "xe"             # Intel Xe graphics driver
+                ];
+
+                # Loaded once userspace is up
+                kernelModules =
+                    lib.optionals self.flags.vfio [
                         "vfio_pci"
                         "vfio"
                         "vfio_iommu_type1"
-                    ] ++ lib.optionals self.flags.intel [
-                        "xe"             # Intel Xe graphics driver
                     ] ++ lib.optionals self.flags.nvidia [
                         "nvidia"         # NVIDIA proprietary driver
                         "nvidia_drm"     # NVIDIA DRM kernel module
@@ -120,9 +123,6 @@ in
                         "numa_balancing=disable"
                         # Disable split-lock detection to prevent stalls in Wine/Proton games
                         "split_lock_detect=off"
-                    ] ++ lib.optionals (self.flags.vfio != []) [
-                        # Specify PCI device IDs for VFIO passthrough
-                        "vfio-pci.ids=${lib.concatStringsSep "," self.flags.vfio}"
                     ] ++ lib.optionals self.flags.intel [
                         # Enable IOMMU functionality
                         "intel_iommu=on"
@@ -161,12 +161,16 @@ in
             };
 
             # System-wide environment variables for Intel hardware acceleration
-            environment.sessionVariables = lib.mkIf (self.flags.intel && !self.flags.nvidia) {
+            environment.sessionVariables = lib.mkIf self.flags.intel {
                 LIBVA_DRIVER_NAME = "iHD";
             };
 
             hardware.nvidia = lib.mkIf self.flags.nvidia {
                 modesetting.enable = true;
+
+                # fbcon on the NVIDIA card pins the driver open
+                # preventing runtime handover of the card to a guest
+                moduleParams."nvidia-drm".fbdev = lib.mkForce 0;
 
                 # Enable settings menu (nvidia-settings)
                 nvidiaSettings = true;
