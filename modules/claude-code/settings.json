@@ -3,10 +3,12 @@
   "attribution": {
     "commit": ""
   },
-  "model": "claude-opus-4-6[1m]",
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true,
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
+    "mattpocock-skills@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline-command.sh\""
   }
 }
