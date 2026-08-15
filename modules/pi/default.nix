@@ -24,7 +24,12 @@ in
 
                         # Extensions
                         "npm:@tintinweb/pi-subagents"
+                        "npm:pi-lens"
                         "npm:pi-web-access"
+                        {
+                            source = "npm:mattpocock-skills";
+                            skills = [ "skills/productivity/grill-me/SKILL.md" ];
+                        }
                     ];
 
                     skills = let home = config.home.homeDirectory; in [
@@ -32,13 +37,12 @@ in
                         "${home}/.codex/skills"
                     ];
 
-                    # Hide the startup header.
-                    quietStartup = true;
-
                     # Disable telemetry.
                     enableInstallTelemetry = false;
                     enableAnalytics = false;
 
+                    # UI Behaviour
+                    tuiMode = "fullscreen";
                     terminal = {
                         # Clear empty rows when content shrinks; can cause flicker.
                         clearOnShrink = true;
