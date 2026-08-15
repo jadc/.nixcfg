@@ -37,6 +37,10 @@ in
                     };
                 };
             };
+
+            hardware.i2c.enable = true;
+
+            users.users.${username}.extraGroups = [ "i2c" ];
         };
     };
 
@@ -45,11 +49,14 @@ in
             home.packages = with pkgs; [
                 xwayland-satellite
                 wl-clipboard
-                brightnessctl
                 playerctl
                 grim
                 slurp
+                ddcutil
+                brightnessctl
             ];
+
+            programs.noctalia.settings.brightness.enable_ddcutil = true;
 
             xdg.configFile."niri/config.kdl".text =
                 builtins.readFile ./config.kdl + self.extraConfig;

@@ -107,9 +107,6 @@ in
                         end    = [ "network" "bluetooth" "battery" ];
                     };
 
-                    # Connect brightness sliders to actual hardware
-                    brightness.enable_ddcutil = true;
-
                     # Control center
                     control_center.shortcuts = [
                         { type = "wifi"; }
