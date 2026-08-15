@@ -8,7 +8,7 @@
         programs.nix-ld.enable = true;
 
         nix.settings = {
-            auto-optimise-store = pkgs.stdenv.isLinux;
+            auto-optimise-store = pkgs.stdenv.hostPlatform.isLinux;
 
             # Enable flakes
             experimental-features = [ "nix-command" "flakes" ];
