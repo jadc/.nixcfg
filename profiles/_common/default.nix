@@ -35,7 +35,7 @@
         deluge.enable = true;
         discord.enable = true;
         docker.enable = true;
-        gamemode.enable = true;
+        gaming.enable = true;
         gimp.enable = true;
         helium.enable = true;
         jellyfin-player.enable = true;
