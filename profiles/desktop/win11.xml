@@ -118,8 +118,10 @@
 
     <!-- Fixed MAC: Windows treats a changed MAC as new hardware and may
          re-trigger activation -->
-    <interface type='network'>
-      <source network='default'/>
+    <!-- Attach directly to the host's LAN bridge so Windows receives its own
+         address from the same DHCP server as the host. -->
+    <interface type='bridge'>
+      <source bridge='br0'/>
       <mac address='52:54:00:6a:8d:0a'/>
       <model type='virtio'/>
       <driver name='vhost' queues='4'/>

@@ -22,6 +22,10 @@ let
             };
 
             # Setup
+            bridge = {
+                enable = true;
+                interface = "enp4s0";
+            };
             homeMounts = {
                 enable = true;
                 source = "/data";
