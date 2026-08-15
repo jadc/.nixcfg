@@ -14,7 +14,7 @@
                     else
                         action="boot"
                     fi
-                '' + (if pkgs.stdenv.isDarwin then ''
+                '' + (if pkgs.stdenv.hostPlatform.isDarwin then ''
                     echo "darwin-rebuild $action"
                     sudo -u "$USER" darwin-rebuild "$action" --flake "$repo#$hostname" && sudo nix-collect-garbage --quiet
                 '' else ''
