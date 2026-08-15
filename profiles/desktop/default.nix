@@ -11,7 +11,14 @@ let
             # Kernel
             kernel = {
                 cachyos = "linuxPackages-cachyos-bore-lto-x86_64-v3";
-                flags.nvidia = true;
+                flags = {
+                    # Displays hang off the UHD 770. The 3080 Ti stays on the
+                    # host for render offload and is handed to a guest at
+                    # runtime, so nothing binds it to vfio-pci at boot.
+                    intel = true;
+                    nvidia = true;
+                    vfio = true;
+                };
             };
 
             # Setup
@@ -27,11 +34,20 @@ let
                 ];
             };
             save.home.dirs = [ "Downloads" ];
-            rgb = {
-                enable = true;
-                off = true;
-            };
             ram.swapfileSize = 16*1024;
+
+            # Virtual machines
+            vm = {
+                enable = true;
+                imageDir = "/data/vms";
+                domains.win11 = ./win11.xml;
+                memory = 16*1024;
+                hugepages = true;
+                passthrough = [
+                    "0000:01:00.0"  # RTX 3080 Ti
+                    "0000:01:00.1"  # its HDMI audio function
+                ];
+            };
 
             # Apps
             droidcam.enable = true;

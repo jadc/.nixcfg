@@ -23,6 +23,9 @@ in
 
             networking.firewall.allowedTCPPorts = [ 6443 ];
 
+            # Prevent starting on boot
+            systemd.services.k3s.wantedBy = lib.mkForce [];
+
             cfg.save.home.dirs = [ ".kube" ];
             cfg.save.root.dirs = [
                 "/var/lib/rancher/k3s"

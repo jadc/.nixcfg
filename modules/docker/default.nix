@@ -12,8 +12,10 @@ in
 
     flake.modules.nixos.${name} = { config, lib, username, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
-            # Enable docker
-            virtualisation.docker.enable = true;
+            virtualisation.docker = {
+                enable = true;
+                enableOnBoot = false;
+            };
 
             # Add user to docker group
             users.users.${username}.extraGroups = [ "docker" ];
