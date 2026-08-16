@@ -1,4 +1,4 @@
-<domain type='kvm'>
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win11</name>
   <uuid>a1d5d212-b963-4610-b72b-855dccbea1fd</uuid>
   <metadata>
@@ -83,6 +83,8 @@
   <cpu mode='host-passthrough' check='none' migratable='off'>
     <topology sockets='1' dies='1' clusters='1' cores='5' threads='2'/>
     <cache mode='passthrough'/>
+    <!-- Keep guest PCI MMIO within the Intel IOMMU's 39-bit address width. -->
+    <maxphysaddr mode='passthrough' limit='39'/>
   </cpu>
 
   <!-- Windows expects the RTC in local time -->
@@ -160,6 +162,8 @@
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
+    <input type='mouse' bus='virtio'/>
+    <input type='keyboard' bus='virtio'/>
     <redirdev bus='usb' type='spicevmc'/>
     <redirdev bus='usb' type='spicevmc'/>
 
@@ -170,4 +174,6 @@
     <!-- Ballooning conflicts with hugepage-backed memory -->
     <memballoon model='none'/>
   </devices>
+
+  @extraDomainXml@
 </domain>
