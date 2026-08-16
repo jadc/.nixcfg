@@ -42,6 +42,11 @@ in
             };
 
             hugepages = lib.mkEnableOption "backing guest memory with 2MB hugepages allocated while the guest runs";
+
+            extraDomainXml = lib.mkOption {
+                type = lib.types.lines;
+                default = "";
+            };
         };
     };
 
@@ -67,12 +72,13 @@ in
 
         domainXml = guest: xml: pkgs.writeText "${guest}.xml" (
             builtins.replaceStrings
-                [ "@imageDir@" "@memoryKiB@" "@memoryLimitKiB@" "@hostdevs@" ]
+                [ "@imageDir@" "@memoryKiB@" "@memoryLimitKiB@" "@hostdevs@" "@extraDomainXml@" ]
                 [
                     self.imageDir
                     (toString (self.memory * 1024))
                     (toString (self.memoryLimit * 1024))
                     (lib.concatMapStringsSep "\n" pciHostdev self.passthrough)
+                    self.extraDomainXml
                 ]
                 (builtins.readFile xml)
         );

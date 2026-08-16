@@ -52,6 +52,10 @@ let
                     "0000:01:00.1"  # its HDMI audio function
                 ];
             };
+            looking-glass = {
+                enable = true;
+                size = 64;  # 1440p SDR
+            };
 
             # Apps
             droidcam.enable = true;
