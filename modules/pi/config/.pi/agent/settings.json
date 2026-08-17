@@ -1,0 +1,27 @@
+{
+    "enableAnalytics": false,
+    "enableInstallTelemetry": false,
+    "packages": [
+        "npm:pi-gh-dark-theme",
+        "npm:pi-footer",
+        "npm:@tintinweb/pi-subagents",
+        "npm:pi-lens",
+        "npm:pi-web-access",
+        {
+            "skills": [
+                "skills/productivity/grill-me/SKILL.md"
+            ],
+            "source": "npm:mattpocock-skills"
+        }
+    ],
+    "skills": [
+        "~/.claude/skills",
+        "~/.codex/skills"
+    ],
+    "terminal": {
+        "clearOnShrink": true,
+        "showTerminalProgress": true
+    },
+    "theme": "gh-dark",
+    "tuiMode": "fullscreen"
+}
