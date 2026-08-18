@@ -4,7 +4,7 @@
     "packages": [
         "npm:pi-gh-dark-theme",
         "npm:pi-footer",
-        "npm:@tintinweb/pi-subagents",
+        "npm:pi-subagents-lite",
         "npm:pi-lens",
         "npm:pi-web-access",
         {
