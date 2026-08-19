@@ -25,6 +25,10 @@
             url = "github:jadc/nvim";
         };
 
+        pi = {
+            url = "github:jadc/pi";
+        };
+
         noctalia = {
             url = "github:noctalia-dev/noctalia-shell/cachix";
         };
