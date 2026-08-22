@@ -4,7 +4,7 @@ let
     hostname = "jad-desktop";
     username = "jad";
 
-    profile = { ... }: {
+    profile = { pkgs, ... }: {
         imports = [ ../_common ];
 
         cfg = {
@@ -40,6 +40,14 @@ let
             save.home.dirs = [ "Downloads" ];
             ram.swapfileSize = 16*1024;
 
+            # Services
+            k3s.enable = true;
+            llama-server = {
+                enable = true;
+                package = pkgs.llama-cpp.override { cudaSupport = true; };
+                port = 8081;
+            };
+
             # Virtual machines
             vm = {
                 enable = true;
@@ -59,7 +67,6 @@ let
 
             # Apps
             droidcam.enable = true;
-            k3s.enable = true;
             unity.enable = true;
         };
     };
