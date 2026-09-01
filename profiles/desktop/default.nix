@@ -42,8 +42,12 @@ let
 
             # Services
             k3s.enable = true;
-            llama-server = {
+            ssh = {
                 enable = true;
+                port = 2222;
+            };
+            llama-server = {
+                enable = false;
                 package = pkgs.llama-cpp.override { cudaSupport = true; };
                 port = 8081;
             };
