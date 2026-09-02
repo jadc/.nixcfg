@@ -128,7 +128,7 @@ in
 
                     shell = {
                         corner_radius_scale = 0.5;
-                        font_family = config.stylix.fonts.sansSerif.name;
+                        font_family = config.cfg.style.fonts.sansSerif.name;
                         shadow.alpha = 0.0;
                         show_location = false;
                         time_format = "{:%-I:%M %p}";
