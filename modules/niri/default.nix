@@ -58,6 +58,12 @@ in
 
             programs.noctalia.settings.brightness.enable_ddcutil = true;
 
+            # Retain CLIPBOARD data after the application that supplied it exits.
+            services.wl-clip-persist = {
+                enable = true;
+                clipboardType = "regular";
+            };
+
             xdg.configFile."niri/config.kdl".text =
                 builtins.readFile ./config.kdl + self.extraConfig;
         };
