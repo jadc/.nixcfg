@@ -20,7 +20,7 @@
         poppler.enable = true;
         ripgrep.enable = true;
         rsync.enable = true;
-        tmux.enable = true;
+        herdr.enable = true;
         xdg.enable = true;
         zoxide.enable = true;
         zsh.enable = true;
