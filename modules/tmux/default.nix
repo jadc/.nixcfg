@@ -61,6 +61,9 @@ in
                     # hide status bar
                     set -g status off
 
+                    # Let tmux and programs inside it use system clipboard via OSC 52.
+                    set -s set-clipboard on
+
                     # enable extended key reporting for richer modified-key support
                     set -s extended-keys on
                     set -g extended-keys-format csi-u

@@ -21,9 +21,18 @@ in
                     "kitty_mod+equal" = "change_font_size all +1.0";
                     "kitty_mod+minus" = "change_font_size all -1.0";
                     "f11" = "toggle_fullscreen";
+
+                    # Use only system clipboard
+                    "ctrl+shift+s" = "no_op";
+                    "shift+insert" = "paste_from_clipboard";
+                };
+
+                mouseBindings = {
+                    "middle release ungrabbed" = "paste_from_clipboard";
                 };
 
                 settings = {
+                    copy_on_select = "clipboard";
                     confirm_os_window_close = 0;
                     enable_audio_bell = false;
                     resize_in_steps = false;
