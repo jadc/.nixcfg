@@ -32,6 +32,7 @@ in
                 };
 
                 settings = {
+                    background_opacity = lib.mkForce (toString config.cfg.style.opacity.terminal);
                     copy_on_select = "clipboard";
                     confirm_os_window_close = 0;
                     enable_audio_bell = false;

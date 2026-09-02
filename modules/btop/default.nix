@@ -14,7 +14,7 @@ in
         config = lib.mkIf self.enable {
             programs.btop = {
                 enable = true;
-                settings.theme_background = false;
+                settings.theme_background = lib.mkForce false;
             };
 
             home.packages = [ pkgs.killall ];

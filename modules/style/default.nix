@@ -7,32 +7,28 @@
 { inputs, ... }:
 
 {
-    flake.modules.generic.style = { lib, pkgs, ... }:
-    let
-        color = default: lib.mkOption {
-            type = lib.types.str;
-            inherit default;
-        };
+    flake.modules.generic.style = { lib, pkgs, ... }: let
+        helpers = import ./_helper.nix { inherit lib; };
     in
     {
         options.cfg.style = {
             colors = {
-                base00 = color "#000000";
-                base01 = color "#282828";
-                base02 = color "#585858";
-                base03 = color "#888888";
-                base04 = color "#c8c8c8";
-                base05 = color "#ffffff";
-                base06 = color "#ffffff";
-                base07 = color "#ffffff";
-                base08 = color "#fa7883";
-                base09 = color "#ffc387";
-                base0A = color "#ff9470";
-                base0B = color "#98c379";
-                base0C = color "#8af5ff";
-                base0D = color "#6bb8ff";
-                base0E = color "#e799ff";
-                base0F = color "#b3684f";
+                base00 = helpers.color "000000";
+                base01 = helpers.color "282828";
+                base02 = helpers.color "585858";
+                base03 = helpers.color "888888";
+                base04 = helpers.color "c8c8c8";
+                base05 = helpers.color "ffffff";
+                base06 = helpers.color "ffffff";
+                base07 = helpers.color "ffffff";
+                base08 = helpers.color "fa7883";
+                base09 = helpers.color "ffc387";
+                base0A = helpers.color "ff9470";
+                base0B = helpers.color "98c379";
+                base0C = helpers.color "8af5ff";
+                base0D = helpers.color "6bb8ff";
+                base0E = helpers.color "e799ff";
+                base0F = helpers.color "b3684f";
             };
 
             cursor = {
@@ -47,6 +43,17 @@
                 size = lib.mkOption {
                     type = lib.types.ints.positive;
                     default = 20;
+                };
+            };
+
+            opacity = {
+                applications = lib.mkOption {
+                    type = lib.types.float;
+                    default = 0.85;
+                };
+                terminal = lib.mkOption {
+                    type = lib.types.float;
+                    default = 0.85;
                 };
             };
 
@@ -107,11 +114,6 @@
 
         config.stylix = {
             enable = true;
-
-            opacity = {
-                applications = 0.85;
-                terminal = 0.85;
-            };
 
             # Theme
             polarity = "dark";
