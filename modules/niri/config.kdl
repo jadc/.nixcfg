@@ -52,6 +52,11 @@ layout {
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia-shell"
 
+// Disable PRIMARY clipboard, only use regular CLIPBOARD selection.
+clipboard {
+    disable-primary
+}
+
 // Disable the "Important Hotkeys" pop-up at startup.
 hotkey-overlay {
     skip-at-startup
