@@ -22,6 +22,11 @@ in
                 enable = true;
                 ports = [ self.port ];
                 openFirewall = true;
+                settings = {
+                    PasswordAuthentication = false;
+                    KbdInteractiveAuthentication = false;
+                    PubkeyAuthentication = true;
+                };
             };
 
             # Persist host keys for stable identity across boots
