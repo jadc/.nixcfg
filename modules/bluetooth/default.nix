@@ -19,9 +19,6 @@ in
             # Bluetooth pairing tool
             services.blueman.enable = true;
 
-            # Enable A2DP sink
-            hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket";
-
             cfg.save.root.dirs = [ "/var/lib/bluetooth" ];
         };
     };
