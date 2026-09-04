@@ -22,7 +22,7 @@ in
 
     flake.modules.homeManager.${name} = { config, lib, inputs, ... }: let
         self = config.cfg.${name};
-        c = config.lib.stylix.colors.withHashtag;
+        colors = config.cfg.style.colors;
     in {
         imports = [ inputs.noctalia.homeModules.default ];
 
@@ -56,35 +56,33 @@ in
                     mSurfaceVariant   = "#1a1a1a";
                     mTertiary         = "#999999";
 
-                    # TODO: theme won't apply without this defined,
-                    # even though it isn't used (due to stylix); upstream oversight?
                     terminal = {
-                        background   = c.base00;
+                        background   = colors.base00.hex;
                         bright = {
-                            black   = c.base03;
-                            blue    = c.base0D;
-                            cyan    = c.base0C;
-                            green   = c.base0B;
-                            magenta = c.base0E;
-                            red     = c.base08;
-                            white   = c.base07;
-                            yellow  = c.base0A;
+                            black   = colors.base03.hex;
+                            blue    = colors.base0D.hex;
+                            cyan    = colors.base0C.hex;
+                            green   = colors.base0B.hex;
+                            magenta = colors.base0E.hex;
+                            red     = colors.base08.hex;
+                            white   = colors.base07.hex;
+                            yellow  = colors.base0A.hex;
                         };
-                        cursor       = c.base05;
-                        cursorText   = c.base00;
-                        foreground   = c.base05;
+                        cursor       = colors.base05.hex;
+                        cursorText   = colors.base00.hex;
+                        foreground   = colors.base05.hex;
                         normal = {
-                            black   = c.base00;
-                            blue    = c.base0D;
-                            cyan    = c.base0C;
-                            green   = c.base0B;
-                            magenta = c.base0E;
-                            red     = c.base08;
-                            white   = c.base05;
-                            yellow  = c.base0A;
+                            black   = colors.base00.hex;
+                            blue    = colors.base0D.hex;
+                            cyan    = colors.base0C.hex;
+                            green   = colors.base0B.hex;
+                            magenta = colors.base0E.hex;
+                            red     = colors.base08.hex;
+                            white   = colors.base05.hex;
+                            yellow  = colors.base0A.hex;
                         };
-                        selectionBg  = c.base02;
-                        selectionFg  = c.base05;
+                        selectionBg  = colors.base02.hex;
+                        selectionFg  = colors.base05.hex;
                     };
                 };
 
