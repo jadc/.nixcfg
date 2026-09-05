@@ -32,6 +32,9 @@ let
                 oomThreshold = 5;
             };
 
+            # Services
+            ssh.enable = true;
+
             # Apps
             power.enable = true;
         };
