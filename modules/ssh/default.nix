@@ -6,12 +6,12 @@ in
 {
     flake.modules.generic.${name} = { lib, ... }: {
         options.cfg.${name} = {
-            enable = lib.mkEnableOption "SSH server";
+            enable = lib.mkEnableOption "OpenSSH";
 
             port = lib.mkOption {
-                type = lib.types.port;
-                default = 22;
-                description = "Port on which the SSH server accepts connections.";
+                type = lib.types.nullOr lib.types.port;
+                default = null;
+                description = "Port on which to accept SSH connections; if null, only enable SSH client";
             };
         };
     };
@@ -20,8 +20,8 @@ in
         config = lib.mkIf self.enable {
             services.openssh = {
                 enable = true;
-                ports = [ self.port ];
-                openFirewall = true;
+                ports = lib.optional (self.port != null) self.port;
+                openFirewall = self.port != null;
                 settings = {
                     PasswordAuthentication = false;
                     KbdInteractiveAuthentication = false;
