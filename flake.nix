@@ -33,11 +33,6 @@
             url = "github:noctalia-dev/noctalia-shell/cachix";
         };
 
-        stylix = {
-            url = "github:nix-community/stylix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         helium = {
             url = "github:oxcl/nix-flake-helium-browser";
             inputs.nixpkgs.follows = "nixpkgs";
