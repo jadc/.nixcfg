@@ -134,6 +134,7 @@ in
 
                     theme = {
                         source = "custom";
+                        mode = "dark";
                         custom_palette = lib.mkForce palette;
                     };
 

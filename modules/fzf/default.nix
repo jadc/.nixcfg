@@ -15,8 +15,6 @@ in
         colors = config.cfg.style.colors;
     in {
         config = lib.mkIf self.enable {
-            stylix.targets.fzf.enable = false;
-
             programs.fzf = {
                 enable = true;
                 colors = {
