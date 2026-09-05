@@ -122,43 +122,45 @@
     flake.modules.nixos.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
     in {
-        config.fonts = lib.mkIf style.gui.enable {
-            packages = [
-                style.fonts.monospace.package
-                style.fonts.sansSerif.package
-                style.fonts.serif.package
-                style.fonts.emoji.package
+        config = lib.mkIf style.gui.enable {
+            fonts = {
+                packages = [
+                    style.fonts.monospace.package
+                    style.fonts.sansSerif.package
+                    style.fonts.serif.package
+                    style.fonts.emoji.package
 
-                pkgs.dejavu_fonts
-                pkgs.freefont_ttf
-                pkgs.gyre-fonts
-                pkgs.liberation_ttf
-                pkgs.unifont
+                    pkgs.dejavu_fonts
+                    pkgs.freefont_ttf
+                    pkgs.gyre-fonts
+                    pkgs.liberation_ttf
+                    pkgs.unifont
 
-                # Asian fonts
-                pkgs.noto-fonts-cjk-sans
-                pkgs.noto-fonts-cjk-serif
-            ];
+                    # Asian fonts
+                    pkgs.noto-fonts-cjk-sans
+                    pkgs.noto-fonts-cjk-serif
+                ];
 
-            fontconfig.defaultFonts = {
-                monospace = [ style.fonts.monospace.name ];
-                sansSerif = [ style.fonts.sansSerif.name ];
-                serif = [ style.fonts.serif.name ];
-                emoji = [ style.fonts.emoji.name ];
+                fontconfig.defaultFonts = {
+                    monospace = [ style.fonts.monospace.name ];
+                    sansSerif = [ style.fonts.sansSerif.name ];
+                    serif = [ style.fonts.serif.name ];
+                    emoji = [ style.fonts.emoji.name ];
+                };
             };
-        };
 
-        config.environment.sessionVariables = {
-            FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
-        };
+            environment.sessionVariables = {
+                FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+            };
 
-        config.programs.dconf.enable = style.gui.enable;
+            programs.dconf.enable = true;
+        };
     };
 
     flake.modules.homeManager.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
     in {
-        config = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && style.gui.enable) {
+        config = lib.mkIf style.gui.enable {
             gtk = let
                 theme = {
                     package = pkgs.adw-gtk3;
