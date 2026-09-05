@@ -60,12 +60,12 @@ Profiles live in `profiles/<name>/` and define a complete machine configuration 
 - **laptop** (`jad-laptop`): Similar to desktop without NVIDIA, adds bluetooth/wireguard/battery
 - **work**: Standalone home-manager config (CLI tools only, no NixOS), produces `work-<system>` outputs for all platforms
 
-Profiles only declare what is unique to them. The shared layers live in `profiles/_common/`:
+Profiles only declare what is unique to them. Reusable profile definitions live in `profiles/_common/`:
 
-- `_common/work.nix`: the CLI baseline, used directly by the **work** profile
-- `_common/default.nix`: imports `work.nix` and adds everything **desktop** and **laptop** have in common
+- `_common/work.nix`: the independent CLI-only baseline used by the **work** profile
+- `_common/default.nix`: the complete shared baseline for **desktop** and **laptop**, including its own CLI configuration
 
-Both layers wrap their `cfg` block in `lib.mkDefault`, so a profile's own definitions always take
+Both definitions wrap their `cfg` block in `lib.mkDefault`, so a profile's own definitions always take
 precedence without needing `lib.mkForce`. Directories under `profiles/` prefixed with `_` are shared
 fragments and are skipped by the profile auto-import.
 

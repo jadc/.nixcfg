@@ -14,10 +14,7 @@ let
             modules =
                 (lib.attrValues top.config.flake.modules.generic)
                 ++ (lib.attrValues top.config.flake.modules.homeManager)
-                ++ [
-                    ../_common/work.nix
-                    { cfg.style.gui.enable = false; }
-                ];
+                ++ [ ../_common/work.nix ];
         };
     };
 in

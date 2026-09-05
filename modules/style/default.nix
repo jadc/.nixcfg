@@ -59,8 +59,8 @@
 
             gui.enable = lib.mkOption {
                 type = lib.types.bool;
-                default = true;
-                description = "Whether to enable GTK and Qt styling";
+                default = pkgs.stdenv.hostPlatform.isLinux;
+                description = "Whether to enable graphical styling";
             };
 
             fonts = {
@@ -122,7 +122,7 @@
     flake.modules.nixos.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
     in {
-        config.fonts = {
+        config.fonts = lib.mkIf style.gui.enable {
             packages = [
                 style.fonts.monospace.package
                 style.fonts.sansSerif.package
@@ -152,28 +152,29 @@
             FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
         };
 
-        config.programs.dconf.enable = lib.mkIf style.gui.enable true;
+        config.programs.dconf.enable = style.gui.enable;
     };
 
     flake.modules.homeManager.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
-        gtkTheme = {
-            package = pkgs.adw-gtk3;
-            name = "adw-gtk3-dark";
-        };
     in {
-        config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-            gtk = lib.mkIf style.gui.enable {
+        config = lib.mkIf (pkgs.stdenv.hostPlatform.isLinux && style.gui.enable) {
+            gtk = let
+                theme = {
+                    package = pkgs.adw-gtk3;
+                    name = "adw-gtk3-dark";
+                };
+            in {
                 enable = true;
                 font = {
                     inherit (style.fonts.sansSerif) package name;
                     size = style.fonts.sizes.applications;
                 };
-                theme = gtkTheme;
-                gtk4.theme = gtkTheme;
+                inherit theme;
+                gtk4 = { inherit theme; };
             };
 
-            qt = lib.mkIf style.gui.enable {
+            qt = {
                 enable = true;
                 platformTheme.name = "adwaita";
                 style.name = "adwaita-dark";
@@ -182,7 +183,7 @@
             home.pointerCursor = {
                 inherit (style.cursor) package name size;
                 enable = true;
-                gtk.enable = lib.mkIf style.gui.enable true;
+                gtk.enable = true;
                 x11.enable = true;
             };
         };
