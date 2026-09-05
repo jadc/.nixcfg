@@ -12,7 +12,7 @@ in
 
     flake.modules.homeManager.${name} = { config, lib, ... }: let
         self = config.cfg.${name};
-        colors = config.lib.stylix.colors.withHashtag;
+        colors = config.cfg.style.colors;
     in {
         config = lib.mkIf self.enable {
             programs.herdr = {
@@ -21,25 +21,25 @@ in
                     onboarding = false;
 
                     theme.custom = {
-                        accent = colors.base02;
+                        accent = colors.base02.hex;
                         panel_bg = "transparent";
                         sidebar_bg = "transparent";
-                        active_row_bg = colors.base01;
-                        selection_bg = colors.base01;
-                        surface0 = colors.base01;
-                        surface1 = colors.base02;
-                        surface_dim = colors.base01;
-                        overlay0 = colors.base03;
-                        overlay1 = colors.base04;
-                        text = colors.base05;
-                        subtext0 = colors.base04;
-                        mauve = colors.base0E;
-                        green = colors.base0B;
-                        yellow = colors.base0A;
-                        red = colors.base08;
-                        blue = colors.base0D;
-                        teal = colors.base0C;
-                        peach = colors.base09;
+                        active_row_bg = colors.base01.hex;
+                        selection_bg = colors.base01.hex;
+                        surface0 = colors.base01.hex;
+                        surface1 = colors.base02.hex;
+                        surface_dim = colors.base01.hex;
+                        overlay0 = colors.base03.hex;
+                        overlay1 = colors.base04.hex;
+                        text = colors.base05.hex;
+                        subtext0 = colors.base04.hex;
+                        mauve = colors.base0E.hex;
+                        green = colors.base0B.hex;
+                        yellow = colors.base0A.hex;
+                        red = colors.base08.hex;
+                        blue = colors.base0D.hex;
+                        teal = colors.base0C.hex;
+                        peach = colors.base09.hex;
                     };
 
                     # Keep new panes, tabs, and workspaces in the current path.
@@ -47,7 +47,7 @@ in
 
                     ui = {
                         # Keep split lines matched with the sidebar border.
-                        accent = colors.base01;
+                        accent = colors.base01.hex;
 
                         # Retain tmux's mouse support.
                         mouse_capture = true;

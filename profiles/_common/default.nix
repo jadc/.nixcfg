@@ -3,8 +3,6 @@
 { config, lib, ... }:
 
 {
-    imports = [ ./work.nix ];
-
     cfg = lib.mkDefault {
         # Kernel
         kernel = {
@@ -22,7 +20,6 @@
         identity.passwordFile = "${config.cfg.save.path}/password";
         keyd.enable = true;
         networkmanager.enable = true;
-        qt.enable = true;
         save.enable = true;
         sound.enable = true;
         timeZone = "America/Toronto";
@@ -64,9 +61,29 @@
         zathura.enable = true;
 
         # Command-line Interface
+        archivers.enable = true;
+        bat.enable = true;
+        btop.enable = true;
         claude-code.enable = true;
+        direnv.enable = true;
+        envs.enable = true;
+        exiftool.enable = true;
+        eza.enable = true;
+        ffmpeg.enable = true;
         flac.enable = true;
+        fzf.enable = true;
         gallery-dl.enable = true;
+        git.enable = true;
+        herdr.enable = true;
+        hyperfine.enable = true;
+        imagemagick.enable = true;
+        lldb.enable = true;
+        poppler.enable = true;
+        ripgrep.enable = true;
+        rsync.enable = true;
+        xdg.enable = true;
         yt.enable = true;
+        zoxide.enable = true;
+        zsh.enable = true;
     };
 }

@@ -4,6 +4,8 @@
 
 {
     cfg = lib.mkDefault {
+        style.gui.enable = false;
+
         archivers.enable = true;
         bat.enable = true;
         direnv.enable = true;
