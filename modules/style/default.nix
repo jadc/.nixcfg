@@ -4,7 +4,7 @@
 # base08 = "ff009e"; base09 = "ff00d4"; base0A = "fffd00"; base0B = "00ffa2";
 # base0C = "00ffea"; base0D = "00e0ff"; base0E = "00efff"; base0F = "f274bc";
 
-{ inputs, ... }:
+{ ... }:
 
 {
     flake.modules.generic.style = { lib, pkgs, ... }: let
@@ -57,6 +57,12 @@
                 };
             };
 
+            gui.enable = lib.mkOption {
+                type = lib.types.bool;
+                default = true;
+                description = "Whether to enable GTK and Qt styling";
+            };
+
             fonts = {
                 monospace = {
                     package = lib.mkOption {
@@ -99,42 +105,23 @@
                     };
                 };
 
-                sizes.terminal = lib.mkOption {
-                    type = lib.types.ints.positive;
-                    default = 13;
+                sizes = {
+                    applications = lib.mkOption {
+                        type = lib.types.ints.positive;
+                        default = 12;
+                    };
+                    terminal = lib.mkOption {
+                        type = lib.types.ints.positive;
+                        default = 13;
+                    };
                 };
             };
         };
     };
 
-    flake.modules.nixos.style = { config, pkgs, ... }: let
+    flake.modules.nixos.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
     in {
-        imports = [ inputs.stylix.nixosModules.stylix ];
-
-        config.stylix = {
-            enable = true;
-
-            # Theme
-            polarity = "dark";
-            base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-black.yaml";
-
-            # Keep Stylix targets on the shared fonts while they are migrated.
-            fonts = {
-                inherit (style.fonts) monospace sansSerif serif emoji;
-                sizes.terminal = style.fonts.sizes.terminal;
-            };
-
-            targets = {
-                # These are now configured without Stylix below.
-                fontconfig.enable = false;
-                font-packages.enable = false;
-
-                # Disable forcing Chromium theme.
-                chromium.enable = false;
-            };
-        };
-
         config.fonts = {
             packages = [
                 style.fonts.monospace.package
@@ -164,16 +151,38 @@
         config.environment.sessionVariables = {
             FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
         };
+
+        config.programs.dconf.enable = lib.mkIf style.gui.enable true;
     };
 
     flake.modules.homeManager.style = { config, lib, pkgs, ... }: let
         style = config.cfg.style;
+        gtkTheme = {
+            package = pkgs.adw-gtk3;
+            name = "adw-gtk3-dark";
+        };
     in {
         config = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+            gtk = lib.mkIf style.gui.enable {
+                enable = true;
+                font = {
+                    inherit (style.fonts.sansSerif) package name;
+                    size = style.fonts.sizes.applications;
+                };
+                theme = gtkTheme;
+                gtk4.theme = gtkTheme;
+            };
+
+            qt = lib.mkIf style.gui.enable {
+                enable = true;
+                platformTheme.name = "adwaita";
+                style.name = "adwaita-dark";
+            };
+
             home.pointerCursor = {
                 inherit (style.cursor) package name size;
                 enable = true;
-                gtk.enable = true;
+                gtk.enable = lib.mkIf style.gui.enable true;
                 x11.enable = true;
             };
         };

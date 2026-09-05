@@ -22,7 +22,6 @@
         identity.passwordFile = "${config.cfg.save.path}/password";
         keyd.enable = true;
         networkmanager.enable = true;
-        qt.enable = true;
         save.enable = true;
         sound.enable = true;
         timeZone = "America/Toronto";

@@ -93,7 +93,6 @@ All NixOS systems use ephemeral root (tmpfs). Persistent state goes under `/stat
 - **import-tree**: Auto-import directories as flake modules
 - **home-manager**: User environment management (follows nixpkgs)
 - **preservation**: Ephemeral root filesystem support
-- **stylix**: System-wide theming (follows nixpkgs)
 - **nvim**: External neovim flake (`github:jadc/nvim`)
 
 ### Nix conventions in this repo
