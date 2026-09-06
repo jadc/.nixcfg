@@ -9,6 +9,23 @@ let
     profile = { ... }: {
         imports = [ ../_common ];
 
+        # Keep the speaker-capable profile preferred when HDMI is connected.
+        # HDMI sinks remain available and can still be selected normally.
+        services.pipewire.wireplumber.extraConfig."51-prefer-speakers" = {
+            "device.profile.priority.rules" = [
+                {
+                    matches = [
+                        {
+                            "device.name" = "alsa_card.pci-0000_00_1f.3-platform-skl_hda_dsp_generic";
+                        }
+                    ];
+                    actions.update-props.priorities = [
+                        "HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)"
+                    ];
+                }
+            ];
+        };
+
         cfg = {
             # Kernel
             kernel = {
