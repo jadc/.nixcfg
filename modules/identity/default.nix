@@ -31,9 +31,6 @@ in
 
         users.users.root.hashedPasswordFile = self.passwordFile;
 
-        # Enable automatic login for the user.
-        services.getty.autologinUser = username;
-
         # Allow wheel group to skip sudo password
         security.sudo.wheelNeedsPassword = false;
     };
