@@ -15,6 +15,15 @@ in
             # Enable networking
             networking.networkmanager.enable = true;
 
+            # Prevent conflicts when wired and wireless interfaces
+            # are connected to the same subnet.
+            boot.kernel.sysctl = {
+                "net.ipv4.conf.all.arp_ignore" = 1;
+                "net.ipv4.conf.default.arp_ignore" = 1;
+                "net.ipv4.conf.all.arp_announce" = 2;
+                "net.ipv4.conf.default.arp_announce" = 2;
+            };
+
             # Disable weird service that fails
             systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
