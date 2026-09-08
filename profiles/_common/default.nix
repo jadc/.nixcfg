@@ -1,6 +1,6 @@
 # Options shared amongst all the NixOS profiles.
 
-{ config, lib, ... }:
+{ config, lib, pkgs, username, ... }:
 
 {
     cfg = lib.mkDefault {
@@ -18,6 +18,10 @@
         # Setup
         automount.enable = true;
         identity.passwordFile = "${config.cfg.save.path}/password";
+        greeter = {
+            package = pkgs.tuigreet;
+            extraArgs = [ "--remember" "--user" username "--time" "--asterisks" ];
+        };
         keyd.enable = true;
         networkmanager.enable = true;
         save.enable = true;
