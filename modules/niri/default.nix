@@ -29,7 +29,11 @@ in
             services.greetd = {
                 enable = true;
                 settings = {
-                    default_session.command = "${pkgs.greetd}/bin/agreety --cmd niri-session";
+                    default_session.command = lib.escapeShellArgs (
+                        [ config.cfg.greeter.command ]
+                        ++ config.cfg.greeter.extraArgs
+                        ++ [ "--cmd" "niri-session" ]
+                    );
                 };
             };
 
