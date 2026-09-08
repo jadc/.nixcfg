@@ -29,12 +29,7 @@ in
             services.greetd = {
                 enable = true;
                 settings = {
-                    # Auto-login
                     default_session.command = "${pkgs.greetd}/bin/agreety --cmd niri-session";
-                    initial_session = {
-                        command = "niri-session";
-                        user = username;
-                    };
                 };
             };
 
