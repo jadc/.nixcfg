@@ -41,6 +41,7 @@
         helium.enable = true;
         jellyfin-player.enable = true;
         kitty.enable = true;
+        losslesscut.enable = true;
         minecraft.enable = true;
         moonlight.enable = true;
         mpv.enable = true;
