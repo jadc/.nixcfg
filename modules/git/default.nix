@@ -59,18 +59,27 @@ in
                     # Often produces more readable diffs.
                     diff.algorithm = "histogram";
                     # Highlight moved lines in diffs.
-                    diff.colorMoved = "zebra";
+                    diff.colorMoved = "default";
 
                     alias = {
                         a = "add";
                         b = "branch -v";
                         c = "commit";
                         ca = "commit --amend --no-edit";
-                        last = "log -1 HEAD --stat";
-                        lg = "log --oneline --graph --decorate --all";
-                        s = "status";
                         d = "diff";
                         ds = "diff --staged";
+                        last = "log -1 HEAD --stat";
+                        lg = "log --oneline --graph --decorate --all";
+                        review = lib.concatStringsSep " " [
+                            "!f() {"
+                            "if [ $# -eq 0 ]; then"
+                            "git -c delta.side-by-side=true diff HEAD^ HEAD;"
+                            "else"
+                            "git -c delta.side-by-side=true diff \"$@\";"
+                            "fi;"
+                            "}; f"
+                        ];
+                        s = "status";
                     };
                 };
 
@@ -82,6 +91,16 @@ in
             programs.delta = {
                 enable = true;
                 enableGitIntegration = true;
+
+                options = {
+                    line-numbers = true;
+                    # Style background color of moved lines as from magenta to cyan.
+                    map-styles = "bold purple => normal #3f003f, bold cyan => syntax #002828";
+                    # Allows jumping between files/hunks with n and N.
+                    navigate = true;
+                    # Highlight trailing whitespaces.
+                    whitespace-error-style = "reverse red";
+                };
             };
 
             # GitHub OAuth tokens and config.
