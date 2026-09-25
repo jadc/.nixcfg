@@ -84,6 +84,11 @@ in
                 };
             };
 
+            # Reinstall on each activation to keep the integration in sync with Herdr.
+            home.activation.installHerdrPiIntegration = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                ${lib.getExe config.programs.herdr.package} integration install pi >/dev/null 2>&1 || true
+            '';
+
             cfg.save.home.dirs = [ ".config/herdr" ];
         };
     };
