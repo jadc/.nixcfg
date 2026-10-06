@@ -70,6 +70,7 @@ let
             };
 
             # Apps
+            dolphin-emu.enable = true;
             droidcam.enable = true;
             unity.enable = true;
         };
