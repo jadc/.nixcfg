@@ -81,7 +81,6 @@
         git.enable = true;
         herdr.enable = true;
         hyperfine.enable = true;
-        hunk.enable = true;
         imagemagick.enable = true;
         lldb.enable = true;
         poppler.enable = true;
