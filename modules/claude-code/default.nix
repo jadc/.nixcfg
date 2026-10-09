@@ -13,10 +13,14 @@ in
     flake.modules.homeManager.${name} = { config, lib, pkgs, ... }: let self = config.cfg.${name}; in {
         config = lib.mkIf self.enable {
             programs.claude-code.enable = true;
-            cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --allow-dangerously-skip-permissions";
+            cfg.const.aliases.claude = "${pkgs.claude-code}/bin/claude --dangerously-skip-permissions";
 
             home.file.".claude/statusline-command.sh" = {
-                source = ./statusline-command.sh;
+                source = "${pkgs.writeShellApplication {
+                    name = "statusline-command";
+                    runtimeInputs = [ pkgs.jq pkgs.gawk pkgs.git pkgs.coreutils ];
+                    text = builtins.readFile ./statusline-command.sh;
+                }}/bin/statusline-command";
                 executable = true;
             };
 
