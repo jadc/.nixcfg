@@ -51,6 +51,8 @@
         obs.enable = true;
         obsidian.enable = true;
         parallel-launcher.enable = true;
+        pdfcraft.enable = true;
+        photocraft.enable = true;
         puddletag.enable = true;
         qdirstat.enable = true;
         rnote.enable = true;
