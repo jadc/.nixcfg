@@ -10,9 +10,10 @@ in
         };
     };
 
-    flake.modules.homeManager.${name} = { config, lib, pkgs, ... }: let
+    flake.modules.homeManager.${name} = { config, options, lib, pkgs, ... }: let
         self = config.cfg.${name};
-        dirs = lib.filter builtins.isString (builtins.attrValues config.xdg.userDirs);
+        visible = lib.filterAttrs (n: _: options.xdg.userDirs.${n}.visible or true != false) config.xdg.userDirs;
+        dirs = lib.filter builtins.isString (builtins.attrValues visible);
     in {
         config = lib.mkIf self.enable {
             home.packages = [ pkgs.nautilus ];
