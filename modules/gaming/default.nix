@@ -24,7 +24,8 @@ in
 
                 gamescope = {
                     enable = true;
-                    capSysNice = true;
+                    # Steam blocks privilege elevation; the capability wrapper fails there.
+                    capSysNice = false;
                 };
             };
 
