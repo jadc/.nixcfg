@@ -30,7 +30,6 @@
         trim.enable = true;
 
         # Apps
-        audacity.enable = true;
         avidemux.enable = true;
         bruno.enable = true;
         deluge.enable = true;
