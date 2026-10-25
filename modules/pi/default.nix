@@ -8,5 +8,6 @@ in
         imports = [ inputs.pi.homeManagerModules.default ];
 
         cfg.save.home.dirs = [ ".pi" ];
+        cfg.const.aliases.pi = "command pi update --extensions && command pi";
     };
 }
