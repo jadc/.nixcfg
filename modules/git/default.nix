@@ -35,6 +35,9 @@ in
                 ];
 
                 settings = {
+                    user.name = "jad";
+                    user.email = "git@jad.red";
+
                     init.defaultBranch = "main";
 
                     # When branching from a local branch, point to same upstream.
