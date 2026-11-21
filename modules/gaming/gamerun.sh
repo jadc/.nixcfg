@@ -1,5 +1,11 @@
+gamescope=1
+if [ "${1-}" = "--no-gamescope" ]; then
+    gamescope=0
+    shift
+fi
+
 if [ $# -eq 0 ]; then
-    echo "usage: gamerun <command> [args...]" >&2
+    echo "usage: gamerun [--no-gamescope] <command> [args...]" >&2
     exit 64
 fi
 
@@ -23,6 +29,10 @@ if [ -n "$gpu" ]; then
 
     # Vulkan needs device promoted to index 0.
     export MESA_VK_DEVICE_SELECT="$gpu"
+fi
+
+if [ "$gamescope" -eq 0 ]; then
+    exec gamemoderun "$@"
 fi
 
 exec gamemoderun gamescope -- "$@"
